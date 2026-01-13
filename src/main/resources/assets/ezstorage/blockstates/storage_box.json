@@ -1,5 +1,7 @@
 {
-	"variants": {
-		"normal": {"model": "ezstorage:storage_box"}
-	}
+  "variants": {
+    "": {
+      "model": "ezstorage:block/storage_box"
+    }
+  }
 }

@@ -6,6 +6,7 @@ import com.zerofall.ezstorage.events.SecurityEvents;
 import com.zerofall.ezstorage.init.EZBlocks;
 import com.zerofall.ezstorage.init.EZBlockEntities;
 import com.zerofall.ezstorage.init.EZItems;
+import com.zerofall.ezstorage.init.EZMenuTypes;
 import com.zerofall.ezstorage.network.EZNetwork;
 import com.zerofall.ezstorage.ref.EZTab;
 import com.zerofall.ezstorage.ref.Log;
@@ -32,6 +33,7 @@ public class EZStorage {
 		EZBlocks.register(modEventBus);
 		EZItems.register(modEventBus);
 		EZBlockEntities.register(modEventBus);
+		EZMenuTypes.register(modEventBus);
 		
 		modEventBus.addListener(this::commonSetup);
 		modContainer.registerConfig(ModConfig.Type.COMMON, EZConfig.SPEC);
