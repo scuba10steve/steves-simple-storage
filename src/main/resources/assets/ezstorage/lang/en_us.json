@@ -1,0 +1,16 @@
+{
+  "itemGroup.ezstorage": "EZStorage",
+  
+  "block.ezstorage.storage_core": "Storage Core",
+  "block.ezstorage.storage_box": "Storage Box",
+  
+  "item.ezstorage.key": "EZ Key",
+  "item.ezstorage.dolly": "Dolly",
+  "item.ezstorage.dolly_super": "Super Dolly",
+  
+  "container.ezstorage.storage_core": "Storage Core",
+  
+  "gui.ezstorage.search": "Search...",
+  "gui.ezstorage.sort": "Sort",
+  "gui.ezstorage.clear": "Clear"
+}
