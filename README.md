@@ -17,11 +17,11 @@ This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoF
 - ✅ Basic items: Key, Dolly (basic & super), Block Items
 - ✅ Block entities: Storage Core Block Entity
 - ✅ GUI system: Storage Core menu and screen
+- ✅ Storage system: Basic inventory with insert/extract logic
 - ✅ Unit tests for core constants
 - ✅ Mod loads successfully in development environment
 
 ### What Needs Work
-- ❌ Storage system implementation (logic from 1.12.2 needs porting)
 - ❌ Networking and synchronization
 - ❌ JEI integration
 - ❌ Multiblock structures and validation
