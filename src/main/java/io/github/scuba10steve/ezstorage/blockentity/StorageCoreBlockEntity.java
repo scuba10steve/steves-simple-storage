@@ -35,9 +35,13 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
         super(EZBlockEntities.STORAGE_CORE.get(), pos, state);
+        System.out.println("=== StorageCoreBlockEntity created at " + pos + " ===");
+        LOGGER.info("StorageCoreBlockEntity created at {}", pos);
+        LOGGER.debug("Initial inventory capacity: {}", inventory.getTotalItemCount());
     }
 
     public void scanMultiblock() {
+        System.out.println("=== SCANNING MULTIBLOCK at " + worldPosition + " ===");
         LOGGER.info("Scanning multiblock at {}", worldPosition);
         
         long totalCapacity = 0;
@@ -51,10 +55,12 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         for (BlockRef blockRef : multiblock) {
             if (blockRef.block instanceof BlockStorage storage) {
                 totalCapacity += storage.getCapacity();
+                System.out.println("Found storage block at " + blockRef.pos + " with capacity " + storage.getCapacity());
                 LOGGER.debug("Found storage block at {} with capacity {}", blockRef.pos, storage.getCapacity());
             }
         }
         
+        System.out.println("Multiblock scan complete. Found " + multiblock.size() + " blocks, total capacity: " + totalCapacity);
         LOGGER.info("Multiblock scan complete. Found {} blocks, total capacity: {}", multiblock.size(), totalCapacity);
         inventory.setMaxItems(totalCapacity);
         setChanged();
@@ -77,14 +83,17 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     }
 
     public ItemStack insertItem(ItemStack stack) {
+        System.out.println("=== INSERT ATTEMPT: " + stack.getItem() + " x" + stack.getCount() + " ===");
         LOGGER.debug("Attempting to insert item: {} x{}", stack.getItem(), stack.getCount());
         
         if (stack.isEmpty()) {
+            System.out.println("Stack is empty, returning");
             LOGGER.debug("Stack is empty, returning");
             return ItemStack.EMPTY;
         }
         
         ItemStack result = inventory.insertItem(stack);
+        System.out.println("Insert result: " + result.getCount() + " remaining");
         LOGGER.debug("Insert result: {} remaining", result.getCount());
         
         setChanged();

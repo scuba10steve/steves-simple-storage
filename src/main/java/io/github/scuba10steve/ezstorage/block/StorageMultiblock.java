@@ -6,12 +6,15 @@ import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public abstract class StorageMultiblock extends EZBlock {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StorageMultiblock.class);
     
     protected StorageMultiblock(Properties properties) {
         super(properties);
@@ -21,6 +24,7 @@ public abstract class StorageMultiblock extends EZBlock {
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
         if (!level.isClientSide) {
+            LOGGER.info("StorageMultiblock placed at {}, attempting multiblock scan", pos);
             attemptMultiblock(level, pos);
         }
     }
