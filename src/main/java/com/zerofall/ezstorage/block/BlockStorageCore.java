@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
@@ -35,10 +36,26 @@ public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {
             BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof StorageCoreBlockEntity) {
-                player.openMenu(((StorageCoreBlockEntity) blockEntity), pos);
+            if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
+                player.openMenu(storageCore, pos);
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+    
+    @Override
+    protected net.minecraft.world.ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
+        if (!level.isClientSide && !stack.isEmpty()) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
+                ItemStack remainder = storageCore.insertItem(stack);
+                if (remainder.getCount() != stack.getCount()) {
+                    // Some items were inserted
+                    player.setItemInHand(hand, remainder);
+                    return net.minecraft.world.ItemInteractionResult.SUCCESS;
+                }
+            }
+        }
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
     }
 }

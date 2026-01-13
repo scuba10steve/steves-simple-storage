@@ -20,12 +20,16 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvider {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreBlockEntity.class);
+    
     private final EZInventory inventory = new EZInventory();
     private final Set<BlockRef> multiblock = new HashSet<>();
     
@@ -34,6 +38,8 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     }
 
     public void scanMultiblock() {
+        LOGGER.info("Scanning multiblock at {}", worldPosition);
+        
         long totalCapacity = 0;
         multiblock.clear();
         
@@ -45,9 +51,11 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         for (BlockRef blockRef : multiblock) {
             if (blockRef.block instanceof BlockStorage storage) {
                 totalCapacity += storage.getCapacity();
+                LOGGER.debug("Found storage block at {} with capacity {}", blockRef.pos, storage.getCapacity());
             }
         }
         
+        LOGGER.info("Multiblock scan complete. Found {} blocks, total capacity: {}", multiblock.size(), totalCapacity);
         inventory.setMaxItems(totalCapacity);
         setChanged();
         syncToClients();
@@ -69,14 +77,27 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     }
 
     public ItemStack insertItem(ItemStack stack) {
+        LOGGER.debug("Attempting to insert item: {} x{}", stack.getItem(), stack.getCount());
+        
+        if (stack.isEmpty()) {
+            LOGGER.debug("Stack is empty, returning");
+            return ItemStack.EMPTY;
+        }
+        
         ItemStack result = inventory.insertItem(stack);
+        LOGGER.debug("Insert result: {} remaining", result.getCount());
+        
         setChanged();
         syncToClients();
         return result;
     }
     
     public ItemStack extractItem(ItemStack template, int amount) {
+        LOGGER.debug("Attempting to extract item: {} x{}", template.getItem(), amount);
+        
         ItemStack result = inventory.extractItem(template, amount);
+        LOGGER.debug("Extract result: {} x{}", result.getItem(), result.getCount());
+        
         setChanged();
         syncToClients();
         return result;
