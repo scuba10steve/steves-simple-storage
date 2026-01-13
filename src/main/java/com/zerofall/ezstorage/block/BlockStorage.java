@@ -1,7 +1,14 @@
 package com.zerofall.ezstorage.block;
 
-public class BlockStorage extends EZBlock {
-    public BlockStorage() {
-        super();
+public class BlockStorage extends StorageMultiblock {
+    private final int capacity;
+    
+    public BlockStorage(int capacity) {
+        super(Properties.of().strength(2.0f));
+        this.capacity = capacity;
+    }
+    
+    public int getCapacity() {
+        return capacity;
     }
 }

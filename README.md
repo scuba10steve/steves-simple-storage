@@ -20,12 +20,12 @@ This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoF
 - ✅ Storage system: Basic inventory with insert/extract logic
 - ✅ Networking: Storage sync packets for client-server communication
 - ✅ JEI integration: Basic recipe transfer for crafting
+- ✅ Multiblock structures: Core scanning and validation system
 - ✅ Unit tests for core constants
 - ✅ Mod loads successfully in development environment
 
 ### What Needs Work
 - ❌ Advanced JEI features (ingredient lookup from storage)
-- ❌ Multiblock structures and validation
 - ❌ Assets (models, textures, blockstates, recipes)
 
 The original 1.12.2 source code has been preserved in `src/main/java-backup/` for reference during the porting process.

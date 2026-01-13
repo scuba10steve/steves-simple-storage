@@ -14,9 +14,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class BlockStorageCore extends EZBlock implements EntityBlock {
+public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
     public BlockStorageCore() {
-        super();
+        super(Properties.of().strength(2.0f));
     }
 
     @Override

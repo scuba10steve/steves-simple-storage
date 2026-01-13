@@ -12,4 +12,8 @@ public class EZBlock extends Block {
             .strength(2.0f)
         );
     }
+    
+    protected EZBlock(Properties properties) {
+        super(properties);
+    }
 }

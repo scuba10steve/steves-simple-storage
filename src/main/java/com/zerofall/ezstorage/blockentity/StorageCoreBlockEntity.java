@@ -1,9 +1,13 @@
 package com.zerofall.ezstorage.blockentity;
 
+import com.zerofall.ezstorage.block.BlockStorage;
+import com.zerofall.ezstorage.block.StorageMultiblock;
 import com.zerofall.ezstorage.gui.server.StorageCoreMenu;
 import com.zerofall.ezstorage.init.EZBlockEntities;
 import com.zerofall.ezstorage.network.StorageSyncPacket;
 import com.zerofall.ezstorage.storage.EZInventory;
+import com.zerofall.ezstorage.util.BlockRef;
+import com.zerofall.ezstorage.util.EZStorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -17,11 +21,51 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.network.PacketDistributor;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvider {
     private final EZInventory inventory = new EZInventory();
+    private final Set<BlockRef> multiblock = new HashSet<>();
     
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
         super(EZBlockEntities.STORAGE_CORE.get(), pos, state);
+    }
+
+    public void scanMultiblock() {
+        long totalCapacity = 0;
+        multiblock.clear();
+        
+        BlockRef coreRef = new BlockRef(getBlockState().getBlock(), worldPosition);
+        multiblock.add(coreRef);
+        getValidNeighbors(coreRef);
+        
+        // Calculate total capacity from storage blocks
+        for (BlockRef blockRef : multiblock) {
+            if (blockRef.block instanceof BlockStorage storage) {
+                totalCapacity += storage.getCapacity();
+            }
+        }
+        
+        inventory.setMaxItems(totalCapacity);
+        setChanged();
+        syncToClients();
+    }
+    
+    private void getValidNeighbors(BlockRef br) {
+        List<BlockRef> neighbors = EZStorageUtils.getNeighbors(br.pos, level);
+        for (BlockRef blockRef : neighbors) {
+            if (blockRef.block instanceof StorageMultiblock) {
+                if (multiblock.add(blockRef)) {
+                    getValidNeighbors(blockRef);
+                }
+            }
+        }
+    }
+    
+    public boolean isPartOfMultiblock(BlockRef blockRef) {
+        return multiblock.contains(blockRef);
     }
 
     public ItemStack insertItem(ItemStack stack) {

@@ -14,7 +14,7 @@ public class EZBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(BuiltInRegistries.BLOCK, RefStrings.MODID);
 
     // Storage blocks
-    public static final Supplier<Block> STORAGE_BOX = BLOCKS.register("storage_box", BlockStorage::new);
+    public static final Supplier<Block> STORAGE_BOX = BLOCKS.register("storage_box", () -> new BlockStorage(10000));
     public static final Supplier<Block> STORAGE_CORE = BLOCKS.register("storage_core", BlockStorageCore::new);
 
     public static void register(IEventBus eventBus) {
