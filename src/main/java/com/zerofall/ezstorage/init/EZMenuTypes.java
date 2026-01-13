@@ -1,6 +1,7 @@
 package com.zerofall.ezstorage.init;
 
 import com.zerofall.ezstorage.gui.server.StorageCoreMenu;
+import com.zerofall.ezstorage.gui.server.StorageCoreCraftingMenu;
 import com.zerofall.ezstorage.ref.RefStrings;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;
@@ -18,6 +19,11 @@ public class EZMenuTypes {
         MENU_TYPES.register("storage_core", () -> 
             IMenuTypeExtension.create((windowId, inv, data) -> 
                 new StorageCoreMenu(windowId, inv, data.readBlockPos())));
+                
+    public static final Supplier<MenuType<StorageCoreCraftingMenu>> STORAGE_CORE_CRAFTING = 
+        MENU_TYPES.register("storage_core_crafting", () -> 
+            IMenuTypeExtension.create((windowId, inv, data) -> 
+                new StorageCoreCraftingMenu(windowId, inv, data.readBlockPos())));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);

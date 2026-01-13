@@ -39,10 +39,10 @@ neoForge {
 }
 
 dependencies {
-    // JEI integration - commented out for initial build
-    // compileOnly "mezz.jei:jei-1.21.1-common-api:19.8.4.119"
-    // compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.8.4.119"
-    // runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.8.4.119"
+    // JEI integration
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.19.6.233"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.19.6.233"
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.19.6.233"
     
     // Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
