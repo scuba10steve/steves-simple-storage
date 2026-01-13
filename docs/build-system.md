@@ -51,8 +51,8 @@ plugins {
     id 'java'
 }
 
-version = '2.5.0'
-group = 'com.zerofall.ezstorage'
+version = '1.0.0'
+group = 'io.github.scuba10steve.ezstorage'
 
 base {
     archivesName = 'ezstorage'
@@ -105,13 +105,13 @@ test {
 
 ```properties
 # Mod Properties
-mod_version=2.5.0
-mod_group_id=com.zerofall.ezstorage
+mod_version=1.0.0
+mod_group_id=io.github.scuba10steve.ezstorage
 mod_id=ezstorage
 mod_name=EZStorage 2
 mod_license=MIT
-mod_url=https://github.com/zerofall/EZStorage2
-mod_author=zerofall, SBlectric
+mod_url=https://github.com/scuba10steve/EZStorage2
+mod_author=scuba10steve
 mod_description=High-capacity storage system for Minecraft
 
 # Build Properties

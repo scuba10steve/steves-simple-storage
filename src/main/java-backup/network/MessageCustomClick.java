@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import com.zerofall.ezstorage.gui.server.ContainerStorageCore;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCore;
 
 /** Custom click message to be processed on the server */
 public class MessageCustomClick implements IMessage {

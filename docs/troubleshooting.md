@@ -308,7 +308,7 @@ When reporting issues, include:
 ```
 Minecraft: 1.21.1
 NeoForge: 21.1.77
-EZStorage: 2.5.0
+EZStorage: 1.0.0
 Java: 21
 Gradle: 8.10.2
 ```

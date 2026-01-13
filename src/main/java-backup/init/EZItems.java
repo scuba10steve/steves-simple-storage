@@ -1,12 +1,12 @@
-package com.zerofall.ezstorage.init;
+package io.github.scuba10steve.ezstorage.init;
 
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.item.EZItem;
-import com.zerofall.ezstorage.item.ItemDolly;
-import com.zerofall.ezstorage.item.ItemKey;
-import com.zerofall.ezstorage.registry.IRegistryItem;
-import com.zerofall.ezstorage.registry.RegistryHelper;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.item.EZItem;
+import io.github.scuba10steve.ezstorage.item.ItemDolly;
+import io.github.scuba10steve.ezstorage.item.ItemKey;
+import io.github.scuba10steve.ezstorage.registry.IRegistryItem;
+import io.github.scuba10steve.ezstorage.registry.RegistryHelper;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

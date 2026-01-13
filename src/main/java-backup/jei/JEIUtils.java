@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.jei;
+package io.github.scuba10steve.ezstorage.jei;
 
 /** Things to help with JEI integration */
 public class JEIUtils {

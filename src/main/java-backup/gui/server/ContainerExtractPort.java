@@ -1,9 +1,9 @@
-package com.zerofall.ezstorage.gui.server;
+package io.github.scuba10steve.ezstorage.gui.server;
 
 import javax.annotation.Nonnull;
 
-import com.zerofall.ezstorage.tileentity.TileEntityExtractPort;
-import com.zerofall.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityExtractPort;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

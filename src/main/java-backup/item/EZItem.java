@@ -1,7 +1,7 @@
-package com.zerofall.ezstorage.item;
+package io.github.scuba10steve.ezstorage.item;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.registry.IRegistryItem;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.registry.IRegistryItem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

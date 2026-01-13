@@ -1,13 +1,13 @@
-package com.zerofall.ezstorage;
+package io.github.scuba10steve.ezstorage;
 
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.events.CoreEvents;
-import com.zerofall.ezstorage.events.SecurityEvents;
-import com.zerofall.ezstorage.network.EZNetwork;
-import com.zerofall.ezstorage.ref.EZTab;
-import com.zerofall.ezstorage.ref.Log;
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.events.CoreEvents;
+import io.github.scuba10steve.ezstorage.events.SecurityEvents;
+import io.github.scuba10steve.ezstorage.network.EZNetwork;
+import io.github.scuba10steve.ezstorage.ref.EZTab;
+import io.github.scuba10steve.ezstorage.ref.Log;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;

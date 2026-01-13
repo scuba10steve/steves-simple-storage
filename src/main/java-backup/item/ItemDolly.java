@@ -1,8 +1,8 @@
-package com.zerofall.ezstorage.item;
+package io.github.scuba10steve.ezstorage.item;
 
 import java.util.List;
 
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockChest;

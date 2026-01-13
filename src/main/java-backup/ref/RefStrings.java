@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.ref;
+package io.github.scuba10steve.ezstorage.ref;
 
 /** Reference mod information */
 public class RefStrings {

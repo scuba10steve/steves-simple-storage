@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.jei;
+package io.github.scuba10steve.ezstorage.jei;
 
 import java.util.List;
 import java.util.Map;
@@ -15,9 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCoreCrafting;
-import com.zerofall.ezstorage.network.MessageRecipeSync;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCoreCrafting;
+import io.github.scuba10steve.ezstorage.network.MessageRecipeSync;
 
 /** The mod's recipe transfer handler */
 public class RecipeTransferHandler implements IRecipeTransferHandler {

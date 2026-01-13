@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.util;
+package io.github.scuba10steve.ezstorage.util;
 
 import org.lwjgl.opengl.GL11;
 

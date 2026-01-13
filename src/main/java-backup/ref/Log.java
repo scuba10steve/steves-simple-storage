@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.ref;
+package io.github.scuba10steve.ezstorage.ref;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

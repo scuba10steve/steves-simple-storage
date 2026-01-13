@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.proxy;
+package io.github.scuba10steve.ezstorage.proxy;
 
-import com.zerofall.ezstorage.registry.RegistryHelper;
+import io.github.scuba10steve.ezstorage.registry.RegistryHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;

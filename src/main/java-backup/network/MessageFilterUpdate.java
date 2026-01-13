@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCore;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCore;
 
 /** A message to tell clients to update their filtered lists if they are on the same storage GUI */
 public class MessageFilterUpdate implements IMessage {

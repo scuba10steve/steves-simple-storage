@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.registry;
+package io.github.scuba10steve.ezstorage.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

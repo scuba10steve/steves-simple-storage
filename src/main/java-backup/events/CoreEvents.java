@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.events;
+package io.github.scuba10steve.ezstorage.events;
 
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;

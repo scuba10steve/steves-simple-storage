@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -11,10 +11,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.gui.GuiHandler;
-import com.zerofall.ezstorage.init.EZItems;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.gui.GuiHandler;
+import io.github.scuba10steve.ezstorage.init.EZItems;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
 
 /** A block that can be added to the system to secure it against intruders */
 public class BlockSecurityBox extends EZBlockContainer {

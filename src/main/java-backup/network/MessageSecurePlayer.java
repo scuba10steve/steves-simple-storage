@@ -1,7 +1,7 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

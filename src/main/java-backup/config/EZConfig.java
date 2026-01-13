@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.config;
+package io.github.scuba10steve.ezstorage.config;
 
 import net.neoforged.neoforge.common.ModConfigSpec;
 

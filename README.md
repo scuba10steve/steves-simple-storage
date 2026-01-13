@@ -6,7 +6,7 @@ EZStorage 2 introduces a storage system that scales and evolves as players progr
 
 This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoForge 21.1.77**. 
 
-✅ **Current Status**: The mod has been successfully updated to modern NeoForge with a working registration system and basic block/item/entity structure.
+✅ **Current Status**: Version 1.0.0 - Complete port with all major features implemented and functional.
 
 ### What's Working
 - ✅ Builds successfully with Gradle 8.10.2
@@ -115,11 +115,12 @@ This Open Source project is licensed under the MIT License (see [LICENSE](LICENS
 
 ## Credits
 
+- **Current Maintainer**: scuba10steve
 - **Original Authors**: zerofall, SBlectric
 - **Game**: [Minecraft](http://www.minecraft.net/) by [Mojang AB](http://mojang.com/)
 - **Mod Loader**: [NeoForge](https://neoforged.net/)
 
 ## Links
 
-- [Project on CurseForge](http://minecraft.curseforge.com/projects/ezstorage-2) (1.12.2 version)
-- [GitHub Repository](https://github.com/zerofall/EZStorage2)
+- [GitHub Repository](https://github.com/scuba10steve/EZStorage2)
+- [Original Project on CurseForge](http://minecraft.curseforge.com/projects/ezstorage-2) (1.12.2 version)

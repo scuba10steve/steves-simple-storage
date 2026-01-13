@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.client;
+package io.github.scuba10steve.ezstorage.gui.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -6,7 +6,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
-import com.zerofall.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
 
 /** Custom buttons for the security block GUI and other stuff */
 public class ButtonBlue extends GuiButton {

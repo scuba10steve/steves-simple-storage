@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
 
 public class EZNetwork {
 

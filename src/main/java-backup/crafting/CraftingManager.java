@@ -1,12 +1,12 @@
-package com.zerofall.ezstorage.crafting;
+package io.github.scuba10steve.ezstorage.crafting;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.init.EZBlocks;
-import com.zerofall.ezstorage.init.EZItems;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.init.EZItems;
 
 /** Mod recipes */
 public class CraftingManager {

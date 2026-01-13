@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;

@@ -1,9 +1,9 @@
-package com.zerofall.ezstorage.proxy;
+package io.github.scuba10steve.ezstorage.proxy;
 
-import com.zerofall.ezstorage.gui.client.GuiStorageCore;
-import com.zerofall.ezstorage.init.EZBlocks;
-import com.zerofall.ezstorage.init.EZItems;
-import com.zerofall.ezstorage.registry.ClientRegistryHelper;
+import io.github.scuba10steve.ezstorage.gui.client.GuiStorageCore;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.init.EZItems;
+import io.github.scuba10steve.ezstorage.registry.ClientRegistryHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;

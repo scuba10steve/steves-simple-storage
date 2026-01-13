@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.client;
+package io.github.scuba10steve.ezstorage.gui.client;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.client.config.GuiCheckBox;

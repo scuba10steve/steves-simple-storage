@@ -1,13 +1,13 @@
-package com.zerofall.ezstorage.util;
+package io.github.scuba10steve.ezstorage.util;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import com.zerofall.ezstorage.gui.server.InventoryExtractList;
-import com.zerofall.ezstorage.tileentity.TileEntityExtractPort.EnumListMode;
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.gui.server.InventoryExtractList;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityExtractPort.EnumListMode;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

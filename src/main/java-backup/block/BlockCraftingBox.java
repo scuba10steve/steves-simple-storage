@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import net.minecraft.block.material.Material;
 

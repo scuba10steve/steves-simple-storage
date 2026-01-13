@@ -1,9 +1,9 @@
-package com.zerofall.ezstorage.crafting;
+package io.github.scuba10steve.ezstorage.crafting;
 
 import java.util.List;
 
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.registry.RegistryHelper;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.registry.RegistryHelper;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;

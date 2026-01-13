@@ -1,7 +1,7 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
-import com.zerofall.ezstorage.block.StorageMultiblock;
-import com.zerofall.ezstorage.util.BlockRef;
+import io.github.scuba10steve.ezstorage.block.StorageMultiblock;
+import io.github.scuba10steve.ezstorage.util.BlockRef;
 
 /** Multiblock tile entity with default core-searching functionality */
 public abstract class TileEntityMultiblock extends TileEntityBase {

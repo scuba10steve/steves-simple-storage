@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
-import com.zerofall.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
 
 import net.minecraft.block.material.Material;
 

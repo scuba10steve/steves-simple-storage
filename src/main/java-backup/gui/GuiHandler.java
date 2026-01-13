@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui;
+package io.github.scuba10steve.ezstorage.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -6,16 +6,16 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 
-import com.zerofall.ezstorage.gui.client.GuiCraftingCore;
-import com.zerofall.ezstorage.gui.client.GuiExtractPort;
-import com.zerofall.ezstorage.gui.client.GuiSecurityBox;
-import com.zerofall.ezstorage.gui.client.GuiStorageCore;
-import com.zerofall.ezstorage.gui.server.ContainerExtractPort;
-import com.zerofall.ezstorage.gui.server.ContainerSecurityBox;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCore;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCoreCrafting;
-import com.zerofall.ezstorage.tileentity.TileEntityExtractPort;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.gui.client.GuiCraftingCore;
+import io.github.scuba10steve.ezstorage.gui.client.GuiExtractPort;
+import io.github.scuba10steve.ezstorage.gui.client.GuiSecurityBox;
+import io.github.scuba10steve.ezstorage.gui.client.GuiStorageCore;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerExtractPort;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerSecurityBox;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCore;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCoreCrafting;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityExtractPort;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
 
 /** The mod gui handler */
 public class GuiHandler implements IGuiHandler {

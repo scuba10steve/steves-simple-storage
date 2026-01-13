@@ -7,7 +7,7 @@ The EZStorage 2 storage system provides massive item storage capacity through a 
 ## Core Components
 
 ### EZInventory
-**Location**: `com.zerofall.ezstorage.storage.EZInventory`
+**Location**: `io.github.scuba10steve.ezstorage.storage.EZInventory`
 
 The central storage inventory that manages all stored items.
 
@@ -32,7 +32,7 @@ void setMaxItems(long maxItems)  // Set storage capacity
 - Tracks: Item types, counts, available space, merge operations
 
 ### StoredItemStack
-**Location**: `com.zerofall.ezstorage.storage.StoredItemStack`
+**Location**: `io.github.scuba10steve.ezstorage.storage.StoredItemStack`
 
 Wrapper class for storing items with large quantities.
 
@@ -48,7 +48,7 @@ private long count;  // Actual quantity stored
 - Simple count manipulation without ItemStack overhead
 
 ### StorageCoreBlockEntity
-**Location**: `com.zerofall.ezstorage.blockentity.StorageCoreBlockEntity`
+**Location**: `io.github.scuba10steve.ezstorage.blockentity.StorageCoreBlockEntity`
 
 The block entity that manages the storage system and multiblock network.
 

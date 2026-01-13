@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.util;
+package io.github.scuba10steve.ezstorage.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.zerofall.ezstorage.block.BlockSecurityBox;
-import com.zerofall.ezstorage.block.StorageMultiblock;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.block.BlockSecurityBox;
+import io.github.scuba10steve.ezstorage.block.StorageMultiblock;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

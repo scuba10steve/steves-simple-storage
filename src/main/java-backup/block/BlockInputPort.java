@@ -1,11 +1,11 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import com.zerofall.ezstorage.tileentity.TileEntityInputPort;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityInputPort;
 
 public class BlockInputPort extends EZBlockContainer {
 

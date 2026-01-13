@@ -24,6 +24,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Proper Testing** with unit tests for core functionality
 - **Complete Asset Package** with all textures and recipes
 - **Comprehensive Logging** for debugging and monitoring
+- **New Package Structure** - Migrated to `io.github.scuba10steve.ezstorage`
 
 ## Major Changes from 1.12.2
 

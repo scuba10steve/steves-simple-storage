@@ -1,10 +1,10 @@
-package com.zerofall.ezstorage.util;
+package io.github.scuba10steve.ezstorage.util;
 
 import java.util.List;
 
-import com.zerofall.ezstorage.ref.Log;
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
+import io.github.scuba10steve.ezstorage.ref.Log;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.management.PlayerList;

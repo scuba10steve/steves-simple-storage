@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -10,9 +10,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.gui.GuiHandler;
-import com.zerofall.ezstorage.tileentity.TileEntityExtractPort;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.gui.GuiHandler;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityExtractPort;
 
 public class BlockExtractPort extends EZBlockContainer {
 

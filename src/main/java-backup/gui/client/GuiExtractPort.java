@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.client;
+package io.github.scuba10steve.ezstorage.gui.client;
 
 import java.io.IOException;
 import java.util.List;
@@ -6,12 +6,12 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import com.zerofall.ezstorage.gui.server.ContainerExtractPort;
-import com.zerofall.ezstorage.gui.server.SlotExtractList;
-import com.zerofall.ezstorage.init.EZBlocks;
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.tileentity.TileEntityExtractPort;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerExtractPort;
+import io.github.scuba10steve.ezstorage.gui.server.SlotExtractList;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityExtractPort;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;

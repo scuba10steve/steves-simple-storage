@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
-import com.zerofall.ezstorage.gui.server.InventoryExtractList;
+import io.github.scuba10steve.ezstorage.gui.server.InventoryExtractList;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

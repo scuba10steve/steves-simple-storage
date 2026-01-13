@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
 import io.netty.buffer.ByteBuf;
 
@@ -14,9 +14,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 /** Send a message from server to client to sync security boxes */
 public class MessageSecureSync implements IMessage {

@@ -1,9 +1,9 @@
-package com.zerofall.ezstorage.registry;
+package io.github.scuba10steve.ezstorage.registry;
 
 import java.util.List;
 
-import com.zerofall.ezstorage.ref.Log;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.ref.Log;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;

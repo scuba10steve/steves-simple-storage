@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.events;
+package io.github.scuba10steve.ezstorage.events;
 
 import java.util.List;
 
@@ -12,10 +12,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.RightClickBloc
 import net.minecraftforge.event.world.BlockEvent.PlaceEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import com.zerofall.ezstorage.block.StorageMultiblock;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
-import com.zerofall.ezstorage.util.BlockRef;
-import com.zerofall.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.block.StorageMultiblock;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.util.BlockRef;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
 
 /** Security event handling */
 public class SecurityEvents {

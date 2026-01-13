@@ -1,10 +1,10 @@
-package com.zerofall.ezstorage.network;
+package io.github.scuba10steve.ezstorage.network;
 
 import java.util.List;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCoreCrafting;
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCoreCrafting;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
-import com.zerofall.ezstorage.tileentity.TileEntityEjectPort;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityEjectPort;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

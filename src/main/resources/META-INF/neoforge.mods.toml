@@ -4,10 +4,10 @@ license="MIT"
 
 [[mods]]
 modId="ezstorage"
-version="2.5.0"
+version="1.0.0"
 displayName="EZStorage 2"
 description='''Storage: Simplified again.'''
-authors="zerofall, SBlectric"
+authors="scuba10steve, zerofall, SBlectric"
 
 [[dependencies.ezstorage]]
 modId="neoforge"

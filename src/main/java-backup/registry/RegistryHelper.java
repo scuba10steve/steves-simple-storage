@@ -1,15 +1,15 @@
-package com.zerofall.ezstorage.registry;
+package io.github.scuba10steve.ezstorage.registry;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
 
 import com.google.common.collect.ObjectArrays;
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.crafting.CraftingManager;
-import com.zerofall.ezstorage.init.EZBlocks;
-import com.zerofall.ezstorage.init.EZItems;
-import com.zerofall.ezstorage.ref.Log;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.crafting.CraftingManager;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.init.EZItems;
+import io.github.scuba10steve.ezstorage.ref.Log;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;

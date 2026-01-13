@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.jei;
+package io.github.scuba10steve.ezstorage.jei;
 
 import java.util.ArrayList;
 import java.util.Collection;

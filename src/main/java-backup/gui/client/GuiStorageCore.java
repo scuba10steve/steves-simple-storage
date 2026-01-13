@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.client;
+package io.github.scuba10steve.ezstorage.gui.client;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -9,17 +9,17 @@ import java.util.List;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.zerofall.ezstorage.EZStorage;
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.gui.server.ContainerStorageCore;
-import com.zerofall.ezstorage.jei.JEIUtils;
-import com.zerofall.ezstorage.network.MessageCustomClick;
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
-import com.zerofall.ezstorage.util.EZItemRenderer;
-import com.zerofall.ezstorage.util.EZStorageUtils;
-import com.zerofall.ezstorage.util.ItemGroup;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.EZStorage;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerStorageCore;
+import io.github.scuba10steve.ezstorage.jei.JEIUtils;
+import io.github.scuba10steve.ezstorage.network.MessageCustomClick;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.util.EZItemRenderer;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.util.ItemGroup;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;

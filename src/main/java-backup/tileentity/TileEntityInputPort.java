@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

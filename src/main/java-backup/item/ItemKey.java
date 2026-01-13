@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.item;
+package io.github.scuba10steve.ezstorage.item;
 
 public class ItemKey extends EZItem {
 

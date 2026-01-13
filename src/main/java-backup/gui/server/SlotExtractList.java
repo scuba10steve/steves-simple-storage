@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.server;
+package io.github.scuba10steve.ezstorage.gui.server;
 
 import net.minecraft.inventory.Slot;
 

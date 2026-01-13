@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import net.minecraft.tileentity.TileEntityHopper;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-import com.zerofall.ezstorage.util.ItemGroup;
+import io.github.scuba10steve.ezstorage.util.ItemGroup;
 
 /** The ejection port (now with fewer bugs!) */
 public class TileEntityEjectPort extends TileEntityMultiblock {

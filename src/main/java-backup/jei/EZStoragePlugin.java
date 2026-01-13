@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.jei;
+package io.github.scuba10steve.ezstorage.jei;
 
-import com.zerofall.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
 import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IItemListOverlay;
 import mezz.jei.api.IJeiHelpers;

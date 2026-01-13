@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.gui.client;
+package io.github.scuba10steve.ezstorage.gui.client;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import org.lwjgl.opengl.GL11;
 
-import com.zerofall.ezstorage.gui.server.ContainerSecurityBox;
-import com.zerofall.ezstorage.init.EZBlocks;
-import com.zerofall.ezstorage.network.EZNetwork;
-import com.zerofall.ezstorage.ref.RefStrings;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox;
-import com.zerofall.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
-import com.zerofall.ezstorage.util.EZStorageUtils;
-import com.zerofall.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.gui.server.ContainerSecurityBox;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.network.EZNetwork;
+import io.github.scuba10steve.ezstorage.ref.RefStrings;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntitySecurityBox.SecurePlayer;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.util.JointList;
 
 /** Secure box GUI */
 @SideOnly(Side.CLIENT)

@@ -1,9 +1,9 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import net.minecraft.block.material.Material;
 
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.registry.IRegistryBlock;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.registry.IRegistryBlock;
 
 /** A super storage box */
 public class BlockSuperStorage extends BlockStorage implements IRegistryBlock {

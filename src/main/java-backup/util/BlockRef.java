@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.util;
+package io.github.scuba10steve.ezstorage.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;

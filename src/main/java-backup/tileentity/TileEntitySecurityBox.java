@@ -1,12 +1,12 @@
-package com.zerofall.ezstorage.tileentity;
+package io.github.scuba10steve.ezstorage.tileentity;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
-import com.zerofall.ezstorage.config.EZConfig;
-import com.zerofall.ezstorage.util.JointList;
-import com.zerofall.ezstorage.util.SecurityOverrideHelper;
+import io.github.scuba10steve.ezstorage.config.EZConfig;
+import io.github.scuba10steve.ezstorage.util.JointList;
+import io.github.scuba10steve.ezstorage.util.SecurityOverrideHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

@@ -1,4 +1,4 @@
-package com.zerofall.ezstorage.block;
+package io.github.scuba10steve.ezstorage.block;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,9 +10,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 
-import com.zerofall.ezstorage.tileentity.TileEntityStorageCore;
-import com.zerofall.ezstorage.util.BlockRef;
-import com.zerofall.ezstorage.util.EZStorageUtils;
+import io.github.scuba10steve.ezstorage.tileentity.TileEntityStorageCore;
+import io.github.scuba10steve.ezstorage.util.BlockRef;
+import io.github.scuba10steve.ezstorage.util.EZStorageUtils;
 
 public class StorageMultiblock extends EZBlock {
 

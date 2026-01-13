@@ -1,6 +1,6 @@
-package com.zerofall.ezstorage.ref;
+package io.github.scuba10steve.ezstorage.ref;
 
-import com.zerofall.ezstorage.init.EZBlocks;
+import io.github.scuba10steve.ezstorage.init.EZBlocks;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
