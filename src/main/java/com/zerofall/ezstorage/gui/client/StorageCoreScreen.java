@@ -15,8 +15,12 @@ public class StorageCoreScreen extends AbstractContainerScreen<StorageCoreMenu> 
 
     public StorageCoreScreen(StorageCoreMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
-        this.imageHeight = 166;
+        this.imageHeight = 222; // Original height to accommodate 6 rows + player inventory
         this.imageWidth = 176;
+        
+        // Adjust label positions to prevent overlap with slots
+        this.titleLabelY = 6;
+        this.inventoryLabelY = this.imageHeight - 94; // Position above player inventory
     }
 
     @Override

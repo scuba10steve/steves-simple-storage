@@ -19,21 +19,29 @@ public class StorageCoreMenu extends AbstractContainerMenu {
         this.pos = pos;
         this.blockEntity = (StorageCoreBlockEntity) playerInventory.player.level().getBlockEntity(pos);
         
+        // Add storage slots (6 rows of 9 slots)
+        addStorageSlots();
+        
         // Add player inventory slots
         addPlayerInventory(playerInventory);
     }
+    
+    private void addStorageSlots() {
+        // TODO: Add actual storage slots when storage GUI is implemented
+        // For now, this is just the basic container structure
+    }
 
     private void addPlayerInventory(Inventory playerInventory) {
-        // Player hotbar
-        for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
-        }
-        
-        // Player inventory
+        // Player inventory (3 rows)
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+                this.addSlot(new Slot(playerInventory, j + i * 9 + 9, 8 + j * 18, 140 + i * 18));
             }
+        }
+        
+        // Player hotbar
+        for (int i = 0; i < 9; ++i) {
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 198));
         }
     }
 
