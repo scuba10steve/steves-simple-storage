@@ -42,20 +42,4 @@ public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
     }
-    
-    @Override
-    protected net.minecraft.world.ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
-        if (!level.isClientSide && !stack.isEmpty()) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
-                ItemStack remainder = storageCore.insertItem(stack);
-                if (remainder.getCount() != stack.getCount()) {
-                    // Some items were inserted
-                    player.setItemInHand(hand, remainder);
-                    return net.minecraft.world.ItemInteractionResult.SUCCESS;
-                }
-            }
-        }
-        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
-    }
 }

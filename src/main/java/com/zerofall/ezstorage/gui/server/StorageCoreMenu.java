@@ -1,23 +1,33 @@
 package com.zerofall.ezstorage.gui.server;
 
 import com.zerofall.ezstorage.blockentity.StorageCoreBlockEntity;
+import com.zerofall.ezstorage.gui.slot.StorageSlot;
 import com.zerofall.ezstorage.init.EZMenuTypes;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.Container;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.core.BlockPos;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StorageCoreMenu extends AbstractContainerMenu {
+    private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreMenu.class);
     
     private final StorageCoreBlockEntity blockEntity;
     private final BlockPos pos;
+    private final SimpleContainer storageContainer;
 
     public StorageCoreMenu(int containerId, Inventory playerInventory, BlockPos pos) {
         super(EZMenuTypes.STORAGE_CORE.get(), containerId);
         this.pos = pos;
         this.blockEntity = (StorageCoreBlockEntity) playerInventory.player.level().getBlockEntity(pos);
+        this.storageContainer = new SimpleContainer(54); // 6 rows of 9 slots
+        
+        LOGGER.debug("Creating StorageCoreMenu at {}", pos);
         
         // Add storage slots (6 rows of 9 slots)
         addStorageSlots();
@@ -27,8 +37,13 @@ public class StorageCoreMenu extends AbstractContainerMenu {
     }
     
     private void addStorageSlots() {
-        // TODO: Add actual storage slots when storage GUI is implemented
-        // For now, this is just the basic container structure
+        // Add 6 rows of 9 storage slots
+        for (int row = 0; row < 6; row++) {
+            for (int col = 0; col < 9; col++) {
+                int index = col + row * 9;
+                this.addSlot(new StorageSlot(storageContainer, blockEntity, index, 8 + col * 18, 18 + row * 18));
+            }
+        }
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
@@ -47,7 +62,35 @@ public class StorageCoreMenu extends AbstractContainerMenu {
 
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
-        return ItemStack.EMPTY;
+        LOGGER.debug("quickMoveStack: slot {}", index);
+        
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = this.slots.get(index);
+        
+        if (slot != null && slot.hasItem()) {
+            ItemStack slotStack = slot.getItem();
+            itemstack = slotStack.copy();
+            
+            if (index < 54) {
+                // Moving from storage to player inventory
+                if (!this.moveItemStackTo(slotStack, 54, this.slots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else {
+                // Moving from player inventory to storage
+                if (!this.moveItemStackTo(slotStack, 0, 54, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+            
+            if (slotStack.isEmpty()) {
+                slot.set(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+        }
+        
+        return itemstack;
     }
 
     @Override
