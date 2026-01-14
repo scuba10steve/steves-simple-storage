@@ -1,5 +1,7 @@
 package io.github.scuba10steve.ezstorage.storage;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 
 public class StoredItemStack {
@@ -29,5 +31,18 @@ public class StoredItemStack {
     
     public void setCount(long count) {
         this.count = Math.max(0, count);
+    }
+    
+    public CompoundTag save(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        tag.put("Item", itemStack.save(registries));
+        tag.putLong("Count", count);
+        return tag;
+    }
+    
+    public static StoredItemStack load(CompoundTag tag, HolderLookup.Provider registries) {
+        ItemStack stack = ItemStack.parseOptional(registries, tag.getCompound("Item"));
+        long count = tag.getLong("Count");
+        return new StoredItemStack(stack, count);
     }
 }

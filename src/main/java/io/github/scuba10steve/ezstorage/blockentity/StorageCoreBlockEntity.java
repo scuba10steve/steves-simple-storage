@@ -129,13 +129,17 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     @Override
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
-        // TODO: Save inventory data to NBT
+        tag.put("Inventory", inventory.save(registries));
+        LOGGER.debug("Saved inventory data to NBT");
     }
 
     @Override
     protected void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
-        // TODO: Load inventory data from NBT
+        if (tag.contains("Inventory")) {
+            inventory.load(tag.getCompound("Inventory"), registries);
+            LOGGER.debug("Loaded inventory data from NBT");
+        }
     }
 
     @Override

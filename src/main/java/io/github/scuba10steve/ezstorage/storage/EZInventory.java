@@ -1,5 +1,8 @@
 package io.github.scuba10steve.ezstorage.storage;
 
+import net.minecraft.core.HolderLookup;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.item.ItemStack;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,5 +92,31 @@ public class EZInventory {
     public void syncFromServer(List<StoredItemStack> serverItems) {
         items.clear();
         items.addAll(serverItems);
+    }
+    
+    public CompoundTag save(HolderLookup.Provider registries) {
+        CompoundTag tag = new CompoundTag();
+        tag.putLong("MaxItems", maxItems);
+        
+        ListTag itemsList = new ListTag();
+        for (StoredItemStack stored : items) {
+            itemsList.add(stored.save(registries));
+        }
+        tag.put("Items", itemsList);
+        
+        return tag;
+    }
+    
+    public void load(CompoundTag tag, HolderLookup.Provider registries) {
+        maxItems = tag.getLong("MaxItems");
+        
+        items.clear();
+        ListTag itemsList = tag.getList("Items", 10); // 10 = CompoundTag
+        for (int i = 0; i < itemsList.size(); i++) {
+            CompoundTag itemTag = itemsList.getCompound(i);
+            items.add(StoredItemStack.load(itemTag, registries));
+        }
+        
+        LOGGER.info("Loaded inventory with {} items, max capacity: {}", items.size(), maxItems);
     }
 }

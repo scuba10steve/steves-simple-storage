@@ -52,10 +52,16 @@ public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items) imple
     public static void handle(StorageSyncPacket packet, IPayloadContext context) {
         context.enqueueWork(() -> {
             if (context.flow().isClientbound()) {
-                BlockEntity blockEntity = Minecraft.getInstance().level.getBlockEntity(packet.pos());
+                Minecraft mc = Minecraft.getInstance();
+                BlockEntity blockEntity = mc.level.getBlockEntity(packet.pos());
                 if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
                     // Update client-side storage data
                     storageCore.getInventory().syncFromServer(packet.items());
+                    
+                    // Force screen refresh if open
+                    if (mc.screen != null) {
+                        mc.screen.init(mc, mc.screen.width, mc.screen.height);
+                    }
                 }
             }
         });
