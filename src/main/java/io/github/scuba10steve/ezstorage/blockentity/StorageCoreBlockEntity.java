@@ -117,7 +117,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
             PacketDistributor.sendToPlayersTrackingChunk(
                 serverLevel, 
                 level.getChunkAt(worldPosition).getPos(),
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems())
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems())
             );
         }
     }
@@ -153,7 +153,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         if (level instanceof ServerLevel serverLevel) {
             PacketDistributor.sendToPlayer(
                 (net.minecraft.server.level.ServerPlayer) player,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems())
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems())
             );
         }
         return new StorageCoreMenu(containerId, playerInventory, this.worldPosition);

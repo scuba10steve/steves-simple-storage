@@ -100,7 +100,7 @@ public record StorageClickPacket(BlockPos pos, int slot, int button, boolean shi
                         net.neoforged.neoforge.network.PacketDistributor.sendToPlayersTrackingChunk(
                             serverLevel,
                             serverLevel.getChunkAt(pos).getPos(),
-                            new StorageSyncPacket(pos, inventory.getStoredItems())
+                            new StorageSyncPacket(pos, inventory.getStoredItems(), inventory.getMaxItems())
                         );
                     }
                 }

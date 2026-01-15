@@ -89,9 +89,11 @@ public class EZInventory {
         this.maxItems = maxItems;
     }
     
-    public void syncFromServer(List<StoredItemStack> serverItems) {
+    public void syncFromServer(List<StoredItemStack> serverItems, long maxCapacity) {
         items.clear();
         items.addAll(serverItems);
+        this.maxItems = maxCapacity;
+        LOGGER.debug("Synced from server: {} items, max capacity: {}", serverItems.size(), maxCapacity);
     }
     
     public CompoundTag save(HolderLookup.Provider registries) {

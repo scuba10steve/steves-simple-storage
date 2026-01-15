@@ -15,13 +15,14 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 import java.util.ArrayList;
 import java.util.List;
 
-public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items) implements CustomPacketPayload {
+public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items, long maxCapacity) implements CustomPacketPayload {
     
     public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("ezstorage", "storage_sync"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, StorageSyncPacket> STREAM_CODEC = StreamCodec.composite(
         BlockPos.STREAM_CODEC, StorageSyncPacket::pos,
         StreamCodec.of(StorageSyncPacket::writeItems, StorageSyncPacket::readItems), StorageSyncPacket::items,
+        StreamCodec.of((buf, capacity) -> buf.writeLong(capacity), buf -> buf.readLong()), StorageSyncPacket::maxCapacity,
         StorageSyncPacket::new
     );
 
@@ -56,7 +57,7 @@ public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items) imple
                 BlockEntity blockEntity = mc.level.getBlockEntity(packet.pos());
                 if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
                     // Update client-side storage data
-                    storageCore.getInventory().syncFromServer(packet.items());
+                    storageCore.getInventory().syncFromServer(packet.items(), packet.maxCapacity());
                     
                     // Force screen refresh if open
                     if (mc.screen != null) {

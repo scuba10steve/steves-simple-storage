@@ -1,12 +1,6 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "down": "ezstorage:block/box_side_super",
-        "up": "ezstorage:block/box_side_super",
-        "north": "ezstorage:block/super_storage_box",
-        "south": "ezstorage:block/super_storage_box",
-        "east": "ezstorage:block/super_storage_box",
-        "west": "ezstorage:block/super_storage_box",
-        "particle": "ezstorage:block/super_storage_box"
-    }
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "ezstorage:block/super_storage_box"
+  }
 }
