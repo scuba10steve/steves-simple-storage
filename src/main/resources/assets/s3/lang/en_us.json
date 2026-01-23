@@ -1,0 +1,23 @@
+{
+  "itemGroup.s3": "Steve's Simple Storage",
+  
+  "block.s3.storage_core": "Storage Core",
+  "block.s3.storage_box": "Storage Box",
+  "block.s3.condensed_storage_box": "Condensed Storage Box",
+  "block.s3.compressed_storage_box": "Compressed Storage Box",
+  "block.s3.super_storage_box": "Super Storage Box",
+  "block.s3.super_storage_box": "Super Storage Box",
+  "block.s3.ultra_storage_box": "Ultra Storage Box",
+  "block.s3.hyper_storage_box": "Hyper Storage Box",
+  "block.s3.ultimate_storage_box": "Ultimate Storage Box",
+  
+  "item.s3.key": "EZ Key",
+  "item.s3.dolly": "Dolly",
+  "item.s3.dolly_super": "Super Dolly",
+  
+  "container.ezstorage.storage_core": "Storage Core",
+  
+  "gui.ezstorage.search": "Search...",
+  "gui.ezstorage.sort": "Sort",
+  "gui.ezstorage.clear": "Clear"
+}

@@ -3,7 +3,7 @@ plugins {
 }
 
 version = '0.1.0'
-group = 'io.github.scuba10steve.ezstorage'
+group = 'io.github.scuba10steve.s3'
 
 repositories {
     mavenCentral()
@@ -14,7 +14,7 @@ repositories {
 }
 
 base {
-    archivesName = 'ezstorage'
+    archivesName = 's3'
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
@@ -32,7 +32,7 @@ neoForge {
     }
     
     mods {
-        ezstorage {
+        s3 {
             sourceSet sourceSets.main
         }
     }

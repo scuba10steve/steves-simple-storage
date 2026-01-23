@@ -1,0 +1,10 @@
+{
+  "values": [
+    "s3:storage_core",
+    "s3:storage_box",
+    "s3:condensed_storage_box",
+    "s3:super_storage_box",
+    "s3:ultra_storage_box",
+    "s3:hyper_storage_box"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "down": "s3:blocks/box_side",
+        "up": "s3:blocks/output_port",
+        "north": "s3:blocks/box_side",
+        "south": "s3:blocks/box_side",
+        "east": "s3:blocks/box_side",
+        "west": "s3:blocks/box_side",
+        "particle": "s3:blocks/box_side"
+    }
+}

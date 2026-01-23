@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "s3:block/ultra_storage_box"
+    }
+  }
+}

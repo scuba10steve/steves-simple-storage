@@ -3,20 +3,20 @@ loaderVersion="[4,)"
 license="MIT"
 
 [[mods]]
-modId="ezstorage"
+modId="s3"
 version="1.0.0"
-displayName="EZStorage 2"
-description='''Storage: Simplified again.'''
+displayName="Steve's Simple Storage"
+description='''Massive, scalable storage for Minecraft.'''
 authors="scuba10steve, zerofall, SBlectric"
 
-[[dependencies.ezstorage]]
+[[dependencies.s3]]
 modId="neoforge"
 type="required"
 versionRange="[21.1,22)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.ezstorage]]
+[[dependencies.s3]]
 modId="minecraft"
 type="required"
 versionRange="[1.21.1,1.22)"

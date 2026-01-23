@@ -1,0 +1,5 @@
+{
+	"variants": {
+		"normal": {"model": "s3:access_terminal"}
+	}
+}
