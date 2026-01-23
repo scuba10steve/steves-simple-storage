@@ -39,6 +39,30 @@ The name is inspired by AWS S3 (Simple Storage Service), creating a fun parallel
   
 **Selected**: _[To be decided]_
 
+### Java Class Naming
+- **Current Convention**: Mix of "EZ" prefix (EZStorage, EZConfig, EZInventory, EZBlock, etc.) and "Storage" prefix
+- **Options**:
+  - Option A: Keep "EZ" prefix for backward compatibility and historical reference
+  - Option B: Rename all "EZ" prefixed classes to "S3" prefix (S3Storage, S3Config, S3Inventory, etc.)
+  - Option C: Rename all "EZ" prefixed classes to "Storage" prefix (StorageConfig, StorageInventory, etc.)
+  
+**Selected**: _[To be decided]_
+
+**Special Cases**:
+- **Main Mod Class**: `EZStorage` → `StevesSimpleStorage` (explicit full name)
+- **Mod Name References**: `ezstorage` → `steves-simple-storage` (kebab-case for consistency)
+
+**Classes to Consider**:
+- `EZStorage` → `StevesSimpleStorage` (main mod class) ⭐ **Priority**
+- `EZConfig` (configuration)
+- `EZInventory` (storage inventory)
+- `EZBlock` (base block class)
+- `EZBlockEntity` (base block entity)
+- `EZItem` (base item class)
+- `EZTab` (creative tab)
+- `EZNetwork` (networking)
+- `EZStorageJEIPlugin` (JEI integration)
+
 ### Package Structure
 - **Current**: `io.github.scuba10steve.s3` ✅ (updated from `io.github.scuba10steve.ezstorage`)
 - **Decision**: Completed - Full package rename for consistency
@@ -58,6 +82,7 @@ The name is inspired by AWS S3 (Simple Storage Service), creating a fun parallel
 - [x] Creative tab display name - Updated to "Steve's Simple Storage"
 - [ ] In-game tooltips and descriptions
 - [ ] JEI integration display names
+- [ ] Java class names - Rename "EZ" prefixed classes (EZStorage, EZConfig, EZInventory, etc.) to "S3" or "Storage" prefix
 
 ### Low Priority
 - [ ] Logo/icon design (128x128 for mod icon)
