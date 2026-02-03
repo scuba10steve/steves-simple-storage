@@ -2,7 +2,7 @@
 
 ## Project Summary
 
-EZStorage 2 has been successfully ported from **Minecraft 1.12.2** to **Minecraft 1.21.1** with **NeoForge 21.1.218**. This document provides a high-level overview of the porting process, major changes, and current status.
+Steve's Simple Storage has been successfully ported from **Minecraft 1.12.2** to **Minecraft 1.21.1** with **NeoForge 21.1.218**. This document provides a high-level overview of the porting process, major changes, and current status.
 
 ## Port Status: ✅ COMPLETE & STABLE
 
@@ -14,9 +14,10 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Multiblock Networks** - Automatic detection and capacity scaling with dynamic updates
 - **GUI System** - Modern container/screen architecture with proper layouts and interactions
 - **Networking** - Client-server synchronization with custom packets
-- **JEI Integration** - Recipe transfer and ingredient lookup (v19.27.0.336)
+- **JEI Integration** - Recipe transfer, ingredient lookup, and R/U key support (v19.27.0.336)
+- **Crafting Box** - 3x3 crafting grid with storage system integration and auto-repopulation
 - **Asset System** - Complete textures, models, recipes, and language files
-- **Tiered Storage** - 5 storage tiers with progressive upgrade paths (all textures working)
+- **Tiered Storage** - 7 storage tiers with progressive upgrade paths (all textures working)
 - **Click Interactions** - Full support for left-click, right-click, shift-click, and drag-and-drop
 - **UI Synchronization** - Real-time updates for all storage operations
 - **Capacity Updates** - Dynamic capacity display when multiblock changes
@@ -27,7 +28,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Proper Testing** with unit tests for core functionality
 - **Complete Asset Package** with all textures and recipes
 - **Comprehensive Logging** for debugging and monitoring
-- **New Package Structure** - Migrated to `io.github.scuba10steve.ezstorage`
+- **New Package Structure** - Migrated to `io.github.scuba10steve.s3`
 - **Bug-Free Core** - All UI sync and interaction issues resolved
 - **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.139, JEI 19.27.0.336
 
@@ -44,7 +45,7 @@ All major features from the original 1.12.2 version have been successfully imple
 
 ### Build System Migration
 - **Old**: ForgeGradle with Java 8
-- **New**: ModDevGradle 2.0.46-beta with Java 21
+- **New**: ModDevGradle 2.0.139 with Java 21
 - **Gradle**: Updated from 4.x to 8.10.2
 
 ### Registration System Overhaul
@@ -85,9 +86,11 @@ The port was completed through systematic implementation of each major system:
 ### Storage Capacity Scaling
 - **Basic Storage Box**: 10,000 items
 - **Condensed**: 40,000 items (4x increase)
-- **Super**: 160,000 items (4x increase)
+- **Compressed**: 80,000 items (2x increase)
+- **Super**: 160,000 items (2x increase)
 - **Ultra**: 640,000 items (4x increase)
 - **Hyper**: 2,560,000 items (4x increase)
+- **Ultimate**: 10,240,000 items (4x increase)
 
 ### Multiblock Network Detection
 - Automatic scanning of connected storage blocks
@@ -104,8 +107,8 @@ The port was completed through systematic implementation of each major system:
 
 ### Minecraft Versions
 - **Target**: 1.21.1 (primary)
-- **NeoForge**: 21.1.77
-- **JEI**: 19.19.6.233
+- **NeoForge**: 21.1.218
+- **JEI**: 19.27.0.336
 
 ### Development Environment
 - **Java**: 21 (required)
@@ -123,4 +126,4 @@ The port provides a solid foundation for future enhancements:
 
 ## Conclusion
 
-The EZStorage 2 port successfully modernizes the beloved storage mod for current Minecraft versions while maintaining all original functionality and adding modern improvements. The codebase is well-structured, thoroughly tested, and ready for production use.
+The Steve's Simple Storage port successfully modernizes the beloved storage mod for current Minecraft versions while maintaining all original functionality and adding modern improvements. The codebase is well-structured, thoroughly tested, and ready for production use.

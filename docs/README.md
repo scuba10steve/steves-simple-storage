@@ -1,6 +1,6 @@
-# EZStorage 2 - Technical Documentation
+# Steve's Simple Storage (S3) - Technical Documentation
 
-This directory contains comprehensive technical documentation for the EZStorage 2 port from Minecraft 1.12.2 to 1.21.1 with NeoForge.
+This directory contains comprehensive technical documentation for the Steve's Simple Storage port from Minecraft 1.12.2 to 1.21.1 with NeoForge.
 
 ## Documentation Structure
 
@@ -17,8 +17,8 @@ This directory contains comprehensive technical documentation for the EZStorage 
 
 ### Key Technologies
 - **Minecraft**: 1.21.1
-- **NeoForge**: 21.1.77
-- **ModDevGradle**: 2.0.46-beta
+- **NeoForge**: 21.1.218
+- **ModDevGradle**: 2.0.139
 - **Java**: 21
 - **Gradle**: 8.10.2
 
@@ -28,13 +28,14 @@ This directory contains comprehensive technical documentation for the EZStorage 
 **Implemented Features:**
 - Basic storage system with multiblock capacity scaling
 - Storage Core GUI with sidebar item display and scrolling
-- Tiered storage blocks (Storage Box, Condensed, Super, Ultra, Hyper)
+- Tiered storage blocks (Storage Box, Condensed, Compressed, Super, Ultra, Hyper, Ultimate)
 - Item insertion and extraction with proper client-server sync
-- JEI integration for recipe transfer
+- JEI integration for recipe transfer and ingredient lookup
+- Crafting Box with 3x3 crafting grid connected to storage
+- Shift-click crafting with automatic ingredient repopulation
 - Dolly and Key items
 
 **Planned Features (Not Yet Ported):**
-- Crafting Box with crafting grid integration
 - Search Box with item filtering
 - Security Box with player access control
 - Sort Box with automatic sorting modes

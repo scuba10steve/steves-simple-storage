@@ -2,7 +2,7 @@
 
 ## Overview
 
-The EZStorage 2 GUI system provides a modern Minecraft inventory interface for storage management. The system uses the standard Container/Screen architecture with custom slots for storage interaction.
+The Steve's Simple Storage GUI system provides a modern Minecraft inventory interface for storage management. The system uses the standard Container/Screen architecture with custom slots for storage interaction.
 
 ## Architecture
 
@@ -21,7 +21,7 @@ The EZStorage 2 GUI system provides a modern Minecraft inventory interface for s
 ## Components
 
 ### StorageCoreMenu
-**Location**: `com.zerofall.ezstorage.gui.server.StorageCoreMenu`
+**Location**: `io.github.scuba10steve.s3.gui.server.StorageCoreMenu`
 
 The server-side container that manages the storage GUI.
 
@@ -69,7 +69,7 @@ public ItemStack quickMoveStack(Player player, int index) {
 ```
 
 ### StorageCoreScreen
-**Location**: `com.zerofall.ezstorage.gui.client.StorageCoreScreen`
+**Location**: `io.github.scuba10steve.s3.gui.client.StorageCoreScreen`
 
 The client-side screen that renders the storage GUI.
 
@@ -96,7 +96,7 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 ```
 
 ### StorageSlot
-**Location**: `com.zerofall.ezstorage.gui.slot.StorageSlot`
+**Location**: `io.github.scuba10steve.s3.gui.slot.StorageSlot`
 
 Custom slot implementation for storage interaction.
 
@@ -177,7 +177,7 @@ int y = 198;              // Single row
 ## Texture System
 
 ### GUI Texture
-**Location**: `assets/ezstorage/textures/gui/storage_core.png`
+**Location**: `assets/s3/textures/gui/storage_core.png`
 - **Size**: 256×256 pixels
 - **Format**: PNG with transparency support
 - **Usage**: Background for storage GUI
@@ -219,7 +219,7 @@ The GUI texture uses standard Minecraft GUI conventions:
 ## Menu Registration
 
 ### Menu Type Registration
-**Location**: `com.zerofall.ezstorage.init.EZMenuTypes`
+**Location**: `io.github.scuba10steve.s3.init.EZMenuTypes`
 
 ```java
 public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE = 
@@ -229,7 +229,7 @@ public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE =
 ```
 
 ### Screen Registration
-**Location**: `com.zerofall.ezstorage.events.ClientEvents`
+**Location**: `io.github.scuba10steve.s3.events.ClientEvents`
 
 ```java
 @SubscribeEvent

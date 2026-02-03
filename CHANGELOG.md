@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to EZStorage 2 for Minecraft 1.21.1 will be documented in this file.
+All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be documented in this file.
 
 ## [Unreleased]
 
@@ -22,10 +22,10 @@ All notable changes to EZStorage 2 for Minecraft 1.21.1 will be documented in th
 **Beta Release** - Core storage functionality complete and stable. Advanced features planned for future releases.
 
 ### Added
-- Complete port of EZStorage 2 core functionality to Minecraft 1.21.1
+- Complete port of Steve's Simple Storage core functionality to Minecraft 1.21.1
 - Modern NeoForge 21.1.218 support with ModDevGradle 2.0.139
 - Storage Core block with GUI interface
-- Five tiers of storage blocks (Basic, Condensed, Super, Ultra, Hyper)
+- Seven tiers of storage blocks (Basic, Condensed, Compressed, Super, Ultra, Hyper, Ultimate)
 - Multiblock structure system with automatic detection
 - Dynamic capacity scaling based on connected blocks
 - JEI integration for recipe transfer (v19.27.0.336)
@@ -46,7 +46,7 @@ All notable changes to EZStorage 2 for Minecraft 1.21.1 will be documented in th
 - Item retrieval and display synchronization
 
 ### Changed
-- Package structure from `com.zerofall.ezstorage` to `io.github.scuba10steve.ezstorage`
+- Package structure from `com.zerofall.ezstorage` to `io.github.scuba10steve.s3`
 - Updated NeoForge from 21.1.77 to 21.1.218
 - Updated ModDevGradle from 2.0.46-beta to 2.0.139 (stable)
 - Updated JEI from 19.19.6.233 to 19.27.0.336
@@ -65,7 +65,6 @@ All notable changes to EZStorage 2 for Minecraft 1.21.1 will be documented in th
 ## Future Plans
 
 ### Not Yet Ported (Planned for Future Releases)
-- Crafting Box (crafting grid integration)
 - Search Box (item filtering and search)
 - Security Box (player access control)
 - Sort Box (automatic sorting modes)
@@ -80,4 +79,4 @@ All notable changes to EZStorage 2 for Minecraft 1.21.1 will be documented in th
 ## Version History
 
 ### Version 0.1.0-beta - Initial Beta Release
-First beta release of EZStorage 2 for Minecraft 1.21.1 with complete core storage functionality. Advanced features (Crafting Box, Search Box, etc.) planned for future releases.
+First beta release of Steve's Simple Storage for Minecraft 1.21.1 with complete core storage functionality. Advanced features (Crafting Box, Search Box, etc.) planned for future releases.

@@ -2,7 +2,7 @@
 
 ## Common Issues and Solutions
 
-This guide covers common issues encountered during development and usage of EZStorage 2, along with their solutions.
+This guide covers common issues encountered during development and usage of Steve's Simple Storage, along with their solutions.
 
 ## Build Issues
 
@@ -57,7 +57,7 @@ method does not override or implement a method from a supertype
 
 **Issue**: Mod fails to load
 ```
-Failed to load mod ezstorage
+Failed to load mod s3
 ```
 
 **Solution**:
@@ -68,7 +68,7 @@ Failed to load mod ezstorage
 
 **Issue**: Missing textures (black/purple checkerboard)
 ```
-Missing textures in model ezstorage:storage_box#inventory
+Missing textures in model s3:storage_box#inventory
 ```
 
 **Solution**:
@@ -246,12 +246,12 @@ Game freezes when placing storage blocks
 
 Add to `log4j2.xml`:
 ```xml
-<Logger level="DEBUG" name="com.zerofall.ezstorage"/>
+<Logger level="DEBUG" name="io.github.scuba10steve.s3"/>
 ```
 
 Or use JVM argument:
 ```
--Dlog4j.logger.com.zerofall.ezstorage=DEBUG
+-Dlog4j.logger.io.github.scuba10steve.s3=DEBUG
 ```
 
 ### Common Log Patterns
@@ -307,8 +307,8 @@ When reporting issues, include:
 **Version Information**:
 ```
 Minecraft: 1.21.1
-NeoForge: 21.1.77
-EZStorage: 1.0.0
+NeoForge: 21.1.218
+Steve's Simple Storage: 0.1.0-beta
 Java: 21
 Gradle: 8.10.2
 ```

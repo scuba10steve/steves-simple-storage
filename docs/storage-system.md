@@ -2,12 +2,12 @@
 
 ## Overview
 
-The EZStorage 2 storage system provides massive item storage capacity through a multiblock network architecture. Items are stored in a centralized inventory system with support for quantities up to `Long.MAX_VALUE`.
+The Steve's Simple Storage system provides massive item storage capacity through a multiblock network architecture. Items are stored in a centralized inventory system with support for quantities up to `Long.MAX_VALUE`.
 
 ## Core Components
 
 ### EZInventory
-**Location**: `io.github.scuba10steve.ezstorage.storage.EZInventory`
+**Location**: `io.github.scuba10steve.s3.storage.EZInventory`
 
 The central storage inventory that manages all stored items.
 
@@ -32,7 +32,7 @@ void setMaxItems(long maxItems)  // Set storage capacity
 - Tracks: Item types, counts, available space, merge operations
 
 ### StoredItemStack
-**Location**: `io.github.scuba10steve.ezstorage.storage.StoredItemStack`
+**Location**: `io.github.scuba10steve.s3.storage.StoredItemStack`
 
 Wrapper class for storing items with large quantities.
 
@@ -48,7 +48,7 @@ private long count;  // Actual quantity stored
 - Simple count manipulation without ItemStack overhead
 
 ### StorageCoreBlockEntity
-**Location**: `io.github.scuba10steve.ezstorage.blockentity.StorageCoreBlockEntity`
+**Location**: `io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity`
 
 The block entity that manages the storage system and multiblock network.
 
@@ -89,13 +89,15 @@ inventory.setMaxItems(totalCapacity);
 |------|----------|----------|------------|
 | Basic | 10,000 | Wood/Chest | 1x |
 | Condensed | 40,000 | Cobblestone | 4x |
-| Super | 160,000 | Iron | 4x |
+| Compressed | 80,000 | Copper | 2x |
+| Super | 160,000 | Iron | 2x |
 | Ultra | 640,000 | Gold | 4x |
 | Hyper | 2,560,000 | Diamond | 4x |
+| Ultimate | 10,240,000 | Netherite | 4x |
 
 ### Capacity Scaling
 
-Each tier provides 4x the capacity of the previous tier, allowing for exponential storage growth as players progress through the game.
+Each tier provides increased capacity, allowing for exponential storage growth as players progress through the game.
 
 ## Item Storage Logic
 
@@ -137,7 +139,7 @@ items.add(new StoredItemStack(stack.copyWithCount(1), insertAmount));
 ## GUI Integration
 
 ### StorageSlot
-**Location**: `com.zerofall.ezstorage.gui.slot.StorageSlot`
+**Location**: `io.github.scuba10steve.s3.gui.slot.StorageSlot`
 
 Custom slot implementation for storage GUI interaction.
 
@@ -155,7 +157,7 @@ ItemStack remove(int amount)  // Not supported for storage slots
 ```
 
 ### StorageCoreMenu
-**Location**: `com.zerofall.ezstorage.gui.server.StorageCoreMenu`
+**Location**: `io.github.scuba10steve.s3.gui.server.StorageCoreMenu`
 
 Container menu that provides 54 storage slots for item management.
 

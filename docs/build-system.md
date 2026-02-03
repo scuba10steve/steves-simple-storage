@@ -2,7 +2,7 @@
 
 ## Overview
 
-EZStorage 2 uses **ModDevGradle 2.0.46-beta** as its build system, which is the modern replacement for ForgeGradle. This document covers the complete build configuration and development setup.
+Steve's Simple Storage uses **ModDevGradle 2.0.139** as its build system, which is the modern replacement for ForgeGradle. This document covers the complete build configuration and development setup.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ EZStorage 2 uses **ModDevGradle 2.0.46-beta** as its build system, which is the 
 ## Project Structure
 
 ```
-EZStorage2/
+steves-simple-storage/
 ├── build.gradle                 # Main build configuration
 ├── settings.gradle              # Project settings
 ├── gradle.properties           # Build properties
@@ -47,21 +47,21 @@ EZStorage2/
 
 ```gradle
 plugins {
-    id 'net.neoforged.moddev' version '2.0.46-beta'
+    id 'net.neoforged.moddev' version '2.0.139'
     id 'java'
 }
 
-version = '1.0.0'
-group = 'io.github.scuba10steve.ezstorage'
+version = '0.1.0-beta'
+group = 'io.github.scuba10steve.s3'
 
 base {
-    archivesName = 'ezstorage'
+    archivesName = 's3'
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {
-    version = '21.1.77'
+    version = '21.1.218'
     
     parchment {
         minecraftVersion = '1.21.1'
@@ -78,7 +78,7 @@ neoForge {
     }
     
     mods {
-        ezstorage {
+        s3 {
             sourceSet sourceSets.main
         }
     }
@@ -86,12 +86,12 @@ neoForge {
 
 dependencies {
     // JEI integration
-    compileOnly "mezz.jei:jei-1.21.1-common-api:19.19.6.233"
-    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.19.6.233"
-    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.19.6.233"
-    
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.336"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.336"
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.336"
+
     // Test dependencies
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
     testImplementation 'org.mockito:mockito-core:5.7.0'
 }
@@ -105,14 +105,14 @@ test {
 
 ```properties
 # Mod Properties
-mod_version=1.0.0
-mod_group_id=io.github.scuba10steve.ezstorage
-mod_id=ezstorage
-mod_name=EZStorage 2
+mod_version=0.1.0-beta
+mod_group_id=io.github.scuba10steve.s3
+mod_id=s3
+mod_name=Steve's Simple Storage
 mod_license=MIT
-mod_url=https://github.com/scuba10steve/EZStorage2
+mod_url=https://github.com/scuba10steve/steves-simple-storage
 mod_author=scuba10steve
-mod_description=High-capacity storage system for Minecraft
+mod_description=Simple, scalable storage system for Minecraft - inspired by AWS S3
 
 # Build Properties
 org.gradle.jvmargs=-Xmx4G
@@ -135,7 +135,7 @@ plugins {
     id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
 
-rootProject.name = 'EZStorage2'
+rootProject.name = 'steves-simple-storage'
 ```
 
 ## Gradle Tasks
@@ -230,7 +230,7 @@ rootProject.name = 'EZStorage2'
 - Mappings (Parchment)
 
 **Version Alignment**:
-- NeoForge 21.1.77 → Minecraft 1.21.1
+- NeoForge 21.1.218 → Minecraft 1.21.1
 - Parchment mappings for deobfuscation
 - Java 21 toolchain requirement
 
@@ -238,14 +238,14 @@ rootProject.name = 'EZStorage2'
 
 **JEI Integration**:
 ```gradle
-compileOnly "mezz.jei:jei-1.21.1-common-api:19.19.6.233"
-compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.19.6.233"
-runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.19.6.233"
+compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.336"
+compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.336"
+runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.336"
 ```
 
 **Testing Framework**:
 ```gradle
-testImplementation 'org.junit.jupiter:junit-jupiter:5.10.1'
+testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
 testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 testImplementation 'org.mockito:mockito-core:5.7.0'
 ```
@@ -267,17 +267,17 @@ repositories {
 ### Generated Artifacts
 
 **Main Jar**:
-- Location: `build/libs/ezstorage-2.5.0.jar`
+- Location: `build/libs/s3-0.1.0-beta.jar`
 - Contains: Compiled mod classes and resources
 - Usage: Install in mods folder
 
 **Sources Jar** (optional):
-- Location: `build/libs/ezstorage-2.5.0-sources.jar`
+- Location: `build/libs/s3-0.1.0-beta-sources.jar`
 - Contains: Source code for debugging
 - Usage: IDE source attachment
 
 **Javadoc Jar** (optional):
-- Location: `build/libs/ezstorage-2.5.0-javadoc.jar`
+- Location: `build/libs/s3-0.1.0-beta-javadoc.jar`
 - Contains: Generated API documentation
 - Usage: Documentation reference
 
@@ -292,7 +292,7 @@ build/
 │   ├── main/                   # Processed resources
 │   └── test/                   # Test resources
 ├── libs/
-│   └── ezstorage-2.5.0.jar    # Final mod jar
+│   └── s3-0.1.0-beta.jar    # Final mod jar
 ├── reports/
 │   └── tests/                  # Test reports
 └── tmp/                        # Temporary build files

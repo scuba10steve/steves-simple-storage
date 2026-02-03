@@ -1,10 +1,10 @@
-# EZStorage 2
+# Steve's Simple Storage (S3)
 
-EZStorage 2 introduces a storage system that scales and evolves as players progress. Want to put 100,000 Cobblestone in 1 slot? No problem. Blocks in the mod can add a search bar, a crafting grid, additional storage, external access, security, and more. Also includes JEI integration for 1-click crafting from the system's internal inventory!
+Steve's Simple Storage introduces a storage system that scales and evolves as players progress. Want to put 100,000 Cobblestone in 1 slot? No problem. Blocks in the mod can add a search bar, a crafting grid, additional storage, external access, security, and more. Also includes JEI integration for 1-click crafting from the system's internal inventory!
 
 ## Project Status
 
-This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoForge 21.1.218**. 
+This repository contains Steve's Simple Storage updated for **Minecraft 1.21.1** and **NeoForge 21.1.218**. 
 
 ✅ **Current Status**: Version 0.1.0-beta - Core storage functionality complete and stable. Advanced features planned for future releases.
 
@@ -28,9 +28,11 @@ This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoF
 - ✅ All UI sync issues resolved
 - ✅ Click interactions working correctly (left-click, right-click, shift-click, drag-and-drop)
 - ✅ Capacity updates dynamically when blocks are added/removed
+- ✅ Crafting Box with 3x3 crafting grid connected to storage system
+- ✅ Shift-click crafting with automatic ingredient repopulation from storage
+- ✅ JEI recipe/usage lookup (R/U keys) for items in storage grids
 
 ### Not Yet Ported
-- 🔄 Crafting Box (crafting grid integration) - **IN PROGRESS**
 - ❌ Search Box (item filtering and search)
 - ❌ Security Box (player access control)
 - ❌ Sort Box (automatic sorting modes)
@@ -47,11 +49,9 @@ This repository contains EZStorage 2 updated for **Minecraft 1.21.1** and **NeoF
 
 ### Known Issues
 - ⚠️ Dolly item (basic & super) - Not functional, needs implementation fix
-- ⚠️ Crafting Box - Block is placed and registered, but GUI does not open when right-clicked. Requires further investigation into block entity/menu initialization
-- ⚠️ Crafting Box GUI - Result slot positioning needs adjustment (too far right), crafting functionality and storage integration not yet implemented
 
 ### Port Complete! 🎉
-EZStorage 2 core functionality has been successfully ported from Minecraft 1.12.2 to 1.21.1. The basic storage system is fully functional with item storage, retrieval, and multiblock capacity scaling. Advanced features listed above are planned for future updates.
+Steve's Simple Storage core functionality has been successfully ported from Minecraft 1.12.2 to 1.21.1. The basic storage system is fully functional with item storage, retrieval, and multiblock capacity scaling. Advanced features listed above are planned for future updates.
 
 The original 1.12.2 source code has been preserved in `src/main/java-backup/` for reference during the porting process.
 
@@ -64,8 +64,8 @@ The original 1.12.2 source code has been preserved in `src/main/java-backup/` fo
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/zerofall/EZStorage2.git
-   cd EZStorage2
+   git clone https://github.com/scuba10steve/steves-simple-storage.git
+   cd steves-simple-storage
    ```
 
 2. **Build the mod**:
@@ -79,7 +79,7 @@ The original 1.12.2 source code has been preserved in `src/main/java-backup/` fo
    ```
 
 3. **Find the built mod**:
-   The compiled mod JAR will be located at `build/libs/ezstorage-2.5.0.jar`
+   The compiled mod JAR will be located at `build/libs/s3-0.1.0-beta.jar`
 
 ## Development
 
@@ -116,11 +116,11 @@ open build/reports/tests/test/index.html
 
 ### Key Files
 
-- **Main mod class**: `src/main/java/com/zerofall/ezstorage/EZStorage.java`
-- **Registration**: `src/main/java/com/zerofall/ezstorage/init/`
-- **Blocks**: `src/main/java/com/zerofall/ezstorage/block/`
-- **Items**: `src/main/java/com/zerofall/ezstorage/item/`
-- **Block Entities**: `src/main/java/com/zerofall/ezstorage/blockentity/`
+- **Main mod class**: `src/main/java/io/github/scuba10steve/s3/S3.java`
+- **Registration**: `src/main/java/io/github/scuba10steve/s3/init/`
+- **Blocks**: `src/main/java/io/github/scuba10steve/s3/block/`
+- **Items**: `src/main/java/io/github/scuba10steve/s3/item/`
+- **Block Entities**: `src/main/java/io/github/scuba10steve/s3/blockentity/`
 - **Mod metadata**: `src/main/resources/META-INF/neoforge.mods.toml`
 
 ## Contributing
@@ -136,7 +136,7 @@ This mod is in active development for the 1.21.1 update. The registration founda
 
 ## Configuration
 
-EZStorage 2 uses TOML configuration files located at `config/ezstorage-common.toml`. The configuration is organized into sections:
+Steve's Simple Storage uses TOML configuration files located at `config/s3-common.toml`. The configuration is organized into sections:
 
 ### Storage Capacities
 - `basicCapacity` - Storage Box capacity (default: 10,000)
@@ -177,5 +177,5 @@ This Open Source project is licensed under the MIT License (see [LICENSE](LICENS
 
 ## Links
 
-- [GitHub Repository](https://github.com/scuba10steve/EZStorage2)
-- [Original Project on CurseForge](http://minecraft.curseforge.com/projects/ezstorage-2) (1.12.2 version)
+- [GitHub Repository](https://github.com/scuba10steve/steves-simple-storage)
+- [Original Project on CurseForge](http://minecraft.curseforge.com/projects/ezstorage-2) (EZStorage 2 - 1.12.2 version)

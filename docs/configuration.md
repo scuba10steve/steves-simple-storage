@@ -1,6 +1,6 @@
 # Configuration System
 
-EZStorage 2 uses NeoForge's ModConfigSpec system to generate TOML configuration files. The configuration is automatically created at `config/ezstorage-common.toml` when the mod first loads.
+Steve's Simple Storage uses NeoForge's ModConfigSpec system to generate TOML configuration files. The configuration is automatically created at `config/s3-common.toml` when the mod first loads.
 
 ## Configuration File Structure
 
@@ -14,9 +14,11 @@ Controls the storage capacity for each tier of storage block:
 [capacities]
     basicCapacity = 10000        # Storage Box
     condensedCapacity = 40000    # Condensed Storage Box
+    compressedCapacity = 80000   # Compressed Storage Box
     superCapacity = 160000       # Super Storage Box
     ultraCapacity = 640000       # Ultra Storage Box
     hyperCapacity = 2560000      # Hyper Storage Box
+    ultimateCapacity = 10240000  # Ultimate Storage Box
 ```
 
 **Notes:**
