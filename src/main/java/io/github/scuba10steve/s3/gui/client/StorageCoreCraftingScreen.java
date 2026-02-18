@@ -23,6 +23,6 @@ public class StorageCoreCraftingScreen extends AbstractStorageScreen<StorageCore
         this.storageRows = 4;
         this.storageAreaHeight = 72; // 4 rows * 18px
 
-        LOGGER.info("StorageCoreCraftingScreen created");
+        LOGGER.debug("StorageCoreCraftingScreen created");
     }
 }

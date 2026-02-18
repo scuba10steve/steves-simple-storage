@@ -89,7 +89,7 @@ public class EZInventory {
     }
     
     public void setMaxItems(long maxItems) {
-        LOGGER.info("Setting max items to: {}", maxItems);
+        LOGGER.debug("Setting max items to: {}", maxItems);
         this.maxItems = maxItems;
     }
 
@@ -164,6 +164,6 @@ public class EZInventory {
             items.add(StoredItemStack.load(itemTag, registries));
         }
         
-        LOGGER.info("Loaded inventory with {} items, max capacity: {}", items.size(), maxItems);
+        LOGGER.debug("Loaded inventory with {} items, max capacity: {}", items.size(), maxItems);
     }
 }

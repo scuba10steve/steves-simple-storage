@@ -50,14 +50,12 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
         super(EZBlockEntities.STORAGE_CORE.get(), pos, state);
-        LOGGER.info("=== StorageCoreBlockEntity created at {} ===", pos);
-        LOGGER.info("StorageCoreBlockEntity created at {}", pos);
+        LOGGER.debug("StorageCoreBlockEntity created at {}", pos);
         LOGGER.debug("Initial inventory capacity: {}", inventory.getTotalItemCount());
     }
 
     public void scanMultiblock() {
-        LOGGER.info("=== SCANNING MULTIBLOCK at {} ===", worldPosition);
-        LOGGER.info("Scanning multiblock at {}", worldPosition);
+        LOGGER.debug("Scanning multiblock at {}", worldPosition);
         
         long totalCapacity = 0;
         multiblock.clear();
@@ -77,20 +75,20 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
                 LOGGER.debug("Found storage block at {} with capacity {}", blockRef.pos, storage.getCapacity());
             } else if (blockRef.block instanceof BlockCraftingBox) {
                 hasCraftingBox = true;
-                LOGGER.info("Found crafting box at {}", blockRef.pos);
+                LOGGER.debug("Found crafting box at {}", blockRef.pos);
             } else if (blockRef.block instanceof BlockSearchBox) {
                 hasSearchBox = true;
-                LOGGER.info("Found search box at {}", blockRef.pos);
+                LOGGER.debug("Found search box at {}", blockRef.pos);
             } else if (blockRef.block instanceof BlockSortBox) {
                 hasSortBox = true;
-                LOGGER.info("Found sort box at {}", blockRef.pos);
+                LOGGER.debug("Found sort box at {}", blockRef.pos);
             } else if (blockRef.block instanceof BlockSecurityBox) {
                 hasSecurityBox = true;
-                LOGGER.info("Found security box at {}", blockRef.pos);
+                LOGGER.debug("Found security box at {}", blockRef.pos);
             }
         }
 
-        LOGGER.info("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}",
+        LOGGER.debug("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}",
                    multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox);
         inventory.setMaxItems(totalCapacity);
         setChanged();
@@ -234,7 +232,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         
         // Open crafting GUI if we have a crafting box, otherwise normal storage GUI
         if (hasCraftingBox) {
-            LOGGER.info("Opening crafting GUI for storage core at {}", worldPosition);
+            LOGGER.debug("Opening crafting GUI for storage core at {}", worldPosition);
             return new StorageCoreCraftingMenu(containerId, playerInventory, this.worldPosition);
         } else {
             return new StorageCoreMenu(containerId, playerInventory, this.worldPosition);

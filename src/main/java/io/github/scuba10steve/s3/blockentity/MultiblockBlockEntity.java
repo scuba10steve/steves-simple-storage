@@ -26,7 +26,7 @@ public abstract class MultiblockBlockEntity extends EZBlockEntity {
                 StorageMultiblock block = (StorageMultiblock) getBlockState().getBlock();
                 core = block.attemptMultiblock(level, worldPosition);
                 if (core != null) {
-                    LOGGER.info("Found core at {} for crafting box at {}", core.getBlockPos(), worldPosition);
+                    LOGGER.debug("Found core at {} for crafting box at {}", core.getBlockPos(), worldPosition);
                     corePos = core.getBlockPos();
                     setChanged();
                 } else {

@@ -26,7 +26,7 @@ public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        LOGGER.info("BlockStorageCore.newBlockEntity called at {}", pos);
+        LOGGER.debug("BlockStorageCore.newBlockEntity called at {}", pos);
         return new StorageCoreBlockEntity(pos, state);
     }
 

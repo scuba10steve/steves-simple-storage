@@ -23,9 +23,13 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 
 public class ItemDolly extends EZItem {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ItemDolly.class);
 
     public ItemDolly(int capacity) {
         super(new Item.Properties().durability(capacity));
@@ -34,22 +38,32 @@ public class ItemDolly extends EZItem {
     @Override
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
+        LOGGER.debug("useOn called - side: {}, hand: {}, pos: {}, player: {}",
+            level.isClientSide ? "CLIENT" : "SERVER",
+            context.getHand(),
+            context.getClickedPos(),
+            context.getPlayer() != null ? context.getPlayer().getName().getString() : "null");
 
         if (context.getHand() != InteractionHand.MAIN_HAND) {
+            LOGGER.debug("Rejected: not main hand");
             return InteractionResult.PASS;
         }
 
         ItemStack stack = context.getItemInHand();
+        LOGGER.debug("Item in hand: {}, has CUSTOM_DATA: {}", stack.getItem(), stack.has(DataComponents.CUSTOM_DATA));
         CompoundTag customTag = getCustomTag(stack);
 
         if (customTag.getBoolean("isFull")) {
+            LOGGER.debug("Dolly is full, attempting to place stored block");
             if (!level.isClientSide) {
                 placeStoredBlock(context, stack, customTag);
             }
             return InteractionResult.SUCCESS;
         } else {
             BlockEntity blockEntity = level.getBlockEntity(context.getClickedPos());
+            LOGGER.debug("Dolly is empty, block entity at pos: {}", blockEntity != null ? blockEntity.getClass().getSimpleName() : "null");
             if (blockEntity instanceof ChestBlockEntity || blockEntity instanceof StorageCoreBlockEntity) {
+                LOGGER.debug("Valid target found, picking up block");
                 if (!level.isClientSide) {
                     pickUpBlock(context, stack, blockEntity);
                 }
@@ -57,6 +71,7 @@ public class ItemDolly extends EZItem {
             }
         }
 
+        LOGGER.debug("No action taken, returning PASS");
         return InteractionResult.PASS;
     }
 

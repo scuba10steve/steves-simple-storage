@@ -24,7 +24,7 @@ public abstract class StorageMultiblock extends EZBlock {
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
         if (!level.isClientSide) {
-            LOGGER.info("StorageMultiblock placed at {}, attempting multiblock scan", pos);
+            LOGGER.debug("StorageMultiblock placed at {}, attempting multiblock scan", pos);
             attemptMultiblock(level, pos);
         }
     }
@@ -64,7 +64,7 @@ public abstract class StorageMultiblock extends EZBlock {
             LOGGER.debug("Checking neighbor at {} - block: {}", blockRef.pos, blockRef.block.getClass().getSimpleName());
             if (blockRef.block instanceof StorageMultiblock) {
                 if (blockRef.block instanceof BlockStorageCore) {
-                    LOGGER.info("Found storage core at {}", blockRef.pos);
+                    LOGGER.debug("Found storage core at {}", blockRef.pos);
                     return (StorageCoreBlockEntity) level.getBlockEntity(blockRef.pos);
                 } else {
                     if (scanned.add(blockRef)) {
