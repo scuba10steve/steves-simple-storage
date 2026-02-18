@@ -26,6 +26,7 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
 
     public void tick() {
         if (level == null || level.isClientSide) return;
+        super.tick();
         
         // Don't eject if powered by redstone
         if (level.hasNeighborSignal(worldPosition)) return;
