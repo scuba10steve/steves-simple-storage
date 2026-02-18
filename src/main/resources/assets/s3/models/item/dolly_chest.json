@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "s3:items/dolly_chest"
+        "layer0": "s3:item/dolly_chest"
     }
 }

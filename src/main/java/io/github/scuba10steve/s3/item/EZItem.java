@@ -6,4 +6,8 @@ public class EZItem extends Item {
     protected EZItem() {
         super(new Item.Properties());
     }
+
+    protected EZItem(Item.Properties properties) {
+        super(properties);
+    }
 }

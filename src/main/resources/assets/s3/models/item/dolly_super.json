@@ -1,6 +1,20 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "s3:item/dolly_super"
-  }
+    "layer0": "s3:item/dolly_super_empty"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "s3:dolly_state": 1.0
+      },
+      "model": "s3:item/dolly_super_chest"
+    },
+    {
+      "predicate": {
+        "s3:dolly_state": 2.0
+      },
+      "model": "s3:item/dolly_super_storage_core"
+    }
+  ]
 }

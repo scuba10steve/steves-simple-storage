@@ -40,9 +40,6 @@ This repository contains Steve's Simple Storage updated for **Minecraft 1.21.1**
 - ✅ Security Box (player access control with whitelist management)
 - ✅ Access Terminal (remote storage access via multiblock)
 
-### Known Issues
-- ⚠️ Dolly item (basic & super) - Not functional, needs implementation fix
-
 ### Future Ideas
 - 🔮 **Networked Storage** - Connect multiple Storage Core systems via physical bridges, conduits, or wireless links
 

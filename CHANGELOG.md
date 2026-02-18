@@ -5,6 +5,7 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 ## [Unreleased]
 
 ### Added
+- Dolly and Super Dolly functionality: pick up chests and storage cores (with contents), place them back down, with durability and dynamic item textures
 - Crafting Box with 3x3 crafting grid connected to storage system
 - Shift-click crafting with automatic ingredient repopulation from storage
 - JEI recipe/usage lookup (R/U keys) for items in storage grids
