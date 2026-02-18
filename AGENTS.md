@@ -17,6 +17,8 @@ The primary purpose of an AI agent in this repository is to assist human develop
 7.  **Confirm Ambiguity/Expansion:** Do not take significant actions beyond the clear scope of the request without confirming with the user.
 8.  **Security:** Prioritize security best practices. Never introduce code that exposes sensitive information.
 9.  **No Unrequested Commits:** **NEVER** stage or commit changes unless explicitly instructed by the user.
+10.  **No Attribution on Commits:** **NEVER** add a Co-Authored section to a commit.
+
 
 ## Tool Usage
 
