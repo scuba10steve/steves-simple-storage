@@ -48,6 +48,8 @@ public class EZItems {
         () -> new BlockItem(EZBlocks.EJECT_PORT.get(), new Item.Properties()));
     public static final Supplier<Item> SECURITY_BOX = ITEMS.register("security_box",
         () -> new BlockItem(EZBlocks.SECURITY_BOX.get(), new Item.Properties()));
+    public static final Supplier<Item> ACCESS_TERMINAL = ITEMS.register("access_terminal",
+        () -> new BlockItem(EZBlocks.ACCESS_TERMINAL.get(), new Item.Properties()));
 
     // Items
     public static final Supplier<Item> KEY = ITEMS.register("key", ItemKey::new);

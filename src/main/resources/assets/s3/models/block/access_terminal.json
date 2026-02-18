@@ -1,12 +1,6 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "down": "s3:blocks/box_side",
-        "up": "s3:blocks/box_side",
-        "north": "s3:blocks/access_terminal",
-        "south": "s3:blocks/access_terminal",
-        "east": "s3:blocks/access_terminal",
-        "west": "s3:blocks/access_terminal",
-        "particle": "s3:blocks/access_terminal"
-    }
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "s3:block/access_terminal"
+  }
 }

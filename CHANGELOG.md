@@ -21,6 +21,7 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 - Security event system blocking unauthorized multiblock interactions
 - Operator override with configurable notifications for security bypass
 - Security sync/player packets for client-server whitelist management
+- Access Terminal for remote Storage Core GUI access via multiblock network
 
 ### Fixed
 - JEI hotkeys (R/U) not working on storage items (was only recipe transfer)
@@ -72,11 +73,6 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 - ModDevGradle Version: 2.0.139
 - Java Version: 21
 - Gradle Version: 8.10.2
-
-## Future Plans
-
-### Not Yet Ported (Planned for Future Releases)
-- Access Terminal (remote storage access)
 
 ---
 

@@ -36,6 +36,7 @@ public class EZCreativeTabs {
                 output.accept(EZItems.EXTRACT_PORT.get());
                 output.accept(EZItems.EJECT_PORT.get());
                 output.accept(EZItems.SECURITY_BOX.get());
+                output.accept(EZItems.ACCESS_TERMINAL.get());
 
                 // Add all items
                 output.accept(EZItems.KEY.get());

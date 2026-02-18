@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.init;
 
+import io.github.scuba10steve.s3.block.BlockAccessTerminal;
 import io.github.scuba10steve.s3.block.BlockBlankBox;
 import io.github.scuba10steve.s3.block.BlockCraftingBox;
 import io.github.scuba10steve.s3.block.BlockEjectPort;
@@ -45,6 +46,7 @@ public class EZBlocks {
     public static final Supplier<Block> EXTRACT_PORT = BLOCKS.register("extract_port", BlockExtractPort::new);
     public static final Supplier<Block> EJECT_PORT = BLOCKS.register("eject_port", BlockEjectPort::new);
     public static final Supplier<Block> SECURITY_BOX = BLOCKS.register("security_box", BlockSecurityBox::new);
+    public static final Supplier<Block> ACCESS_TERMINAL = BLOCKS.register("access_terminal", BlockAccessTerminal::new);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

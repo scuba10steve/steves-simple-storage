@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "IXI",
+    "XAX",
+    "IXI"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:glass_pane"
+    },
+    "I": {
+      "item": "minecraft:iron_bars"
+    },
+    "A": {
+      "item": "s3:storage_core"
+    }
+  },
+  "result": {
+    "item": "s3:access_terminal"
+  }
+}
