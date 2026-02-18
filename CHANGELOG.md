@@ -17,6 +17,10 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 - Automatic sorting of storage items based on selected mode
 - Eject Port for automatically pushing items from storage into inventories above it
 - Redstone control for Eject Port (stops ejecting when powered)
+- Security Box with player whitelist management and Key item integration
+- Security event system blocking unauthorized multiblock interactions
+- Operator override with configurable notifications for security bypass
+- Security sync/player packets for client-server whitelist management
 
 ### Fixed
 - JEI hotkeys (R/U) not working on storage items (was only recipe transfer)
@@ -72,14 +76,7 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 ## Future Plans
 
 ### Not Yet Ported (Planned for Future Releases)
-- Search Box (item filtering and search)
-- Security Box (player access control)
-- Sort Box (automatic sorting modes)
 - Access Terminal (remote storage access)
-- Input Port (item input automation)
-- Extract Port (item extraction automation)
-- Eject Port (item ejection)
-- Blank Box (decorative multiblock component)
 
 ---
 

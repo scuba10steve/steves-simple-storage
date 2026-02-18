@@ -1,5 +1,5 @@
 {
-	"variants": {
-		"normal": {"model": "s3:security_box"}
-	}
+  "variants": {
+    "": {"model": "s3:block/security_box"}
+  }
 }

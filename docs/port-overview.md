@@ -21,6 +21,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Click Interactions** - Full support for left-click, right-click, shift-click, and drag-and-drop
 - **UI Synchronization** - Real-time updates for all storage operations
 - **Capacity Updates** - Dynamic capacity display when multiblock changes
+- **Security Box** - Player access control with whitelist management and operator override
 
 ### 🎯 Key Achievements
 - **100% Feature Parity** with original 1.12.2 core storage functionality

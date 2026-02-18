@@ -16,8 +16,10 @@
   "block.s3.input_port": "Input Port",
   "block.s3.extract_port": "Extract Port",
   "block.s3.eject_port": "Eject Port",
+  "block.s3.security_box": "Security Box",
 
   "container.s3.extract_port": "Extract Port",
+  "container.s3.security_box": "Security Box",
 
   "item.s3.key": "EZ Key",
   "item.s3.dolly": "Dolly",

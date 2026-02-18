@@ -1,12 +1,6 @@
 {
-    "parent": "block/cube",
-    "textures": {
-        "down": "s3:blocks/box_side",
-        "up": "s3:blocks/box_side",
-        "north": "s3:blocks/security_box",
-        "south": "s3:blocks/security_box",
-        "east": "s3:blocks/security_box",
-        "west": "s3:blocks/security_box",
-        "particle": "s3:blocks/security_box"
-    }
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "s3:block/security_box"
+  }
 }

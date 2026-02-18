@@ -36,5 +36,17 @@ public class EZNetwork {
             ExtractPortConfigPacket.STREAM_CODEC,
             ExtractPortConfigPacket::handle
         );
+
+        registrar.playToServer(
+            SecurityPlayerPacket.TYPE,
+            SecurityPlayerPacket.STREAM_CODEC,
+            SecurityPlayerPacket::handle
+        );
+
+        registrar.playToClient(
+            SecuritySyncPacket.TYPE,
+            SecuritySyncPacket.STREAM_CODEC,
+            SecuritySyncPacket::handle
+        );
     }
 }

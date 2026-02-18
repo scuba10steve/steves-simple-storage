@@ -37,12 +37,10 @@ This repository contains Steve's Simple Storage updated for **Minecraft 1.21.1**
 - ✅ Input Port (item input automation via hoppers/pipes)
 - ✅ Extract Port (item extraction with whitelist/blacklist filtering)
 - ✅ Eject Port (item ejection into inventories above, redstone controllable)
+- ✅ Security Box (player access control with whitelist management)
 
 ### Not Yet Ported
-- ❌ Security Box (player access control)
 - ❌ Access Terminal (remote storage access)
-- ❌ Security system with player permissions
-- ❌ Extract list filtering (whitelist/blacklist)
 
 ### Known Issues
 - ⚠️ Dolly item (basic & super) - Not functional, needs implementation fix

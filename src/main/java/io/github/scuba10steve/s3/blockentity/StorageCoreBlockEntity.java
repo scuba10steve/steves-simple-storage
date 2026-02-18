@@ -2,6 +2,7 @@ package io.github.scuba10steve.s3.blockentity;
 
 import io.github.scuba10steve.s3.block.BlockCraftingBox;
 import io.github.scuba10steve.s3.block.BlockSearchBox;
+import io.github.scuba10steve.s3.block.BlockSecurityBox;
 import io.github.scuba10steve.s3.block.BlockSortBox;
 import io.github.scuba10steve.s3.block.BlockStorage;
 import io.github.scuba10steve.s3.block.StorageMultiblock;
@@ -41,6 +42,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     private boolean hasCraftingBox = false;
     private boolean hasSearchBox = false;
     private boolean hasSortBox = false;
+    private boolean hasSecurityBox = false;
     private SortMode sortMode = SortMode.COUNT;
 
     // Sync throttling to prevent rapid consecutive syncs causing visual flicker
@@ -62,6 +64,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         hasCraftingBox = false;
         hasSearchBox = false;
         hasSortBox = false;
+        hasSecurityBox = false;
         
         BlockRef coreRef = new BlockRef(getBlockState().getBlock(), worldPosition);
         multiblock.add(coreRef);
@@ -81,11 +84,14 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
             } else if (blockRef.block instanceof BlockSortBox) {
                 hasSortBox = true;
                 LOGGER.info("Found sort box at {}", blockRef.pos);
+            } else if (blockRef.block instanceof BlockSecurityBox) {
+                hasSecurityBox = true;
+                LOGGER.info("Found security box at {}", blockRef.pos);
             }
         }
 
-        LOGGER.info("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}",
-                   multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox);
+        LOGGER.info("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}",
+                   multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox);
         inventory.setMaxItems(totalCapacity);
         setChanged();
         syncToClients();
@@ -176,6 +182,10 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
 
     public boolean hasSortBox() {
         return hasSortBox;
+    }
+
+    public boolean hasSecurityBox() {
+        return hasSecurityBox;
     }
 
     public SortMode getSortMode() {

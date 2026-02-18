@@ -5,6 +5,7 @@ import io.github.scuba10steve.s3.blockentity.EjectPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.InputPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.SearchBoxBlockEntity;
+import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
 import io.github.scuba10steve.s3.blockentity.SortBoxBlockEntity;
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.ref.RefStrings;
@@ -46,6 +47,10 @@ public class EZBlockEntities {
     public static final Supplier<BlockEntityType<EjectPortBlockEntity>> EJECT_PORT =
         BLOCK_ENTITIES.register("eject_port", () ->
             BlockEntityType.Builder.of(EjectPortBlockEntity::new, EZBlocks.EJECT_PORT.get()).build(null));
+
+    public static final Supplier<BlockEntityType<SecurityBoxBlockEntity>> SECURITY_BOX =
+        BLOCK_ENTITIES.register("security_box", () ->
+            BlockEntityType.Builder.of(SecurityBoxBlockEntity::new, EZBlocks.SECURITY_BOX.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
