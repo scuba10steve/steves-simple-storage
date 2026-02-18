@@ -30,5 +30,11 @@ public class EZNetwork {
             SortModePacket.STREAM_CODEC,
             SortModePacket::handle
         );
+
+        registrar.playToServer(
+            ExtractPortConfigPacket.TYPE,
+            ExtractPortConfigPacket.STREAM_CODEC,
+            ExtractPortConfigPacket::handle
+        );
     }
 }

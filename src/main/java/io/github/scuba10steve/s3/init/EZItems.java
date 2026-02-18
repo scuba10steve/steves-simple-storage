@@ -42,6 +42,10 @@ public class EZItems {
         () -> new BlockItem(EZBlocks.BLANK_BOX.get(), new Item.Properties()));
     public static final Supplier<Item> INPUT_PORT = ITEMS.register("input_port",
         () -> new BlockItem(EZBlocks.INPUT_PORT.get(), new Item.Properties()));
+    public static final Supplier<Item> EXTRACT_PORT = ITEMS.register("extract_port",
+        () -> new BlockItem(EZBlocks.EXTRACT_PORT.get(), new Item.Properties()));
+    public static final Supplier<Item> EJECT_PORT = ITEMS.register("eject_port",
+        () -> new BlockItem(EZBlocks.EJECT_PORT.get(), new Item.Properties()));
 
     // Items
     public static final Supplier<Item> KEY = ITEMS.register("key", ItemKey::new);

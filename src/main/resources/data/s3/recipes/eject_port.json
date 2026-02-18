@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " P ",
+    "IBI",
+    " I "
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:piston"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    },
+    "B": {
+      "item": "s3:storage_box"
+    }
+  },
+  "result": {
+    "item": "s3:eject_port"
+  }
+}

@@ -35,12 +35,12 @@ This repository contains Steve's Simple Storage updated for **Minecraft 1.21.1**
 - ✅ Sort Box with 6 sorting modes (count, name, mod - each with ascending/descending)
 - ✅ Blank Box (decorative multiblock component)
 - ✅ Input Port (item input automation via hoppers/pipes)
+- ✅ Extract Port (item extraction with whitelist/blacklist filtering)
+- ✅ Eject Port (item ejection into inventories above, redstone controllable)
 
 ### Not Yet Ported
 - ❌ Security Box (player access control)
 - ❌ Access Terminal (remote storage access)
-- ❌ Extract Port (item extraction automation)
-- ❌ Eject Port (item ejection)
 - ❌ Security system with player permissions
 - ❌ Extract list filtering (whitelist/blacklist)
 
@@ -161,6 +161,10 @@ Steve's Simple Storage uses TOML configuration files located at `config/s3-commo
 
 ### Mod Integration
 - `jeiIntegration` - Enable JEI integration features (default: true)
+
+### Automation Settings
+- `extractPortInterval` - Ticks between Extract Port extraction attempts (default: 8, range: 1-100). Lower values = faster extraction, higher values = less server load.
+- `minSyncInterval` - Minimum ticks between storage inventory sync packets (default: 2, range: 0-20). Helps prevent visual flicker. Set to 0 to disable throttling.
 
 Configuration changes require a game restart to take effect.
 

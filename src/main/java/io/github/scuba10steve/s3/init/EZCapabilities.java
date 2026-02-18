@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.init;
 
+import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.InputPortBlockEntity;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -19,6 +20,13 @@ public class EZCapabilities {
         event.registerBlockEntity(
             Capabilities.ItemHandler.BLOCK,
             EZBlockEntities.INPUT_PORT.get(),
+            (blockEntity, direction) -> blockEntity.getItemHandler()
+        );
+
+        // Register Extract Port item handler capability
+        event.registerBlockEntity(
+            Capabilities.ItemHandler.BLOCK,
+            EZBlockEntities.EXTRACT_PORT.get(),
             (blockEntity, direction) -> blockEntity.getItemHandler()
         );
     }

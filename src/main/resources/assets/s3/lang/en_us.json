@@ -14,6 +14,10 @@
   "block.s3.sort_box": "Sort Box",
   "block.s3.blank_box": "Blank Box",
   "block.s3.input_port": "Input Port",
+  "block.s3.extract_port": "Extract Port",
+  "block.s3.eject_port": "Eject Port",
+
+  "container.s3.extract_port": "Extract Port",
 
   "item.s3.key": "EZ Key",
   "item.s3.dolly": "Dolly",

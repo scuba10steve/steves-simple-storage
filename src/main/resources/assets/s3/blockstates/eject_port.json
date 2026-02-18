@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "s3:block/extract_port"
+      "model": "s3:block/eject_port"
     }
   }
 }

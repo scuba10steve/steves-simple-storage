@@ -27,7 +27,11 @@ public class EZConfig {
     
     // Integration
     public static final ModConfigSpec.BooleanValue JEI_INTEGRATION;
-    
+
+    // Automation
+    public static final ModConfigSpec.IntValue EXTRACT_PORT_INTERVAL;
+    public static final ModConfigSpec.IntValue MIN_SYNC_INTERVAL;
+
     static {
         BUILDER.comment("Storage Capacities").push("capacities");
         
@@ -98,13 +102,25 @@ public class EZConfig {
         BUILDER.pop();
         
         BUILDER.comment("Mod Integration").push("integration");
-        
+
         JEI_INTEGRATION = BUILDER
             .comment("Enable JEI integration features")
             .define("jeiIntegration", true);
-        
+
+        BUILDER.pop();
+
+        BUILDER.comment("Automation Settings").push("automation");
+
+        EXTRACT_PORT_INTERVAL = BUILDER
+            .comment("Ticks between Extract Port extraction attempts (lower = faster, higher = less server load)")
+            .defineInRange("extractPortInterval", 8, 1, 100);
+
+        MIN_SYNC_INTERVAL = BUILDER
+            .comment("Minimum ticks between storage inventory sync packets (helps prevent visual flicker)")
+            .defineInRange("minSyncInterval", 2, 0, 20);
+
         BUILDER.pop();
     }
-    
+
     public static final ModConfigSpec SPEC = BUILDER.build();
 }

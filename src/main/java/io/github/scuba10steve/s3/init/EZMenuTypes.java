@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.init;
 
+import io.github.scuba10steve.s3.gui.server.ExtractPortMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.ref.RefStrings;
@@ -20,10 +21,14 @@ public class EZMenuTypes {
             IMenuTypeExtension.create((windowId, inv, data) -> 
                 new StorageCoreMenu(windowId, inv, data.readBlockPos())));
                 
-    public static final Supplier<MenuType<StorageCoreCraftingMenu>> STORAGE_CORE_CRAFTING = 
-        MENU_TYPES.register("storage_core_crafting", () -> 
-            IMenuTypeExtension.create((windowId, inv, data) -> 
+    public static final Supplier<MenuType<StorageCoreCraftingMenu>> STORAGE_CORE_CRAFTING =
+        MENU_TYPES.register("storage_core_crafting", () ->
+            IMenuTypeExtension.create((windowId, inv, data) ->
                 new StorageCoreCraftingMenu(windowId, inv, data.readBlockPos())));
+
+    public static final Supplier<MenuType<ExtractPortMenu>> EXTRACT_PORT =
+        MENU_TYPES.register("extract_port", () ->
+            IMenuTypeExtension.create(ExtractPortMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);

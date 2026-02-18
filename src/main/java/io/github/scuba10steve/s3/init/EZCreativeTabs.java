@@ -33,6 +33,8 @@ public class EZCreativeTabs {
                 output.accept(EZItems.SORT_BOX.get());
                 output.accept(EZItems.BLANK_BOX.get());
                 output.accept(EZItems.INPUT_PORT.get());
+                output.accept(EZItems.EXTRACT_PORT.get());
+                output.accept(EZItems.EJECT_PORT.get());
 
                 // Add all items
                 output.accept(EZItems.KEY.get());

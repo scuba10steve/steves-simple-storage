@@ -1,6 +1,8 @@
 package io.github.scuba10steve.s3.init;
 
 import io.github.scuba10steve.s3.blockentity.CraftingBoxBlockEntity;
+import io.github.scuba10steve.s3.blockentity.EjectPortBlockEntity;
+import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.InputPortBlockEntity;
 import io.github.scuba10steve.s3.blockentity.SearchBoxBlockEntity;
 import io.github.scuba10steve.s3.blockentity.SortBoxBlockEntity;
@@ -36,6 +38,14 @@ public class EZBlockEntities {
     public static final Supplier<BlockEntityType<InputPortBlockEntity>> INPUT_PORT =
         BLOCK_ENTITIES.register("input_port", () ->
             BlockEntityType.Builder.of(InputPortBlockEntity::new, EZBlocks.INPUT_PORT.get()).build(null));
+
+    public static final Supplier<BlockEntityType<ExtractPortBlockEntity>> EXTRACT_PORT =
+        BLOCK_ENTITIES.register("extract_port", () ->
+            BlockEntityType.Builder.of(ExtractPortBlockEntity::new, EZBlocks.EXTRACT_PORT.get()).build(null));
+
+    public static final Supplier<BlockEntityType<EjectPortBlockEntity>> EJECT_PORT =
+        BLOCK_ENTITIES.register("eject_port", () ->
+            BlockEntityType.Builder.of(EjectPortBlockEntity::new, EZBlocks.EJECT_PORT.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

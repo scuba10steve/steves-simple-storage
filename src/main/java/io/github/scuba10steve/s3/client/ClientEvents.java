@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.client;
 
+import io.github.scuba10steve.s3.gui.client.ExtractPortScreen;
 import io.github.scuba10steve.s3.gui.client.StorageCoreScreen;
 import io.github.scuba10steve.s3.gui.client.StorageCoreCraftingScreen;
 import io.github.scuba10steve.s3.init.EZMenuTypes;
@@ -17,5 +18,6 @@ public class ClientEvents {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(EZMenuTypes.STORAGE_CORE.get(), StorageCoreScreen::new);
         event.register(EZMenuTypes.STORAGE_CORE_CRAFTING.get(), StorageCoreCraftingScreen::new);
+        event.register(EZMenuTypes.EXTRACT_PORT.get(), ExtractPortScreen::new);
     }
 }

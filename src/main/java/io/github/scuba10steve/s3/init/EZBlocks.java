@@ -2,6 +2,8 @@ package io.github.scuba10steve.s3.init;
 
 import io.github.scuba10steve.s3.block.BlockBlankBox;
 import io.github.scuba10steve.s3.block.BlockCraftingBox;
+import io.github.scuba10steve.s3.block.BlockEjectPort;
+import io.github.scuba10steve.s3.block.BlockExtractPort;
 import io.github.scuba10steve.s3.block.BlockInputPort;
 import io.github.scuba10steve.s3.block.BlockSearchBox;
 import io.github.scuba10steve.s3.block.BlockSortBox;
@@ -39,6 +41,8 @@ public class EZBlocks {
     public static final Supplier<Block> SORT_BOX = BLOCKS.register("sort_box", BlockSortBox::new);
     public static final Supplier<Block> BLANK_BOX = BLOCKS.register("blank_box", BlockBlankBox::new);
     public static final Supplier<Block> INPUT_PORT = BLOCKS.register("input_port", BlockInputPort::new);
+    public static final Supplier<Block> EXTRACT_PORT = BLOCKS.register("extract_port", BlockExtractPort::new);
+    public static final Supplier<Block> EJECT_PORT = BLOCKS.register("eject_port", BlockEjectPort::new);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

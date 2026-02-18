@@ -5,6 +5,7 @@ import io.github.scuba10steve.s3.block.BlockSearchBox;
 import io.github.scuba10steve.s3.block.BlockSortBox;
 import io.github.scuba10steve.s3.block.BlockStorage;
 import io.github.scuba10steve.s3.block.StorageMultiblock;
+import io.github.scuba10steve.s3.config.EZConfig;
 import io.github.scuba10steve.s3.util.SortMode;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
@@ -34,13 +35,16 @@ import java.util.Set;
 
 public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreBlockEntity.class);
-    
+
     private final EZInventory inventory = new EZInventory();
     private final Set<BlockRef> multiblock = new HashSet<>();
     private boolean hasCraftingBox = false;
     private boolean hasSearchBox = false;
     private boolean hasSortBox = false;
     private SortMode sortMode = SortMode.COUNT;
+
+    // Sync throttling to prevent rapid consecutive syncs causing visual flicker
+    private long lastSyncTime = 0;
     
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
         super(EZBlockEntities.STORAGE_CORE.get(), pos, state);
@@ -103,37 +107,57 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     }
 
     public ItemStack insertItem(ItemStack stack) {
-        LOGGER.info("=== INSERT ATTEMPT: " + stack.getItem() + " x" + stack.getCount() + " ===");
         LOGGER.debug("Attempting to insert item: {} x{}", stack.getItem(), stack.getCount());
-        
+
         if (stack.isEmpty()) {
-            LOGGER.info("Stack is empty, returning");
             LOGGER.debug("Stack is empty, returning");
             return ItemStack.EMPTY;
         }
-        
+
         ItemStack result = inventory.insertItem(stack);
-        LOGGER.info("Insert result: " + result.getCount() + " remaining");
         LOGGER.debug("Insert result: {} remaining", result.getCount());
-        
+
         setChanged();
-        syncToClients();
+        forceSyncToClients(); // Always sync inventory changes immediately
         return result;
     }
-    
+
     public ItemStack extractItem(ItemStack template, int amount) {
         LOGGER.debug("Attempting to extract item: {} x{}", template.getItem(), amount);
-        
+
         ItemStack result = inventory.extractItem(template, amount);
         LOGGER.debug("Extract result: {} x{}", result.getItem(), result.getCount());
-        
+
         setChanged();
-        syncToClients();
+        forceSyncToClients(); // Always sync inventory changes immediately
         return result;
     }
     
     private void syncToClients() {
         if (level instanceof ServerLevel serverLevel) {
+            // Throttle syncs to prevent visual flicker from rapid consecutive updates
+            long currentTime = level.getGameTime();
+            int minSyncInterval = EZConfig.MIN_SYNC_INTERVAL.get();
+            if (minSyncInterval > 0 && currentTime - lastSyncTime < minSyncInterval) {
+                return; // Skip this sync, another one happened very recently
+            }
+            lastSyncTime = currentTime;
+
+            PacketDistributor.sendToPlayersTrackingChunk(
+                serverLevel,
+                level.getChunkAt(worldPosition).getPos(),
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal())
+            );
+        }
+    }
+
+    /**
+     * Forces an immediate sync to clients, bypassing throttling.
+     * Use sparingly - only for critical updates like inventory changes.
+     */
+    public void forceSyncToClients() {
+        if (level instanceof ServerLevel serverLevel) {
+            lastSyncTime = level.getGameTime();
             PacketDistributor.sendToPlayersTrackingChunk(
                 serverLevel,
                 level.getChunkAt(worldPosition).getPos(),

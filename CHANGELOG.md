@@ -12,6 +12,11 @@ All notable changes to Steve's Simple Storage (S3) for Minecraft 1.21.1 will be 
 - Shared `AbstractStorageScreen` base class for consistent GUI behavior
 - Search Box enabling item filtering in Storage Core GUI
 - Real-time search with 4 modes: standard (name/tooltip), `$` (tags), `@` (mod ID), `%` (item name)
+- Sort Box with 6 sorting modes: Count Down, Count Up, Name A-Z, Name Z-A, Mod A-Z, Mod Z-A
+- Sort button in Storage Core GUI when Sort Box is present in multiblock
+- Automatic sorting of storage items based on selected mode
+- Eject Port for automatically pushing items from storage into inventories above it
+- Redstone control for Eject Port (stops ejecting when powered)
 
 ### Fixed
 - JEI hotkeys (R/U) not working on storage items (was only recipe transfer)
