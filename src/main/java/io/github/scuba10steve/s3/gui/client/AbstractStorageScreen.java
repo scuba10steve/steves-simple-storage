@@ -14,7 +14,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
@@ -30,12 +29,11 @@ import java.util.Locale;
  */
 public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends AbstractContainerScreen<T> {
 
-    // Vanilla creative inventory tabs texture contains the scrollbar thumb at (232, 0)
-    protected static final ResourceLocation CREATIVE_TABS =
-        ResourceLocation.withDefaultNamespace("textures/gui/container/creative_inventory/tabs.png");
-    // Vanilla search bar texture from creative inventory
-    protected static final ResourceLocation SEARCH_BAR =
-        ResourceLocation.withDefaultNamespace("textures/gui/container/creative_inventory/tab_item_search.png");
+    // Vanilla scrollbar sprites (1.21+ sprite-based rendering)
+    protected static final ResourceLocation SCROLLER_SPRITE =
+        ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller");
+    protected static final ResourceLocation SCROLLER_DISABLED_SPRITE =
+        ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller_disabled");
 
     protected ResourceLocation texture;
     protected int scrollRow = 0;
@@ -208,14 +206,14 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
         // Draw search bar background if search box is present
         if (searchActive && searchField != null) {
-            guiGraphics.blit(SEARCH_BAR, x + 8, y + 4, 80, 4, 90, 12);
             searchField.render(guiGraphics, mouseX, mouseY, partialTick);
         }
 
-        // Draw scrollbar thumb from vanilla creative tabs texture (thumb is at u=232, v=0, 12x15 pixels)
+        // Draw scrollbar thumb using vanilla scroller sprite
         int scrollbarX = x + 175;
         int scrollbarY = y + 18 + (int)((storageAreaHeight - 15) * currentScroll);
-        guiGraphics.blit(CREATIVE_TABS, scrollbarX, scrollbarY, 232, 0, 12, 15);
+        boolean canScroll = canScrollItems();
+        guiGraphics.blitSprite(canScroll ? SCROLLER_SPRITE : SCROLLER_DISABLED_SPRITE, scrollbarX, scrollbarY, 12, 15);
     }
 
     @Override
@@ -502,6 +500,21 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             return searchField.charTyped(codePoint, modifiers);
         }
         return super.charTyped(codePoint, modifiers);
+    }
+
+    /**
+     * Returns true if the storage has more items than visible rows can display.
+     */
+    protected boolean canScrollItems() {
+        List<StoredItemStack> items;
+        if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
+            items = filteredItems;
+        } else {
+            EZInventory inventory = menu.getInventory();
+            if (inventory == null) return false;
+            items = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
+        }
+        return (items.size() + 8) / 9 > storageRows;
     }
 
     // Getters for JEI integration
