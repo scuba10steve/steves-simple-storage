@@ -10,6 +10,7 @@
 #gradle
 /build
 /.gradle
+/src/generated/
 
 #occupational hazards
 /eclipse/

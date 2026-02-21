@@ -29,6 +29,19 @@ neoForge {
         server {
             server()
         }
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', 's3'
+        }
+        data {
+            data()
+            programArguments.addAll(
+                '--mod', 's3',
+                '--all',
+                '--output', file('src/generated/resources/').getAbsolutePath(),
+                '--existing', file('src/main/resources/').getAbsolutePath()
+            )
+        }
     }
     
     mods {
@@ -37,6 +50,8 @@ neoForge {
         }
     }
 }
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     // JEI integration
