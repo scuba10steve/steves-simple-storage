@@ -1,6 +1,6 @@
 package io.github.scuba10steve.s3.network;
 
-import io.github.scuba10steve.s3.EZStorage;
+import io.github.scuba10steve.s3.StevesSimpleStorage;
 import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -16,7 +16,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public record ExtractPortConfigPacket(BlockPos pos, boolean cycleMode, boolean roundRobin) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<ExtractPortConfigPacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EZStorage.MODID, "extract_port_config"));
+        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(StevesSimpleStorage.MODID, "extract_port_config"));
 
     public static final StreamCodec<FriendlyByteBuf, ExtractPortConfigPacket> STREAM_CODEC = StreamCodec.of(
         (buf, packet) -> {

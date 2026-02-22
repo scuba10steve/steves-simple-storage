@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -32,7 +32,7 @@ public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == EZBlockEntities.STORAGE_CORE.get() ? (level1, pos, state1, blockEntity) -> {
+        return type == ModBlockEntities.STORAGE_CORE.get() ? (level1, pos, state1, blockEntity) -> {
             // Ticker logic will be implemented later
         } : null;
     }

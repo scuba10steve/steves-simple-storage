@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.gui.server;
 
-import io.github.scuba10steve.s3.init.EZMenuTypes;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.init.ModMenuTypes;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Container;
@@ -21,7 +21,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
     private final ResultContainer craftResult;
 
     public StorageCoreCraftingMenu(int containerId, Inventory playerInventory, net.minecraft.core.BlockPos pos) {
-        super(EZMenuTypes.STORAGE_CORE_CRAFTING.get(), containerId, playerInventory, pos);
+        super(ModMenuTypes.STORAGE_CORE_CRAFTING.get(), containerId, playerInventory, pos);
 
         // Instantiate crafting containers
         this.craftMatrix = new TransientCraftingContainer(this, 3, 3);
@@ -95,7 +95,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         }
         // If moving from the player inventory to the storage system
         else if (index >= playerInvStart && index < playerInvEnd) {
-            EZInventory inventory = getInventory();
+            StorageInventory inventory = getInventory();
             if (inventory != null) {
                 ItemStack remainder = inventory.insertItem(stackInSlot);
                 slot.set(remainder);
@@ -103,7 +103,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
                     return ItemStack.EMPTY;
                 }
             } else {
-                LOGGER.debug("EZInventory is null, cannot move item from player inventory.");
+                LOGGER.debug("StorageInventory is null, cannot move item from player inventory.");
                 return ItemStack.EMPTY;
             }
         }
@@ -182,7 +182,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
                 continue;
             }
             // This slot has an item that doesn't match the recipe pattern — it's a remainder
-            EZInventory inventory = getInventory();
+            StorageInventory inventory = getInventory();
             if (inventory != null) {
                 ItemStack remaining = inventory.insertItem(gridItem);
                 if (!remaining.isEmpty()) {
@@ -203,9 +203,9 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
      * Attempts to repopulate empty crafting grid slots from the connected storage.
      */
     private boolean tryToPopulateCraftingGrid(ItemStack[] recipe) {
-        EZInventory inventory = getInventory();
+        StorageInventory inventory = getInventory();
         if (inventory == null) {
-            LOGGER.debug("Cannot populate crafting grid: EZInventory is null.");
+            LOGGER.debug("Cannot populate crafting grid: StorageInventory is null.");
             return false;
         }
 
@@ -235,7 +235,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         for (int i = 0; i < 9; i++) {
             ItemStack stack = this.craftMatrix.getItem(i);
             if (!stack.isEmpty()) {
-                EZInventory inventory = getInventory();
+                StorageInventory inventory = getInventory();
                 if (inventory != null) {
                     ItemStack remaining = inventory.insertItem(stack);
                     if (!remaining.isEmpty()) {

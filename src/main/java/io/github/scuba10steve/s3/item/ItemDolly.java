@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
-public class ItemDolly extends EZItem {
+public class ItemDolly extends BaseItem {
     private static final Logger LOGGER = LoggerFactory.getLogger(ItemDolly.class);
 
     public ItemDolly(int capacity) {

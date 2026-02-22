@@ -1,8 +1,8 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
-import io.github.scuba10steve.s3.init.EZItems;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
+import io.github.scuba10steve.s3.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -37,7 +37,7 @@ public class BlockSecurityBox extends StorageMultiblock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide()) return null;
-        return type == EZBlockEntities.SECURITY_BOX.get()
+        return type == ModBlockEntities.SECURITY_BOX.get()
             ? (lvl, pos, st, be) -> ((SecurityBoxBlockEntity) be).tick()
             : null;
     }
@@ -67,7 +67,7 @@ public class BlockSecurityBox extends StorageMultiblock implements EntityBlock {
         if (!level.isClientSide) {
             // Check if player is holding the Key item
             ItemStack mainHand = player.getMainHandItem();
-            if (!mainHand.isEmpty() && mainHand.getItem() == EZItems.KEY.get()) {
+            if (!mainHand.isEmpty() && mainHand.getItem() == ModItems.KEY.get()) {
                 // Destroy the security box (drops itself)
                 level.destroyBlock(pos, true);
             } else {

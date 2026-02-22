@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.gui.server;
 
 import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
-import io.github.scuba10steve.s3.init.EZMenuTypes;
+import io.github.scuba10steve.s3.init.ModMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,7 +26,7 @@ public class ExtractPortMenu extends AbstractContainerMenu {
 
     // Server constructor
     public ExtractPortMenu(int containerId, Inventory playerInventory, ExtractPortBlockEntity blockEntity) {
-        super(EZMenuTypes.EXTRACT_PORT.get(), containerId);
+        super(ModMenuTypes.EXTRACT_PORT.get(), containerId);
         this.blockEntity = blockEntity;
         this.pos = blockEntity.getBlockPos();
 

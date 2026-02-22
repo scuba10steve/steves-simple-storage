@@ -2,8 +2,8 @@ package io.github.scuba10steve.s3.gui.server;
 
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.gui.slot.StorageSlot;
-import io.github.scuba10steve.s3.init.EZMenuTypes;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.init.ModMenuTypes;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -24,7 +24,7 @@ public class StorageCoreMenu extends AbstractContainerMenu {
     private final SimpleContainer storageContainer;
 
     public StorageCoreMenu(int containerId, Inventory playerInventory, BlockPos pos) {
-        this(EZMenuTypes.STORAGE_CORE.get(), containerId, playerInventory, pos);
+        this(ModMenuTypes.STORAGE_CORE.get(), containerId, playerInventory, pos);
 
         // Add storage slots (6 rows of 9 slots)
         addStorageSlots();
@@ -46,7 +46,7 @@ public class StorageCoreMenu extends AbstractContainerMenu {
         LOGGER.debug("Creating {} at {}", getClass().getSimpleName(), pos);
     }
     
-    public EZInventory getInventory() {
+    public StorageInventory getInventory() {
         return blockEntity != null ? blockEntity.getInventory() : null;
     }
     

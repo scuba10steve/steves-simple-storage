@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.ExtractPortBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
@@ -33,7 +33,7 @@ public class BlockExtractPort extends StorageMultiblock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide()) return null;
-        return type == EZBlockEntities.EXTRACT_PORT.get()
+        return type == ModBlockEntities.EXTRACT_PORT.get()
             ? (lvl, pos, st, be) -> ((ExtractPortBlockEntity) be).tick()
             : null;
     }

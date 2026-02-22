@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class MultiblockBlockEntity extends EZBlockEntity {
+public abstract class MultiblockBlockEntity extends BaseBlockEntity {
     private static final Logger LOGGER = LoggerFactory.getLogger(MultiblockBlockEntity.class);
     protected StorageCoreBlockEntity core;
     protected BlockPos corePos; // Store core position for client sync

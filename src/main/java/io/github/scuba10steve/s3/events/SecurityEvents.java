@@ -2,10 +2,10 @@ package io.github.scuba10steve.s3.events;
 
 import io.github.scuba10steve.s3.block.StorageMultiblock;
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
-import io.github.scuba10steve.s3.config.EZConfig;
+import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import io.github.scuba10steve.s3.util.BlockRef;
-import io.github.scuba10steve.s3.util.EZStorageUtils;
+import io.github.scuba10steve.s3.util.StorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -36,12 +36,12 @@ public class SecurityEvents {
     }
 
     private static boolean shouldCancelInteraction(Level level, BlockPos pos, Player player) {
-        if (!EZConfig.ENABLE_SECURITY.get()) return false;
+        if (!StorageConfig.ENABLE_SECURITY.get()) return false;
         if (level.isClientSide) return false;
 
         Block block = level.getBlockState(pos).getBlock();
         if (block instanceof StorageMultiblock) {
-            SecurityBoxBlockEntity securityBox = EZStorageUtils.findSecurityBox(
+            SecurityBoxBlockEntity securityBox = StorageUtils.findSecurityBox(
                 new BlockRef(block, pos), level);
             return securityBox != null && !securityBox.isPlayerAllowed(player);
         }
@@ -50,14 +50,14 @@ public class SecurityEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (!EZConfig.ENABLE_SECURITY.get()) return;
+        if (!StorageConfig.ENABLE_SECURITY.get()) return;
         if (event.getLevel().isClientSide()) return;
         if (!(event.getEntity() instanceof Player player)) return;
         if (!(event.getLevel() instanceof Level level)) return;
 
-        for (BlockRef neighbor : EZStorageUtils.getNeighbors(event.getPos(), level)) {
+        for (BlockRef neighbor : StorageUtils.getNeighbors(event.getPos(), level)) {
             if (neighbor.block instanceof StorageMultiblock) {
-                SecurityBoxBlockEntity securityBox = EZStorageUtils.findSecurityBox(neighbor, level);
+                SecurityBoxBlockEntity securityBox = StorageUtils.findSecurityBox(neighbor, level);
                 if (securityBox != null && !securityBox.isPlayerAllowed(player)) {
                     event.setCanceled(true);
                     return;

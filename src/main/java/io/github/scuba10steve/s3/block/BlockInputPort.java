@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.InputPortBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.EntityBlock;
@@ -28,7 +28,7 @@ public class BlockInputPort extends StorageMultiblock implements EntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == EZBlockEntities.INPUT_PORT.get()
+        return type == ModBlockEntities.INPUT_PORT.get()
             ? (lvl, pos, st, be) -> ((InputPortBlockEntity) be).tick()
             : null;
     }

@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.init.EZBlockEntities;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,7 +21,7 @@ import java.util.List;
 public class EjectPortBlockEntity extends MultiblockBlockEntity {
 
     public EjectPortBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.EJECT_PORT.get(), pos, state);
+        super(ModBlockEntities.EJECT_PORT.get(), pos, state);
     }
 
     public void tick() {
@@ -51,7 +51,7 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
         if (targetHandler == null) return;
         
         // Get items from storage
-        EZInventory inventory = core.getInventory();
+        StorageInventory inventory = core.getInventory();
         List<StoredItemStack> items = inventory.getStoredItems();
         if (items.isEmpty()) return;
         

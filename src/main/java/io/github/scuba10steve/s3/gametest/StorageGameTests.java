@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.gametest;
 
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTest;
@@ -65,7 +65,7 @@ public class StorageGameTests {
                 return;
             }
 
-            EZInventory inv = core.getInventory();
+            StorageInventory inv = core.getInventory();
 
             // Fill with every registered item type (bypassing core to skip sync overhead during setup)
             Item lastItem = null;
@@ -141,7 +141,7 @@ public class StorageGameTests {
                 return;
             }
 
-            EZInventory inv = core.getInventory();
+            StorageInventory inv = core.getInventory();
 
             // Fill with 10x of every registered item type
             Item lastItem = null;
@@ -207,7 +207,7 @@ public class StorageGameTests {
         });
     }
 
-    private static void bulkInsert(EZInventory inv, Item item, long amount) {
+    private static void bulkInsert(StorageInventory inv, Item item, long amount) {
         while (amount > 0) {
             int batch = (int) Math.min(amount, Integer.MAX_VALUE);
             inv.insertItem(new ItemStack(item, batch));
@@ -223,7 +223,7 @@ public class StorageGameTests {
                 return;
             }
 
-            EZInventory inv = core.getInventory();
+            StorageInventory inv = core.getInventory();
 
             if (inv.getMaxItems() != expectedCapacity) {
                 helper.fail("Expected capacity " + expectedCapacity + ", got " + inv.getMaxItems());

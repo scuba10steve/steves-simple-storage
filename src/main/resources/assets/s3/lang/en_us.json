@@ -19,23 +19,13 @@
   "block.s3.security_box": "Security Box",
   "block.s3.access_terminal": "Access Terminal",
 
+  "container.s3.storage_core": "Storage Core",
   "container.s3.extract_port": "Extract Port",
   "container.s3.security_box": "Security Box",
 
-  "item.s3.key": "EZ Key",
+  "item.s3.key": "Storage Key",
   "item.s3.dolly": "Dolly",
   "item.s3.dolly_super": "Super Dolly",
 
-  "container.ezstorage.storage_core": "Storage Core",
-
-  "gui.ezstorage.search": "Search...",
-  "gui.ezstorage.sort": "Sort",
-  "gui.ezstorage.clear": "Clear",
-
-  "gui.ezstorage.sort.count_down": "Count Down",
-  "gui.ezstorage.sort.count_up": "Count Up",
-  "gui.ezstorage.sort.name_az": "Name A-Z",
-  "gui.ezstorage.sort.name_za": "Name Z-A",
-  "gui.ezstorage.sort.mod_az": "Mod A-Z",
-  "gui.ezstorage.sort.mod_za": "Mod Z-A"
+  "gui.s3.search": "Search..."
 }

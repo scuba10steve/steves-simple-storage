@@ -1,6 +1,6 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.block.state.BlockState;
 
@@ -13,6 +13,6 @@ import net.minecraft.world.level.block.state.BlockState;
 public class SortBoxBlockEntity extends MultiblockBlockEntity {
 
     public SortBoxBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.SORT_BOX.get(), pos, state);
+        super(ModBlockEntities.SORT_BOX.get(), pos, state);
     }
 }

@@ -1,6 +1,6 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -21,7 +21,7 @@ public class InputPortBlockEntity extends MultiblockBlockEntity {
     private ItemStack buffer = ItemStack.EMPTY;
 
     public InputPortBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.INPUT_PORT.get(), pos, state);
+        super(ModBlockEntities.INPUT_PORT.get(), pos, state);
     }
 
     @Override

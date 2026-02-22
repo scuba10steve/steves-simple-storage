@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
-import io.github.scuba10steve.s3.config.EZConfig;
-import io.github.scuba10steve.s3.init.EZBlocks;
+import io.github.scuba10steve.s3.config.StorageConfig;
+import io.github.scuba10steve.s3.init.ModBlocks;
 
 public class BlockStorage extends StorageMultiblock implements StorageTier {
     private final int defaultCapacity;
@@ -14,16 +14,16 @@ public class BlockStorage extends StorageMultiblock implements StorageTier {
     @Override
     public int getCapacity() {
         // Return config value if available, otherwise use default
-        if (this == EZBlocks.STORAGE_BOX.get()) {
-            return EZConfig.BASIC_CAPACITY.get();
-        } else if (this == EZBlocks.CONDENSED_STORAGE_BOX.get()) {
-            return EZConfig.CONDENSED_CAPACITY.get();
-        } else if (this == EZBlocks.SUPER_STORAGE_BOX.get()) {
-            return EZConfig.SUPER_CAPACITY.get();
-        } else if (this == EZBlocks.ULTRA_STORAGE_BOX.get()) {
-            return EZConfig.ULTRA_CAPACITY.get();
-        } else if (this == EZBlocks.HYPER_STORAGE_BOX.get()) {
-            return EZConfig.HYPER_CAPACITY.get();
+        if (this == ModBlocks.STORAGE_BOX.get()) {
+            return StorageConfig.BASIC_CAPACITY.get();
+        } else if (this == ModBlocks.CONDENSED_STORAGE_BOX.get()) {
+            return StorageConfig.CONDENSED_CAPACITY.get();
+        } else if (this == ModBlocks.SUPER_STORAGE_BOX.get()) {
+            return StorageConfig.SUPER_CAPACITY.get();
+        } else if (this == ModBlocks.ULTRA_STORAGE_BOX.get()) {
+            return StorageConfig.ULTRA_CAPACITY.get();
+        } else if (this == ModBlocks.HYPER_STORAGE_BOX.get()) {
+            return StorageConfig.HYPER_CAPACITY.get();
         }
         return defaultCapacity;
     }

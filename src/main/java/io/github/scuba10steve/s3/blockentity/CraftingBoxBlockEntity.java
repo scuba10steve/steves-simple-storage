@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.blockentity;
 
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import io.github.scuba10steve.s3.network.StorageSyncPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
@@ -21,7 +21,7 @@ public class CraftingBoxBlockEntity extends MultiblockBlockEntity implements Men
     private static final Logger LOGGER = LoggerFactory.getLogger(CraftingBoxBlockEntity.class);
     
     public CraftingBoxBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.CRAFTING_BOX.get(), pos, state);
+        super(ModBlockEntities.CRAFTING_BOX.get(), pos, state);
         LOGGER.debug("CraftingBoxBlockEntity created at {}", pos);
     }
 

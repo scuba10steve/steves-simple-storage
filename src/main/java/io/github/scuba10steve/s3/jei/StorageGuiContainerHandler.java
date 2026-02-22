@@ -2,7 +2,7 @@ package io.github.scuba10steve.s3.jei;
 
 import io.github.scuba10steve.s3.gui.client.AbstractStorageScreen;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import mezz.jei.api.gui.builder.IClickableIngredientFactory;
 import mezz.jei.api.gui.handlers.IGuiContainerHandler;
@@ -35,7 +35,7 @@ public class StorageGuiContainerHandler<T extends AbstractStorageScreen<?>> impl
 
         // Get the inventory from the menu
         StorageCoreMenu menu = screen.getMenu();
-        EZInventory inventory = menu.getInventory();
+        StorageInventory inventory = menu.getInventory();
         if (inventory == null) {
             return Optional.empty();
         }

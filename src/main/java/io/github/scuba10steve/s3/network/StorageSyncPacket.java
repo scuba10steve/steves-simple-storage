@@ -17,7 +17,7 @@ import java.util.List;
 
 public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items, long maxCapacity, boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal) implements CustomPacketPayload {
     
-    public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("ezstorage", "storage_sync"));
+    public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("s3", "storage_sync"));
     
     public static final StreamCodec<RegistryFriendlyByteBuf, StorageSyncPacket> STREAM_CODEC = StreamCodec.of(
         StorageSyncPacket::encode,

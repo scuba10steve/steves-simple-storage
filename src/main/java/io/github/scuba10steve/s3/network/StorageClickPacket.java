@@ -1,8 +1,8 @@
 package io.github.scuba10steve.s3.network;
 
-import io.github.scuba10steve.s3.EZStorage;
+import io.github.scuba10steve.s3.StevesSimpleStorage;
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -18,7 +18,7 @@ import java.util.List;
 public record StorageClickPacket(BlockPos pos, int slot, int button, boolean shift) implements CustomPacketPayload {
     
     public static final CustomPacketPayload.Type<StorageClickPacket> TYPE = 
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EZStorage.MODID, "storage_click"));
+        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(StevesSimpleStorage.MODID, "storage_click"));
     
     public static final StreamCodec<FriendlyByteBuf, StorageClickPacket> STREAM_CODEC = StreamCodec.of(
         (buf, packet) -> {
@@ -44,7 +44,7 @@ public record StorageClickPacket(BlockPos pos, int slot, int button, boolean shi
         context.enqueueWork(() -> {
             Player player = context.player();
             if (player.level().getBlockEntity(pos) instanceof StorageCoreBlockEntity core) {
-                EZInventory inventory = core.getInventory();
+                StorageInventory inventory = core.getInventory();
                 if (inventory != null) {
                     ItemStack heldStack = player.containerMenu.getCarried();
                     

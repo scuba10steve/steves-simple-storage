@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.SearchBoxBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;

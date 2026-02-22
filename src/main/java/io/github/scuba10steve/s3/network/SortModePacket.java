@@ -1,6 +1,6 @@
 package io.github.scuba10steve.s3.network;
 
-import io.github.scuba10steve.s3.EZStorage;
+import io.github.scuba10steve.s3.StevesSimpleStorage;
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.util.SortMode;
 import net.minecraft.core.BlockPos;
@@ -19,7 +19,7 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
 public record SortModePacket(BlockPos pos) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<SortModePacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EZStorage.MODID, "sort_mode"));
+        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(StevesSimpleStorage.MODID, "sort_mode"));
 
     public static final StreamCodec<FriendlyByteBuf, SortModePacket> STREAM_CODEC = StreamCodec.of(
         (buf, packet) -> buf.writeBlockPos(packet.pos),

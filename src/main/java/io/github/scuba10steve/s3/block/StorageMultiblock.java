@@ -2,7 +2,7 @@ package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.util.BlockRef;
-import io.github.scuba10steve.s3.util.EZStorageUtils;
+import io.github.scuba10steve.s3.util.StorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public abstract class StorageMultiblock extends EZBlock {
+public abstract class StorageMultiblock extends BaseBlock {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageMultiblock.class);
     
     protected StorageMultiblock(Properties properties) {
@@ -57,7 +57,7 @@ public abstract class StorageMultiblock extends EZBlock {
         }
         
         LOGGER.debug("Searching for core from position {}", br.pos);
-        List<BlockRef> neighbors = EZStorageUtils.getNeighbors(br.pos, level);
+        List<BlockRef> neighbors = StorageUtils.getNeighbors(br.pos, level);
         LOGGER.debug("Found {} neighbors", neighbors.size());
         
         for (BlockRef blockRef : neighbors) {

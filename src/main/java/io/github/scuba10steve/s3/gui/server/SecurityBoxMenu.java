@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.gui.server;
 
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
-import io.github.scuba10steve.s3.init.EZMenuTypes;
+import io.github.scuba10steve.s3.init.ModMenuTypes;
 import io.github.scuba10steve.s3.network.SecuritySyncPacket;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -29,7 +29,7 @@ public class SecurityBoxMenu extends AbstractContainerMenu {
 
     // Server constructor
     public SecurityBoxMenu(int containerId, Inventory playerInventory, SecurityBoxBlockEntity blockEntity) {
-        super(EZMenuTypes.SECURITY_BOX.get(), containerId);
+        super(ModMenuTypes.SECURITY_BOX.get(), containerId);
         this.blockEntity = blockEntity;
         this.pos = blockEntity.getBlockPos();
 

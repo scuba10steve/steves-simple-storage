@@ -1,8 +1,8 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.config.EZConfig;
+import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.gui.server.SecurityBoxMenu;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -37,7 +37,7 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
     private ServerPlayer pendingOpNotification = null;
 
     public SecurityBoxBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.SECURITY_BOX.get(), pos, state);
+        super(ModBlockEntities.SECURITY_BOX.get(), pos, state);
     }
 
     @Override
@@ -85,7 +85,7 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
         }
 
         // Op override: creative mode + op level 2 + config enabled
-        if (EZConfig.ENABLE_OP_OVERRIDE.get()
+        if (StorageConfig.ENABLE_OP_OVERRIDE.get()
                 && !player.level().isClientSide
                 && player.isCreative()
                 && player instanceof ServerPlayer serverPlayer

@@ -4,8 +4,8 @@ import io.github.scuba10steve.s3.gui.client.ExtractPortScreen;
 import io.github.scuba10steve.s3.gui.client.SecurityBoxScreen;
 import io.github.scuba10steve.s3.gui.client.StorageCoreScreen;
 import io.github.scuba10steve.s3.gui.client.StorageCoreCraftingScreen;
-import io.github.scuba10steve.s3.init.EZItems;
-import io.github.scuba10steve.s3.init.EZMenuTypes;
+import io.github.scuba10steve.s3.init.ModItems;
+import io.github.scuba10steve.s3.init.ModMenuTypes;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.core.component.DataComponents;
@@ -25,18 +25,18 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void registerScreens(RegisterMenuScreensEvent event) {
-        event.register(EZMenuTypes.STORAGE_CORE.get(), StorageCoreScreen::new);
-        event.register(EZMenuTypes.STORAGE_CORE_CRAFTING.get(), StorageCoreCraftingScreen::new);
-        event.register(EZMenuTypes.EXTRACT_PORT.get(), ExtractPortScreen::new);
-        event.register(EZMenuTypes.SECURITY_BOX.get(), SecurityBoxScreen::new);
+        event.register(ModMenuTypes.STORAGE_CORE.get(), StorageCoreScreen::new);
+        event.register(ModMenuTypes.STORAGE_CORE_CRAFTING.get(), StorageCoreCraftingScreen::new);
+        event.register(ModMenuTypes.EXTRACT_PORT.get(), ExtractPortScreen::new);
+        event.register(ModMenuTypes.SECURITY_BOX.get(), SecurityBoxScreen::new);
     }
 
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ResourceLocation dollyState = ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "dolly_state");
-            registerDollyProperty(EZItems.DOLLY.get(), dollyState);
-            registerDollyProperty(EZItems.DOLLY_SUPER.get(), dollyState);
+            registerDollyProperty(ModItems.DOLLY.get(), dollyState);
+            registerDollyProperty(ModItems.DOLLY_SUPER.get(), dollyState);
         });
     }
 

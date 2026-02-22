@@ -1,8 +1,8 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.config.EZConfig;
+import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.gui.server.ExtractPortMenu;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import io.github.scuba10steve.s3.util.ExtractListMode;
 import net.minecraft.core.BlockPos;
@@ -49,7 +49,7 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
     private int roundRobinIndex = 0;
 
     public ExtractPortBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.EXTRACT_PORT.get(), pos, state);
+        super(ModBlockEntities.EXTRACT_PORT.get(), pos, state);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
         if (level == null || level.isClientSide) return;
 
         if (hasCore()) {
-            int extractionInterval = EZConfig.EXTRACT_PORT_INTERVAL.get();
+            int extractionInterval = StorageConfig.EXTRACT_PORT_INTERVAL.get();
 
             // Only attempt operations at intervals to reduce network traffic
             if (level.getGameTime() % extractionInterval == 0) {

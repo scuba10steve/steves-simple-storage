@@ -6,15 +6,15 @@ import io.github.scuba10steve.s3.block.BlockSecurityBox;
 import io.github.scuba10steve.s3.block.BlockSortBox;
 import io.github.scuba10steve.s3.block.BlockStorage;
 import io.github.scuba10steve.s3.block.StorageMultiblock;
-import io.github.scuba10steve.s3.config.EZConfig;
+import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.util.SortMode;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import io.github.scuba10steve.s3.network.StorageSyncPacket;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.util.BlockRef;
-import io.github.scuba10steve.s3.util.EZStorageUtils;
+import io.github.scuba10steve.s3.util.StorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -34,10 +34,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvider {
+public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreBlockEntity.class);
 
-    private final EZInventory inventory = new EZInventory();
+    private final StorageInventory inventory = new StorageInventory();
     private final Set<BlockRef> multiblock = new HashSet<>();
     private boolean hasCraftingBox = false;
     private boolean hasSearchBox = false;
@@ -49,7 +49,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     private long lastSyncTime = 0;
     
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
-        super(EZBlockEntities.STORAGE_CORE.get(), pos, state);
+        super(ModBlockEntities.STORAGE_CORE.get(), pos, state);
         LOGGER.debug("StorageCoreBlockEntity created at {}", pos);
         LOGGER.debug("Initial inventory capacity: {}", inventory.getTotalItemCount());
     }
@@ -96,7 +96,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
     }
     
     private void getValidNeighbors(BlockRef br) {
-        List<BlockRef> neighbors = EZStorageUtils.getNeighbors(br.pos, level);
+        List<BlockRef> neighbors = StorageUtils.getNeighbors(br.pos, level);
         for (BlockRef blockRef : neighbors) {
             if (blockRef.block instanceof StorageMultiblock) {
                 if (multiblock.add(blockRef)) {
@@ -141,7 +141,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         if (level instanceof ServerLevel serverLevel) {
             // Throttle syncs to prevent visual flicker from rapid consecutive updates
             long currentTime = level.getGameTime();
-            int minSyncInterval = EZConfig.MIN_SYNC_INTERVAL.get();
+            int minSyncInterval = StorageConfig.MIN_SYNC_INTERVAL.get();
             if (minSyncInterval > 0 && currentTime - lastSyncTime < minSyncInterval) {
                 return; // Skip this sync, another one happened very recently
             }
@@ -170,7 +170,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
         }
     }
     
-    public EZInventory getInventory() {
+    public StorageInventory getInventory() {
         return inventory;
     }
 
@@ -217,7 +217,7 @@ public class StorageCoreBlockEntity extends EZBlockEntity implements MenuProvide
 
     @Override
     public Component getDisplayName() {
-        return Component.translatable("container.ezstorage.storage_core");
+        return Component.translatable("container.s3.storage_core");
     }
 
     @Override

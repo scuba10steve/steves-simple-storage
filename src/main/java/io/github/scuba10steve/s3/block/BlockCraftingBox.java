@@ -1,7 +1,7 @@
 package io.github.scuba10steve.s3.block;
 
 import io.github.scuba10steve.s3.blockentity.CraftingBoxBlockEntity;
-import io.github.scuba10steve.s3.init.EZBlockEntities;
+import io.github.scuba10steve.s3.init.ModBlockEntities;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -25,7 +25,7 @@ public class BlockCraftingBox extends StorageMultiblock implements EntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return type == EZBlockEntities.CRAFTING_BOX.get() ? (level1, pos, state1, blockEntity) -> {
+        return type == ModBlockEntities.CRAFTING_BOX.get() ? (level1, pos, state1, blockEntity) -> {
             if (blockEntity instanceof CraftingBoxBlockEntity craftingBox) {
                 craftingBox.tick();
             }

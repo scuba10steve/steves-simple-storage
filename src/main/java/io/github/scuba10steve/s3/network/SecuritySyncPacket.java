@@ -1,6 +1,6 @@
 package io.github.scuba10steve.s3.network;
 
-import io.github.scuba10steve.s3.EZStorage;
+import io.github.scuba10steve.s3.StevesSimpleStorage;
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity.SecurePlayer;
 import net.minecraft.core.BlockPos;
@@ -21,7 +21,7 @@ import java.util.UUID;
 public record SecuritySyncPacket(BlockPos pos, List<SecurePlayer> players) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<SecuritySyncPacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(EZStorage.MODID, "security_sync"));
+        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(StevesSimpleStorage.MODID, "security_sync"));
 
     public static final StreamCodec<FriendlyByteBuf, SecuritySyncPacket> STREAM_CODEC = StreamCodec.of(
         (buf, packet) -> {

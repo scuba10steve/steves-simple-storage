@@ -3,7 +3,7 @@ package io.github.scuba10steve.s3.gui.client;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.network.SortModePacket;
 import io.github.scuba10steve.s3.network.StorageClickPacket;
-import io.github.scuba10steve.s3.storage.EZInventory;
+import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import io.github.scuba10steve.s3.util.SortMode;
 import net.minecraft.client.gui.GuiGraphics;
@@ -62,14 +62,14 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         super.init();
 
         // Create search field - positioned at top of GUI
-        this.searchField = new EditBox(this.font, this.leftPos + 10, this.topPos + 6, 80, 9, Component.translatable("gui.ezstorage.search"));
+        this.searchField = new EditBox(this.font, this.leftPos + 10, this.topPos + 6, 80, 9, Component.translatable("gui.s3.search"));
         this.searchField.setMaxLength(50);
         this.searchField.setBordered(false);
         this.searchField.setTextColor(0xFFFFFF);
         this.searchField.setResponder(this::onSearchChanged);
 
         // Check if search box is available
-        EZInventory inventory = menu.getInventory();
+        StorageInventory inventory = menu.getInventory();
         searchActive = inventory != null && inventory.hasSearchBox();
 
         if (searchActive) {
@@ -118,7 +118,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
      * Updates the filtered items list based on search text
      */
     protected void updateFilteredItems() {
-        EZInventory inventory = menu.getInventory();
+        StorageInventory inventory = menu.getInventory();
         if (inventory == null) {
             filteredItems = new ArrayList<>();
             return;
@@ -219,7 +219,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         // Check if search box status changed
-        EZInventory inventory = menu.getInventory();
+        StorageInventory inventory = menu.getInventory();
         boolean shouldHaveSearch = inventory != null && inventory.hasSearchBox();
         if (shouldHaveSearch != searchActive) {
             searchActive = shouldHaveSearch;
@@ -290,7 +290,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
             itemsToUse = filteredItems;
         } else {
-            EZInventory inventory = menu.getInventory();
+            StorageInventory inventory = menu.getInventory();
             if (inventory == null) return;
             itemsToUse = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
@@ -317,7 +317,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
             itemsToRender = filteredItems;
         } else {
-            EZInventory inventory = menu.getInventory();
+            StorageInventory inventory = menu.getInventory();
             if (inventory == null) return;
             // Use sorted items if sort box is present
             itemsToRender = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
@@ -381,7 +381,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
         Integer slot = getSlotAt((int)mouseX, (int)mouseY);
         if (slot != null) {
-            EZInventory inventory = menu.getInventory();
+            StorageInventory inventory = menu.getInventory();
             if (inventory != null && minecraft != null && minecraft.player != null) {
                 // Check if player is holding items - if so, insert them
                 ItemStack carried = minecraft.player.containerMenu.getCarried();
@@ -453,7 +453,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
             itemsForScroll = filteredItems;
         } else {
-            EZInventory inventory = menu.getInventory();
+            StorageInventory inventory = menu.getInventory();
             if (inventory == null) return false;
             itemsForScroll = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
@@ -510,7 +510,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
             items = filteredItems;
         } else {
-            EZInventory inventory = menu.getInventory();
+            StorageInventory inventory = menu.getInventory();
             if (inventory == null) return false;
             items = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
