@@ -121,4 +121,4 @@ This Open Source project is licensed under the MIT License (see [LICENSE](LICENS
 ## Links
 
 - [GitHub Repository](https://github.com/scuba10steve/steves-simple-storage)
-- [Original Project on CurseForge](http://minecraft.curseforge.com/projects/ezstorage-2) (EZStorage 2 - 1.12.2 version)
+- [Original Project on CurseForge](https://www.curseforge.com/minecraft/mc-mods/ezstorage-2) (EZStorage 2 - 1.12.2 version)
