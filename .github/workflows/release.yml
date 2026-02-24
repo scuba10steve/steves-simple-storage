@@ -77,6 +77,7 @@ jobs:
           loaders: neoforge
           game-versions: 1.21.1
           java: 21
+          changelog: ${{ steps.changelog.outputs.content }}
           dependencies: |
             jei@19.27.0.336(optional){modrinth:jei}
 
@@ -92,5 +93,6 @@ jobs:
           loaders: neoforge
           game-versions: 1.21.1
           java: 21
+          changelog: ${{ steps.changelog.outputs.content }}
           dependencies: |
             jei@19.27.0.336(optional){curseforge:238222}
