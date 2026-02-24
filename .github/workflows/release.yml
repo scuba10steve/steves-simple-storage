@@ -51,7 +51,7 @@ jobs:
         id: changelog
         with:
           config: cliff.toml
-          args: --current --strip header
+          args: --unreleased --strip header
         env:
           GITHUB_REPO: ${{ github.repository }}
 
