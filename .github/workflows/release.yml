@@ -51,8 +51,7 @@ jobs:
         id: changelog
         with:
           config: cliff.toml
-          # TODO: After first release, switch to: --current --strip header
-          args: 5d4f3ce..HEAD --latest --strip header
+          args: --current --strip header
         env:
           GITHUB_REPO: ${{ github.repository }}
 
