@@ -18,7 +18,7 @@ public class StorageInventory {
 
     private final Map<ItemKey, StoredItemStack> items = new HashMap<>();
     private long totalCount = 0;
-    private long maxItems = 10000; // Default capacity
+    private long maxItems = 0;
     private boolean hasSearchBox = false;
     private boolean hasSortBox = false;
     private SortMode sortMode = SortMode.COUNT;
