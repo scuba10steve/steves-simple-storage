@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-version=${1:-"0.1.0"}
+version=${1:-"0.2.0"}
 username=${2:-"Steven Tompkins"}
 modpack=${3:-"ezstorage-test-env"}
 

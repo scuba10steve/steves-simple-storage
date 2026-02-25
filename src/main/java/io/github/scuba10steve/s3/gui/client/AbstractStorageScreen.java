@@ -51,6 +51,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     protected Button sortButton;
     protected boolean sortActive = false;
 
+    // Tooltip: set during renderLabels, consumed during renderTooltip
+    private ItemStack hoveredStorageStack = ItemStack.EMPTY;
+
     protected AbstractStorageScreen(T menu, Inventory playerInventory, Component title, ResourceLocation texture) {
         super(menu, playerInventory, title);
         this.texture = texture;
@@ -274,8 +277,21 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         // Render stored items
         renderStoredItems(guiGraphics);
 
-        // Render hover highlight for storage slots
+        // Render hover highlight for storage slots and detect hovered item for tooltip
         renderStorageHighlight(guiGraphics, mouseX, mouseY);
+
+        // Capture hovered storage item for tooltip rendering
+        hoveredStorageStack = ItemStack.EMPTY;
+        Integer slotIndex = getSlotAt(mouseX, mouseY);
+        if (slotIndex != null) {
+            List<StoredItemStack> items = getDisplayItems();
+            if (slotIndex < items.size()) {
+                StoredItemStack stored = items.get(slotIndex);
+                if (stored != null && !stored.getItemStack().isEmpty()) {
+                    hoveredStorageStack = stored.getItemStack();
+                }
+            }
+        }
     }
 
     /**
@@ -358,9 +374,19 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         renderTooltip(guiGraphics, mouseX, mouseY);
+    }
+
+    @Override
+    protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
+        super.renderTooltip(guiGraphics, mouseX, mouseY);
+
+        if (!this.menu.getCarried().isEmpty()) return;
+        if (hoveredStorageStack.isEmpty()) return;
+
+        guiGraphics.renderTooltip(this.font, this.getTooltipFromContainerItem(hoveredStorageStack),
+                hoveredStorageStack.getTooltipImage(), hoveredStorageStack, mouseX, mouseY);
     }
 
     @Override
