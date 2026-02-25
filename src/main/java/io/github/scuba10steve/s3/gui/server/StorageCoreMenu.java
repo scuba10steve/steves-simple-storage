@@ -83,28 +83,27 @@ public class StorageCoreMenu extends AbstractContainerMenu {
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
         LOGGER.debug("quickMoveStack: slot {}", index);
-        
-        ItemStack itemstack = ItemStack.EMPTY;
+
         Slot slot = this.slots.get(index);
-        
+
         if (slot != null && slot.hasItem()) {
             ItemStack slotStack = slot.getItem();
-            itemstack = slotStack.copy();
-            
-            // All slots are now player inventory (no storage slots)
+            int countBefore = slotStack.getCount();
+
             // Try to insert into storage
             if (blockEntity != null) {
                 ItemStack remainder = blockEntity.insertItem(slotStack);
-                slot.set(remainder);
-                if (remainder.isEmpty()) {
-                    slot.set(ItemStack.EMPTY);
-                } else {
-                    slot.setChanged();
+                if (remainder.getCount() == countBefore) {
+                    // Nothing was inserted (storage full), stop the loop
+                    return ItemStack.EMPTY;
                 }
+                slot.set(remainder.isEmpty() ? ItemStack.EMPTY : remainder);
+                slot.setChanged();
+                return slotStack.copyWithCount(countBefore);
             }
         }
-        
-        return itemstack;
+
+        return ItemStack.EMPTY;
     }
 
     @Override

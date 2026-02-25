@@ -39,16 +39,23 @@ public abstract class StorageMultiblock extends BaseBlock {
     
     public StorageCoreBlockEntity attemptMultiblock(Level level, BlockPos pos) {
         if (level.isClientSide) return null;
-        
-        if (!(this instanceof BlockStorageCore)) {
-            BlockRef br = new BlockRef(this, pos);
-            StorageCoreBlockEntity core = findCore(br, level, null);
-            if (core != null) {
+
+        if (this instanceof BlockStorageCore) {
+            // Core placed: scan from itself
+            if (level.getBlockEntity(pos) instanceof StorageCoreBlockEntity core) {
                 core.scanMultiblock();
+                return core;
             }
-            return core;
+            return null;
         }
-        return null;
+
+        // Non-core block placed: find the core and rescan
+        BlockRef br = new BlockRef(this, pos);
+        StorageCoreBlockEntity core = findCore(br, level, null);
+        if (core != null) {
+            core.scanMultiblock();
+        }
+        return core;
     }
     
     public StorageCoreBlockEntity findCore(BlockRef br, Level level, Set<BlockRef> scanned) {
