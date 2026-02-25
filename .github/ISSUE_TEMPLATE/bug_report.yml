@@ -11,11 +11,12 @@ body:
     validations:
       required: true
 
-  - type: input
+  - type: dropdown
     id: minecraft-version
     attributes:
       label: Minecraft Version
-      placeholder: e.g. 1.21.1
+      options:
+        - "1.21.1"
     validations:
       required: true
 
