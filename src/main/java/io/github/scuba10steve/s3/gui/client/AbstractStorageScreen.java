@@ -66,9 +66,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         super.init();
 
         // Create search field - positioned at top of GUI
-        this.searchField = new EditBox(this.font, this.leftPos + 10, this.topPos + 6, 80, 9, Component.translatable("gui.s3.search"));
+        this.searchField = new EditBox(this.font, this.leftPos + 10, this.topPos + 4, 80, 12, Component.translatable("gui.s3.search"));
         this.searchField.setMaxLength(50);
-        this.searchField.setBordered(false);
+        this.searchField.setBordered(true);
         this.searchField.setTextColor(0xFFFFFF);
         this.searchField.setResponder(this::onSearchChanged);
 
