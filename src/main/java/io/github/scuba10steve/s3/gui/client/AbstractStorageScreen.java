@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.gui.client;
 
+import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.network.SortModePacket;
 import io.github.scuba10steve.s3.network.StorageClickPacket;
@@ -77,7 +78,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
         if (searchActive) {
             this.addWidget(this.searchField);
-            this.searchField.setFocused(true);
+            this.searchField.setFocused(StorageConfig.SEARCH_AUTO_FOCUS.get());
         }
 
         // Check if sort box is available and create sort button

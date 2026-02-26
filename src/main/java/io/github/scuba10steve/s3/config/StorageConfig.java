@@ -20,7 +20,8 @@ public class StorageConfig {
     public static final ModConfigSpec.BooleanValue ENABLE_DOLLY;
     public static final ModConfigSpec.BooleanValue ENABLE_SEARCH_MODES;
     public static final ModConfigSpec.BooleanValue ENABLE_OP_OVERRIDE;
-    
+    public static final ModConfigSpec.BooleanValue SEARCH_AUTO_FOCUS;
+
     // Recipe Options
     public static final ModConfigSpec.BooleanValue CLASSIC_RECIPES;
     public static final ModConfigSpec.BooleanValue TOUGH_HYPER;
@@ -86,7 +87,11 @@ public class StorageConfig {
         ENABLE_OP_OVERRIDE = BUILDER
             .comment("Allow operators to override security restrictions")
             .define("enableOpOverride", true);
-        
+
+        SEARCH_AUTO_FOCUS = BUILDER
+            .comment("Automatically focus the search box when opening a storage GUI with a Search Box attached")
+            .define("searchAutoFocus", false);
+
         BUILDER.pop();
         
         BUILDER.comment("Recipe Options").push("recipes");
