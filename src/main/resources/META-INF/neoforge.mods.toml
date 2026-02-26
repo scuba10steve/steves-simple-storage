@@ -4,7 +4,7 @@ license="MIT"
 
 [[mods]]
 modId="s3"
-version="1.0.0"
+version="${mod_version}"
 displayName="Steve's Simple Storage"
 description='''Massive, scalable storage for Minecraft.'''
 authors="scuba10steve, zerofall, SBlectric"

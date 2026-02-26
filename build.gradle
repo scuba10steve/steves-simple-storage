@@ -53,6 +53,14 @@ neoForge {
 
 sourceSets.main.resources.srcDir 'src/generated/resources'
 
+processResources {
+    def replaceProperties = [mod_version: mod_version]
+    inputs.properties replaceProperties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand(replaceProperties)
+    }
+}
+
 dependencies {
     // JEI integration
     compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.336"

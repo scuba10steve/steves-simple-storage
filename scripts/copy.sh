@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
 
-version=${1:-"0.2.0"}
-username=${2:-"Steven Tompkins"}
-modpack=${3:-"ezstorage-test-env"}
+jar=$(ls build/libs/s3-*.jar 2>/dev/null | sort -V | tail -1)
+username=${1:-"Steven Tompkins"}
+modpack=${2:-"ezstorage-test-env"}
 
-cp "build/libs/s3-$version.jar" "/mnt/c/Users/${username}/AppData/Roaming/gdlauncher_carbon/data/instances/${modpack}/instance/mods"
+if [ -z "$jar" ]; then
+  echo "No jar found in build/libs/. Run ./gradlew build first."
+  exit 1
+fi
+
+modsdir="/mnt/c/Users/${username}/AppData/Roaming/gdlauncher_carbon/data/instances/${modpack}/instance/mods"
+
+# Remove old S3 jars to avoid duplicate mod conflicts
+rm -f "$modsdir"/s3-*.jar
+
+echo "Copying $jar"
+cp "$jar" "$modsdir"
