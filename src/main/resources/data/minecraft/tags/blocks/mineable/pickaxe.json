@@ -1,0 +1,22 @@
+{
+  "replace": false,
+  "values": [
+    "s3:storage_core",
+    "s3:storage_box",
+    "s3:condensed_storage_box",
+    "s3:compressed_storage_box",
+    "s3:super_storage_box",
+    "s3:ultra_storage_box",
+    "s3:hyper_storage_box",
+    "s3:ultimate_storage_box",
+    "s3:crafting_box",
+    "s3:search_box",
+    "s3:sort_box",
+    "s3:blank_box",
+    "s3:input_port",
+    "s3:extract_port",
+    "s3:eject_port",
+    "s3:security_box",
+    "s3:access_terminal"
+  ]
+}
