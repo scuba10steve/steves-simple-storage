@@ -16,7 +16,7 @@ public class ModNetwork {
         registrar.playToClient(
             StorageSyncPacket.TYPE,
             StorageSyncPacket.STREAM_CODEC,
-            PacketHandlers::handleStorageSync
+            ClientPacketHandlers::handleStorageSync
         );
 
         registrar.playToServer(
@@ -52,7 +52,7 @@ public class ModNetwork {
         registrar.playToClient(
             SecuritySyncPacket.TYPE,
             SecuritySyncPacket.STREAM_CODEC,
-            PacketHandlers::handleSecuritySync
+            ClientPacketHandlers::handleSecuritySync
         );
     }
 }

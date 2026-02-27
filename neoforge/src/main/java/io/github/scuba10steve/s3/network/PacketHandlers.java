@@ -9,35 +9,22 @@ import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import io.github.scuba10steve.s3.util.SortMode;
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.neoforge.network.handling.IPayloadContext;
 
 import java.util.List;
 
 /**
- * Server/client-side packet handlers. These use NeoForge's IPayloadContext
- * and PacketDistributor, so they live in the neoforge module.
+ * Server-side packet handlers. These use NeoForge's IPayloadContext,
+ * so they live in the neoforge module.
+ * <p>
+ * Client-side handlers are in {@link ClientPacketHandlers} to avoid
+ * loading {@code Minecraft} on dedicated servers.
  */
 public final class PacketHandlers {
     private PacketHandlers() {}
-
-    public static void handleStorageSync(StorageSyncPacket packet, IPayloadContext context) {
-        context.enqueueWork(() -> {
-            if (context.flow().isClientbound()) {
-                Minecraft mc = Minecraft.getInstance();
-                BlockEntity blockEntity = mc.level.getBlockEntity(packet.pos());
-                if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
-                    storageCore.getInventory().syncFromServer(
-                        packet.items(), packet.maxCapacity(),
-                        packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal());
-                }
-            }
-        });
-    }
 
     public static void handleStorageClick(StorageClickPacket packet, IPayloadContext context) {
         context.enqueueWork(() -> {
@@ -145,15 +132,6 @@ public final class PacketHandlers {
                 } else {
                     securityBox.removeAllowedPlayer(packet.playerId());
                 }
-            }
-        });
-    }
-
-    public static void handleSecuritySync(SecuritySyncPacket packet, IPayloadContext context) {
-        context.enqueueWork(() -> {
-            Player player = context.player();
-            if (player.level().getBlockEntity(packet.pos()) instanceof SecurityBoxBlockEntity securityBox) {
-                securityBox.setAllowedPlayers(packet.players());
             }
         });
     }
