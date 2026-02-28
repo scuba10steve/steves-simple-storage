@@ -366,6 +366,62 @@ public class StorageGameTests {
         });
     }
 
+    /**
+     * Verifies that extracting items changes getTotalItemCount() even when getStoredItems().size()
+     * stays the same. This is the condition that caused #24: the old change detection only compared
+     * the number of item types, missing quantity-only changes during search-filtered rendering.
+     */
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    public static void extract_changes_total_count_not_item_types(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            StorageCoreBlockEntity core = (StorageCoreBlockEntity) helper.getBlockEntity(CORE_POS);
+            if (core == null) {
+                helper.fail("Storage core block entity not found");
+                return;
+            }
+
+            StorageInventory inv = core.getInventory();
+
+            // Insert 64 stone — one item type
+            inv.insertItem(new ItemStack(Items.STONE, 64));
+
+            int typesBefore = inv.getStoredItems().size();
+            long countBefore = inv.getTotalItemCount();
+
+            if (typesBefore != 1) {
+                helper.fail("Expected 1 item type before extract, got " + typesBefore);
+                return;
+            }
+            if (countBefore != 64) {
+                helper.fail("Expected 64 total count before extract, got " + countBefore);
+                return;
+            }
+
+            // Extract 1 stone — same number of types, different total count
+            inv.extractItem(new ItemStack(Items.STONE), 1);
+
+            int typesAfter = inv.getStoredItems().size();
+            long countAfter = inv.getTotalItemCount();
+
+            if (typesAfter != typesBefore) {
+                helper.fail("Item type count should stay the same after partial extract, was " + typesBefore + " now " + typesAfter);
+                return;
+            }
+            if (countAfter == countBefore) {
+                helper.fail("Total item count should change after extract, still " + countAfter);
+                return;
+            }
+            if (countAfter != 63) {
+                helper.fail("Expected 63 total count after extract, got " + countAfter);
+                return;
+            }
+
+            LOGGER.info("extract_changes_total_count_not_item_types: PASSED (types={}, count {} -> {})",
+                typesBefore, countBefore, countAfter);
+            helper.succeed();
+        });
+    }
+
     private static void bulkInsert(StorageInventory inv, Item item, long amount) {
         while (amount > 0) {
             int batch = (int) Math.min(amount, Integer.MAX_VALUE);
