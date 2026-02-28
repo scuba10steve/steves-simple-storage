@@ -11,28 +11,28 @@ import java.util.Comparator;
  * Each mode defines how items should be sorted in the Storage Core GUI.
  */
 public enum SortMode {
-    COUNT("Count Down", "Sorts by descending item counts, then A-Z for equal cases.",
+    COUNT("# \u2193", "Sorts by descending item counts, then A-Z for equal cases.",
         (a, b) -> {
             int countCompare = Long.compare(b.getCount(), a.getCount());
             if (countCompare != 0) return countCompare;
             return getDisplayName(a).compareTo(getDisplayName(b));
         }),
 
-    INVERSE_COUNT("Count Up", "Sorts by ascending item counts, then Z-A for equal cases.",
+    INVERSE_COUNT("# \u2191", "Sorts by ascending item counts, then Z-A for equal cases.",
         (a, b) -> {
             int countCompare = Long.compare(a.getCount(), b.getCount());
             if (countCompare != 0) return countCompare;
             return getDisplayName(b).compareTo(getDisplayName(a));
         }),
 
-    NAME("Name A-Z", "Sorts A-Z, then by descending item counts for equal cases.",
+    NAME("A-Z", "Sorts A-Z, then by descending item counts for equal cases.",
         (a, b) -> {
             int nameCompare = getDisplayName(a).compareTo(getDisplayName(b));
             if (nameCompare != 0) return nameCompare;
             return Long.compare(b.getCount(), a.getCount());
         }),
 
-    INVERSE_NAME("Name Z-A", "Sorts Z-A, then by ascending item counts for equal cases.",
+    INVERSE_NAME("Z-A", "Sorts Z-A, then by ascending item counts for equal cases.",
         (a, b) -> {
             int nameCompare = getDisplayName(b).compareTo(getDisplayName(a));
             if (nameCompare != 0) return nameCompare;
