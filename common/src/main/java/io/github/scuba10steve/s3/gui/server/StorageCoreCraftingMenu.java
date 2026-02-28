@@ -304,7 +304,13 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
     @Override
     public void removed(Player pPlayer) {
         super.removed(pPlayer);
-        clearGrid(pPlayer);
+        // Only clear grid server-side. AbstractContainerScreen.removed() calls
+        // menu.removed() on the client whenever the screen is replaced (e.g. by
+        // JEI's recipe view), which would empty the client-side craftMatrix while
+        // the server still has items, causing a visual desync.
+        if (!pPlayer.level().isClientSide) {
+            clearGrid(pPlayer);
+        }
     }
 
     public void handleRecipeTransfer(List<ItemStack> recipe) {
