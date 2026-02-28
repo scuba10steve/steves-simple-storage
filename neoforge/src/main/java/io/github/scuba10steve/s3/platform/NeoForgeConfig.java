@@ -20,6 +20,7 @@ public class NeoForgeConfig implements S3Config {
     @Override public boolean isSearchAutoFocus() { return StorageConfig.SEARCH_AUTO_FOCUS.get(); }
 
     @Override public int getCraftShiftClickLimit() { return StorageConfig.CRAFT_SHIFT_CLICK_LIMIT.get(); }
+    @Override public boolean shouldAutoRepopulateCraftingGrid() { return StorageConfig.CRAFTING_AUTO_REPOPULATE.get(); }
     @Override public int getExtractPortInterval() { return StorageConfig.EXTRACT_PORT_INTERVAL.get(); }
     @Override public int getMinSyncInterval() { return StorageConfig.MIN_SYNC_INTERVAL.get(); }
 }

@@ -31,6 +31,7 @@ public class StorageConfig {
 
     // Crafting
     public static final ModConfigSpec.IntValue CRAFT_SHIFT_CLICK_LIMIT;
+    public static final ModConfigSpec.BooleanValue CRAFTING_AUTO_REPOPULATE;
 
     // Automation
     public static final ModConfigSpec.IntValue EXTRACT_PORT_INTERVAL;
@@ -122,6 +123,10 @@ public class StorageConfig {
         CRAFT_SHIFT_CLICK_LIMIT = BUILDER
             .comment("Maximum number of items crafted per shift-click operation")
             .defineInRange("craftShiftClickLimit", 64, 1, 1024);
+
+        CRAFTING_AUTO_REPOPULATE = BUILDER
+            .comment("Automatically repopulate the crafting grid from connected storage after crafting")
+            .define("craftingAutoRepopulate", true);
 
         BUILDER.pop();
 

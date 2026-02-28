@@ -22,6 +22,7 @@ public interface S3Config {
 
     // Crafting
     int getCraftShiftClickLimit();
+    boolean shouldAutoRepopulateCraftingGrid();
 
     // Automation
     int getExtractPortInterval();

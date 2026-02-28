@@ -77,7 +77,28 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
             craftOneToCursor(player);
             return;
         }
+
+        // Save recipe pattern before vanilla consumes ingredients
+        boolean shouldRepopulate = slotId == 0
+            && clickType == ClickType.PICKUP
+            && slots.get(0).hasItem()
+            && S3Platform.getConfig().shouldAutoRepopulateCraftingGrid();
+
+        ItemStack[] recipePattern = null;
+        if (shouldRepopulate) {
+            recipePattern = new ItemStack[9];
+            for (int i = 0; i < 9; i++) {
+                recipePattern[i] = craftMatrix.getItem(i).copy();
+            }
+        }
+
         super.clicked(slotId, button, clickType, player);
+
+        if (recipePattern != null) {
+            moveRemaindersToStorage(player, recipePattern);
+            tryToPopulateCraftingGrid(recipePattern);
+            updateCraftingResult();
+        }
     }
 
     private void craftOneToCursor(Player player) {
