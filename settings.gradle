@@ -15,3 +15,4 @@ plugins {
 rootProject.name = 'steves-simple-storage'
 include 'core'
 include 'neoforge'
+include 'neoforge-gametest'

@@ -1,7 +1,7 @@
-package io.github.scuba10steve.s3.datagen;
+package io.github.scuba10steve.s3.gametest;
 
-import io.github.scuba10steve.s3.datagen.GameTestStructureProvider.BlockPlacement;
-import io.github.scuba10steve.s3.datagen.GameTestStructureProvider.StructureContent;
+import io.github.scuba10steve.s3.gametest.GameTestStructureProvider.BlockPlacement;
+import io.github.scuba10steve.s3.gametest.GameTestStructureProvider.StructureContent;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EventBusSubscriber(modid = RefStrings.MODID, bus = EventBusSubscriber.Bus.MOD)
-public class S3DataGeneration {
+public class S3GameTestDataGeneration {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {

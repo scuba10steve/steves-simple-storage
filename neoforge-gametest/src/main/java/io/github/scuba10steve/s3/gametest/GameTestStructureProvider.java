@@ -1,4 +1,4 @@
-package io.github.scuba10steve.s3.datagen;
+package io.github.scuba10steve.s3.gametest;
 
 import net.minecraft.SharedConstants;
 import net.minecraft.data.CachedOutput;
