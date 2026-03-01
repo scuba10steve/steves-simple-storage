@@ -3,6 +3,7 @@ package io.github.scuba10steve.s3.network;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
@@ -16,7 +17,9 @@ public class ModNetwork {
         registrar.playToClient(
             StorageSyncPacket.TYPE,
             StorageSyncPacket.STREAM_CODEC,
-            ClientPacketHandlers::handleStorageSync
+            FMLEnvironment.dist.isClient()
+                ? ClientPacketHandlers::handleStorageSync
+                : (pkt, ctx) -> {}
         );
 
         registrar.playToServer(
@@ -58,7 +61,9 @@ public class ModNetwork {
         registrar.playToClient(
             SecuritySyncPacket.TYPE,
             SecuritySyncPacket.STREAM_CODEC,
-            ClientPacketHandlers::handleSecuritySync
+            FMLEnvironment.dist.isClient()
+                ? ClientPacketHandlers::handleSecuritySync
+                : (pkt, ctx) -> {}
         );
     }
 }
