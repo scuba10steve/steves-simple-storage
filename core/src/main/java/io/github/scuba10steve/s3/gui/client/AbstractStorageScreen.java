@@ -269,9 +269,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
         // Render item count
         if (inventory != null) {
-            String amount = hasShiftDown()
-                ? CountFormatter.formatExactCount(inventory.getTotalItemCount()) + "/" + CountFormatter.formatExactCount(inventory.getMaxItems())
-                : formatCount(inventory.getTotalItemCount()) + "/" + formatCount(inventory.getMaxItems());
+            String amount = formatCount(inventory.getTotalItemCount()) + "/" + formatCount(inventory.getMaxItems());
             int stringWidth = font.width(amount);
             guiGraphics.drawString(font, amount, 187 - stringWidth, 6, 0x404040, false);
         }
@@ -359,9 +357,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                     guiGraphics.renderItem(stored.getItemStack(), x, y);
 
                     // Render count overlay
-                    String countStr = hasShiftDown()
-                        ? CountFormatter.formatExactCount(stored.getCount())
-                        : formatCount(stored.getCount());
+                    String countStr = formatCount(stored.getCount());
                     guiGraphics.pose().pushPose();
                     guiGraphics.pose().translate(0, 0, 200);
                     float scale = (float) S3Platform.getConfig().getCountFontScale();
