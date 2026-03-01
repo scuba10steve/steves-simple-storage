@@ -27,4 +27,7 @@ public interface S3Config {
     // Automation
     int getExtractPortInterval();
     int getMinSyncInterval();
+
+    // GUI Settings
+    double getCountFontScale();
 }

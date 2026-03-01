@@ -37,6 +37,9 @@ public class StorageConfig {
     public static final ModConfigSpec.IntValue EXTRACT_PORT_INTERVAL;
     public static final ModConfigSpec.IntValue MIN_SYNC_INTERVAL;
 
+    // GUI Settings
+    public static final ModConfigSpec.DoubleValue COUNT_FONT_SCALE;
+
     static {
         BUILDER.comment("Storage Capacities").push("capacities");
         
@@ -139,6 +142,14 @@ public class StorageConfig {
         MIN_SYNC_INTERVAL = BUILDER
             .comment("Minimum ticks between storage inventory sync packets (helps prevent visual flicker)")
             .defineInRange("minSyncInterval", 2, 0, 20);
+
+        BUILDER.pop();
+
+        BUILDER.comment("GUI Settings").push("gui");
+
+        COUNT_FONT_SCALE = BUILDER
+            .comment("Scale of the item count overlay text in the storage grid (smaller = more compact)")
+            .defineInRange("countFontScale", 0.8, 0.5, 1.0);
 
         BUILDER.pop();
     }

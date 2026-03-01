@@ -357,7 +357,11 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                     String countStr = formatCount(stored.getCount());
                     guiGraphics.pose().pushPose();
                     guiGraphics.pose().translate(0, 0, 200);
-                    guiGraphics.drawString(font, countStr, x + 17 - font.width(countStr), y + 9, 0xFFFFFF, true);
+                    float scale = (float) S3Platform.getConfig().getCountFontScale();
+                    guiGraphics.pose().scale(scale, scale, 1.0F);
+                    int scaledX = (int)((x + 17) / scale) - font.width(countStr);
+                    int scaledY = (int)((y + 9) / scale);
+                    guiGraphics.drawString(font, countStr, scaledX, scaledY, 0xFFFFFF, true);
                     guiGraphics.pose().popPose();
                 }
             }

@@ -23,4 +23,6 @@ public class NeoForgeConfig implements S3Config {
     @Override public boolean shouldAutoRepopulateCraftingGrid() { return StorageConfig.CRAFTING_AUTO_REPOPULATE.get(); }
     @Override public int getExtractPortInterval() { return StorageConfig.EXTRACT_PORT_INTERVAL.get(); }
     @Override public int getMinSyncInterval() { return StorageConfig.MIN_SYNC_INTERVAL.get(); }
+
+    @Override public double getCountFontScale() { return StorageConfig.COUNT_FONT_SCALE.get(); }
 }
