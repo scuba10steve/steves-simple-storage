@@ -23,6 +23,9 @@ run/
 # IntelliJ
 .idea/
 
+# Worktrees
+.worktrees/
+
 # Misc
 *.launch
 *Thumbs.db
