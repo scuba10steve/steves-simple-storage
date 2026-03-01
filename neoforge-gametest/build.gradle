@@ -1,0 +1,40 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.139'
+}
+
+neoForge {
+    version = neoforge_version
+
+    runs {
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', 's3'
+        }
+        data {
+            data()
+            programArguments.addAll(
+                '--mod', 's3',
+                '--all',
+                '--output', file('src/generated/resources/').getAbsolutePath(),
+                '--existing', file('src/main/resources/').getAbsolutePath(),
+                '--existing', rootProject.file('core/src/main/resources/').getAbsolutePath(),
+                '--existing', rootProject.file('neoforge/src/main/resources/').getAbsolutePath()
+            )
+        }
+    }
+
+    mods {
+        s3 {
+            sourceSet sourceSets.main
+            sourceSet project(':core').sourceSets.main
+            sourceSet project(':neoforge').sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources.srcDir 'src/generated/resources'
+
+dependencies {
+    implementation project(':core')
+    implementation project(':neoforge')
+}
