@@ -17,47 +17,53 @@ import java.util.List;
  */
 public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
 
+    private final IItemHandler itemHandler = new StorageInterfaceItemHandler();
+
     public StorageInterfaceBlockEntity(BlockPos pos, BlockState state) {
         super(S3Platform.getStorageInterfaceBEType(), pos, state);
     }
 
     /**
-     * Returns the item handler for capability exposure.
+     * Returns the cached item handler for capability exposure.
      */
     public IItemHandler getItemHandler() {
-        return new StorageInterfaceItemHandler();
+        return itemHandler;
+    }
+
+    private boolean isDisabledByRedstone() {
+        return level != null && level.hasNeighborSignal(worldPosition);
     }
 
     /**
      * IItemHandler that delegates directly to the connected Storage Core.
+     * Reads live from the core inventory on each call for consistent state.
      * Slots 0 through N-1 map to stored item types for extraction.
      * Any slot accepts insertion.
      */
     private class StorageInterfaceItemHandler implements IItemHandler {
-        private final List<StoredItemStack> snapshot;
 
-        StorageInterfaceItemHandler() {
-            this.snapshot = hasCore()
-                ? core.getInventory().getStoredItems()
-                : List.of();
+        private List<StoredItemStack> getItems() {
+            return hasCore() ? core.getInventory().getStoredItems() : List.of();
         }
 
         @Override
         public int getSlots() {
-            return Math.max(1, snapshot.size() + 1);
+            List<StoredItemStack> items = getItems();
+            return Math.max(1, items.size() + 1);
         }
 
         @Override
         public ItemStack getStackInSlot(int slot) {
-            if (slot < 0 || slot >= snapshot.size()) return ItemStack.EMPTY;
-            StoredItemStack stored = snapshot.get(slot);
+            List<StoredItemStack> items = getItems();
+            if (slot < 0 || slot >= items.size()) return ItemStack.EMPTY;
+            StoredItemStack stored = items.get(slot);
             int count = (int) Math.min(stored.getCount(), stored.getItemStack().getMaxStackSize());
             return stored.getItemStack().copyWithCount(count);
         }
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (!hasCore() || stack.isEmpty()) return stack;
+            if (!hasCore() || stack.isEmpty() || isDisabledByRedstone()) return stack;
             if (simulate) {
                 long totalCount = core.getInventory().getTotalItemCount();
                 long maxItems = core.getInventory().getMaxItems();
@@ -72,9 +78,10 @@ public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (!hasCore() || amount <= 0) return ItemStack.EMPTY;
-            if (slot < 0 || slot >= snapshot.size()) return ItemStack.EMPTY;
-            StoredItemStack stored = snapshot.get(slot);
+            if (!hasCore() || amount <= 0 || isDisabledByRedstone()) return ItemStack.EMPTY;
+            List<StoredItemStack> items = getItems();
+            if (slot < 0 || slot >= items.size()) return ItemStack.EMPTY;
+            StoredItemStack stored = items.get(slot);
             int maxExtract = Math.min(amount, stored.getItemStack().getMaxStackSize());
             int extractAmount = (int) Math.min(maxExtract, stored.getCount());
             if (simulate) {
@@ -85,8 +92,7 @@ public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
 
         @Override
         public int getSlotLimit(int slot) {
-            if (slot >= 0 && slot < snapshot.size()) return Integer.MAX_VALUE;
-            return 64; // virtual insertion slot
+            return Integer.MAX_VALUE;
         }
 
         @Override
