@@ -1,12 +1,13 @@
 package io.github.scuba10steve.s3.network;
 
-import io.github.scuba10steve.s3.ref.RefStrings;
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity.SecurePlayer;
+import io.github.scuba10steve.s3.ref.RefStrings;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.ResourceLocation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

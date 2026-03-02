@@ -1,17 +1,6 @@
 package io.github.scuba10steve.s3.init;
 
-import io.github.scuba10steve.s3.block.BlockAccessTerminal;
-import io.github.scuba10steve.s3.block.BlockBlankBox;
-import io.github.scuba10steve.s3.block.BlockCraftingBox;
-import io.github.scuba10steve.s3.block.BlockEjectPort;
-import io.github.scuba10steve.s3.block.BlockExtractPort;
-import io.github.scuba10steve.s3.block.BlockInputPort;
-import io.github.scuba10steve.s3.block.BlockSearchBox;
-import io.github.scuba10steve.s3.block.BlockSecurityBox;
-import io.github.scuba10steve.s3.block.BlockSortBox;
-import io.github.scuba10steve.s3.block.BlockStorage;
-import io.github.scuba10steve.s3.block.BlockStorageCore;
-import io.github.scuba10steve.s3.block.BlockStorageInterface;
+import io.github.scuba10steve.s3.block.*;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.level.block.Block;

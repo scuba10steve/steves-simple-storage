@@ -2,8 +2,8 @@ package io.github.scuba10steve.s3.init;
 
 import io.github.scuba10steve.s3.gui.server.ExtractPortMenu;
 import io.github.scuba10steve.s3.gui.server.SecurityBoxMenu;
-import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
+import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.inventory.MenuType;

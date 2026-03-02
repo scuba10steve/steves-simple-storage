@@ -1,8 +1,8 @@
 package io.github.scuba10steve.s3.gui.server;
 
 import io.github.scuba10steve.s3.blockentity.SecurityBoxBlockEntity;
-import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.network.SecuritySyncPacket;
+import io.github.scuba10steve.s3.platform.S3Platform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;

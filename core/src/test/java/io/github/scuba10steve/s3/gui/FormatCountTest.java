@@ -3,7 +3,7 @@ package io.github.scuba10steve.s3.gui;
 import io.github.scuba10steve.s3.util.CountFormatter;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FormatCountTest {
 

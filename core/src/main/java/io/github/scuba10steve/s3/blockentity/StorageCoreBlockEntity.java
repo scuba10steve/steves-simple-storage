@@ -1,18 +1,13 @@
 package io.github.scuba10steve.s3.blockentity;
 
-import io.github.scuba10steve.s3.block.BlockCraftingBox;
-import io.github.scuba10steve.s3.block.BlockSearchBox;
-import io.github.scuba10steve.s3.block.BlockSecurityBox;
-import io.github.scuba10steve.s3.block.BlockSortBox;
-import io.github.scuba10steve.s3.block.BlockStorage;
-import io.github.scuba10steve.s3.block.StorageMultiblock;
-import io.github.scuba10steve.s3.util.SortMode;
+import io.github.scuba10steve.s3.block.*;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.network.StorageSyncPacket;
 import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.util.BlockRef;
+import io.github.scuba10steve.s3.util.SortMode;
 import io.github.scuba10steve.s3.util.StorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;

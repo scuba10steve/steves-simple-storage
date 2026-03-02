@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.gametest;
 
+import com.google.common.hash.Hashing;
 import net.minecraft.SharedConstants;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -10,8 +11,6 @@ import net.minecraft.nbt.IntTag;
 import net.minecraft.nbt.ListTag;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.resources.ResourceLocation;
-
-import com.google.common.hash.Hashing;
 
 import java.io.ByteArrayOutputStream;
 import java.nio.file.Path;
@@ -27,7 +26,9 @@ public class GameTestStructureProvider implements DataProvider {
     private final List<StructureDefinition> structures = new ArrayList<>();
 
     public record BlockPlacement(String block, int x, int y, int z) {}
+
     public record EntityPlacement(String entity, double x, double y, double z) {}
+
     public record ItemPlacement(String item, int count, double x, double y, double z) {}
 
     public record StructureContent(

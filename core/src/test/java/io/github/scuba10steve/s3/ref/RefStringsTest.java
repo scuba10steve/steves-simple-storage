@@ -1,7 +1,8 @@
 package io.github.scuba10steve.s3.ref;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RefStringsTest {
 
