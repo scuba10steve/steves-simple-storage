@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ExtractListModeTest {
 
     @Test
-    void testRotateMode() {
+    void rotateMode() {
         ExtractListMode mode = ExtractListMode.IGNORE;
         mode = mode.rotateMode();
         assertEquals(ExtractListMode.WHITELIST, mode);
@@ -27,7 +27,7 @@ class ExtractListModeTest {
     }
 
     @Test
-    void testFromOrdinal() {
+    void fromOrdinal() {
         assertEquals(ExtractListMode.IGNORE, ExtractListMode.fromOrdinal(0));
         assertEquals(ExtractListMode.WHITELIST, ExtractListMode.fromOrdinal(1));
         assertEquals(ExtractListMode.BLACKLIST, ExtractListMode.fromOrdinal(2));
@@ -39,7 +39,7 @@ class ExtractListModeTest {
     }
 
     @Test
-    void testAllModesHaveProperties() {
+    void allModesHaveProperties() {
         for (ExtractListMode mode : ExtractListMode.values()) {
             assertNotNull(mode.getDisplayName(), "Display name should not be null for " + mode);
             assertNotNull(mode.getDescription(), "Description should not be null for " + mode);
@@ -49,12 +49,12 @@ class ExtractListModeTest {
     }
 
     @Test
-    void testModeCount() {
+    void modeCount() {
         assertEquals(4, ExtractListMode.values().length, "Should have exactly 4 extract list modes");
     }
 
     @Test
-    void testToStringReturnsDisplayName() {
+    void toStringReturnsDisplayName() {
         for (ExtractListMode mode : ExtractListMode.values()) {
             assertEquals(mode.getDisplayName(), mode.toString());
         }

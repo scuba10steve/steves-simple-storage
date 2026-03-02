@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SecurityBoxTest {
 
     @Test
-    void testSecurePlayerConstruction() {
+    void securePlayerConstruction() {
         UUID id = UUID.randomUUID();
         String name = "TestPlayer";
         SecurePlayer player = new SecurePlayer(id, name);
@@ -23,7 +23,7 @@ class SecurityBoxTest {
     }
 
     @Test
-    void testSecurePlayerEquality() {
+    void securePlayerEquality() {
         UUID id = UUID.randomUUID();
         SecurePlayer player1 = new SecurePlayer(id, "TestPlayer");
         SecurePlayer player2 = new SecurePlayer(id, "TestPlayer");
@@ -33,7 +33,7 @@ class SecurityBoxTest {
     }
 
     @Test
-    void testSecurePlayerInequalityDifferentId() {
+    void securePlayerInequalityDifferentId() {
         SecurePlayer player1 = new SecurePlayer(UUID.randomUUID(), "TestPlayer");
         SecurePlayer player2 = new SecurePlayer(UUID.randomUUID(), "TestPlayer");
 
@@ -41,7 +41,7 @@ class SecurityBoxTest {
     }
 
     @Test
-    void testSecurePlayerInequalityDifferentName() {
+    void securePlayerInequalityDifferentName() {
         UUID id = UUID.randomUUID();
         SecurePlayer player1 = new SecurePlayer(id, "Player1");
         SecurePlayer player2 = new SecurePlayer(id, "Player2");
@@ -51,7 +51,7 @@ class SecurityBoxTest {
     }
 
     @Test
-    void testSecurePlayerNullSafety() {
+    void securePlayerNullSafety() {
         // UUID should not be null in practice, but name could be empty
         UUID id = UUID.randomUUID();
         SecurePlayer player = new SecurePlayer(id, "");

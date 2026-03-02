@@ -7,17 +7,17 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class RefStringsTest {
 
     @Test
-    void testModId() {
+    void modId() {
         assertEquals("s3", RefStrings.MODID);
     }
 
     @Test
-    void testModName() {
+    void modName() {
         assertEquals("Steve's Simple Storage", RefStrings.NAME);
     }
 
     @Test
-    void testModVersion() {
+    void modVersion() {
         assertEquals("2.5.0", RefStrings.VERSION);
     }
 }

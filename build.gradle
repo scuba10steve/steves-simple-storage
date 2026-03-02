@@ -4,10 +4,15 @@ plugins {
 
 rewrite {
     activeRecipe(
-        'org.openrewrite.java.OrderImports',
+        // Prethink context currently doesn't appear to support libraries
+        // 'org.openrewrite.prethink.UpdatePrethinkContext',
+        'org.openrewrite.java.testing.junit5.JUnit5BestPractices',
+        'org.openrewrite.gradle.GradleBestPractices',
+        'org.openrewrite.staticanalysis.CommonStaticAnalysis',
         'org.openrewrite.java.RemoveUnusedImports',
-        'org.openrewrite.java.format.EmptyNewlineAtEndOfFile'
+        'org.openrewrite.java.format.EmptyNewlineAtEndOfFile',
     )
+    setExportDatatables(true)
 }
 
 repositories {
@@ -16,6 +21,9 @@ repositories {
 
 dependencies {
     rewrite platform('org.openrewrite.recipe:rewrite-recipe-bom:latest.release')
+    rewrite("org.openrewrite.recipe:rewrite-prethink")
+    rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
+    rewrite("org.openrewrite.recipe:rewrite-static-analysis")
 }
 
 // Root project: shared configuration only
