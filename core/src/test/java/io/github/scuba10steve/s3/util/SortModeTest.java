@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class SortModeTest {
 
     @Test
-    void testRotateMode() {
+    void rotateMode() {
         SortMode mode = SortMode.COUNT;
         mode = mode.rotateMode();
         assertEquals(SortMode.INVERSE_COUNT, mode);
@@ -33,7 +33,7 @@ class SortModeTest {
     }
 
     @Test
-    void testFromOrdinal() {
+    void fromOrdinal() {
         assertEquals(SortMode.COUNT, SortMode.fromOrdinal(0));
         assertEquals(SortMode.INVERSE_COUNT, SortMode.fromOrdinal(1));
         assertEquals(SortMode.NAME, SortMode.fromOrdinal(2));
@@ -44,7 +44,7 @@ class SortModeTest {
     }
 
     @Test
-    void testAllModesHaveProperties() {
+    void allModesHaveProperties() {
         for (SortMode mode : SortMode.values()) {
             assertNotNull(mode.getDisplayName(), "Display name should not be null for " + mode);
             assertNotNull(mode.getDescription(), "Description should not be null for " + mode);
@@ -55,7 +55,7 @@ class SortModeTest {
     }
 
     @Test
-    void testSortModeCount() {
+    void sortModeCount() {
         assertEquals(6, SortMode.values().length, "Should have exactly 6 sort modes");
     }
 }

@@ -3,19 +3,19 @@ package io.github.scuba10steve.s3.gui;
 import io.github.scuba10steve.s3.util.CountFormatter;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FormatCountTest {
 
     @Test
-    void testSmallValues() {
+    void smallValues() {
         assertEquals("0", CountFormatter.formatCount(0));
         assertEquals("1", CountFormatter.formatCount(1));
         assertEquals("999", CountFormatter.formatCount(999));
     }
 
     @Test
-    void testThousands() {
+    void thousands() {
         assertEquals("1K", CountFormatter.formatCount(1000));
         assertEquals("1.5K", CountFormatter.formatCount(1500));
         assertEquals("9.9K", CountFormatter.formatCount(9999));
@@ -25,7 +25,7 @@ class FormatCountTest {
     }
 
     @Test
-    void testMillions() {
+    void millions() {
         assertEquals("1M", CountFormatter.formatCount(1_000_000));
         assertEquals("2.8M", CountFormatter.formatCount(2_800_000));
         assertEquals("9.9M", CountFormatter.formatCount(9_999_999));
@@ -34,7 +34,7 @@ class FormatCountTest {
     }
 
     @Test
-    void testBillions() {
+    void billions() {
         assertEquals("1B", CountFormatter.formatCount(1_000_000_000));
         assertEquals("1.2B", CountFormatter.formatCount(1_200_000_000));
         assertEquals("9.9B", CountFormatter.formatCount(9_999_999_999L));
@@ -43,7 +43,7 @@ class FormatCountTest {
     }
 
     @Test
-    void testDecimalDropsTrailingZero() {
+    void decimalDropsTrailingZero() {
         assertEquals("1K", CountFormatter.formatCount(1000));
         assertEquals("2K", CountFormatter.formatCount(2000));
         assertEquals("1M", CountFormatter.formatCount(1_000_000));

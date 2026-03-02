@@ -1,9 +1,9 @@
 package io.github.scuba10steve.s3.gui.client;
 
-import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.network.SortModePacket;
 import io.github.scuba10steve.s3.network.StorageClickPacket;
+import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import io.github.scuba10steve.s3.util.CountFormatter;
@@ -17,8 +17,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.ArrayList;

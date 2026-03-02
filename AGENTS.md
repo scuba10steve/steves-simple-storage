@@ -27,6 +27,13 @@ The primary purpose of an AI agent in this repository is to assist human develop
 *   **Shell Commands:** Use `run_shell_command` for executing shell commands. Always explain the purpose and potential impact of commands that modify the file system or system state before execution. Prefer non-interactive commands.
 *   **Efficient Output:** When using `run_shell_command`, prefer flags that reduce output verbosity. Redirect large outputs to temporary files if necessary.
 
+## Code Transformations (OpenRewrite)
+
+*   **Prefer OpenRewrite recipes** for bulk code transformations such as import ordering, unused import removal, code style fixes, and API migrations. Run `./gradlew rewriteRun` before attempting manual changes for these categories of work.
+*   **Dry-run first** when unsure of impact: `./gradlew rewriteDryRun` previews changes without modifying files.
+*   **Discover available recipes** with `./gradlew rewriteDiscover`.
+*   Only handle manually what OpenRewrite recipes cannot cover.
+
 ## Issue Creation
 
 *   **Always use issue templates.** This repository has issue templates in `.github/ISSUE_TEMPLATE/`. When creating issues, use `gh issue create --template bug_report.yml` for bugs or `gh issue create --template feature_request.yml` for feature requests. Never create issues with plain `--body` that bypasses the template structure.

@@ -22,7 +22,6 @@ import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
