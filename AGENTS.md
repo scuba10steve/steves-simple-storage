@@ -33,6 +33,7 @@ The primary purpose of an AI agent in this repository is to assist human develop
 *   **Dry-run first** when unsure of impact: `./gradlew rewriteDryRun` previews changes without modifying files.
 *   **Discover available recipes** with `./gradlew rewriteDiscover`.
 *   Only handle manually what OpenRewrite recipes cannot cover.
+*   **On-demand workflow:** Trigger `gh workflow run openrewrite.yml` to run recipes in CI and auto-open a PR. Use `-f dry_run=true` to preview changes as a downloadable artifact without committing.
 
 ## Issue Creation
 
