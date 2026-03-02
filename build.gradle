@@ -1,3 +1,23 @@
+plugins {
+    id 'org.openrewrite.rewrite' version 'latest.release'
+}
+
+rewrite {
+    activeRecipe(
+        'org.openrewrite.java.OrderImports',
+        'org.openrewrite.java.RemoveUnusedImports',
+        'org.openrewrite.java.format.EmptyNewlineAtEndOfFile'
+    )
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    rewrite platform('org.openrewrite.recipe:rewrite-recipe-bom:latest.release')
+}
+
 // Root project: shared configuration only
 subprojects {
     apply plugin: 'java'
