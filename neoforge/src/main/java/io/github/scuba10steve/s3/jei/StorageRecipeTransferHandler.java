@@ -83,7 +83,9 @@ public class StorageRecipeTransferHandler implements IRecipeTransferHandler<Stor
         for (var entry : guiSlotMap.entrySet()) {
             int guiSlot = entry.getKey();
             Ingredient ingredient = entry.getValue();
-            if (ingredient.isEmpty()) continue;
+            if (ingredient.isEmpty()) {
+                continue;
+            }
 
             ItemStack found = findAndConsume(ingredient, playerAvailable, storageAvailable);
             if (found.isEmpty()) {
@@ -155,7 +157,9 @@ public class StorageRecipeTransferHandler implements IRecipeTransferHandler<Stor
 
     private Map<StackKey, Integer> countStorageInventory(@Nullable StorageInventory inventory) {
         Map<StackKey, Integer> counts = new LinkedHashMap<>();
-        if (inventory == null) return counts;
+        if (inventory == null) {
+            return counts;
+        }
         for (StoredItemStack stored : inventory.getStoredItems()) {
             StackKey key = new StackKey(stored.getItemStack());
             counts.merge(key, (int) Math.min(stored.getCount(), Integer.MAX_VALUE), Integer::sum);

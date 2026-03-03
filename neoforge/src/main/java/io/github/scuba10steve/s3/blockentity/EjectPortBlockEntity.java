@@ -24,19 +24,27 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
     }
 
     public void tick() {
-        if (level == null || level.isClientSide) return;
+        if (level == null || level.isClientSide) {
+            return;
+        }
         super.tick();
-        
+
         // Don't eject if powered by redstone
-        if (level.hasNeighborSignal(worldPosition)) return;
+        if (level.hasNeighborSignal(worldPosition)) {
+            return;
+        }
         
         StorageCoreBlockEntity core = getCore();
-        if (core == null) return;
+        if (core == null) {
+            return;
+        }
         
         // Check for inventory above
         BlockPos targetPos = worldPosition.above();
         BlockEntity targetEntity = level.getBlockEntity(targetPos);
-        if (targetEntity == null) return;
+        if (targetEntity == null) {
+            return;
+        }
         
         // Get the item handler capability
         IItemHandler targetHandler = level.getCapability(
@@ -46,13 +54,17 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
             targetEntity,
             Direction.DOWN
         );
-        
-        if (targetHandler == null) return;
+
+        if (targetHandler == null) {
+            return;
+        }
         
         // Get items from storage
         StorageInventory inventory = core.getInventory();
         List<StoredItemStack> items = inventory.getStoredItems();
-        if (items.isEmpty()) return;
+        if (items.isEmpty()) {
+            return;
+        }
         
         // Try to eject the first item
         StoredItemStack stored = items.get(0);

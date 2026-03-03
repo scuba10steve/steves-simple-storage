@@ -61,7 +61,9 @@ public final class PacketHandlers {
                                         amount = maxStack;
                                     } else {
                                         amount = maxStack / 2;
-                                        if (amount == 0) amount = 1;
+                                        if (amount == 0) {
+                                            amount = 1;
+                                        }
                                     }
                                     ItemStack extracted = inventory.extractItem(stored.getItemStack(), amount);
                                     player.containerMenu.setCarried(extracted);
@@ -125,7 +127,9 @@ public final class PacketHandlers {
         context.enqueueWork(() -> {
             Player player = context.player();
             if (player.level().getBlockEntity(packet.pos()) instanceof SecurityBoxBlockEntity securityBox) {
-                if (!securityBox.isPlayerAllowed(player)) return;
+                if (!securityBox.isPlayerAllowed(player)) {
+                    return;
+                }
 
                 if (packet.add()) {
                     securityBox.addAllowedPlayer(new SecurePlayer(packet.playerId(), packet.playerName()));

@@ -35,7 +35,9 @@ public class BlockSecurityBox extends StorageMultiblock implements EntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (level.isClientSide()) return null;
+        if (level.isClientSide()) {
+            return null;
+        }
         return type == S3Platform.getSecurityBoxBEType()
             ? (lvl, pos, st, be) -> ((SecurityBoxBlockEntity) be).tick()
             : null;

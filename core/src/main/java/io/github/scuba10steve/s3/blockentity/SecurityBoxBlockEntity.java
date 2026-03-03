@@ -100,7 +100,9 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
      * Checks if the player is the owner (first entry in the whitelist).
      */
     public boolean isOwner(Player player) {
-        if (allowedPlayers.isEmpty()) return false;
+        if (allowedPlayers.isEmpty()) {
+            return false;
+        }
         return allowedPlayers.getFirst().id.equals(player.getUUID());
     }
 
@@ -111,7 +113,9 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
     public void addAllowedPlayer(SecurePlayer player) {
         // Don't add duplicates
         for (SecurePlayer sp : allowedPlayers) {
-            if (sp.id.equals(player.id)) return;
+            if (sp.id.equals(player.id)) {
+                return;
+            }
         }
         allowedPlayers.add(player);
         setChanged();
@@ -130,7 +134,9 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
     }
 
     private void sendOpNotification(ServerPlayer op) {
-        if (allowedPlayers.isEmpty()) return;
+        if (allowedPlayers.isEmpty()) {
+            return;
+        }
 
         String ownerName = allowedPlayers.getFirst().name;
         // Notify the operator

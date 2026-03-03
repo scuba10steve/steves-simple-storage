@@ -39,7 +39,9 @@ public class StorageUtils {
     }
 
     private static SecurityBoxBlockEntity findSecurityBox(BlockRef start, Level level, Set<BlockRef> scanned) {
-        if (!scanned.add(start)) return null;
+        if (!scanned.add(start)) {
+            return null;
+        }
 
         // Check if this block itself is a security box
         if (start.block instanceof BlockSecurityBox) {
@@ -52,7 +54,9 @@ public class StorageUtils {
         for (BlockRef neighbor : getNeighbors(start.pos, level)) {
             if (neighbor.block instanceof StorageMultiblock) {
                 SecurityBoxBlockEntity result = findSecurityBox(neighbor, level, scanned);
-                if (result != null) return result;
+                if (result != null) {
+                    return result;
+                }
             }
         }
 

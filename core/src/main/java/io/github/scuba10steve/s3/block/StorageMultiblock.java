@@ -38,7 +38,9 @@ public abstract class StorageMultiblock extends BaseBlock {
     }
     
     public StorageCoreBlockEntity attemptMultiblock(Level level, BlockPos pos) {
-        if (level.isClientSide) return null;
+        if (level.isClientSide) {
+            return null;
+        }
 
         if (this instanceof BlockStorageCore) {
             // Core placed: scan from itself

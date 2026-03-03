@@ -16,7 +16,9 @@ public class BlockStorage extends StorageMultiblock implements StorageTier {
     @Override
     public int getCapacity() {
         S3Config config = S3Platform.getConfig();
-        if (config == null) return defaultCapacity;
+        if (config == null) {
+            return defaultCapacity;
+        }
         return switch (tierKey) {
             case "basic" -> config.getBasicCapacity();
             case "condensed" -> config.getCondensedCapacity();

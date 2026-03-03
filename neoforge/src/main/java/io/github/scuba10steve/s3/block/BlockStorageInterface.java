@@ -23,7 +23,9 @@ public class BlockStorageInterface extends StorageMultiblock implements EntityBl
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        if (level.isClientSide()) return null;
+        if (level.isClientSide()) {
+            return null;
+        }
         return type == S3Platform.getStorageInterfaceBEType()
             ? (lvl, pos, st, be) -> ((StorageInterfaceBlockEntity) be).tick()
             : null;

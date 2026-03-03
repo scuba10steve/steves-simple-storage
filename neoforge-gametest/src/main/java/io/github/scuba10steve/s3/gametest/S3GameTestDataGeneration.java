@@ -41,7 +41,9 @@ public class S3GameTestDataGeneration {
         for (int x = 0; x < 10; x++) {
             for (int z = 0; z < 10; z++) {
                 for (int y = 0; y < 5; y++) {
-                    if (x == 5 && y == 0 && z == 5) continue; // skip core position
+                    if (x == 5 && y == 0 && z == 5) {
+                        continue; // skip core position
+                    }
                     blocks.add(new BlockPlacement("s3:ultimate_storage_box", x, y, z));
                 }
             }

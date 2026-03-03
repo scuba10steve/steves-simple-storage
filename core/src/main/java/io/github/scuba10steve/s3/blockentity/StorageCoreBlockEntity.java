@@ -32,15 +32,15 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
 
     private final StorageInventory inventory = new StorageInventory();
     private final Set<BlockRef> multiblock = new HashSet<>();
-    private boolean hasCraftingBox = false;
-    private boolean hasSearchBox = false;
-    private boolean hasSortBox = false;
-    private boolean hasSecurityBox = false;
+    private boolean hasCraftingBox;
+    private boolean hasSearchBox;
+    private boolean hasSortBox;
+    private boolean hasSecurityBox;
     private SortMode sortMode = SortMode.COUNT;
     private boolean needsScan = true;
 
     // Sync throttling to prevent rapid consecutive syncs causing visual flicker
-    private long lastSyncTime = 0;
+    private long lastSyncTime;
 
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
         super(S3Platform.getStorageCoreBEType(), pos, state);
@@ -49,7 +49,9 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
     }
 
     public void tick() {
-        if (level == null || level.isClientSide) return;
+        if (level == null || level.isClientSide) {
+            return;
+        }
         if (needsScan) {
             scanMultiblock();
             needsScan = false;
