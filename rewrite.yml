@@ -1,0 +1,8 @@
+---
+type: specs.openrewrite.org/v1beta/recipe
+name: io.github.scuba10steve.s3.DependencyUpgrade
+displayName: Upgrade NeoForge dependencies
+recipeList:
+  - org.openrewrite.gradle.plugins.UpgradePluginVersion:
+      pluginIdPattern: net.neoforged.moddev
+      newVersion: latest.release
