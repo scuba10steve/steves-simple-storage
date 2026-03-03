@@ -9,6 +9,10 @@ base {
 neoForge {
     // neoFormVersion gives us vanilla MC classes only — no NeoForge APIs
     neoFormVersion = "${minecraft_version}-20240808.144430"
+
+    accessTransformers {
+        publish(file('src/main/resources/META-INF/accesstransformer.cfg'))
+    }
 }
 
 dependencies {

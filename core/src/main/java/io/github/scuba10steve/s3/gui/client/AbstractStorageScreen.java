@@ -41,6 +41,12 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     protected float currentScroll = 0.0F;
     protected int storageRows = 6;
     protected int storageAreaHeight = 108; // 6 rows * 18px
+    protected int textureSheetHeight = 256;
+
+    // Layout toggle
+    protected LayoutProfile normalLayout;
+    protected LayoutProfile extendedLayout;
+    protected boolean extended;
 
     // Search functionality
     protected EditBox searchField;
@@ -61,6 +67,71 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         super(menu, playerInventory, title);
         this.texture = texture;
         this.titleLabelY = 6;
+    }
+
+    /**
+     * Applies the current layout profile (normal or extended) to screen fields.
+     * Must be called after normalLayout/extendedLayout are set in the subclass constructor.
+     */
+    protected void applyCurrentLayout() {
+        LayoutProfile layout = extended ? extendedLayout : normalLayout;
+        this.texture = layout.texture();
+        this.imageWidth = layout.imageWidth();
+        this.imageHeight = layout.imageHeight();
+        this.textureSheetHeight = layout.textureSheetHeight();
+        this.storageRows = layout.storageRows();
+        this.storageAreaHeight = layout.storageAreaHeight();
+        this.inventoryLabelY = layout.inventoryLabelY();
+    }
+
+    /**
+     * Repositions player inventory and hotbar slots to match the active layout.
+     * Subclasses can override to also reposition crafting-specific slots.
+     */
+    protected void repositionSlots(LayoutProfile layout) {
+        for (net.minecraft.world.inventory.Slot slot : this.menu.slots) {
+            if (slot.container instanceof Inventory) {
+                if (slot.getContainerSlot() >= 9) {
+                    // Main inventory (3 rows of 9)
+                    int invRow = (slot.getContainerSlot() - 9) / 9;
+                    int invCol = (slot.getContainerSlot() - 9) % 9;
+                    slot.x = 8 + invCol * 18;
+                    slot.y = layout.playerInvY() + invRow * 18;
+                } else {
+                    // Hotbar
+                    slot.x = 8 + slot.getContainerSlot() * 18;
+                    slot.y = layout.hotbarY();
+                }
+            }
+        }
+    }
+
+    /**
+     * Called when the extend/compact toggle button is pressed.
+     */
+    protected void onToggleButtonPressed(Button button) {
+        this.extended = !this.extended;
+        applyCurrentLayout();
+
+        LayoutProfile layout = extended ? extendedLayout : normalLayout;
+        repositionSlots(layout);
+
+        // Clamp scroll position for the new row count
+        List<StoredItemStack> items = getDisplayItems();
+        int maxRows = (items.size() + 8) / 9 - storageRows;
+        if (maxRows <= 0) {
+            scrollRow = 0;
+            currentScroll = 0;
+        } else {
+            scrollRow = Math.min(scrollRow, maxRows);
+            currentScroll = (float) scrollRow / maxRows;
+        }
+
+        // Persist preference
+        S3Platform.getConfig().setExtendedGui(this.extended);
+
+        // Rebuild all widgets at new positions
+        this.rebuildWidgets();
     }
 
     @Override
@@ -96,6 +167,20 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                 .bounds(this.leftPos + 118, sortButtonY, 50, 12)
                 .build();
             this.addRenderableWidget(this.sortButton);
+        }
+
+        // Add extend/compact toggle button below scrollbar
+        if (normalLayout != null && extendedLayout != null) {
+            repositionSlots(extended ? extendedLayout : normalLayout);
+            String toggleLabel = extended ? "-" : "+";
+            int toggleButtonY = this.topPos + 18 + storageAreaHeight + 2;
+            Button toggleButton = Button.builder(
+                    Component.literal(toggleLabel),
+                    this::onToggleButtonPressed
+                )
+                .bounds(this.leftPos + 175, toggleButtonY, 12, 12)
+                .build();
+            this.addRenderableWidget(toggleButton);
         }
 
         // Initialize filtered items
@@ -208,7 +293,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
-        guiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight, 256, 256);
+        guiGraphics.blit(texture, x, y, 0, 0, imageWidth, imageHeight, 256, textureSheetHeight);
 
         // Draw search bar background if search box is present
         if (searchActive && searchField != null) {
