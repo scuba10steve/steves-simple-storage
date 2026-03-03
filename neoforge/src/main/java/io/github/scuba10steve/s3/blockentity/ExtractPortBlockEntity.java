@@ -45,8 +45,8 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
 
     // Configuration
     private ExtractListMode listMode = ExtractListMode.IGNORE;
-    private boolean roundRobin = false;
-    private int roundRobinIndex = 0;
+    private boolean roundRobin;
+    private int roundRobinIndex;
 
     public ExtractPortBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.EXTRACT_PORT.get(), pos, state);
@@ -56,7 +56,9 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
     public void tick() {
         super.tick();
 
-        if (level == null || level.isClientSide) return;
+        if (level == null || level.isClientSide) {
+            return;
+        }
 
         if (hasCore()) {
             int extractionInterval = StorageConfig.EXTRACT_PORT_INTERVAL.get();
@@ -86,10 +88,14 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
      * @return The remaining items that couldn't be inserted
      */
     private ItemStack pushToAdjacentInventories(ItemStack stack) {
-        if (stack.isEmpty() || level == null) return stack;
+        if (stack.isEmpty() || level == null) {
+            return stack;
+        }
 
         for (Direction direction : Direction.values()) {
-            if (stack.isEmpty()) break;
+            if (stack.isEmpty()) {
+                break;
+            }
 
             BlockPos adjacentPos = worldPosition.relative(direction);
 
@@ -121,10 +127,14 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
      * Extracts an item from storage based on filter settings
      */
     private ItemStack extractFromStorage() {
-        if (!hasCore()) return ItemStack.EMPTY;
+        if (!hasCore()) {
+            return ItemStack.EMPTY;
+        }
 
         List<StoredItemStack> storedItems = core.getInventory().getStoredItems();
-        if (storedItems.isEmpty()) return ItemStack.EMPTY;
+        if (storedItems.isEmpty()) {
+            return ItemStack.EMPTY;
+        }
 
         // Find a valid item to extract
         int startIndex = roundRobin ? roundRobinIndex : 0;

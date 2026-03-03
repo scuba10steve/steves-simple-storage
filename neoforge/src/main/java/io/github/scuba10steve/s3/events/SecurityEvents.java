@@ -36,8 +36,12 @@ public class SecurityEvents {
     }
 
     private static boolean shouldCancelInteraction(Level level, BlockPos pos, Player player) {
-        if (!StorageConfig.ENABLE_SECURITY.get()) return false;
-        if (level.isClientSide) return false;
+        if (!StorageConfig.ENABLE_SECURITY.get()) {
+            return false;
+        }
+        if (level.isClientSide) {
+            return false;
+        }
 
         Block block = level.getBlockState(pos).getBlock();
         if (block instanceof StorageMultiblock) {
@@ -50,10 +54,18 @@ public class SecurityEvents {
 
     @SubscribeEvent
     public static void onBlockPlaced(BlockEvent.EntityPlaceEvent event) {
-        if (!StorageConfig.ENABLE_SECURITY.get()) return;
-        if (event.getLevel().isClientSide()) return;
-        if (!(event.getEntity() instanceof Player player)) return;
-        if (!(event.getLevel() instanceof Level level)) return;
+        if (!StorageConfig.ENABLE_SECURITY.get()) {
+            return;
+        }
+        if (event.getLevel().isClientSide()) {
+            return;
+        }
+        if (!(event.getEntity() instanceof Player player)) {
+            return;
+        }
+        if (!(event.getLevel() instanceof Level level)) {
+            return;
+        }
 
         for (BlockRef neighbor : StorageUtils.getNeighbors(event.getPos(), level)) {
             if (neighbor.block instanceof StorageMultiblock) {

@@ -1,11 +1,7 @@
 package io.github.scuba10steve.s3;
 
 import io.github.scuba10steve.s3.config.StorageConfig;
-import io.github.scuba10steve.s3.init.ModBlockEntities;
-import io.github.scuba10steve.s3.init.ModBlocks;
-import io.github.scuba10steve.s3.init.ModCreativeTabs;
-import io.github.scuba10steve.s3.init.ModItems;
-import io.github.scuba10steve.s3.init.ModMenuTypes;
+import io.github.scuba10steve.s3.init.*;
 import io.github.scuba10steve.s3.platform.NeoForgeConfig;
 import io.github.scuba10steve.s3.platform.NeoForgeNetworkHelper;
 import io.github.scuba10steve.s3.platform.S3Platform;
@@ -41,22 +37,22 @@ public class StevesSimpleStorage {
 
 		// Wire platform holders for block entity types, menu types, and items
 		S3Platform.setBlockEntityTypes(
-			() -> ModBlockEntities.STORAGE_CORE.get(),
-			() -> ModBlockEntities.CRAFTING_BOX.get(),
-			() -> ModBlockEntities.SEARCH_BOX.get(),
-			() -> ModBlockEntities.SORT_BOX.get(),
-			() -> ModBlockEntities.INPUT_PORT.get(),
-			() -> ModBlockEntities.EXTRACT_PORT.get(),
-			() -> ModBlockEntities.EJECT_PORT.get(),
-			() -> ModBlockEntities.SECURITY_BOX.get(),
-			() -> ModBlockEntities.STORAGE_INTERFACE.get()
+			ModBlockEntities.STORAGE_CORE::get,
+			ModBlockEntities.CRAFTING_BOX::get,
+			ModBlockEntities.SEARCH_BOX::get,
+			ModBlockEntities.SORT_BOX::get,
+			ModBlockEntities.INPUT_PORT::get,
+			ModBlockEntities.EXTRACT_PORT::get,
+			ModBlockEntities.EJECT_PORT::get,
+			ModBlockEntities.SECURITY_BOX::get,
+			ModBlockEntities.STORAGE_INTERFACE::get
 		);
 
 		S3Platform.setMenuTypes(
-			() -> ModMenuTypes.STORAGE_CORE.get(),
-			() -> ModMenuTypes.STORAGE_CORE_CRAFTING.get(),
-			() -> ModMenuTypes.EXTRACT_PORT.get(),
-			() -> ModMenuTypes.SECURITY_BOX.get()
+			ModMenuTypes.STORAGE_CORE::get,
+			ModMenuTypes.STORAGE_CORE_CRAFTING::get,
+			ModMenuTypes.EXTRACT_PORT::get,
+			ModMenuTypes.SECURITY_BOX::get
 		);
 
 		S3Platform.setKeyItem(ModItems.KEY::get);

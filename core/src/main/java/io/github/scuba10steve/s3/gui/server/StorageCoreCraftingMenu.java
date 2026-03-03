@@ -103,7 +103,9 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
     private void craftOneToCursor(Player player) {
         Slot resultSlot = slots.get(0);
-        if (!resultSlot.hasItem()) return;
+        if (!resultSlot.hasItem()) {
+            return;
+        }
 
         ItemStack resultTemplate = resultSlot.getItem().copy();
         ItemStack carried = getCarried();
@@ -322,7 +324,9 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
         for (int i = 0; i < 9 && i < recipe.size(); i++) {
             ItemStack template = recipe.get(i);
-            if (template.isEmpty()) continue;
+            if (template.isEmpty()) {
+                continue;
+            }
 
             // Try player inventory first
             ItemStack extracted = extractOneFromPlayer(playerInv, template);

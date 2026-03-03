@@ -28,7 +28,9 @@ public class InputPortBlockEntity extends MultiblockBlockEntity {
     public void tick() {
         super.tick();
 
-        if (level == null || level.isClientSide) return;
+        if (level == null || level.isClientSide) {
+            return;
+        }
 
         // Transfer items from buffer to storage core
         if (hasCore() && !buffer.isEmpty()) {

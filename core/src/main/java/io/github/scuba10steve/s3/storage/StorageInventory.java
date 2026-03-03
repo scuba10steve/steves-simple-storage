@@ -17,10 +17,10 @@ public class StorageInventory {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageInventory.class);
 
     private final Map<ItemKey, StoredItemStack> items = new LinkedHashMap<>();
-    private long totalCount = 0;
-    private long maxItems = 0;
-    private boolean hasSearchBox = false;
-    private boolean hasSortBox = false;
+    private long totalCount;
+    private long maxItems;
+    private boolean hasSearchBox;
+    private boolean hasSortBox;
     private SortMode sortMode = SortMode.COUNT;
 
     public ItemStack insertItem(ItemStack stack) {

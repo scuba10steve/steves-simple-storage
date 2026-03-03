@@ -95,7 +95,9 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
 
     private List<Player> getNearbyPlayers() {
         List<Player> nearby = new ArrayList<>();
-        if (minecraft == null || minecraft.level == null) return nearby;
+        if (minecraft == null || minecraft.level == null) {
+            return nearby;
+        }
 
         SecurityBoxBlockEntity securityBox = menu.getBlockEntity();
         var pos = securityBox.getBlockPos();
@@ -103,7 +105,9 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
         for (Player player : minecraft.level.players()) {
             if (player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 32 * 32) {
                 nearby.add(player);
-                if (nearby.size() >= NUM_BUTTONS) break;
+                if (nearby.size() >= NUM_BUTTONS) {
+                    break;
+                }
             }
         }
         return nearby;
@@ -112,7 +116,9 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
     private boolean isAlreadyAllowed(Player player) {
         SecurityBoxBlockEntity securityBox = menu.getBlockEntity();
         for (SecurePlayer sp : securityBox.getAllowedPlayers()) {
-            if (sp.id().equals(player.getUUID())) return true;
+            if (sp.id().equals(player.getUUID())) {
+                return true;
+            }
         }
         return false;
     }

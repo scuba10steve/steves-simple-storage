@@ -19,8 +19,12 @@ public class BlockRef {
     
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof BlockRef other)) return false;
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof BlockRef other)) {
+            return false;
+        }
         return block.equals(other.block) && pos.equals(other.pos);
     }
     

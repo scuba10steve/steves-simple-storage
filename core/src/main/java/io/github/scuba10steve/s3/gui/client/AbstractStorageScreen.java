@@ -37,7 +37,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller_disabled");
 
     protected ResourceLocation texture;
-    protected int scrollRow = 0;
+    protected int scrollRow;
     protected float currentScroll = 0.0F;
     protected int storageRows = 6;
     protected int storageAreaHeight = 108; // 6 rows * 18px
@@ -45,17 +45,17 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     // Search functionality
     protected EditBox searchField;
     protected List<StoredItemStack> filteredItems = new ArrayList<>();
-    protected boolean searchActive = false;
+    protected boolean searchActive;
     protected long lastKnownTotalCount = -1; // Track inventory changes for filtered list refresh
     protected int lastKnownItemTypes = -1;
 
     // Sort functionality
     protected Button sortButton;
-    protected boolean sortActive = false;
+    protected boolean sortActive;
 
     // Tooltip: set during renderLabels, consumed during renderTooltip
     private ItemStack hoveredStorageStack = ItemStack.EMPTY;
-    private long hoveredStorageCount = 0;
+    private long hoveredStorageCount;
 
     protected AbstractStorageScreen(T menu, Inventory playerInventory, Component title, ResourceLocation texture) {
         super(menu, playerInventory, title);
@@ -159,7 +159,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
      * Checks if an item matches the search criteria
      */
     protected boolean matchesSearch(StoredItemStack stored, String searchText, boolean tagSearch, boolean modSearch, boolean tabSearch) {
-        if (searchText.isEmpty()) return true;
+        if (searchText.isEmpty()) {
+            return true;
+        }
 
         ItemStack stack = stored.getItemStack();
 
@@ -301,7 +303,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
      */
     protected void renderStorageHighlight(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         Integer slotIndex = getSlotAt(mouseX, mouseY);
-        if (slotIndex == null) return;
+        if (slotIndex == null) {
+            return;
+        }
 
         // Use filtered items if searching
         List<StoredItemStack> itemsToUse;
@@ -309,14 +313,20 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             itemsToUse = filteredItems;
         } else {
             StorageInventory inventory = menu.getInventory();
-            if (inventory == null) return;
+            if (inventory == null) {
+                return;
+            }
             itemsToUse = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
 
-        if (slotIndex >= itemsToUse.size()) return;
+        if (slotIndex >= itemsToUse.size()) {
+            return;
+        }
 
         StoredItemStack stored = itemsToUse.get(slotIndex);
-        if (stored == null || stored.getItemStack().isEmpty()) return;
+        if (stored == null || stored.getItemStack().isEmpty()) {
+            return;
+        }
 
         // Calculate the slot position relative to the GUI
         int visibleIndex = slotIndex - (scrollRow * 9);
@@ -336,7 +346,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             itemsToRender = filteredItems;
         } else {
             StorageInventory inventory = menu.getInventory();
-            if (inventory == null) return;
+            if (inventory == null) {
+                return;
+            }
             // Use sorted items if sort box is present
             itemsToRender = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
@@ -347,7 +359,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         for (int row = 0; row < storageRows; row++) {
             for (int col = 0; col < 9; col++) {
                 int index = (scrollRow * 9) + (row * 9) + col;
-                if (index >= itemsToRender.size()) return;
+                if (index >= itemsToRender.size()) {
+                    return;
+                }
 
                 StoredItemStack stored = itemsToRender.get(index);
                 if (stored != null && !stored.getItemStack().isEmpty()) {
@@ -385,8 +399,12 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     protected void renderTooltip(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         super.renderTooltip(guiGraphics, mouseX, mouseY);
 
-        if (!this.menu.getCarried().isEmpty()) return;
-        if (hoveredStorageStack.isEmpty()) return;
+        if (!this.menu.getCarried().isEmpty()) {
+            return;
+        }
+        if (hoveredStorageStack.isEmpty()) {
+            return;
+        }
 
         List<Component> tooltip = this.getTooltipFromContainerItem(hoveredStorageStack);
         if (hasShiftDown() && hoveredStorageCount > 0) {
@@ -488,12 +506,16 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             itemsForScroll = filteredItems;
         } else {
             StorageInventory inventory = menu.getInventory();
-            if (inventory == null) return false;
+            if (inventory == null) {
+                return false;
+            }
             itemsForScroll = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
 
         int maxRows = (itemsForScroll.size() + 8) / 9 - storageRows;
-        if (maxRows <= 0) return false;
+        if (maxRows <= 0) {
+            return false;
+        }
 
         if (scrollY > 0) {
             scrollRow = Math.max(0, scrollRow - 1);
@@ -543,7 +565,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             items = filteredItems;
         } else {
             StorageInventory inventory = menu.getInventory();
-            if (inventory == null) return false;
+            if (inventory == null) {
+                return false;
+            }
             items = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
         }
         return (items.size() + 8) / 9 > storageRows;
@@ -555,7 +579,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             return filteredItems;
         }
         StorageInventory inventory = menu.getInventory();
-        if (inventory == null) return List.of();
+        if (inventory == null) {
+            return List.of();
+        }
         return sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
     }
 

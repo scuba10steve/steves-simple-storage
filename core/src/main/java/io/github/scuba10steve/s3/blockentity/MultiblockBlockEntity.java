@@ -14,7 +14,7 @@ public abstract class MultiblockBlockEntity extends BaseBlockEntity {
     protected BlockPos corePos; // Store core position for client sync
     private static final int UPDATE_PERIOD = 10;
     
-    public MultiblockBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+    protected MultiblockBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
         super(type, pos, state);
     }
     

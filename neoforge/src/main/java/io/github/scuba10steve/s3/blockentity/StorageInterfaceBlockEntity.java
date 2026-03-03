@@ -55,7 +55,9 @@ public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
         @Override
         public ItemStack getStackInSlot(int slot) {
             List<StoredItemStack> items = getItems();
-            if (slot < 0 || slot >= items.size()) return ItemStack.EMPTY;
+            if (slot < 0 || slot >= items.size()) {
+                return ItemStack.EMPTY;
+            }
             StoredItemStack stored = items.get(slot);
             int count = (int) Math.min(stored.getCount(), stored.getItemStack().getMaxStackSize());
             return stored.getItemStack().copyWithCount(count);
@@ -63,14 +65,20 @@ public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
 
         @Override
         public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-            if (!hasCore() || stack.isEmpty() || isDisabledByRedstone()) return stack;
+            if (!hasCore() || stack.isEmpty() || isDisabledByRedstone()) {
+                return stack;
+            }
             if (simulate) {
                 long totalCount = core.getInventory().getTotalItemCount();
                 long maxItems = core.getInventory().getMaxItems();
-                if (totalCount >= maxItems) return stack;
+                if (totalCount >= maxItems) {
+                    return stack;
+                }
                 long space = maxItems - totalCount;
                 int canInsert = (int) Math.min(space, stack.getCount());
-                if (canInsert >= stack.getCount()) return ItemStack.EMPTY;
+                if (canInsert >= stack.getCount()) {
+                    return ItemStack.EMPTY;
+                }
                 return stack.copyWithCount(stack.getCount() - canInsert);
             }
             return core.insertItem(stack);
@@ -78,9 +86,13 @@ public class StorageInterfaceBlockEntity extends MultiblockBlockEntity {
 
         @Override
         public ItemStack extractItem(int slot, int amount, boolean simulate) {
-            if (!hasCore() || amount <= 0 || isDisabledByRedstone()) return ItemStack.EMPTY;
+            if (!hasCore() || amount <= 0 || isDisabledByRedstone()) {
+                return ItemStack.EMPTY;
+            }
             List<StoredItemStack> items = getItems();
-            if (slot < 0 || slot >= items.size()) return ItemStack.EMPTY;
+            if (slot < 0 || slot >= items.size()) {
+                return ItemStack.EMPTY;
+            }
             StoredItemStack stored = items.get(slot);
             int maxExtract = Math.min(amount, stored.getItemStack().getMaxStackSize());
             int extractAmount = (int) Math.min(maxExtract, stored.getCount());

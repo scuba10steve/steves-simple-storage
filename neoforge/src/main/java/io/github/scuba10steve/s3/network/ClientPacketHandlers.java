@@ -18,7 +18,9 @@ public final class ClientPacketHandlers {
         context.enqueueWork(() -> {
             Minecraft mc = Minecraft.getInstance();
             Level level = mc.level;
-            if (level == null) return;
+            if (level == null) {
+                return;
+            }
 
             BlockEntity blockEntity = level.getBlockEntity(packet.pos());
             if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
@@ -33,7 +35,9 @@ public final class ClientPacketHandlers {
         context.enqueueWork(() -> {
             Minecraft mc = Minecraft.getInstance();
             Level level = mc.level;
-            if (level == null) return;
+            if (level == null) {
+                return;
+            }
 
             if (level.getBlockEntity(packet.pos()) instanceof SecurityBoxBlockEntity securityBox) {
                 securityBox.setAllowedPlayers(packet.players());
