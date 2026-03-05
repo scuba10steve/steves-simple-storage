@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": { "id": "s3:search_box" },
+    "title": { "translate": "advancement.s3.search_box.title" },
+    "description": { "translate": "advancement.s3.search_box.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:root",
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": { "recipe": "s3:search_box" }
+    }
+  }
+}
