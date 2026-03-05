@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "id": "s3:compressed_storage_box" },
+    "title": { "translate": "advancement.s3.compressed_storage_box.title" },
+    "description": { "translate": "advancement.s3.compressed_storage_box.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:condensed_storage_box",
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "s3:compressed_storage_box" }]
+      }
+    }
+  }
+}

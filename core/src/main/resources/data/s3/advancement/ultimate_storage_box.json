@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "id": "s3:ultimate_storage_box" },
+    "title": { "translate": "advancement.s3.ultimate_storage_box.title" },
+    "description": { "translate": "advancement.s3.ultimate_storage_box.description" },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:hyper_storage_box",
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "s3:ultimate_storage_box" }]
+      }
+    }
+  }
+}

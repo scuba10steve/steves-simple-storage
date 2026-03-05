@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": { "id": "s3:storage_core" },
+    "title": { "translate": "advancement.s3.root.title" },
+    "description": { "translate": "advancement.s3.root.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "background": "s3:textures/gui/advancements_background.png"
+  },
+  "criteria": {
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "s3:storage_core" }]
+      }
+    }
+  }
+}
