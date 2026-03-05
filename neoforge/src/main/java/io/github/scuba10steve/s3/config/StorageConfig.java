@@ -39,6 +39,7 @@ public class StorageConfig {
 
     // GUI Settings
     public static final ModConfigSpec.DoubleValue COUNT_FONT_SCALE;
+    public static final ModConfigSpec.BooleanValue EXTENDED_GUI;
 
     static {
         BUILDER.comment("Storage Capacities").push("capacities");
@@ -150,6 +151,10 @@ public class StorageConfig {
         COUNT_FONT_SCALE = BUILDER
             .comment("Scale of the item count overlay text in the storage grid (smaller = more compact)")
             .defineInRange("countFontScale", 0.8, 0.5, 1.0);
+
+        EXTENDED_GUI = BUILDER
+            .comment("Use extended (larger) GUI layout for storage screens, showing more inventory rows")
+            .define("extendedGui", false);
 
         BUILDER.pop();
     }

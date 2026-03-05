@@ -25,4 +25,7 @@ public class NeoForgeConfig implements S3Config {
     @Override public int getMinSyncInterval() { return StorageConfig.MIN_SYNC_INTERVAL.get(); }
 
     @Override public double getCountFontScale() { return StorageConfig.COUNT_FONT_SCALE.get(); }
+
+    @Override public boolean isExtendedGui() { return StorageConfig.EXTENDED_GUI.get(); }
+    @Override public void setExtendedGui(boolean extended) { StorageConfig.EXTENDED_GUI.set(extended); }
 }

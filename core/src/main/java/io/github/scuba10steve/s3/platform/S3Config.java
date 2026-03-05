@@ -30,4 +30,6 @@ public interface S3Config {
 
     // GUI Settings
     double getCountFontScale();
+    boolean isExtendedGui();
+    void setExtendedGui(boolean extended);
 }
