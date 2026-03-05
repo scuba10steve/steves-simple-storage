@@ -45,6 +45,9 @@ changelog.txt
 logs/
 docs/plans
 
+# Docker server staging
+server/
+
 # Moderne CLI
 .moderne/*
 !.moderne/context/
