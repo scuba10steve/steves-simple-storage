@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": { "id": "s3:storage_interface" },
+    "title": { "translate": "advancement.s3.storage_interface.title" },
+    "description": { "translate": "advancement.s3.storage_interface.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:access_terminal",
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": { "recipe": "s3:storage_interface" }
+    }
+  }
+}

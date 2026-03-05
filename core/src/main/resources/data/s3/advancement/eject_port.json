@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": { "id": "s3:eject_port" },
+    "title": { "translate": "advancement.s3.eject_port.title" },
+    "description": { "translate": "advancement.s3.eject_port.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:extract_port",
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": { "recipe": "s3:eject_port" }
+    }
+  }
+}
