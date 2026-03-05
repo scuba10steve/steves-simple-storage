@@ -9,10 +9,10 @@
     "background": "s3:textures/gui/advancements_background.png"
   },
   "criteria": {
-    "has_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "recipe": "s3:storage_core"
+        "items": [{ "items": "s3:storage_core" }]
       }
     }
   }

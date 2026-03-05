@@ -9,9 +9,11 @@
   },
   "parent": "s3:extract_port",
   "criteria": {
-    "has_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": { "recipe": "s3:eject_port" }
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "s3:eject_port" }]
+      }
     }
   }
 }

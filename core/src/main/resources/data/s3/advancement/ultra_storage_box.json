@@ -9,9 +9,11 @@
   },
   "parent": "s3:super_storage_box",
   "criteria": {
-    "has_recipe": {
-      "trigger": "minecraft:recipe_unlocked",
-      "conditions": { "recipe": "s3:ultra_storage_box" }
+    "has_item": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [{ "items": "s3:ultra_storage_box" }]
+      }
     }
   }
 }
