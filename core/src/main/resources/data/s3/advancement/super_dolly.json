@@ -1,0 +1,17 @@
+{
+  "display": {
+    "icon": { "id": "s3:dolly_super" },
+    "title": { "translate": "advancement.s3.super_dolly.title" },
+    "description": { "translate": "advancement.s3.super_dolly.description" },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "s3:dolly",
+  "criteria": {
+    "has_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": { "recipe": "s3:dolly_super" }
+    }
+  }
+}
