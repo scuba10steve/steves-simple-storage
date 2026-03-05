@@ -8,7 +8,7 @@ The mod has been successfully rebranded from **EZStorage 2** to **Steve's Simple
 
 **Name**: Steve's Simple Storage
 **Abbreviation**: S3
-**Version**: 0.3.1
+**Version**: 0.9.0
 **Tagline**: TBD
 
 ## Inspiration
@@ -47,10 +47,10 @@ All EZ-prefixed classes have been renamed. The naming convention uses a mix of "
 |----------|----------|--------|
 | `EZStorage` | `StevesSimpleStorage` | neoforge |
 | `EZConfig` | `StorageConfig` | neoforge |
-| `EZInventory` | `StorageInventory` | common |
-| `EZBlock` | `BaseBlock` | common |
+| `EZInventory` | `StorageInventory` | core |
+| `EZBlock` | `BaseBlock` | core |
 | `EZBlockEntity` | (removed — not needed) | — |
-| `EZItem` | `BaseItem` | common |
+| `EZItem` | `BaseItem` | core |
 | `EZTab` | `ModTab` | neoforge |
 | `EZNetwork` | `ModNetwork` | neoforge |
 | `EZStorageJEIPlugin` | `S3JEIPlugin` | neoforge |
@@ -68,7 +68,7 @@ All EZ-prefixed classes have been renamed. The naming convention uses a mix of "
 ### High Priority - COMPLETED ✅
 - [x] `gradle.properties` - Updated mod_name and mod_description
 - [x] `neoforge/src/main/resources/META-INF/neoforge.mods.toml` - Updated displayName and description
-- [x] `common/src/main/resources/assets/s3/lang/en_us.json` - Updated mod name and descriptions
+- [x] `core/src/main/resources/assets/s3/lang/en_us.json` - Updated mod name and descriptions
 - [x] Package structure - Renamed from `io.github.scuba10steve.ezstorage` to `io.github.scuba10steve.s3`
 - [x] Mod ID - Changed from `ezstorage` to `s3`
 - [x] Asset directories - Renamed from `assets/ezstorage/` to `assets/s3/`
@@ -131,7 +131,7 @@ All EZ-prefixed classes have been renamed. The naming convention uses a mix of "
 - `neoforge/src/main/resources/META-INF/neoforge.mods.toml`
 
 **Language Files:**
-- `common/src/main/resources/assets/s3/lang/en_us.json`
+- `core/src/main/resources/assets/s3/lang/en_us.json`
 
 **Documentation:**
 - All docs/*.md files updated
@@ -162,4 +162,4 @@ When implementing additional features, consider AWS-themed names:
 - Mod ID is `s3` (fully migrated from `ezstorage`)
 - Package is `io.github.scuba10steve.s3`
 - All EZ-prefixed classes have been renamed
-- Project uses multi-module layout: `common/` (platform-agnostic) and `neoforge/` (loader-specific)
+- Project uses multi-module layout: `core/` (platform-agnostic) and `neoforge/` (loader-specific)

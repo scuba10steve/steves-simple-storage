@@ -33,7 +33,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **New Package Structure** - Migrated to `io.github.scuba10steve.s3`
 - **Multi-Module Architecture** - Clean separation of platform-agnostic and NeoForge-specific code
 - **Bug-Free Core** - All UI sync and interaction issues resolved
-- **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.139, JEI 19.27.0.336
+- **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.140, JEI 19.27.0.336
 
 ### Recent Bug Fixes (2026-01-14)
 - ✅ Fixed UI not loading items on first interaction
@@ -48,9 +48,9 @@ All major features from the original 1.12.2 version have been successfully imple
 
 ### Build System Migration
 - **Old**: ForgeGradle with Java 8, single module
-- **New**: ModDevGradle 2.0.139 with Java 21, multi-module Gradle layout
+- **New**: ModDevGradle 2.0.140 with Java 21, multi-module Gradle layout
 - **Gradle**: Updated from 4.x to 8.10.2
-- **Architecture**: Split into `common` (vanilla MC only) and `neoforge` (loader-specific) modules with platform abstraction layer
+- **Architecture**: Split into `core` (vanilla MC only) and `neoforge` (loader-specific) modules with platform abstraction layer
 
 ### Registration System Overhaul
 - **Old**: Registry events and manual registration
@@ -119,13 +119,19 @@ The port was completed through systematic implementation of each major system:
 - **Gradle**: 8.10.2
 - **IDE**: IntelliJ IDEA or Eclipse recommended
 
+### Post-Port Features (v0.4.0 – v0.9.0)
+- **Expandable Storage Grid** - Toggle between normal and extended GUI layouts in crafting screen
+- **Item Count Truncation** - Large counts displayed with K/M/B suffixes
+- **Advancement Tree** - 21 advancements tracking block/item progression
+- **Docker Dev Server** - Local NeoForge server setup for testing via `scripts/server.sh`
+- **Storage Break Warning** - Players warned before breaking Storage Core with stored items
+- **Beta/Release Workflow** - GitHub Actions support for beta and release version types
+
 ## Future Considerations
 
 The port provides a solid foundation for future enhancements:
 
 - **Additional Storage Tiers** - Easy to add new tiers with higher capacities
-- **New Multiblock Components** - Framework supports crafting boxes, sorting boxes, etc.
-- **Enhanced JEI Features** - Advanced ingredient lookup and recipe integration
 - **Performance Optimizations** - Large-scale storage network optimizations
 
 ## Conclusion

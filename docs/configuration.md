@@ -83,10 +83,10 @@ modContainer.registerConfig(ModConfig.Type.COMMON, StorageConfig.SPEC);
 
 ### Accessing Config Values
 
-The `common` module accesses config values through the `S3Config` platform abstraction interface:
+The `core` module accesses config values through the `S3Config` platform abstraction interface:
 
 ```java
-// common/.../platform/S3Config.java — interface
+// core/.../platform/S3Config.java — interface
 int capacity = S3Platform.getConfig().getBasicCapacity();
 boolean enabled = S3Platform.getConfig().isSecurityEnabled();
 ```

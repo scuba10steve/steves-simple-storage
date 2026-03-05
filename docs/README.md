@@ -19,7 +19,7 @@ This directory contains comprehensive technical documentation for Steve's Simple
 ### Key Technologies
 - **Minecraft**: 1.21.1
 - **NeoForge**: 21.1.218
-- **ModDevGradle**: 2.0.139
+- **ModDevGradle**: 2.0.140
 - **Java**: 21
 - **Gradle**: 8.10.2
 
@@ -31,13 +31,15 @@ The project uses a **multi-module Gradle layout**:
 A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decouples core code from loader-specific APIs.
 
 ### Project Status
-✅ **Version 0.3.1** - All features ported and functional
+✅ **Version 0.9.0** - Feature-complete, beta releases
 
 **Implemented Features:**
 - Basic storage system with multiblock capacity scaling
 - Storage Core GUI with sidebar item display and scrolling
+- Expandable storage grid in crafting GUI (toggle between normal/extended layouts)
 - Tiered storage blocks (Storage Box, Condensed, Compressed, Super, Ultra, Hyper, Ultimate)
 - Item insertion and extraction with proper client-server sync
+- Truncated item count display with suffixes (K/M/B) for large quantities
 - JEI integration for recipe transfer and ingredient lookup
 - Crafting Box with 3x3 crafting grid connected to storage
 - Shift-click crafting with automatic ingredient repopulation
@@ -46,8 +48,11 @@ A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decou
 - Security Box with player access control
 - Access Terminal for remote access
 - Input/Extract/Eject Ports for automation
+- Storage Interface for cross-mod integration
 - Blank Box for decorative multiblock components
 - Dolly and Key items
+- Advancement tree (21 advancements tracking block/item progression)
+- Docker-based local server for dev testing
 
 ### Getting Started
 1. See [Build System](build-system.md) for setup instructions

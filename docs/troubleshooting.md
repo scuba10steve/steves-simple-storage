@@ -308,7 +308,7 @@ When reporting issues, include:
 ```
 Minecraft: 1.21.1
 NeoForge: 21.1.218
-Steve's Simple Storage: 0.3.1
+Steve's Simple Storage: 0.9.0
 Java: 21
 Gradle: 8.10.2
 ```

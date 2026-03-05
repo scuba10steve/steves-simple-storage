@@ -2,7 +2,7 @@
 
 ## Overview
 
-Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.139**. The project is split into two modules:
+Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.140**. The project is split into two modules:
 
 - **core** - Platform-agnostic code compiled against vanilla Minecraft (via `neoFormVersion`)
 - **neoforge** - NeoForge-specific code (registration, config, packet handlers, JEI integration)
@@ -71,7 +71,7 @@ Uses `neoFormVersion` for vanilla Minecraft classes only (no NeoForge APIs):
 
 ```gradle
 plugins {
-    id 'net.neoforged.moddev' version '2.0.139'
+    id 'net.neoforged.moddev' version '2.0.140'
 }
 
 base { archivesName = 's3-core' }
@@ -81,7 +81,7 @@ neoForge {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.3'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -94,7 +94,7 @@ Full NeoForge with all run configs, depends on `:core`:
 
 ```gradle
 plugins {
-    id 'net.neoforged.moddev' version '2.0.139'
+    id 'net.neoforged.moddev' version '2.0.140'
 }
 
 base { archivesName = 's3' }
@@ -135,7 +135,7 @@ dependencies {
     compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.336"
     runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.336"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.11.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.3'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
@@ -149,7 +149,7 @@ test { useJUnitPlatform() }
 ```properties
 minecraft_version=1.21.1
 neoforge_version=21.1.218
-mod_version=0.3.1
+mod_version=0.9.0
 mod_id=s3
 mod_name=Steve's Simple Storage
 mod_license=MIT
@@ -244,7 +244,7 @@ All platform holders are initialized in `StevesSimpleStorage` (the NeoForge `@Mo
 - Menus and screens (except ExtractPort which is coupled to its neoforge BE)
 - Packet record definitions (TYPE + STREAM_CODEC)
 - Storage logic, utilities, enums
-- Assets and data resources
+- Assets and data resources (textures, models, recipes, advancements, lang)
 
 ### What goes in `neoforge`
 - `@Mod` entry point (`StevesSimpleStorage`)
@@ -256,6 +256,7 @@ All platform holders are initialized in `StevesSimpleStorage` (the NeoForge `@Mo
 - Port blocks and extract port menu/screen
 - JEI integration, datagen, game tests
 - Event handlers (`SecurityEvents`, `ClientEvents`)
+- `ModTab` (creative tab, uses NeoForge-patched `CreativeModeTab.builder()`)
 
 ## Build Outputs
 

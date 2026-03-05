@@ -21,7 +21,7 @@ The Steve's Simple Storage GUI system provides a modern Minecraft inventory inte
 ## Components
 
 ### StorageCoreMenu
-**Location**: `common/.../gui/server/StorageCoreMenu`
+**Location**: `core/.../gui/server/StorageCoreMenu`
 
 The server-side container that manages the storage GUI.
 
@@ -69,7 +69,7 @@ public ItemStack quickMoveStack(Player player, int index) {
 ```
 
 ### StorageCoreScreen
-**Location**: `common/.../gui/client/StorageCoreScreen`
+**Location**: `core/.../gui/client/StorageCoreScreen`
 
 The client-side screen that renders the storage GUI.
 
@@ -96,7 +96,7 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 ```
 
 ### StorageSlot
-**Location**: `common/.../gui/slot/StorageSlot`
+**Location**: `core/.../gui/slot/StorageSlot`
 
 Custom slot implementation for storage interaction.
 
@@ -228,7 +228,7 @@ public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE =
             new StorageCoreMenu(windowId, inv, data.readBlockPos())));
 ```
 
-Menu types are registered in the `neoforge` module and made available to `common` code via `S3Platform` static holders (see [Build System - Platform Abstraction](build-system.md#platform-abstraction)).
+Menu types are registered in the `neoforge` module and made available to `core` code via `S3Platform` static holders (see [Build System - Platform Abstraction](build-system.md#platform-abstraction)).
 
 ### Screen Registration
 **Location**: `neoforge/.../client/ClientEvents`
@@ -290,7 +290,7 @@ LOGGER.debug("StorageSlot.set: {} x{}", stack.getItem(), stack.getCount());
 3. **Sorting** ✅ (requires Sort Box in multiblock):
    - 6 sorting modes (count up/down, name A-Z/Z-A, mod A-Z/Z-A)
    - Persistent sort mode selection
-   - See [Sort Box](sort-box.md) for details
+   - See [Storage System](storage-system.md#sort-box) for details
 
 4. **JEI Integration** ✅:
    - Recipe transfer to crafting grid

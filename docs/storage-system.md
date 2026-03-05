@@ -7,7 +7,7 @@ The Steve's Simple Storage system provides massive item storage capacity through
 ## Core Components
 
 ### StorageInventory
-**Location**: `common/.../storage/StorageInventory`
+**Location**: `core/.../storage/StorageInventory`
 
 The central storage inventory that manages all stored items.
 
@@ -32,7 +32,7 @@ void setMaxItems(long maxItems)  // Set storage capacity
 - Tracks: Item types, counts, available space, merge operations
 
 ### StoredItemStack
-**Location**: `common/.../storage/StoredItemStack`
+**Location**: `core/.../storage/StoredItemStack`
 
 Wrapper class for storing items with large quantities.
 
@@ -48,7 +48,7 @@ private long count;  // Actual quantity stored
 - Simple count manipulation without ItemStack overhead
 
 ### StorageCoreBlockEntity
-**Location**: `common/.../blockentity/StorageCoreBlockEntity`
+**Location**: `core/.../blockentity/StorageCoreBlockEntity`
 
 The block entity that manages the storage system and multiblock network.
 
@@ -139,7 +139,7 @@ items.add(new StoredItemStack(stack.copyWithCount(1), insertAmount));
 ## GUI Integration
 
 ### StorageSlot
-**Location**: `common/.../gui/slot/StorageSlot`
+**Location**: `core/.../gui/slot/StorageSlot`
 
 Custom slot implementation for storage GUI interaction.
 
@@ -157,7 +157,7 @@ ItemStack remove(int amount)  // Not supported for storage slots
 ```
 
 ### StorageCoreMenu
-**Location**: `common/.../gui/server/StorageCoreMenu`
+**Location**: `core/.../gui/server/StorageCoreMenu`
 
 Container menu that provides 54 storage slots for item management.
 
@@ -206,7 +206,7 @@ private void syncToClients() {
 }
 ```
 
-The `S3NetworkHelper` platform abstraction decouples the common module from NeoForge's `PacketDistributor`. The NeoForge implementation (`NeoForgeNetworkHelper`) delegates to the actual `PacketDistributor` API.
+The `S3NetworkHelper` platform abstraction decouples the core module from NeoForge's `PacketDistributor`. The NeoForge implementation (`NeoForgeNetworkHelper`) delegates to the actual `PacketDistributor` API.
 
 ## Performance Considerations
 
@@ -252,11 +252,33 @@ The `S3NetworkHelper` platform abstraction decouples the common module from NeoF
 
 ## Implemented Enhancements
 
-- **Search System** ✅: Quick item lookup via Search Box with multiple search modes
-- **Sort Box** ✅: Automatic item sorting with 6 configurable modes
-- **Crafting Box** ✅: 3x3 crafting grid connected to storage with auto-repopulation
-- **Security Box** ✅: Player access control with whitelist management
-- **Input/Extract/Eject Ports** ✅: Automation support for item insertion and extraction
+### Search Box
+Quick item lookup with multiple search modes: standard text, `$` tags, `@` mod, `%` tooltips. The search bar appears in the GUI header row when a Search Box is present in the multiblock. Results are filtered in real-time as the player types.
+
+### Sort Box
+Automatic item sorting with 6 modes, activated when a Sort Box is in the multiblock. The sort button appears in the header row beside the search bar.
+
+**Sorting Modes:**
+1. **Count Down** — descending item counts, then A-Z
+2. **Count Up** — ascending item counts, then Z-A
+3. **Name A-Z** — alphabetical, then by descending count
+4. **Name Z-A** — reverse alphabetical, then by ascending count
+5. **Mod A-Z** — by mod name A-Z, then by descending count
+6. **Mod Z-A** — by mod name Z-A, then by ascending count
+
+Sort mode persists across GUI open/close. Sorting is applied in `StorageInventory.getSortedItems()` and affects GUI display, JEI queries, and search results. Mode changes sync via `SortModePacket` → server → `StorageSyncPacket` broadcast.
+
+### Crafting Box
+3x3 crafting grid connected to storage with automatic ingredient repopulation from the storage system after each craft. Supports shift-click crafting.
+
+### Security Box
+Player access control with whitelist management. Operator override configurable via `enableOpOverride` config option. Uses `SecurityEvents` in the neoforge module.
+
+### Input/Extract/Eject Ports
+Automation support for item insertion and extraction. Port blocks and their block entities live in the neoforge module (depend on `IItemHandler`).
+
+### Storage Interface
+Cross-mod integration block that exposes the S3 inventory to external mod systems.
 
 ## Future Enhancements
 
