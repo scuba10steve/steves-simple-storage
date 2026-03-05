@@ -43,9 +43,9 @@ dependencies {
     implementation project(':core')
 
     // JEI integration
-    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.336"
-    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.336"
-    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.336"
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.340"
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.340"
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
 
     // Test dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.14.3'
