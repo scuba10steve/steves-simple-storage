@@ -107,6 +107,15 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     }
 
     /**
+     * Returns the position [x, y] for the toggle (expand/compact) button.
+     * Subclasses can override to position the button differently.
+     * Default: beside the sort button in the header row.
+     */
+    protected int[] getToggleButtonPosition() {
+        return new int[]{this.leftPos + 122, this.topPos + 4};
+    }
+
+    /**
      * Called when the extend/compact toggle button is pressed.
      */
     protected void onToggleButtonPressed(Button button) {
@@ -139,7 +148,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         super.init();
 
         // Create search field - positioned at top of GUI
-        this.searchField = new EditBox(this.font, this.leftPos + 10, this.topPos + 4, 80, 12, Component.translatable("gui.s3.search"));
+        this.searchField = new EditBox(this.font, this.leftPos + 7, this.topPos + 4, 65, 12, Component.translatable("gui.s3.search"));
         this.searchField.setMaxLength(50);
         this.searchField.setBordered(true);
         this.searchField.setTextColor(0xFFFFFF);
@@ -155,36 +164,45 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         }
 
         // Check if sort box is available and create sort button
-        // Position below storage area dynamically based on storageAreaHeight
+        // Position is delegated to subclasses via getSortButtonPosition()
         sortActive = inventory != null && inventory.hasSortBox();
         if (sortActive) {
             SortMode currentMode = inventory.getSortMode();
-            int sortButtonY = this.topPos + 18 + storageAreaHeight; // Just below storage grid
+            int[] sortButtonPos = getSortButtonPosition();
             this.sortButton = Button.builder(
                     Component.literal(currentMode.getDisplayName()),
                     this::onSortButtonPressed
                 )
-                .bounds(this.leftPos + 118, sortButtonY, 50, 12)
+                .bounds(sortButtonPos[0], sortButtonPos[1], 46, 12)
                 .build();
             this.addRenderableWidget(this.sortButton);
         }
 
-        // Add extend/compact toggle button below scrollbar
+        // Add extend/compact toggle button below scrollbar and sort button
         if (normalLayout != null && extendedLayout != null) {
             repositionSlots(extended ? extendedLayout : normalLayout);
             String toggleLabel = extended ? "-" : "+";
-            int toggleButtonY = this.topPos + 18 + storageAreaHeight + 2;
+            int[] togglePos = getToggleButtonPosition();
             Button toggleButton = Button.builder(
                     Component.literal(toggleLabel),
                     this::onToggleButtonPressed
                 )
-                .bounds(this.leftPos + 175, toggleButtonY, 12, 12)
+                .bounds(togglePos[0], togglePos[1], 12, 12)
                 .build();
             this.addRenderableWidget(toggleButton);
         }
 
         // Initialize filtered items
         updateFilteredItems();
+    }
+
+    /**
+     * Returns the position [x, y] for the sort button.
+     * Subclasses can override to position the button differently.
+     * Default: beside the search bar in the header row.
+     */
+    protected int[] getSortButtonPosition() {
+        return new int[]{this.leftPos + 74, this.topPos + 4};
     }
 
     /**
