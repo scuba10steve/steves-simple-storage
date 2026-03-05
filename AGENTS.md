@@ -45,7 +45,7 @@ The primary purpose of an AI agent in this repository is to assist human develop
 ## Version & Release Management
 
 *   **Version Bumps:** Never manually edit `mod_version` in `gradle.properties`. Use the `bump-version` GitHub Actions workflow (`gh workflow run bump-version.yml --ref main -f part=<patch|minor|major>`).
-*   **Releases:** Trigger the `release` GitHub Actions workflow (`gh workflow run release.yml --ref main -f release_type=<beta|release>`). This builds, creates a GitHub Release, and publishes to Modrinth and CurseForge.
+*   **Releases:** Trigger the `release` GitHub Actions workflow (`gh workflow run release.yml --ref main -f release_type=<beta|release>`). This builds, creates a GitHub Release, and publishes to Modrinth and CurseForge. **Always use `release_type=beta`** unless the user explicitly requests a full release.
 *   **Workflow Order:** Always run `bump-version` first and wait for it to complete before triggering `release`, so the release picks up the correct version.
 
 ## Workflow Example (Software Engineering Tasks)
