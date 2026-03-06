@@ -20,6 +20,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
     private final Container craftMatrix;
     private final ResultContainer craftResult;
+    private boolean suppressResultUpdate;
 
     public StorageCoreCraftingMenu(int containerId, Inventory playerInventory, net.minecraft.core.BlockPos pos) {
         super(S3Platform.getStorageCraftingMenuType(), containerId, playerInventory, pos);
@@ -44,7 +45,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
     @Override
     public void slotsChanged(Container pContainer) {
-        if (pContainer == craftMatrix) {
+        if (pContainer == craftMatrix && !suppressResultUpdate) {
             if (!player.level().isClientSide) {
                 updateCraftingResult();
             }
@@ -95,8 +96,13 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         super.clicked(slotId, button, clickType, player);
 
         if (recipePattern != null) {
-            moveRemaindersToStorage(player, recipePattern);
-            tryToPopulateCraftingGrid(recipePattern);
+            suppressResultUpdate = true;
+            try {
+                moveRemaindersToStorage(player, recipePattern);
+                tryToPopulateCraftingGrid(recipePattern);
+            } finally {
+                suppressResultUpdate = false;
+            }
             updateCraftingResult();
         }
     }
@@ -123,27 +129,33 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         int cursorLimit = Math.min(resultTemplate.getMaxStackSize(), S3Platform.getConfig().getCraftShiftClickLimit());
         int cursorCount = carried.isEmpty() ? 0 : carried.getCount();
 
-        while (cursorCount + resultTemplate.getCount() <= cursorLimit) {
-            ItemStack result = resultSlot.getItem();
-            if (result.isEmpty() || !ItemStack.isSameItemSameComponents(result, resultTemplate)) {
-                break;
+        suppressResultUpdate = true;
+        try {
+            while (cursorCount + resultTemplate.getCount() <= cursorLimit) {
+                ItemStack result = resultSlot.getItem();
+                if (result.isEmpty() || !ItemStack.isSameItemSameComponents(result, resultTemplate)) {
+                    break;
+                }
+
+                ItemStack crafted = result.copy();
+                resultSlot.onTake(player, result);
+
+                if (carried.isEmpty()) {
+                    carried = crafted;
+                    setCarried(carried);
+                } else {
+                    carried.grow(crafted.getCount());
+                }
+                cursorCount = carried.getCount();
+
+                moveRemaindersToStorage(player, recipePattern);
+                tryToPopulateCraftingGrid(recipePattern);
+                updateCraftingResult();
             }
-
-            ItemStack crafted = result.copy();
-            resultSlot.onTake(player, result);
-
-            if (carried.isEmpty()) {
-                carried = crafted;
-                setCarried(carried);
-            } else {
-                carried.grow(crafted.getCount());
-            }
-            cursorCount = carried.getCount();
-
-            moveRemaindersToStorage(player, recipePattern);
-            tryToPopulateCraftingGrid(recipePattern);
-            updateCraftingResult();
+        } finally {
+            suppressResultUpdate = false;
         }
+        updateCraftingResult();
     }
 
     @Override
@@ -219,27 +231,33 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         int resultSize = resultTemplate.getCount();
 
         int craftLimit = S3Platform.getConfig().getCraftShiftClickLimit();
-        while (totalResultItems < craftLimit) {
-            ItemStack result = resultSlot.getItem();
+        suppressResultUpdate = true;
+        try {
+            while (totalResultItems < craftLimit) {
+                ItemStack result = resultSlot.getItem();
 
-            if (result.isEmpty() || !ItemStack.isSameItemSameComponents(result, resultTemplate)) {
-                break;
+                if (result.isEmpty() || !ItemStack.isSameItemSameComponents(result, resultTemplate)) {
+                    break;
+                }
+
+                ItemStack toInsert = result.copy();
+                boolean movedAny = moveItemStackTo(toInsert, 10, 46, false);
+
+                if (!movedAny || !toInsert.isEmpty()) {
+                    break;
+                }
+
+                resultSlot.onTake(player, result);
+                totalResultItems += resultSize;
+
+                moveRemaindersToStorage(player, recipePattern);
+                tryToPopulateCraftingGrid(recipePattern);
+                updateCraftingResult();
             }
-
-            ItemStack toInsert = result.copy();
-            boolean movedAny = moveItemStackTo(toInsert, 10, 46, false);
-
-            if (!movedAny || !toInsert.isEmpty()) {
-                break;
-            }
-
-            resultSlot.onTake(player, result);
-            totalResultItems += resultSize;
-
-            moveRemaindersToStorage(player, recipePattern);
-            tryToPopulateCraftingGrid(recipePattern);
-            updateCraftingResult();
+        } finally {
+            suppressResultUpdate = false;
         }
+        updateCraftingResult();
 
         LOGGER.debug("craftMax completed: produced {} items", totalResultItems);
         return ItemStack.EMPTY;
@@ -316,31 +334,35 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
     }
 
     public void handleRecipeTransfer(List<ItemStack> recipe) {
-        // Clear grid, returning items to storage
-        clearGrid(player);
+        suppressResultUpdate = true;
+        try {
+            // Clear grid, returning items to storage
+            clearGrid(player);
 
-        StorageInventory inventory = getInventory();
-        Inventory playerInv = player.getInventory();
+            StorageInventory inventory = getInventory();
+            Inventory playerInv = player.getInventory();
 
-        for (int i = 0; i < 9 && i < recipe.size(); i++) {
-            ItemStack template = recipe.get(i);
-            if (template.isEmpty()) {
-                continue;
+            for (int i = 0; i < 9 && i < recipe.size(); i++) {
+                ItemStack template = recipe.get(i);
+                if (template.isEmpty()) {
+                    continue;
+                }
+
+                // Try player inventory first
+                ItemStack extracted = extractOneFromPlayer(playerInv, template);
+
+                // Fall back to storage
+                if (extracted.isEmpty() && inventory != null) {
+                    extracted = inventory.extractItem(template, 1);
+                }
+
+                if (!extracted.isEmpty()) {
+                    craftMatrix.setItem(i, extracted);
+                }
             }
-
-            // Try player inventory first
-            ItemStack extracted = extractOneFromPlayer(playerInv, template);
-
-            // Fall back to storage
-            if (extracted.isEmpty() && inventory != null) {
-                extracted = inventory.extractItem(template, 1);
-            }
-
-            if (!extracted.isEmpty()) {
-                craftMatrix.setItem(i, extracted);
-            }
+        } finally {
+            suppressResultUpdate = false;
         }
-
         updateCraftingResult();
     }
 
@@ -355,7 +377,12 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
     }
 
     public void handleClearGrid(Player player) {
-        clearGrid(player);
+        suppressResultUpdate = true;
+        try {
+            clearGrid(player);
+        } finally {
+            suppressResultUpdate = false;
+        }
         updateCraftingResult();
     }
 
