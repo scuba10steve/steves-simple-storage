@@ -83,7 +83,7 @@ public class StorageCoreCraftingScreen extends AbstractStorageScreen<StorageCore
 
         for (Slot slot : this.menu.slots) {
             if (slot instanceof ResultSlot) {
-                slot.x = 115;
+                slot.x = 116;
                 slot.y = NORMAL_RESULT_SLOT_Y + delta;
             } else if (slot.container instanceof CraftingContainer) {
                 int gridIndex = slot.getContainerSlot();

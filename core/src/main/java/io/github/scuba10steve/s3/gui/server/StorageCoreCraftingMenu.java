@@ -30,7 +30,7 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
         this.craftResult = new ResultContainer();
 
         // Add crafting result slot (slot 0)
-        this.addSlot(new ResultSlot(playerInventory.player, (CraftingContainer) this.craftMatrix, craftResult, 0, 115, 117));
+        this.addSlot(new ResultSlot(playerInventory.player, (CraftingContainer) this.craftMatrix, craftResult, 0, 116, 117));
 
         // Add 3x3 crafting grid (slots 1-9)
         for (int row = 0; row < 3; ++row) {
