@@ -45,4 +45,16 @@ public class StorageCoreScreen extends AbstractStorageScreen<StorageCoreMenu> {
 
         applyCurrentLayout();
     }
+
+    @Override
+    protected int[] getSortButtonPosition() {
+        int yOffset = extended ? -1 : 0;
+        return new int[]{this.leftPos + 74, this.topPos + 4 + yOffset};
+    }
+
+    @Override
+    protected int[] getToggleButtonPosition() {
+        int yOffset = extended ? -1 : 0;
+        return new int[]{this.leftPos + 122, this.topPos + 4 + yOffset};
+    }
 }
