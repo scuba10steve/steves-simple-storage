@@ -20,8 +20,6 @@ public class StorageConfig {
     public static final ModConfigSpec.BooleanValue ENABLE_DOLLY;
     public static final ModConfigSpec.BooleanValue ENABLE_SEARCH_MODES;
     public static final ModConfigSpec.BooleanValue ENABLE_OP_OVERRIDE;
-    public static final ModConfigSpec.BooleanValue SEARCH_AUTO_FOCUS;
-
     // Recipe Options
     public static final ModConfigSpec.BooleanValue CLASSIC_RECIPES;
     public static final ModConfigSpec.BooleanValue TOUGH_HYPER;
@@ -37,9 +35,6 @@ public class StorageConfig {
     public static final ModConfigSpec.IntValue EXTRACT_PORT_INTERVAL;
     public static final ModConfigSpec.IntValue MIN_SYNC_INTERVAL;
 
-    // GUI Settings
-    public static final ModConfigSpec.DoubleValue COUNT_FONT_SCALE;
-    public static final ModConfigSpec.BooleanValue EXTENDED_GUI;
 
     static {
         BUILDER.comment("Storage Capacities").push("capacities");
@@ -96,10 +91,6 @@ public class StorageConfig {
             .comment("Allow operators to override security restrictions")
             .define("enableOpOverride", true);
 
-        SEARCH_AUTO_FOCUS = BUILDER
-            .comment("Automatically focus the search box when opening a storage GUI with a Search Box attached")
-            .define("searchAutoFocus", false);
-
         BUILDER.pop();
         
         BUILDER.comment("Recipe Options").push("recipes");
@@ -146,17 +137,6 @@ public class StorageConfig {
 
         BUILDER.pop();
 
-        BUILDER.comment("GUI Settings").push("gui");
-
-        COUNT_FONT_SCALE = BUILDER
-            .comment("Scale of the item count overlay text in the storage grid (smaller = more compact)")
-            .defineInRange("countFontScale", 0.8, 0.5, 1.0);
-
-        EXTENDED_GUI = BUILDER
-            .comment("Use extended (larger) GUI layout for storage screens, showing more inventory rows")
-            .define("extendedGui", false);
-
-        BUILDER.pop();
     }
 
     public static final ModConfigSpec SPEC = BUILDER.build();

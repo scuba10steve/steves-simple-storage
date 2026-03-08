@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3;
 
+import io.github.scuba10steve.s3.config.StorageClientConfig;
 import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.init.*;
 import io.github.scuba10steve.s3.platform.NeoForgeConfig;
@@ -60,6 +61,7 @@ public class StevesSimpleStorage {
 
 		modEventBus.addListener(this::commonSetup);
 		modContainer.registerConfig(ModConfig.Type.COMMON, StorageConfig.SPEC);
+		modContainer.registerConfig(ModConfig.Type.CLIENT, StorageClientConfig.SPEC);
 	}
 
 	private void commonSetup(final FMLCommonSetupEvent event) {
