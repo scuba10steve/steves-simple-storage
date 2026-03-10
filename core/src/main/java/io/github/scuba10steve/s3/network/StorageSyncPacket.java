@@ -9,9 +9,15 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items, long maxCapacity, boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal) implements CustomPacketPayload {
+public record StorageSyncPacket(
+    BlockPos pos, List<StoredItemStack> items, long maxCapacity,
+    boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
+    boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount
+) implements CustomPacketPayload {
     
     public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("s3", "storage_sync"));
     
@@ -27,6 +33,13 @@ public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items, long 
         buf.writeBoolean(packet.hasSearchBox());
         buf.writeBoolean(packet.hasSortBox());
         buf.writeInt(packet.sortModeOrdinal());
+        buf.writeBoolean(packet.hasStatisticsBox());
+        buf.writeInt(packet.tierBreakdown().size());
+        for (Map.Entry<String, Integer> entry : packet.tierBreakdown().entrySet()) {
+            buf.writeUtf(entry.getKey());
+            buf.writeInt(entry.getValue());
+        }
+        buf.writeInt(packet.totalBlockCount());
     }
 
     private static StorageSyncPacket decode(RegistryFriendlyByteBuf buf) {
@@ -36,7 +49,15 @@ public record StorageSyncPacket(BlockPos pos, List<StoredItemStack> items, long 
         boolean hasSearchBox = buf.readBoolean();
         boolean hasSortBox = buf.readBoolean();
         int sortModeOrdinal = buf.readInt();
-        return new StorageSyncPacket(pos, items, maxCapacity, hasSearchBox, hasSortBox, sortModeOrdinal);
+        boolean hasStatisticsBox = buf.readBoolean();
+        int tierSize = buf.readInt();
+        Map<String, Integer> tierBreakdown = new HashMap<>();
+        for (int i = 0; i < tierSize; i++) {
+            tierBreakdown.put(buf.readUtf(), buf.readInt());
+        }
+        int totalBlockCount = buf.readInt();
+        return new StorageSyncPacket(pos, items, maxCapacity, hasSearchBox, hasSortBox, sortModeOrdinal,
+            hasStatisticsBox, tierBreakdown, totalBlockCount);
     }
 
     private static void writeItems(RegistryFriendlyByteBuf buf, List<StoredItemStack> items) {

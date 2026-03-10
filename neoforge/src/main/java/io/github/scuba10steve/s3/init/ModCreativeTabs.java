@@ -36,6 +36,7 @@ public class ModCreativeTabs {
                 output.accept(ModItems.EXTRACT_PORT.get());
                 output.accept(ModItems.EJECT_PORT.get());
                 output.accept(ModItems.SECURITY_BOX.get());
+                output.accept(ModItems.STATISTICS_BOX.get());
                 output.accept(ModItems.ACCESS_TERMINAL.get());
                 output.accept(ModItems.STORAGE_INTERFACE.get());
 

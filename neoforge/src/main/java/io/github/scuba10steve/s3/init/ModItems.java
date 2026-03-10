@@ -51,6 +51,8 @@ public class ModItems {
         () -> new BlockItem(ModBlocks.ACCESS_TERMINAL.get(), new Item.Properties()));
     public static final Supplier<Item> STORAGE_INTERFACE = ITEMS.register("storage_interface",
         () -> new BlockItem(ModBlocks.STORAGE_INTERFACE.get(), new Item.Properties()));
+    public static final Supplier<Item> STATISTICS_BOX = ITEMS.register("statistics_box",
+        () -> new BlockItem(ModBlocks.STATISTICS_BOX.get(), new Item.Properties()));
 
     // Items
     public static final Supplier<Item> KEY = ITEMS.register("key", ItemKey::new);

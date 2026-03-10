@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": {"model": "s3:block/statistics_box"}
+  }
+}

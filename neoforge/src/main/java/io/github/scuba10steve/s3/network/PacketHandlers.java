@@ -81,7 +81,7 @@ public final class PacketHandlers {
                             serverLevel, packet.pos(),
                             new StorageSyncPacket(packet.pos(), inventory.getStoredItems(),
                                 inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal())
+                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount())
                         );
                     }
                 }
@@ -103,7 +103,7 @@ public final class PacketHandlers {
                         serverLevel, packet.pos(),
                         new StorageSyncPacket(packet.pos(), core.getInventory().getStoredItems(),
                             core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                            newMode.ordinal())
+                            newMode.ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount())
                     );
                 }
             }
@@ -158,7 +158,7 @@ public final class PacketHandlers {
                             serverLevel, menu.getPos(),
                             new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
                                 inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal())
+                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount())
                         );
                     }
                 }
@@ -184,7 +184,7 @@ public final class PacketHandlers {
                             serverLevel, menu.getPos(),
                             new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
                                 inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal())
+                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount())
                         );
                     }
                 }

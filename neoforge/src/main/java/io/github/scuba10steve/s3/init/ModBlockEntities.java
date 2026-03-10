@@ -49,6 +49,10 @@ public class ModBlockEntities {
         BLOCK_ENTITIES.register("storage_interface", () ->
             BlockEntityType.Builder.of(StorageInterfaceBlockEntity::new, ModBlocks.STORAGE_INTERFACE.get()).build(null));
 
+    public static final Supplier<BlockEntityType<StatisticsBoxBlockEntity>> STATISTICS_BOX =
+        BLOCK_ENTITIES.register("statistics_box", () ->
+            BlockEntityType.Builder.of(StatisticsBoxBlockEntity::new, ModBlocks.STATISTICS_BOX.get()).build(null));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

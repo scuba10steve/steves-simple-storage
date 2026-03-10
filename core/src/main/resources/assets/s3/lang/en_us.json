@@ -73,5 +73,10 @@
   "advancement.s3.dolly.title": "Dolly",
   "advancement.s3.dolly.description": "Move your storage blocks with ease",
   "advancement.s3.super_dolly.title": "Super Dolly",
-  "advancement.s3.super_dolly.description": "A more durable way to move blocks"
+  "advancement.s3.super_dolly.description": "A more durable way to move blocks",
+
+  "block.s3.statistics_box": "Statistics Box",
+  "container.s3.statistics_box": "Statistics Box",
+  "advancement.s3.statistics_box.title": "Statistics Box",
+  "advancement.s3.statistics_box.description": "View detailed storage system metrics"
 }

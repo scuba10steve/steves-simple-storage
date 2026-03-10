@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,9 @@ public class StorageInventory {
     private long maxItems;
     private boolean hasSearchBox;
     private boolean hasSortBox;
+    private boolean hasStatisticsBox;
+    private Map<String, Integer> tierBreakdown = new HashMap<>();
+    private int totalBlockCount;
     private SortMode sortMode = SortMode.COUNT;
 
     public ItemStack insertItem(ItemStack stack) {
@@ -111,6 +115,18 @@ public class StorageInventory {
         this.hasSortBox = hasSortBox;
     }
 
+    public boolean hasStatisticsBox() {
+        return hasStatisticsBox;
+    }
+
+    public Map<String, Integer> getTierBreakdown() {
+        return tierBreakdown;
+    }
+
+    public int getTotalBlockCount() {
+        return totalBlockCount;
+    }
+
     public SortMode getSortMode() {
         return sortMode;
     }
@@ -132,7 +148,9 @@ public class StorageInventory {
         return sorted;
     }
 
-    public void syncFromServer(List<StoredItemStack> serverItems, long maxCapacity, boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal) {
+    public void syncFromServer(List<StoredItemStack> serverItems, long maxCapacity,
+        boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
+        boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount) {
         items.clear();
         totalCount = 0;
         for (StoredItemStack stored : serverItems) {
@@ -143,8 +161,11 @@ public class StorageInventory {
         this.hasSearchBox = hasSearchBox;
         this.hasSortBox = hasSortBox;
         this.sortMode = SortMode.fromOrdinal(sortModeOrdinal);
-        LOGGER.debug("Synced from server: {} items, max capacity: {}, has search box: {}, has sort box: {}, sort mode: {}",
-                    serverItems.size(), maxCapacity, hasSearchBox, hasSortBox, sortMode);
+        this.hasStatisticsBox = hasStatisticsBox;
+        this.tierBreakdown = tierBreakdown;
+        this.totalBlockCount = totalBlockCount;
+        LOGGER.debug("Synced from server: {} items, max capacity: {}, has search box: {}, has sort box: {}, sort mode: {}, has statistics box: {}",
+                    serverItems.size(), maxCapacity, hasSearchBox, hasSortBox, sortMode, hasStatisticsBox);
     }
 
     public CompoundTag save(HolderLookup.Provider registries) {
