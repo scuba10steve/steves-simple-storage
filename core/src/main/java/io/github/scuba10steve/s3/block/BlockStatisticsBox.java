@@ -33,7 +33,12 @@ public class BlockStatisticsBox extends StorageMultiblock implements EntityBlock
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return null;
+        if (level.isClientSide()) {
+            return null;
+        }
+        return type == S3Platform.getStatisticsBoxBEType()
+            ? (lvl, pos, st, be) -> ((StatisticsBoxBlockEntity) be).tick()
+            : null;
     }
 
     @Override
