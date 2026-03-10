@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +21,8 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
 
     private static final ResourceLocation TEXTURE =
         ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/statistics_box.png");
+
+    private final List<ComponentIcon> componentIcons = new ArrayList<>();
 
     public StatisticsBoxScreen(StatisticsBoxMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -105,6 +108,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
 
         // Attached components as block icons
         y += 4;
+        componentIcons.clear();
         if (y + 16 < imageHeight - 4) {
             guiGraphics.drawString(this.font, "Components", 8, y, labelColor, false);
             y += 12;
@@ -116,6 +120,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
                 ItemStack icon = getItemForComponent(component);
                 if (!icon.isEmpty()) {
                     guiGraphics.renderItem(icon, iconX, y);
+                    componentIcons.add(new ComponentIcon(iconX, y, icon.getHoverName()));
                     iconX += 18;
                 }
             }
@@ -124,6 +129,9 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
                 guiGraphics.drawString(this.font, "None", 12, y + 4, valueColor, false);
             }
         }
+
+        // Draw "?" hint in upper right corner
+        guiGraphics.drawString(this.font, "?", imageWidth - 14, 6, 0x808080, false);
     }
 
     @Override
@@ -131,6 +139,24 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         renderBackground(guiGraphics, mouseX, mouseY, partialTick);
         super.render(guiGraphics, mouseX, mouseY, partialTick);
         renderTooltip(guiGraphics, mouseX, mouseY);
+
+        // Component icon tooltips
+        int relX = mouseX - leftPos;
+        int relY = mouseY - topPos;
+        for (ComponentIcon icon : componentIcons) {
+            if (relX >= icon.x && relX < icon.x + 16 && relY >= icon.y && relY < icon.y + 16) {
+                guiGraphics.renderTooltip(this.font, icon.name, mouseX, mouseY);
+                return;
+            }
+        }
+
+        // "?" tooltip
+        int qX = imageWidth - 14;
+        int qY = 6;
+        int qWidth = this.font.width("?");
+        if (relX >= qX && relX < qX + qWidth && relY >= qY && relY < qY + this.font.lineHeight) {
+            guiGraphics.renderTooltip(this.font, Component.literal("Hold Shift for exact counts"), mouseX, mouseY);
+        }
     }
 
     private static String formatValue(long count, boolean exact) {
@@ -153,4 +179,6 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         if (s == null || s.isEmpty()) return s;
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
+
+    private record ComponentIcon(int x, int y, Component name) {}
 }
