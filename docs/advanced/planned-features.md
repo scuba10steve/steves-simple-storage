@@ -17,7 +17,13 @@ The **Advanced Controller** is a new multiblock component that upgrades a basic 
 - **Memory Box** — stores crafting recipes and enables auto-crafting from the storage system ([#5](https://github.com/scuba10steve/steves-simple-storage/issues/5))
 - **Colored cables** — cosmetic or functional cable variants for multiblock connections ([#6](https://github.com/scuba10steve/steves-simple-storage/issues/6))
 - **Tank Block** — liquid/fluid storage integrated with the storage system ([#18](https://github.com/scuba10steve/steves-simple-storage/issues/18))
+- **Power Cell** — Forge Energy (FE/RF) storage integrated with the storage system, compatible with other redstone-flux mods
 - **Statistics Block** — detailed storage metrics and analytics display ([#40](https://github.com/scuba10steve/steves-simple-storage/issues/40))
+
+## Wireless Access
+
+- **Wireless Terminal** — access the storage system remotely without physical connection to the multiblock
+- **Multi-dimensional Upgrade** — upgrade for the Wireless Terminal enabling cross-dimension access
 
 ## Networked Storage
 
