@@ -11,8 +11,7 @@ The following features will be implemented as part of the **Steve's Advanced Sto
 - Colored cables ([#6](https://github.com/scuba10steve/steves-simple-storage/issues/6))
 - Multi-system networked storage ([#8](https://github.com/scuba10steve/steves-simple-storage/issues/8))
 - Tank block for fluid storage ([#18](https://github.com/scuba10steve/steves-simple-storage/issues/18))
-- Statistics Block ([#40](https://github.com/scuba10steve/steves-simple-storage/issues/40))
-
 ## S3 Base Mod
 
+- **Statistics Block** — detailed storage metrics and analytics display ([#40](https://github.com/scuba10steve/steves-simple-storage/issues/40))
 - **Multiple language translations** — support for languages beyond en_us ([#44](https://github.com/scuba10steve/steves-simple-storage/issues/44))

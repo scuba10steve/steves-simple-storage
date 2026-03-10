@@ -18,7 +18,7 @@ The **Advanced Controller** is a new multiblock component that upgrades a basic 
 - **Colored cables** — cosmetic or functional cable variants for multiblock connections ([#6](https://github.com/scuba10steve/steves-simple-storage/issues/6))
 - **Tank Block** — liquid/fluid storage integrated with the storage system ([#18](https://github.com/scuba10steve/steves-simple-storage/issues/18))
 - **Power Cell** — Forge Energy (FE/RF) storage integrated with the storage system, compatible with other redstone-flux mods
-- **Statistics Block** — detailed storage metrics and analytics display ([#40](https://github.com/scuba10steve/steves-simple-storage/issues/40))
+
 
 ## Wireless Access
 
