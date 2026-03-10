@@ -46,7 +46,7 @@ logs/
 docs/plans
 
 # Docker server staging
-server/
+/server/
 
 # Moderne CLI
 .moderne/*

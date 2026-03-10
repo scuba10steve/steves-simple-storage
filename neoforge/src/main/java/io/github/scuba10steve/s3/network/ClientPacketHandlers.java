@@ -26,7 +26,9 @@ public final class ClientPacketHandlers {
             if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
                 storageCore.getInventory().syncFromServer(
                     packet.items(), packet.maxCapacity(),
-                    packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal());
+                    packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal(),
+                    packet.hasStatisticsBox(), packet.tierBreakdown(), packet.totalBlockCount(),
+                    packet.presentComponents());
             }
         });
     }

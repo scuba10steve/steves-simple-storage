@@ -37,6 +37,7 @@ public final class S3Platform {
     private static Supplier<BlockEntityType<?>> ejectPortBEType;
     private static Supplier<BlockEntityType<?>> securityBoxBEType;
     private static Supplier<BlockEntityType<?>> storageInterfaceBEType;
+    private static Supplier<BlockEntityType<?>> statisticsBoxBEType;
 
     public static BlockEntityType<?> getStorageCoreBEType() { return storageCoreBEType.get(); }
     public static BlockEntityType<?> getCraftingBoxBEType() { return craftingBoxBEType.get(); }
@@ -47,6 +48,7 @@ public final class S3Platform {
     public static BlockEntityType<?> getEjectPortBEType() { return ejectPortBEType.get(); }
     public static BlockEntityType<?> getSecurityBoxBEType() { return securityBoxBEType.get(); }
     public static BlockEntityType<?> getStorageInterfaceBEType() { return storageInterfaceBEType.get(); }
+    public static BlockEntityType<?> getStatisticsBoxBEType() { return statisticsBoxBEType.get(); }
 
     public static void setBlockEntityTypes(
             Supplier<BlockEntityType<?>> storageCore,
@@ -57,7 +59,8 @@ public final class S3Platform {
             Supplier<BlockEntityType<?>> extractPort,
             Supplier<BlockEntityType<?>> ejectPort,
             Supplier<BlockEntityType<?>> securityBox,
-            Supplier<BlockEntityType<?>> storageInterface) {
+            Supplier<BlockEntityType<?>> storageInterface,
+            Supplier<BlockEntityType<?>> statisticsBox) {
         storageCoreBEType = storageCore;
         craftingBoxBEType = craftingBox;
         searchBoxBEType = searchBox;
@@ -67,6 +70,7 @@ public final class S3Platform {
         ejectPortBEType = ejectPort;
         securityBoxBEType = securityBox;
         storageInterfaceBEType = storageInterface;
+        statisticsBoxBEType = statisticsBox;
     }
 
     // --- Menu Types ---
@@ -74,21 +78,25 @@ public final class S3Platform {
     private static Supplier<MenuType<?>> storageCraftingMenuType;
     private static Supplier<MenuType<?>> extractPortMenuType;
     private static Supplier<MenuType<?>> securityBoxMenuType;
+    private static Supplier<MenuType<?>> statisticsBoxMenuType;
 
     public static MenuType<?> getStorageCoreMenuType() { return storageCoreMenuType.get(); }
     public static MenuType<?> getStorageCraftingMenuType() { return storageCraftingMenuType.get(); }
     public static MenuType<?> getExtractPortMenuType() { return extractPortMenuType.get(); }
     public static MenuType<?> getSecurityBoxMenuType() { return securityBoxMenuType.get(); }
+    public static MenuType<?> getStatisticsBoxMenuType() { return statisticsBoxMenuType.get(); }
 
     public static void setMenuTypes(
             Supplier<MenuType<?>> storageCore,
             Supplier<MenuType<?>> storageCrafting,
             Supplier<MenuType<?>> extractPort,
-            Supplier<MenuType<?>> securityBox) {
+            Supplier<MenuType<?>> securityBox,
+            Supplier<MenuType<?>> statisticsBox) {
         storageCoreMenuType = storageCore;
         storageCraftingMenuType = storageCrafting;
         extractPortMenuType = extractPort;
         securityBoxMenuType = securityBox;
+        statisticsBoxMenuType = statisticsBox;
     }
 
     // --- Items ---

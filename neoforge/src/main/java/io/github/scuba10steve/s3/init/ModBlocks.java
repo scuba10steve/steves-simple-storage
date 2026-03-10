@@ -38,6 +38,7 @@ public class ModBlocks {
     public static final Supplier<Block> SECURITY_BOX = BLOCKS.register("security_box", BlockSecurityBox::new);
     public static final Supplier<Block> ACCESS_TERMINAL = BLOCKS.register("access_terminal", BlockAccessTerminal::new);
     public static final Supplier<Block> STORAGE_INTERFACE = BLOCKS.register("storage_interface", BlockStorageInterface::new);
+    public static final Supplier<Block> STATISTICS_BOX = BLOCKS.register("statistics_box", BlockStatisticsBox::new);
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);

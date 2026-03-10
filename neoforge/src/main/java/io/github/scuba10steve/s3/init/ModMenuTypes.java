@@ -2,6 +2,7 @@ package io.github.scuba10steve.s3.init;
 
 import io.github.scuba10steve.s3.gui.server.ExtractPortMenu;
 import io.github.scuba10steve.s3.gui.server.SecurityBoxMenu;
+import io.github.scuba10steve.s3.gui.server.StatisticsBoxMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.ref.RefStrings;
@@ -34,6 +35,10 @@ public class ModMenuTypes {
     public static final Supplier<MenuType<SecurityBoxMenu>> SECURITY_BOX =
         MENU_TYPES.register("security_box", () ->
             IMenuTypeExtension.create(SecurityBoxMenu::new));
+
+    public static final Supplier<MenuType<StatisticsBoxMenu>> STATISTICS_BOX =
+        MENU_TYPES.register("statistics_box", () ->
+            IMenuTypeExtension.create(StatisticsBoxMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);

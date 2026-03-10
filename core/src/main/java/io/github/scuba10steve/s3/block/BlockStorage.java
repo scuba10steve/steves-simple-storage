@@ -13,6 +13,10 @@ public class BlockStorage extends StorageMultiblock implements StorageTier {
         this.tierKey = tierKey;
     }
 
+    public String getTierKey() {
+        return tierKey;
+    }
+
     @Override
     public int getCapacity() {
         S3Config config = S3Platform.getConfig();

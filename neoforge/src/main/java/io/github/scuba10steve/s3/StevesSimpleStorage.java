@@ -46,14 +46,16 @@ public class StevesSimpleStorage {
 			ModBlockEntities.EXTRACT_PORT::get,
 			ModBlockEntities.EJECT_PORT::get,
 			ModBlockEntities.SECURITY_BOX::get,
-			ModBlockEntities.STORAGE_INTERFACE::get
+			ModBlockEntities.STORAGE_INTERFACE::get,
+			ModBlockEntities.STATISTICS_BOX::get
 		);
 
 		S3Platform.setMenuTypes(
 			ModMenuTypes.STORAGE_CORE::get,
 			ModMenuTypes.STORAGE_CORE_CRAFTING::get,
 			ModMenuTypes.EXTRACT_PORT::get,
-			ModMenuTypes.SECURITY_BOX::get
+			ModMenuTypes.SECURITY_BOX::get,
+			ModMenuTypes.STATISTICS_BOX::get
 		);
 
 		S3Platform.setKeyItem(ModItems.KEY::get);

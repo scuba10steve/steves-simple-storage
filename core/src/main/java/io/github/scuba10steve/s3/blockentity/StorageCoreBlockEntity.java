@@ -11,6 +11,7 @@ import io.github.scuba10steve.s3.util.SortMode;
 import io.github.scuba10steve.s3.util.StorageUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -18,13 +19,17 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvider {
@@ -36,6 +41,10 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
     private boolean hasSearchBox;
     private boolean hasSortBox;
     private boolean hasSecurityBox;
+    private boolean hasStatisticsBox;
+    private Map<String, Integer> tierBreakdown = new HashMap<>();
+    private List<String> presentComponents = new ArrayList<>();
+    private int totalBlockCount;
     private SortMode sortMode = SortMode.COUNT;
     private boolean needsScan = true;
 
@@ -67,7 +76,10 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         hasSearchBox = false;
         hasSortBox = false;
         hasSecurityBox = false;
-        
+        hasStatisticsBox = false;
+        tierBreakdown.clear();
+        presentComponents.clear();
+
         BlockRef coreRef = new BlockRef(getBlockState().getBlock(), worldPosition);
         multiblock.add(coreRef);
         getValidNeighbors(coreRef);
@@ -76,6 +88,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         for (BlockRef blockRef : multiblock) {
             if (blockRef.block instanceof BlockStorage storage) {
                 totalCapacity += storage.getCapacity();
+                tierBreakdown.merge(storage.getTierKey(), 1, Integer::sum);
                 LOGGER.debug("Found storage block at {} with capacity {}", blockRef.pos, storage.getCapacity());
             } else if (blockRef.block instanceof BlockCraftingBox) {
                 hasCraftingBox = true;
@@ -89,11 +102,24 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             } else if (blockRef.block instanceof BlockSecurityBox) {
                 hasSecurityBox = true;
                 LOGGER.debug("Found security box at {}", blockRef.pos);
+            } else if (blockRef.block instanceof BlockStatisticsBox) {
+                hasStatisticsBox = true;
+                LOGGER.debug("Found statistics box at {}", blockRef.pos);
+            }
+
+            // Collect component registry names for statistics display (excludes storage blocks and the core itself)
+            if (!(blockRef.block instanceof BlockStorage) && !(blockRef.block instanceof BlockStorageCore)) {
+                ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(blockRef.block);
+                if (!blockId.getNamespace().equals("minecraft")) {
+                    presentComponents.add(blockId.getPath());
+                }
             }
         }
 
-        LOGGER.debug("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}",
-                   multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox);
+        totalBlockCount = multiblock.size();
+
+        LOGGER.debug("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}, has statistics box: {}",
+                   multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox, hasStatisticsBox);
         inventory.setMaxItems(totalCapacity);
         setChanged();
         syncToClients();
@@ -154,7 +180,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
                 serverLevel,
                 worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal())
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
             );
         }
     }
@@ -169,7 +195,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
                 serverLevel,
                 worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal())
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
             );
         }
     }
@@ -188,6 +214,22 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
 
     public boolean hasSecurityBox() {
         return hasSecurityBox;
+    }
+
+    public boolean hasStatisticsBox() {
+        return hasStatisticsBox;
+    }
+
+    public Map<String, Integer> getTierBreakdown() {
+        return tierBreakdown;
+    }
+
+    public int getTotalBlockCount() {
+        return totalBlockCount;
+    }
+
+    public List<String> getPresentComponents() {
+        return presentComponents;
     }
 
     public SortMode getSortMode() {
@@ -230,7 +272,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         if (level instanceof ServerLevel serverLevel) {
             S3Platform.getNetworkHelper().sendToPlayer(
                 (net.minecraft.server.level.ServerPlayer) player,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal())
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
             );
         }
         
