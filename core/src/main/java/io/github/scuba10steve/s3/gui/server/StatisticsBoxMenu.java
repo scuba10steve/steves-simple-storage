@@ -34,7 +34,7 @@ public class StatisticsBoxMenu extends AbstractContainerMenu {
                 new StorageSyncPacket(pos, core.getInventory().getStoredItems(),
                     core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
                     core.getSortMode().ordinal(), core.hasStatisticsBox(),
-                    core.getTierBreakdown(), core.getTotalBlockCount())
+                    core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
             );
         }
     }

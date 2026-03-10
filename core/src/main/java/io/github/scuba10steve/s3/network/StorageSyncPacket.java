@@ -16,7 +16,8 @@ import java.util.Map;
 public record StorageSyncPacket(
     BlockPos pos, List<StoredItemStack> items, long maxCapacity,
     boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
-    boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount
+    boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
+    List<String> presentComponents
 ) implements CustomPacketPayload {
     
     public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("s3", "storage_sync"));
@@ -40,6 +41,10 @@ public record StorageSyncPacket(
             buf.writeInt(entry.getValue());
         }
         buf.writeInt(packet.totalBlockCount());
+        buf.writeInt(packet.presentComponents().size());
+        for (String component : packet.presentComponents()) {
+            buf.writeUtf(component);
+        }
     }
 
     private static StorageSyncPacket decode(RegistryFriendlyByteBuf buf) {
@@ -56,8 +61,13 @@ public record StorageSyncPacket(
             tierBreakdown.put(buf.readUtf(), buf.readInt());
         }
         int totalBlockCount = buf.readInt();
+        int componentSize = buf.readInt();
+        List<String> presentComponents = new ArrayList<>();
+        for (int i = 0; i < componentSize; i++) {
+            presentComponents.add(buf.readUtf());
+        }
         return new StorageSyncPacket(pos, items, maxCapacity, hasSearchBox, hasSortBox, sortModeOrdinal,
-            hasStatisticsBox, tierBreakdown, totalBlockCount);
+            hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents);
     }
 
     private static void writeItems(RegistryFriendlyByteBuf buf, List<StoredItemStack> items) {

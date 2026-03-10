@@ -3,12 +3,17 @@ package io.github.scuba10steve.s3.gui.client;
 import io.github.scuba10steve.s3.gui.server.StatisticsBoxMenu;
 import io.github.scuba10steve.s3.ref.RefStrings;
 import io.github.scuba10steve.s3.storage.StorageInventory;
+import io.github.scuba10steve.s3.util.CountFormatter;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 
+import java.util.List;
 import java.util.Map;
 
 public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMenu> {
@@ -42,6 +47,8 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         long freeSpace = maxCapacity - totalItems;
         int percentage = maxCapacity > 0 ? (int) (totalItems * 100 / maxCapacity) : 0;
 
+        boolean showExact = hasShiftDown();
+
         int y = 20;
         int labelColor = 0x404040;
         int valueColor = 0x202020;
@@ -51,8 +58,8 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         y += 14;
 
         // Total items / capacity
-        guiGraphics.drawString(this.font, "Items: " + formatCount(totalItems) + " / " + formatCount(maxCapacity),
-            12, y, valueColor, false);
+        String itemsText = "Items: " + formatValue(totalItems, showExact) + " / " + formatValue(maxCapacity, showExact);
+        guiGraphics.drawString(this.font, itemsText, 12, y, valueColor, false);
         y += 11;
 
         // Progress bar (152px wide, 6px tall)
@@ -76,7 +83,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         y += 11;
 
         // Free space
-        guiGraphics.drawString(this.font, "Free Space: " + formatCount(freeSpace), 12, y, valueColor, false);
+        guiGraphics.drawString(this.font, "Free Space: " + formatValue(freeSpace, showExact), 12, y, valueColor, false);
         y += 18;
 
         // Multiblock Composition header
@@ -96,17 +103,26 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
             y += 10;
         }
 
-        // Feature boxes
+        // Attached components as block icons
         y += 4;
-        if (y + 10 < imageHeight - 4) {
-            guiGraphics.drawString(this.font, "Features", 8, y, labelColor, false);
+        if (y + 16 < imageHeight - 4) {
+            guiGraphics.drawString(this.font, "Components", 8, y, labelColor, false);
             y += 12;
-            StringBuilder features = new StringBuilder();
-            if (inventory.hasSearchBox()) features.append("Search ");
-            if (inventory.hasSortBox()) features.append("Sort ");
-            if (inventory.hasStatisticsBox()) features.append("Stats ");
-            if (features.isEmpty()) features.append("None");
-            guiGraphics.drawString(this.font, features.toString().trim(), 12, y, valueColor, false);
+
+            List<String> components = inventory.getPresentComponents();
+            int iconX = 12;
+            for (String component : components) {
+                if (iconX + 16 > imageWidth - 8) break; // Don't overflow
+                ItemStack icon = getItemForComponent(component);
+                if (!icon.isEmpty()) {
+                    guiGraphics.renderItem(icon, iconX, y);
+                    iconX += 18;
+                }
+            }
+
+            if (components.isEmpty()) {
+                guiGraphics.drawString(this.font, "None", 12, y + 4, valueColor, false);
+            }
         }
     }
 
@@ -117,11 +133,20 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         renderTooltip(guiGraphics, mouseX, mouseY);
     }
 
-    private static String formatCount(long count) {
-        if (count >= 1_000_000_000) return String.format("%.1fB", count / 1_000_000_000.0);
-        if (count >= 1_000_000) return String.format("%.1fM", count / 1_000_000.0);
-        if (count >= 1_000) return String.format("%.1fK", count / 1_000.0);
-        return String.valueOf(count);
+    private static String formatValue(long count, boolean exact) {
+        if (exact) {
+            return CountFormatter.formatExactCount(count);
+        }
+        return CountFormatter.formatCount(count);
+    }
+
+    private static ItemStack getItemForComponent(String registryPath) {
+        ResourceLocation itemId = ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, registryPath);
+        Item item = BuiltInRegistries.ITEM.get(itemId);
+        if (item == null) {
+            return ItemStack.EMPTY;
+        }
+        return new ItemStack(item);
     }
 
     private static String capitalize(String s) {

@@ -24,6 +24,7 @@ public class StorageInventory {
     private boolean hasSortBox;
     private boolean hasStatisticsBox;
     private Map<String, Integer> tierBreakdown = new HashMap<>();
+    private List<String> presentComponents = new ArrayList<>();
     private int totalBlockCount;
     private SortMode sortMode = SortMode.COUNT;
 
@@ -127,6 +128,10 @@ public class StorageInventory {
         return totalBlockCount;
     }
 
+    public List<String> getPresentComponents() {
+        return presentComponents;
+    }
+
     public SortMode getSortMode() {
         return sortMode;
     }
@@ -150,7 +155,8 @@ public class StorageInventory {
 
     public void syncFromServer(List<StoredItemStack> serverItems, long maxCapacity,
         boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
-        boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount) {
+        boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
+        List<String> presentComponents) {
         items.clear();
         totalCount = 0;
         for (StoredItemStack stored : serverItems) {
@@ -164,6 +170,7 @@ public class StorageInventory {
         this.hasStatisticsBox = hasStatisticsBox;
         this.tierBreakdown = tierBreakdown;
         this.totalBlockCount = totalBlockCount;
+        this.presentComponents = presentComponents;
         LOGGER.debug("Synced from server: {} items, max capacity: {}, has search box: {}, has sort box: {}, sort mode: {}, has statistics box: {}",
                     serverItems.size(), maxCapacity, hasSearchBox, hasSortBox, sortMode, hasStatisticsBox);
     }

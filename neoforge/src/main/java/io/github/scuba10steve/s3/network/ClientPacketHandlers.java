@@ -27,7 +27,8 @@ public final class ClientPacketHandlers {
                 storageCore.getInventory().syncFromServer(
                     packet.items(), packet.maxCapacity(),
                     packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal(),
-                    packet.hasStatisticsBox(), packet.tierBreakdown(), packet.totalBlockCount());
+                    packet.hasStatisticsBox(), packet.tierBreakdown(), packet.totalBlockCount(),
+                    packet.presentComponents());
             }
         });
     }
