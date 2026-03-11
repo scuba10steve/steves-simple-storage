@@ -1,11 +1,7 @@
 package io.github.scuba10steve.s3.client;
 
 import io.github.scuba10steve.s3.compat.PolymorphCompat;
-import io.github.scuba10steve.s3.gui.client.ExtractPortScreen;
-import io.github.scuba10steve.s3.gui.client.SecurityBoxScreen;
-import io.github.scuba10steve.s3.gui.client.StatisticsBoxScreen;
-import io.github.scuba10steve.s3.gui.client.StorageCoreCraftingScreen;
-import io.github.scuba10steve.s3.gui.client.StorageCoreScreen;
+import io.github.scuba10steve.s3.gui.client.*;
 import io.github.scuba10steve.s3.init.ModItems;
 import io.github.scuba10steve.s3.init.ModMenuTypes;
 import io.github.scuba10steve.s3.ref.RefStrings;
