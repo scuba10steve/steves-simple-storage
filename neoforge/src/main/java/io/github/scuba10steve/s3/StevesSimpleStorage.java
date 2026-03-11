@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3;
 
+import io.github.scuba10steve.s3.compat.PolymorphCompat;
 import io.github.scuba10steve.s3.config.StorageClientConfig;
 import io.github.scuba10steve.s3.config.StorageConfig;
 import io.github.scuba10steve.s3.init.*;
@@ -11,6 +12,7 @@ import io.github.scuba10steve.s3.ref.RefStrings;
 import io.github.scuba10steve.s3.util.StorageUtils;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -60,6 +62,10 @@ public class StevesSimpleStorage {
 
 		S3Platform.setKeyItem(ModItems.KEY::get);
 		S3Platform.setMenuOpener((player, provider, pos) -> player.openMenu(provider, pos));
+
+		if (ModList.get().isLoaded("polymorph")) {
+			PolymorphCompat.register();
+		}
 
 		modEventBus.addListener(this::commonSetup);
 		modContainer.registerConfig(ModConfig.Type.COMMON, StorageConfig.SPEC);

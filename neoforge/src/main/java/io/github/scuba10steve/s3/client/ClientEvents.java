@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3.client;
 
+import io.github.scuba10steve.s3.compat.PolymorphCompat;
 import io.github.scuba10steve.s3.gui.client.ExtractPortScreen;
 import io.github.scuba10steve.s3.gui.client.SecurityBoxScreen;
 import io.github.scuba10steve.s3.gui.client.StatisticsBoxScreen;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.EventBusSubscriber.Bus;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -39,6 +41,10 @@ public class ClientEvents {
             ResourceLocation dollyState = ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "dolly_state");
             registerDollyProperty(ModItems.DOLLY.get(), dollyState);
             registerDollyProperty(ModItems.DOLLY_SUPER.get(), dollyState);
+
+            if (ModList.get().isLoaded("polymorph")) {
+                PolymorphCompat.registerClientWidget();
+            }
         });
     }
 
