@@ -3,10 +3,18 @@ package io.github.scuba10steve.s3.platform;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.CraftingInput;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -115,6 +123,29 @@ public final class S3Platform {
 
     public static void setNetworkHelper(S3NetworkHelper helper) {
         networkHelper = helper;
+    }
+
+    // --- Crafting Recipe Lookup ---
+    @FunctionalInterface
+    public interface CraftingRecipeLookup {
+        Optional<RecipeHolder<CraftingRecipe>> find(
+                AbstractContainerMenu menu,
+                CraftingInput input,
+                Level level,
+                Player player);
+    }
+
+    private static CraftingRecipeLookup craftingRecipeLookup =
+            (menu, input, level, player) ->
+                    level.getServer().getRecipeManager().getRecipeFor(RecipeType.CRAFTING, input, level);
+
+    public static Optional<RecipeHolder<CraftingRecipe>> findCraftingRecipe(
+            AbstractContainerMenu menu, CraftingInput input, Level level, Player player) {
+        return craftingRecipeLookup.find(menu, input, level, player);
+    }
+
+    public static void setCraftingRecipeLookup(CraftingRecipeLookup lookup) {
+        craftingRecipeLookup = lookup;
     }
 
     // --- Menu Opener ---

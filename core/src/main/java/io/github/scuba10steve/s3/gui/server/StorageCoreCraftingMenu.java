@@ -9,9 +9,9 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingInput;
 import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import net.minecraft.world.item.crafting.RecipeType;
 
 import java.util.List;
 import java.util.Optional;
@@ -57,13 +57,14 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
             ServerPlayer serverPlayer = (ServerPlayer) player;
             ItemStack itemstack = ItemStack.EMPTY;
 
-            Optional<RecipeHolder<CraftingRecipe>> optional = player.level().getServer().getRecipeManager().getRecipeFor(
-                    RecipeType.CRAFTING, ((CraftingContainer) craftMatrix).asCraftInput(), player.level());
+            CraftingInput craftInput = ((CraftingContainer) craftMatrix).asCraftInput();
+            Optional<RecipeHolder<CraftingRecipe>> optional = S3Platform.findCraftingRecipe(
+                    this, craftInput, player.level(), player);
 
             if (optional.isPresent()) {
                 RecipeHolder<CraftingRecipe> recipe = optional.get();
                 if (craftResult.setRecipeUsed(player.level(), serverPlayer, recipe)) {
-                    itemstack = recipe.value().assemble(((CraftingContainer) craftMatrix).asCraftInput(), player.level().registryAccess());
+                    itemstack = recipe.value().assemble(craftInput, player.level().registryAccess());
                 }
             }
 
