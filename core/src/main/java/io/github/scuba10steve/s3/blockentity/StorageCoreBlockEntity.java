@@ -14,23 +14,18 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreBlockEntity.class);
@@ -42,8 +37,8 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
     private boolean hasSortBox;
     private boolean hasSecurityBox;
     private boolean hasStatisticsBox;
-    private Map<String, Integer> tierBreakdown = new HashMap<>();
-    private List<String> presentComponents = new ArrayList<>();
+    private final Map<String, Integer> tierBreakdown = new HashMap<>();
+    private final List<String> presentComponents = new ArrayList<>();
     private int totalBlockCount;
     private SortMode sortMode = SortMode.COUNT;
     private boolean needsScan = true;

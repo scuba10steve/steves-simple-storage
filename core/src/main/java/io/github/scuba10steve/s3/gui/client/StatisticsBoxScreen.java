@@ -116,7 +116,9 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
             List<String> components = inventory.getPresentComponents();
             int iconX = 12;
             for (String component : components) {
-                if (iconX + 16 > imageWidth - 8) break; // Don't overflow
+                if (iconX + 16 > imageWidth - 8) {
+                    break; // Don't overflow
+                }
                 ItemStack icon = getItemForComponent(component);
                 if (!icon.isEmpty()) {
                     guiGraphics.renderItem(icon, iconX, y);
@@ -176,7 +178,9 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
     }
 
     private static String capitalize(String s) {
-        if (s == null || s.isEmpty()) return s;
+        if (s == null || s.isEmpty()) {
+            return s;
+        }
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
