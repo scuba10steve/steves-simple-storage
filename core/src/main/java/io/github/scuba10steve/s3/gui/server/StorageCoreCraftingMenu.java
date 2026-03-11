@@ -91,12 +91,12 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
             for (int i = 0; i < 9; i++) {
                 recipePattern[i] = craftMatrix.getItem(i).copy();
             }
+            suppressResultUpdate = true;
         }
 
         super.clicked(slotId, button, clickType, player);
 
         if (recipePattern != null) {
-            suppressResultUpdate = true;
             try {
                 moveRemaindersToStorage(player, recipePattern);
                 tryToPopulateCraftingGrid(recipePattern);
