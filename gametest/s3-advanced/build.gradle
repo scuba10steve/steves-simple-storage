@@ -1,0 +1,35 @@
+plugins {
+    id 'net.neoforged.moddev' version '2.0.140'
+}
+
+neoForge {
+    version = neoforge_version
+
+    runs {
+        gameTestServer {
+            type = "gameTestServer"
+            systemProperty 'neoforge.enabledGameTestNamespaces', 's3-advanced'
+        }
+    }
+
+    mods {
+        's3-advanced' {
+            sourceSet sourceSets.main
+            sourceSet project(':core').sourceSets.main
+            sourceSet project(':neoforge:s3').sourceSets.main
+            sourceSet project(':neoforge:s3-advanced').sourceSets.main
+        }
+    }
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':neoforge:s3')
+    implementation project(':neoforge:s3-advanced')
+
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.14.3"
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

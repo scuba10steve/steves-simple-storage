@@ -22,10 +22,10 @@ check_docker() {
 
 copy_mod() {
     local jar
-    jar=$(ls "$PROJECT_ROOT"/neoforge/build/libs/s3-*.jar 2>/dev/null | sort -V | tail -1)
+    jar=$(ls "$PROJECT_ROOT"/neoforge/s3/build/libs/s3-*.jar 2>/dev/null | sort -V | tail -1)
 
     if [ -z "$jar" ]; then
-        echo "Error: No jar found in neoforge/build/libs/. Run ./gradlew :neoforge:build first."
+        echo "Error: No jar found in neoforge/s3/build/libs/. Run ./gradlew :neoforge:s3:build first."
         exit 1
     fi
 

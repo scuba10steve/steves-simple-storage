@@ -35,7 +35,6 @@ run/
 *.py
 *.7z
 /repo/
-/buildSrc
 /conf
 /XCF
 /patches-/

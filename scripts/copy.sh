@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-jar=$(ls neoforge/build/libs/s3-*.jar 2>/dev/null | sort -V | tail -1)
+jar=$(ls neoforge/s3/build/libs/s3-*.jar 2>/dev/null | sort -V | tail -1)
 username=${1:-"Steven Tompkins"}
 modpack=${2:-"ezstorage-test-env"}
 
 if [ -z "$jar" ]; then
-  echo "No jar found in neoforge/build/libs/. Run ./gradlew :neoforge:build first."
+  echo "No jar found in neoforge/s3/build/libs/. Run ./gradlew :neoforge:s3:build first."
   exit 1
 fi
 
