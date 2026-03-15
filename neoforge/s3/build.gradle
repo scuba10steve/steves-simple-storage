@@ -15,7 +15,6 @@ neoForge {
     }
 }
 
-// Bundle core classes into the s3 JAR so only one JAR is needed for installation
 jar {
     from project(':core').sourceSets.main.output
 }
@@ -30,7 +29,9 @@ processResources {
 
 dependencies {
     runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
-
-    // Polymorph integration (optional at runtime)
     compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
 }

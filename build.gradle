@@ -23,29 +23,3 @@ dependencies {
     rewrite("org.openrewrite.recipe:rewrite-testing-frameworks")
     rewrite("org.openrewrite.recipe:rewrite-static-analysis")
 }
-
-// Root project: shared configuration only
-subprojects {
-    apply plugin: 'java'
-
-    version = rootProject.mod_version
-    group = 'io.github.scuba10steve.s3'
-
-    java.toolchain.languageVersion = JavaLanguageVersion.of(21)
-
-    repositories {
-        mavenCentral()
-        maven {
-            name = 'NeoForge'
-            url = 'https://maven.neoforged.net/releases'
-        }
-        maven {
-            name = 'Jared'
-            url = 'https://maven.blamejared.com'
-        }
-        maven {
-            name = 'Modrinth'
-            url = 'https://api.modrinth.com/maven'
-        }
-    }
-}

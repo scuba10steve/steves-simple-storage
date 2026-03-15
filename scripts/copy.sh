@@ -16,3 +16,9 @@ rm -f "$modsdir"/s3-*.jar
 
 echo "Copying $jar"
 cp "$jar" "$modsdir"
+
+advanced_jar=$(ls neoforge/s3-advanced/build/libs/s3-advanced-*.jar 2>/dev/null | sort -V | tail -1)
+if [ -n "$advanced_jar" ]; then
+  echo "Copying $advanced_jar"
+  cp "$advanced_jar" "$modsdir"
+fi

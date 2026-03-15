@@ -108,14 +108,14 @@ advanced_mod_name=Steve's Advanced Storage
 - Separate Modrinth and CurseForge project listings
 - Advanced lists S3 as a required dependency on both platforms
 
-## Advanced Controller Block
+## Advanced Storage Core Block
 
-The **Advanced Controller** is the core block of the companion mod. When placed in an S3 multiblock, it upgrades the system from basic to advanced, unlocking all advanced features.
+The **Advanced Storage Core** is the core block of the companion mod. When placed in an S3 multiblock, it upgrades the system from basic to advanced, unlocking all advanced features.
 
 - **Requires power** — the advanced system consumes Forge Energy (FE) to operate
 - **Recipe:** Diamonds + Redstone + Iron + Storage Core
 - **Multiblock role:** Acts as an upgrade component; all advanced features require its presence
-- **Detection:** The Storage Core scans for an Advanced Controller during multiblock validation, similar to how it detects Sort Box or Search Box
+- **Detection:** The Storage Core scans for an Advanced Storage Core during multiblock validation, similar to how it detects Sort Box or Search Box
 
 See [planned-features.md](planned-features.md) for the full feature roadmap.
 

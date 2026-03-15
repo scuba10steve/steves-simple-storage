@@ -2,6 +2,8 @@ plugins {
     id 's3.neoforge-mod'
 }
 
+version = advanced_mod_version
+
 base {
     archivesName = 's3-advanced'
 }

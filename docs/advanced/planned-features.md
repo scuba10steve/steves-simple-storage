@@ -2,14 +2,14 @@
 
 Features planned for the Steve's Advanced Storage companion mod. These are tracked as GitHub issues on the [main repository](https://github.com/scuba10steve/steves-simple-storage/issues).
 
-## Advanced Controller Block
+## Advanced Storage Core Block
 
-The **Advanced Controller** is a new multiblock component that upgrades a basic S3 storage system to an advanced system. When placed in the multiblock, it unlocks all advanced features.
+The **Advanced Storage Core** is a new multiblock component that upgrades a basic S3 storage system to an advanced system. When placed in the multiblock, it unlocks all advanced features.
 
 - **Requires power** — the advanced system must be powered (Forge Energy / FE) to function
 - **Recipe:** Diamonds + Redstone + Iron + Storage Core
 - **Effect:** Converts the multiblock from a basic storage system to an advanced storage system
-- **Prerequisite:** All features below require an Advanced Controller in the multiblock
+- **Prerequisite:** All features below require an Advanced Storage Core in the multiblock
 
 ## New Blocks / Components
 

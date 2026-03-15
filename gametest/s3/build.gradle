@@ -1,6 +1,10 @@
 plugins {
-    id 'net.neoforged.moddev' version '2.0.140'
+    id 'net.neoforged.moddev'
+    id 's3.conventions'
 }
+
+version = rootProject.mod_version
+group = 'io.github.scuba10steve.s3.test'
 
 neoForge {
     version = neoforge_version
@@ -26,8 +30,6 @@ neoForge {
     mods {
         s3 {
             sourceSet sourceSets.main
-            sourceSet project(':core').sourceSets.main
-            sourceSet project(':neoforge:s3').sourceSets.main
         }
     }
 }
