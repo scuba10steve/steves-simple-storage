@@ -12,7 +12,7 @@ neoForge {
     mods {
         's3-advanced' {
             sourceSet sourceSets.main
-            sourceSet project(':core').sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
         }
     }
 }
