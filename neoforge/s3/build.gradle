@@ -10,13 +10,20 @@ neoForge {
     mods {
         s3 {
             sourceSet sourceSets.main
-            sourceSet project(':core').sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
         }
     }
 }
 
+configurations {
+    coreClasses {
+        canBeConsumed = false
+        canBeResolved = true
+    }
+}
+
 jar {
-    from project(':core').sourceSets.main.output
+    from configurations.coreClasses
 }
 
 processResources {
@@ -30,6 +37,7 @@ processResources {
 dependencies {
     runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
     compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
+    coreClasses project(path: ':core', configuration: 'coreOutput')
 }
 
 tasks.withType(Test).configureEach {
