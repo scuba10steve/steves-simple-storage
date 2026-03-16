@@ -28,3 +28,14 @@ dependencies {
 test {
     useJUnitPlatform()
 }
+
+configurations {
+    coreOutput {
+        canBeConsumed = true
+        canBeResolved = false
+    }
+}
+artifacts {
+    coreOutput(compileJava.destinationDirectory) { builtBy compileJava }
+    coreOutput(sourceSets.main.output.resourcesDir) { builtBy processResources }
+}
