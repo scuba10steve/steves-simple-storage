@@ -30,6 +30,8 @@ neoForge {
     mods {
         s3 {
             sourceSet sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
+            modSourceSets.add(providers.provider { project(':neoforge:s3').sourceSets.main })
         }
     }
 }
