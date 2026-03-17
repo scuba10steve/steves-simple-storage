@@ -1,6 +1,10 @@
 plugins {
-    id 'net.neoforged.moddev' version '2.0.140'
+    id 'net.neoforged.moddev'
+    id 's3.conventions'
 }
+
+version = rootProject.mod_version
+group = 'io.github.scuba10steve.s3.test'
 
 neoForge {
     version = neoforge_version
@@ -18,7 +22,7 @@ neoForge {
                 '--output', file('src/generated/resources/').getAbsolutePath(),
                 '--existing', file('src/main/resources/').getAbsolutePath(),
                 '--existing', rootProject.file('core/src/main/resources/').getAbsolutePath(),
-                '--existing', rootProject.file('neoforge/src/main/resources/').getAbsolutePath()
+                '--existing', rootProject.file('neoforge/s3/src/main/resources/').getAbsolutePath()
             )
         }
     }
@@ -26,8 +30,8 @@ neoForge {
     mods {
         s3 {
             sourceSet sourceSets.main
-            sourceSet project(':core').sourceSets.main
-            sourceSet project(':neoforge').sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
+            modSourceSets.add(providers.provider { project(':neoforge:s3').sourceSets.main })
         }
     }
 }
@@ -36,7 +40,7 @@ sourceSets.main.resources.srcDir 'src/generated/resources'
 
 dependencies {
     implementation project(':core')
-    implementation project(':neoforge')
+    implementation project(':neoforge:s3')
 
     testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.14.3"
 }

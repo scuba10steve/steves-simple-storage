@@ -1,0 +1,45 @@
+plugins {
+    id 's3.neoforge-mod'
+}
+
+base {
+    archivesName = 's3'
+}
+
+neoForge {
+    mods {
+        s3 {
+            sourceSet sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
+        }
+    }
+}
+
+configurations {
+    coreClasses {
+        canBeConsumed = false
+        canBeResolved = true
+    }
+}
+
+jar {
+    from configurations.coreClasses
+}
+
+processResources {
+    def replaceProperties = [mod_version: mod_version]
+    inputs.properties replaceProperties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand(replaceProperties)
+    }
+}
+
+dependencies {
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
+    compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
+    coreClasses project(path: ':core', configuration: 'coreOutput')
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}

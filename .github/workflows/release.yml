@@ -70,7 +70,7 @@ jobs:
           target_commitish: ${{ github.sha }}
           name: v${{ steps.version.outputs.version }}
           body: ${{ steps.changelog.outputs.content }}
-          files: neoforge/build/libs/s3-${{ steps.version.outputs.version }}.jar
+          files: neoforge/s3/build/libs/s3-${{ steps.version.outputs.version }}.jar
           prerelease: ${{ inputs.release_type == 'beta' }}
 
       - name: Publish to Modrinth
@@ -78,7 +78,7 @@ jobs:
         with:
           modrinth-id: ${{ vars.MODRINTH_PROJECT_ID }}
           modrinth-token: ${{ secrets.MODRINTH_TOKEN }}
-          files: neoforge/build/libs/s3-${{ steps.version.outputs.version }}.jar
+          files: neoforge/s3/build/libs/s3-${{ steps.version.outputs.version }}.jar
           name: Steve's Simple Storage v${{ steps.version.outputs.version }}
           version: ${{ steps.version.outputs.version }}
           version-type: ${{ inputs.release_type }}
@@ -94,7 +94,7 @@ jobs:
         with:
           curseforge-id: ${{ vars.CURSEFORGE_PROJECT_ID }}
           curseforge-token: ${{ secrets.CURSEFORGE_TOKEN }}
-          files: neoforge/build/libs/s3-${{ steps.version.outputs.version }}.jar
+          files: neoforge/s3/build/libs/s3-${{ steps.version.outputs.version }}.jar
           name: Steve's Simple Storage v${{ steps.version.outputs.version }}
           version: ${{ steps.version.outputs.version }}
           version-type: ${{ inputs.release_type }}
@@ -112,6 +112,6 @@ jobs:
       #     api_key: ${{ secrets.NEXUSMODS_API_KEY }}
       #     file_id: ${{ vars.NEXUSMODS_FILE_ID }}
       #     game_domain_name: minecraft
-      #     filename: neoforge/build/libs/s3-${{ steps.version.outputs.version }}.jar
+      #     filename: neoforge/s3/build/libs/s3-${{ steps.version.outputs.version }}.jar
       #     version: ${{ steps.version.outputs.version }}
       #     display_name: Steve's Simple Storage v${{ steps.version.outputs.version }}

@@ -1,0 +1,30 @@
+plugins {
+    id 's3.neoforge-mod'
+}
+
+version = advanced_mod_version
+
+base {
+    archivesName = 's3-advanced'
+}
+
+neoForge {
+    mods {
+        's3-advanced' {
+            sourceSet sourceSets.main
+            modSourceSets.add(providers.provider { project(':core').sourceSets.main })
+        }
+    }
+}
+
+processResources {
+    def replaceProperties = [mod_version: mod_version]
+    inputs.properties replaceProperties
+    filesMatching('META-INF/neoforge.mods.toml') {
+        expand(replaceProperties)
+    }
+}
+
+dependencies {
+    implementation project(':neoforge:s3')
+}
