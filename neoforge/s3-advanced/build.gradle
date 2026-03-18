@@ -34,7 +34,7 @@ tasks.register('validateLang') {
     description = 'Validates all lang files have the same key set as en_us.json'
 
     def langDir = file('src/main/resources/assets/s3_advanced/lang')
-    inputs.dir(langDir)
+    if (langDir.exists()) { inputs.dir(langDir) }
     outputs.upToDateWhen { true }
 
     doLast {
