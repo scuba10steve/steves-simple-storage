@@ -43,6 +43,7 @@ run/
 changelog.txt
 logs/
 docs/plans
+docs/superpowers/
 
 # Docker server staging
 /server/
