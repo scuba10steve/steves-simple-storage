@@ -21,6 +21,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +47,12 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
     // Sync throttling to prevent rapid consecutive syncs causing visual flicker
     private long lastSyncTime;
 
+    protected StorageCoreBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
+    }
+
     public StorageCoreBlockEntity(BlockPos pos, BlockState state) {
-        super(S3Platform.getStorageCoreBEType(), pos, state);
+        this(S3Platform.getStorageCoreBEType(), pos, state);
         LOGGER.debug("StorageCoreBlockEntity created at {}", pos);
         LOGGER.debug("Initial inventory capacity: {}", inventory.getTotalItemCount());
     }
