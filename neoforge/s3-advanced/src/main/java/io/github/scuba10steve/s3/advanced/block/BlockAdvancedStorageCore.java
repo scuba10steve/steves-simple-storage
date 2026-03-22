@@ -2,23 +2,18 @@ package io.github.scuba10steve.s3.advanced.block;
 
 import io.github.scuba10steve.s3.advanced.blockentity.AdvancedStorageCoreBlockEntity;
 import io.github.scuba10steve.s3.advanced.init.ModBlockEntities;
-import io.github.scuba10steve.s3.block.StorageMultiblock;
+import io.github.scuba10steve.s3.block.BlockStorageCore;
 import net.minecraft.core.BlockPos;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 
-public class BlockAdvancedStorageCore extends StorageMultiblock implements EntityBlock {
+public class BlockAdvancedStorageCore extends BlockStorageCore {
 
     public BlockAdvancedStorageCore() {
-        super(Properties.of().strength(2.0f));
+        super();
     }
 
     @Override
@@ -27,22 +22,12 @@ public class BlockAdvancedStorageCore extends StorageMultiblock implements Entit
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hit) {
-        if (!level.isClientSide() && player instanceof ServerPlayer serverPlayer) {
-            if (level.getBlockEntity(pos) instanceof AdvancedStorageCoreBlockEntity be) {
-                serverPlayer.openMenu(be, buf -> buf.writeBlockPos(pos));
-            }
-        }
-        return InteractionResult.sidedSuccess(level.isClientSide());
-    }
-
-    @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         if (level.isClientSide()) return null;
         return type == ModBlockEntities.ADVANCED_STORAGE_CORE.get()
             ? (lvl, pos, blockState, be) -> {
                 if (be instanceof AdvancedStorageCoreBlockEntity asc) {
-                    AdvancedStorageCoreBlockEntity.tick(lvl, pos, blockState, asc);
+                    asc.tick();
                 }
             }
             : null;

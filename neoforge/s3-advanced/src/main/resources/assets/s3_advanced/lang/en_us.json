@@ -3,5 +3,7 @@
 
   "block.s3_advanced.advanced_storage_core": "Advanced Storage Core",
   "block.s3_advanced.solar_generator": "Solar Generator",
-  "block.s3_advanced.coal_generator": "Coal Generator"
+  "block.s3_advanced.coal_generator": "Coal Generator",
+
+  "item.s3_advanced.advanced_storage_core_upgrade": "Advanced Storage Core Upgrade"
 }

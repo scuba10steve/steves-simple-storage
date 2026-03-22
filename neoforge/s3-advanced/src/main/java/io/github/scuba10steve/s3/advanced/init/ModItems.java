@@ -1,6 +1,7 @@
 package io.github.scuba10steve.s3.advanced.init;
 
 import io.github.scuba10steve.s3.advanced.StevesAdvancedStorage;
+import io.github.scuba10steve.s3.advanced.item.ItemAdvancedStorageCoreUpgrade;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -21,6 +22,9 @@ public class ModItems {
 
     public static final Supplier<Item> COAL_GENERATOR = ITEMS.register("coal_generator",
         () -> new BlockItem(ModBlocks.COAL_GENERATOR.get(), new Item.Properties()));
+
+    public static final Supplier<Item> ADVANCED_STORAGE_CORE_UPGRADE = ITEMS.register("advanced_storage_core_upgrade",
+        ItemAdvancedStorageCoreUpgrade::new);
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

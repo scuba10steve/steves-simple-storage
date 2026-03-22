@@ -20,6 +20,7 @@ public class ModCreativeTabs {
             .icon(() -> new ItemStack(ModBlocks.ADVANCED_STORAGE_CORE.get()))
             .displayItems((parameters, output) -> {
                 output.accept(ModItems.ADVANCED_STORAGE_CORE.get());
+                output.accept(ModItems.ADVANCED_STORAGE_CORE_UPGRADE.get());
                 output.accept(ModItems.SOLAR_GENERATOR.get());
                 output.accept(ModItems.COAL_GENERATOR.get());
             })

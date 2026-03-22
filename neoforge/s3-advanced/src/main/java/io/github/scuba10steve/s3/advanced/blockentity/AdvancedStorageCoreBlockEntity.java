@@ -2,21 +2,16 @@ package io.github.scuba10steve.s3.advanced.blockentity;
 
 import io.github.scuba10steve.s3.advanced.config.S3AdvancedConfig;
 import io.github.scuba10steve.s3.advanced.init.ModBlockEntities;
-import io.github.scuba10steve.s3.blockentity.BaseBlockEntity;
+import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.energy.EnergyStorage;
 
-public class AdvancedStorageCoreBlockEntity extends BaseBlockEntity implements MenuProvider {
+public class AdvancedStorageCoreBlockEntity extends StorageCoreBlockEntity {
 
     public final InternalEnergyStorage energyStorage;
 
@@ -51,11 +46,9 @@ public class AdvancedStorageCoreBlockEntity extends BaseBlockEntity implements M
             1_000);
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, AdvancedStorageCoreBlockEntity be) {
-        if (level.isClientSide()) return;
-        if (be.energyStorage.consume(S3AdvancedConfig.CORE_ENERGY_PER_TICK.get())) {
-            be.setChanged();
-        }
+    @Override
+    public Component getDisplayName() {
+        return Component.translatable("block.s3_advanced.advanced_storage_core");
     }
 
     public boolean isPowered() {
@@ -63,13 +56,12 @@ public class AdvancedStorageCoreBlockEntity extends BaseBlockEntity implements M
     }
 
     @Override
-    public Component getDisplayName() {
-        return Component.translatable("block.s3_advanced.advanced_storage_core");
-    }
-
-    @Override
-    public AbstractContainerMenu createMenu(int id, Inventory inv, Player player) {
-        return new io.github.scuba10steve.s3.advanced.gui.server.AdvancedStorageCoreMenu(id, inv, this);
+    public void tick() {
+        super.tick(); // handles multiblock scan
+        if (level == null || level.isClientSide) return;
+        if (energyStorage.consume(S3AdvancedConfig.CORE_ENERGY_PER_TICK.get())) {
+            setChanged();
+        }
     }
 
     @Override
