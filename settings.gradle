@@ -19,6 +19,4 @@ plugins {
 rootProject.name = 'steves-storage-system'
 include 'core'
 include 'neoforge:s3'
-include 'neoforge:s3-advanced'
 include 'gametest:s3'
-include 'gametest:s3-advanced'
