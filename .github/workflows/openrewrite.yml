@@ -1,6 +1,8 @@
 name: OpenRewrite
 
 on:
+  schedule:
+    - cron: '0 6 * * 1'  # Every Monday at 06:00 UTC
   workflow_dispatch:
     inputs:
       dry_run:
@@ -46,17 +48,17 @@ jobs:
           fi
 
       - name: Upload diff artifact (dry run)
-        if: inputs.dry_run && steps.changes.outputs.has_changes == 'true'
+        if: inputs.dry_run == 'true' && steps.changes.outputs.has_changes == 'true'
         run: git diff > openrewrite-changes.patch
       - name: Upload diff
-        if: inputs.dry_run && steps.changes.outputs.has_changes == 'true'
+        if: inputs.dry_run == 'true' && steps.changes.outputs.has_changes == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: openrewrite-diff
           path: openrewrite-changes.patch
 
       - name: Create branch and open PR
-        if: ${{ !inputs.dry_run && steps.changes.outputs.has_changes == 'true' }}
+        if: inputs.dry_run != 'true' && steps.changes.outputs.has_changes == 'true'
         run: |
           set -e
           branch="openrewrite/run-$(date -u +%Y%m%d-%H%M%S)"
