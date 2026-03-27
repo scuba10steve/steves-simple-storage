@@ -167,4 +167,54 @@ public class MultiplayerStorageGameTests {
             helper.succeed();
         });
     }
+
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    public static void crafting_menu_open_while_second_player_inserts(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            StorageCoreBlockEntity core = (StorageCoreBlockEntity) helper.getBlockEntity(CORE_POS);
+            if (core == null) {
+                helper.fail("Storage core block entity not found");
+                return;
+            }
+
+            StorageInventory inv = core.getInventory();
+            long initialCount = inv.getTotalItemCount();
+
+            ServerPlayer playerA = helper.makeMockServerPlayerInLevel();
+            BlockPos absPos = helper.absolutePos(CORE_POS);
+            StorageCoreCraftingMenu menuA = new StorageCoreCraftingMenu(0, playerA.getInventory(), absPos);
+
+            menuA.getSlot(1).set(new ItemStack(Items.DIAMOND, 1));
+            menuA.getSlot(2).set(new ItemStack(Items.GOLD_INGOT, 1));
+            menuA.getSlot(3).set(new ItemStack(Items.IRON_INGOT, 1));
+
+            helper.makeMockServerPlayerInLevel();
+            core.insertItem(new ItemStack(Items.COBBLESTONE, 10));
+
+            long countAfterBInsert = inv.getTotalItemCount();
+            if (countAfterBInsert != initialCount + 10) {
+                helper.fail("Expected count " + (initialCount + 10) + " after Player B insert, got " + countAfterBInsert);
+                return;
+            }
+
+            menuA.removed(playerA);
+
+            for (int i = 1; i <= 9; i++) {
+                if (!menuA.getSlot(i).getItem().isEmpty()) {
+                    helper.fail("Crafting grid slot " + i + " should be empty after removed(), has " + menuA.getSlot(i).getItem());
+                    return;
+                }
+            }
+
+            long finalCount = inv.getTotalItemCount();
+            long expectedFinal = initialCount + 10 + 3;
+            if (finalCount != expectedFinal) {
+                helper.fail("Expected final count " + expectedFinal + ", got " + finalCount);
+                return;
+            }
+
+            LOGGER.info("crafting_menu_open_while_second_player_inserts: PASSED");
+            helper.succeed();
+        });
+    }
 }
