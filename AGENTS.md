@@ -6,6 +6,22 @@ This document outlines the guidelines for AI agents interacting with this reposi
 
 The primary purpose of an AI agent in this repository is to assist human developers by automating tasks, providing insights, and maintaining code quality, while strictly following established project conventions and best practices.
 
+## Documentation
+
+Before working on any area of the codebase, read the relevant doc in `docs/`:
+
+| Area | Document |
+|------|----------|
+| Storage system architecture | [docs/storage-system.md](docs/storage-system.md) |
+| GUI system and menus | [docs/gui-system.md](docs/gui-system.md) |
+| Build system and Gradle setup | [docs/build-system.md](docs/build-system.md) |
+| Configuration options | [docs/configuration.md](docs/configuration.md) |
+| Port blocks (Input/Extract/Eject) | [docs/port-overview.md](docs/port-overview.md) |
+| Translation/i18n contributions | [docs/translations.md](docs/translations.md) |
+| Dependency versions | [docs/dependencies.md](docs/dependencies.md) |
+| Troubleshooting common issues | [docs/troubleshooting.md](docs/troubleshooting.md) |
+| 1.0.0 release status | [docs/v1.0.0-release.md](docs/v1.0.0-release.md) |
+
 ## Core Mandates
 
 1.  **Adherence to Conventions:** Always prioritize and rigorously adhere to existing project conventions (code style, naming, architecture, documentation) when reading or modifying code. Analyze surrounding code, tests, and configuration files (e.g., `package.json`, `Cargo.toml`, `requirements.txt`, `build.gradle`) to understand established patterns.
@@ -53,6 +69,6 @@ The primary purpose of an AI agent in this repository is to assist human develop
 1.  **Understand:** Analyze the request and context using search and file reading tools.
 2.  **Plan:** Formulate a coherent plan. Break down complex tasks. Share the plan if beneficial for user understanding. Include testing in the plan.
 3.  **Implement:** Execute the plan using available tools, adhering to conventions.
-4.  **Verify (Tests):** Run relevant tests.
+4.  **Verify (Tests):** Run relevant tests. See [TESTING.md](TESTING.md) for test commands.
 5.  **Verify (Standards):** Run build, linting, and type-checking commands.
 6.  **Finalize:** Await further instructions.

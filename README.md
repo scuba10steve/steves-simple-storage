@@ -9,7 +9,7 @@ Steve's Simple Storage introduces a storage system that scales and evolves as pl
 
 ## Project Status
 
-Version 0.5.2 — fully ported to **Minecraft 1.21.1** / **NeoForge 21.1.218**. Core storage functionality is complete and stable. See [docs/port-overview.md](docs/port-overview.md) for details.
+Version 0.12.0 — approaching **1.0.0 stable release**. All core features complete and stable on **Minecraft 1.21.1** / **NeoForge 21.1.218**. See [docs/port-overview.md](docs/port-overview.md) for details.
 
 ## Requirements
 
@@ -54,15 +54,18 @@ Version 0.5.2 — fully ported to **Minecraft 1.21.1** / **NeoForge 21.1.218**. 
 ### Running Tests
 
 ```bash
-# Run core module unit tests
+# Run unit tests
 ./gradlew :core:test
 
-# Run full build (both modules)
-./gradlew build
+# Run game tests (integration)
+./gradlew :gametest:s3:runData
+./gradlew :gametest:s3:runGameTestServer
 
-# View test report
+# View unit test report
 open core/build/reports/tests/test/index.html
 ```
+
+See [TESTING.md](TESTING.md) for full details.
 
 ### Project Structure
 
@@ -76,12 +79,16 @@ steves-simple-storage/
 │       ├── main/resources/  # Assets (textures, models, lang) and data (recipes, loot, tags)
 │       └── test/java/       # Unit tests
 ├── neoforge/                # NeoForge-specific code
-│   └── src/
-│       ├── main/java/       # Mod entry point, registration, config, packet handlers, JEI
-│       ├── main/resources/  # neoforge.mods.toml
-│       └── generated/       # Datagen output
+│   └── s3/
+│       └── src/
+│           ├── main/java/       # Mod entry point, registration, config, packet handlers, JEI
+│           ├── main/resources/  # neoforge.mods.toml
+│           └── generated/       # Datagen output
+├── gametest/                # Integration tests using NeoForge gametest framework
+│   └── s3/
+│       └── src/main/java/   # StorageGameTests, MultiplayerStorageGameTests
 ├── build.gradle             # Root: shared subproject config
-├── settings.gradle          # Includes common and neoforge modules
+├── settings.gradle          # Includes core, neoforge/s3, and gametest/s3 modules
 └── gradle.properties        # Mod version and dependency versions
 ```
 
