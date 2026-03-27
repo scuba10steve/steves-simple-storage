@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTest;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -133,11 +134,7 @@ public class MultiplayerStorageGameTests {
             long capacity = inv.getMaxItems();
 
             helper.makeMockServerPlayerInLevel();
-            ItemStack playerARemainder = core.insertItem(new ItemStack(Items.STONE, (int) capacity));
-            if (!playerARemainder.isEmpty()) {
-                helper.fail("Player A: expected empty remainder after filling storage, got " + playerARemainder.getCount());
-                return;
-            }
+            bulkInsert(inv, Items.STONE, capacity);
 
             long totalAfterFill = inv.getTotalItemCount();
             if (totalAfterFill != capacity) {
@@ -216,5 +213,13 @@ public class MultiplayerStorageGameTests {
             LOGGER.info("crafting_menu_open_while_second_player_inserts: PASSED");
             helper.succeed();
         });
+    }
+
+    private static void bulkInsert(StorageInventory inv, Item item, long amount) {
+        while (amount > 0) {
+            int batch = (int) Math.min(amount, Integer.MAX_VALUE);
+            inv.insertItem(new ItemStack(item, batch));
+            amount -= batch;
+        }
     }
 }
