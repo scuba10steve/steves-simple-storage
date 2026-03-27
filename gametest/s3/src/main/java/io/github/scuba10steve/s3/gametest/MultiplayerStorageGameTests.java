@@ -119,4 +119,52 @@ public class MultiplayerStorageGameTests {
             helper.succeed();
         });
     }
+
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    public static void insert_while_full_second_player_rejected(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            StorageCoreBlockEntity core = (StorageCoreBlockEntity) helper.getBlockEntity(CORE_POS);
+            if (core == null) {
+                helper.fail("Storage core block entity not found");
+                return;
+            }
+
+            StorageInventory inv = core.getInventory();
+            long capacity = inv.getMaxItems();
+
+            helper.makeMockServerPlayerInLevel();
+            ItemStack playerARemainder = core.insertItem(new ItemStack(Items.STONE, (int) capacity));
+            if (!playerARemainder.isEmpty()) {
+                helper.fail("Player A: expected empty remainder after filling storage, got " + playerARemainder.getCount());
+                return;
+            }
+
+            long totalAfterFill = inv.getTotalItemCount();
+            if (totalAfterFill != capacity) {
+                helper.fail("Expected storage full at " + capacity + ", got " + totalAfterFill);
+                return;
+            }
+
+            helper.makeMockServerPlayerInLevel();
+            ItemStack playerBRemainder = core.insertItem(new ItemStack(Items.DIAMOND, 1));
+
+            if (playerBRemainder.getCount() != 1) {
+                helper.fail("Player B: expected remainder count 1, got " + playerBRemainder.getCount());
+                return;
+            }
+            if (playerBRemainder.getItem() != Items.DIAMOND) {
+                helper.fail("Player B: expected remainder item DIAMOND, got " + playerBRemainder.getItem());
+                return;
+            }
+
+            long totalAfterRejection = inv.getTotalItemCount();
+            if (totalAfterRejection != capacity) {
+                helper.fail("Expected storage count unchanged at " + capacity + ", got " + totalAfterRejection);
+                return;
+            }
+
+            LOGGER.info("insert_while_full_second_player_rejected: PASSED");
+            helper.succeed();
+        });
+    }
 }
