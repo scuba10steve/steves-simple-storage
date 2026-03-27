@@ -3,7 +3,7 @@
 ## Current Dependencies
 
 Last checked: 2026-03-05
-Last updated: 2026-03-05
+Last updated: 2026-03-26
 
 ### Core Dependencies
 
@@ -19,7 +19,7 @@ Last updated: 2026-03-05
 
 | Dependency | Current Version | Status | Notes |
 |------------|----------------|--------|-------|
-| **JEI (Just Enough Items)** | 19.27.0.336 | ✅ Current | |
+| **JEI (Just Enough Items)** | 19.27.0.340 | ✅ Current | |
 
 ### Test Dependencies
 
@@ -49,7 +49,7 @@ Last updated: 2026-03-05
 
 ### JEI Compatibility
 
-JEI 19.27.0.336 is confirmed compatible with:
+JEI 19.27.0.340 is confirmed compatible with:
 - NeoForge 21.1.x (all versions)
 - Minecraft 1.21.1
 
@@ -93,7 +93,7 @@ Visit [Maven Central](https://mvnrepository.com/artifact/org.junit.jupiter/junit
 | 2026-03-05 | JUnit Jupiter | 5.11.4 | 5.14.3 | OpenRewrite automated update |
 | 2026-01-14 | NeoForge | 21.1.77 | 21.1.218 | Bug fixes and stability improvements |
 | 2026-01-14 | ModDevGradle | 2.0.46-beta | 2.0.139 | Stable release |
-| 2026-01-14 | JEI | 19.19.6.233 | 19.27.0.336 | Performance improvements |
+| 2026-01-14 | JEI | 19.19.6.233 | 19.27.0.340 | Performance improvements |
 | 2026-01-14 | JUnit Jupiter | 5.10.1 | 5.11.4 | Bug fixes |
 | 2026-01-13 | Initial Release | - | 1.0.0 | Port complete with NeoForge 21.1.77 |
 

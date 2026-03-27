@@ -31,7 +31,7 @@ The project uses a **multi-module Gradle layout**:
 A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decouples core code from loader-specific APIs.
 
 ### Project Status
-✅ **Version 0.9.0** - Feature-complete, beta releases
+✅ **Version 0.12.0** - Feature-complete, beta releases
 
 **Implemented Features:**
 - Basic storage system with multiblock capacity scaling
@@ -45,6 +45,7 @@ A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decou
 - Shift-click crafting with automatic ingredient repopulation
 - Search Box with real-time filtering (name, tags, mod, tooltips)
 - Sort Box with automatic sorting modes
+- Statistics Box with detailed storage metrics display
 - Security Box with player access control
 - Access Terminal for remote access
 - Input/Extract/Eject Ports for automation

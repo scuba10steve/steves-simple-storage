@@ -119,7 +119,7 @@ The port was completed through systematic implementation of each major system:
 - **Gradle**: 8.10.2
 - **IDE**: IntelliJ IDEA or Eclipse recommended
 
-### Post-Port Features (v0.4.0 – v0.9.0)
+### Post-Port Features (v0.4.0 – v0.12.0)
 - **Expandable Storage Grid** - Toggle between normal and extended GUI layouts in crafting screen
 - **Item Count Truncation** - Large counts displayed with K/M/B suffixes
 - **Advancement Tree** - 21 advancements tracking block/item progression

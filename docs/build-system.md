@@ -149,7 +149,7 @@ test { useJUnitPlatform() }
 ```properties
 minecraft_version=1.21.1
 neoforge_version=21.1.218
-mod_version=0.9.0
+mod_version=0.12.0
 mod_id=s3
 mod_name=Steve's Simple Storage
 mod_license=MIT
