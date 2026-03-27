@@ -20,11 +20,7 @@ core/src/main/resources/assets/s3/lang/<locale>.json
 
 If you also want to translate the Advanced Storage add-on (optional):
 
-```
-neoforge/s3-advanced/src/main/resources/assets/s3_advanced/lang/en_us.json
-→ copy to →
-neoforge/s3-advanced/src/main/resources/assets/s3_advanced/lang/<locale>.json
-```
+> **Note:** The s3-advanced module has moved to a separate repository ([steves-advanced-storage](https://github.com/scuba10steve/steves-advanced-storage)). See that repository for its translation files.
 
 > **Important:** Copy from `en_us.json`, not from another translated file (e.g., `es_es.json`). Copying from a translated file carries over the wrong language's values.
 

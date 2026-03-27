@@ -8,7 +8,7 @@ The mod has been successfully rebranded from **EZStorage 2** to **Steve's Simple
 
 **Name**: Steve's Simple Storage
 **Abbreviation**: S3
-**Version**: 0.9.0
+**Version**: 0.12.0
 **Tagline**: TBD
 
 ## Inspiration
