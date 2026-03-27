@@ -55,4 +55,68 @@ public class MultiplayerStorageGameTests {
             helper.succeed();
         });
     }
+
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    public static void two_players_sequential_extract(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            StorageCoreBlockEntity core = (StorageCoreBlockEntity) helper.getBlockEntity(CORE_POS);
+            if (core == null) {
+                helper.fail("Storage core block entity not found");
+                return;
+            }
+
+            StorageInventory inv = core.getInventory();
+
+            // Pre-fill
+            core.insertItem(new ItemStack(Items.DIAMOND, 64));
+            core.insertItem(new ItemStack(Items.EMERALD, 64));
+
+            long preFillTotal = inv.getTotalItemCount();
+            if (preFillTotal != 128) {
+                helper.fail("Expected pre-fill total 128, got " + preFillTotal);
+                return;
+            }
+
+            helper.makeMockServerPlayerInLevel();
+            ItemStack extractedA = core.extractItem(new ItemStack(Items.DIAMOND, 1), 10);
+            if (extractedA.getCount() != 10) {
+                helper.fail("Player A: expected to extract 10 diamonds, got " + extractedA.getCount());
+                return;
+            }
+
+            helper.makeMockServerPlayerInLevel();
+            ItemStack extractedB = core.extractItem(new ItemStack(Items.EMERALD, 1), 5);
+            if (extractedB.getCount() != 5) {
+                helper.fail("Player B: expected to extract 5 emeralds, got " + extractedB.getCount());
+                return;
+            }
+
+            long finalTotal = inv.getTotalItemCount();
+            if (finalTotal != 113) {
+                helper.fail("Expected final total 113, got " + finalTotal);
+                return;
+            }
+
+            long remainingDiamonds = inv.getStoredItems().stream()
+                .filter(s -> s.getItemStack().getItem() == Items.DIAMOND)
+                .mapToLong(StoredItemStack::getCount)
+                .sum();
+            if (remainingDiamonds != 54) {
+                helper.fail("Expected 54 remaining diamonds, got " + remainingDiamonds);
+                return;
+            }
+
+            long remainingEmeralds = inv.getStoredItems().stream()
+                .filter(s -> s.getItemStack().getItem() == Items.EMERALD)
+                .mapToLong(StoredItemStack::getCount)
+                .sum();
+            if (remainingEmeralds != 59) {
+                helper.fail("Expected 59 remaining emeralds, got " + remainingEmeralds);
+                return;
+            }
+
+            LOGGER.info("two_players_sequential_extract: PASSED");
+            helper.succeed();
+        });
+    }
 }
