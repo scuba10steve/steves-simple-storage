@@ -71,8 +71,9 @@ public record StorageSyncPacket(
     }
 
     private static void writeItems(RegistryFriendlyByteBuf buf, List<StoredItemStack> items) {
-        buf.writeInt(items.size());
-        for (StoredItemStack item : items) {
+        List<StoredItemStack> valid = items.stream().filter(i -> !i.getItemStack().isEmpty()).toList();
+        buf.writeInt(valid.size());
+        for (StoredItemStack item : valid) {
             ItemStack.STREAM_CODEC.encode(buf, item.getItemStack());
             buf.writeLong(item.getCount());
         }

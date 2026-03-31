@@ -34,6 +34,7 @@ public class StoredItemStack {
     }
     
     public CompoundTag save(HolderLookup.Provider registries) {
+        if (itemStack.isEmpty()) return null;
         CompoundTag tag = new CompoundTag();
         tag.put("Item", itemStack.save(registries));
         tag.putLong("Count", count);
