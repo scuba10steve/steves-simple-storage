@@ -10,6 +10,7 @@ This directory contains comprehensive technical documentation for Steve's Simple
 - **[Configuration](configuration.md)** - TOML configuration system and options
 - **[Build System](build-system.md)** - Multi-module Gradle configuration and build process
 - **[Dependencies](dependencies.md)** - Dependency versions and update tracking
+- **[Integrations](integrations.md)** - Current mod integrations and future options
 - **[Troubleshooting](troubleshooting.md)** - Common issues and solutions
 - **[v1.0.0 Release Plan](v1.0.0-release.md)** - Tracking items for the first stable release
 - **[Changelog](../CHANGELOG.md)** - Version history and changes

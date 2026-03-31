@@ -22,6 +22,64 @@ Before working on any area of the codebase, read the relevant doc in `docs/`:
 | Troubleshooting common issues | [docs/troubleshooting.md](docs/troubleshooting.md) |
 | 1.0.0 release status | [docs/v1.0.0-release.md](docs/v1.0.0-release.md) |
 
+## Project Structure
+
+```text
+core/                 Platform-agnostic code (vanilla MC classes via neoFormVersion)
+  src/main/java/io/github/scuba10steve/s3/
+    block/            Block classes and multiblock components
+    blockentity/      Block entity implementations (core storage logic)
+    gui/              Shared menu/screen logic and UI helpers
+    platform/         Platform abstraction interfaces and helpers
+  src/main/resources/
+    assets/s3/lang/   Localization files (en_us.json is the reference)
+    data/s3/          Recipes, tags, loot tables, advancements
+
+neoforge/s3/          NeoForge-specific runtime module
+  src/main/java/io/github/scuba10steve/s3/
+    init/             DeferredRegister holders (blocks, items, entities, menus)
+    client/           Client-only screen/event registration
+    config/           NeoForge config bridge
+    network/          Packet registration and handlers
+    jei/              JEI integration classes
+
+gametest/s3/          NeoForge GameTest module and data generation entry points
+
+docs/                 Technical docs (architecture, integrations, troubleshooting)
+scripts/              Local dev helpers (server, copy jar, fetch logs)
+```
+
+## Build And Verification Commands
+
+```bash
+# Build all modules
+./gradlew build
+
+# Build key modules directly
+./gradlew :core:build :neoforge:s3:build :gametest:s3:build
+
+# Unit tests + checks (includes core:validateLang through check)
+./gradlew test check
+
+# Run NeoForge GameTests (full game test server startup)
+./gradlew :gametest:s3:runGameTestServer
+
+# Local manual test helpers
+bash scripts/server.sh
+bash scripts/copy.sh
+bash scripts/get_logs.sh
+```
+
+**After code changes, run at least `./gradlew :neoforge:s3:build` before claiming completion.**
+
+## Key Codebase Conventions
+
+- **Multi-module boundaries:** Keep cross-platform logic in `core`; keep NeoForge-only APIs and registrations in `neoforge/s3`.
+- **Platform abstraction:** Prefer existing abstraction points (`S3Platform`, config/network helpers) instead of introducing direct loader coupling into `core`.
+- **Localization parity:** `core/src/main/resources/assets/s3/lang/en_us.json` is the key-set source of truth; `validateLang` enforces parity for other locales.
+- **Registration flow:** New blocks/items/entities/menus should follow existing DeferredRegister patterns in `neoforge/s3/src/main/java/io/github/scuba10steve/s3/init/`.
+- **Automation and integration:** Changes touching storage transfer, recipes, or UI interactions should account for JEI integration and GameTest coverage where applicable.
+
 ## Core Mandates
 
 1.  **Adherence to Conventions:** Always prioritize and rigorously adhere to existing project conventions (code style, naming, architecture, documentation) when reading or modifying code. Analyze surrounding code, tests, and configuration files (e.g., `package.json`, `Cargo.toml`, `requirements.txt`, `build.gradle`) to understand established patterns.

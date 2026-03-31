@@ -51,3 +51,7 @@ docs/superpowers/
 # Moderne CLI
 .moderne/*
 !.moderne/context/
+
+# AI Assistants/tools
+.claude/
+.kiro
