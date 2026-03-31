@@ -177,7 +177,8 @@ public class StorageInventory {
 
         ListTag itemsList = new ListTag();
         for (StoredItemStack stored : items.values()) {
-            itemsList.add(stored.save(registries));
+            CompoundTag itemTag = stored.save(registries);
+            if (itemTag != null) itemsList.add(itemTag);
         }
         tag.put("Items", itemsList);
 
@@ -193,6 +194,7 @@ public class StorageInventory {
         for (int i = 0; i < itemsList.size(); i++) {
             CompoundTag itemTag = itemsList.getCompound(i);
             StoredItemStack stored = StoredItemStack.load(itemTag, registries);
+            if (stored.getItemStack().isEmpty()) continue; // skip items from removed/updated mods
             items.put(new ItemKey(stored.getItemStack()), stored);
             totalCount += stored.getCount();
         }
