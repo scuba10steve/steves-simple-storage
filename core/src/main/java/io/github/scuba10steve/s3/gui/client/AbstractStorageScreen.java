@@ -410,17 +410,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             return;
         }
 
-        // Use filtered items if searching
-        List<StoredItemStack> itemsToUse;
-        if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
-            itemsToUse = filteredItems;
-        } else {
-            StorageInventory inventory = menu.getInventory();
-            if (inventory == null) {
-                return;
-            }
-            itemsToUse = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
-        }
+        List<StoredItemStack> itemsToUse = getDisplayItems();
 
         if (slotIndex >= itemsToUse.size()) {
             return;
@@ -443,18 +433,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
     }
 
     protected void renderStoredItems(GuiGraphics guiGraphics) {
-        // Use filtered items if search is active, otherwise get fresh from inventory
-        List<StoredItemStack> itemsToRender;
-        if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
-            itemsToRender = filteredItems;
-        } else {
-            StorageInventory inventory = menu.getInventory();
-            if (inventory == null) {
-                return;
-            }
-            // Use sorted items if sort box is present
-            itemsToRender = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
-        }
+        List<StoredItemStack> itemsToRender = getDisplayItems();
 
         int startX = 8;
         int startY = 18;
@@ -549,13 +528,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                     return true;
                 }
 
-                // Use filtered items if searching, otherwise all items (sorted if sort box present)
-                List<StoredItemStack> itemsToUse;
-                if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
-                    itemsToUse = filteredItems;
-                } else {
-                    itemsToUse = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
-                }
+                List<StoredItemStack> itemsToUse = getDisplayItems();
 
                 // Find the actual inventory index for the clicked item
                 if (slot < itemsToUse.size()) {
@@ -603,19 +576,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
     @Override
     public boolean mouseScrolled(double mouseX, double mouseY, double scrollX, double scrollY) {
-        // Use filtered items for scroll calculation if searching
-        List<StoredItemStack> itemsForScroll;
-        if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
-            itemsForScroll = filteredItems;
-        } else {
-            StorageInventory inventory = menu.getInventory();
-            if (inventory == null) {
-                return false;
-            }
-            itemsForScroll = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
-        }
-
-        int maxRows = (itemsForScroll.size() + 8) / 9 - storageRows;
+        int maxRows = (getDisplayItems().size() + 8) / 9 - storageRows;
         if (maxRows <= 0) {
             return false;
         }
@@ -663,17 +624,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
      * Returns true if the storage has more items than visible rows can display.
      */
     protected boolean canScrollItems() {
-        List<StoredItemStack> items;
-        if (searchActive && searchField != null && !searchField.getValue().isEmpty()) {
-            items = filteredItems;
-        } else {
-            StorageInventory inventory = menu.getInventory();
-            if (inventory == null) {
-                return false;
-            }
-            items = sortActive ? inventory.getSortedItems() : inventory.getStoredItems();
-        }
-        return (items.size() + 8) / 9 > storageRows;
+        return (getDisplayItems().size() + 8) / 9 > storageRows;
     }
 
     // Getters for JEI integration
