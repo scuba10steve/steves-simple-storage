@@ -24,7 +24,7 @@ Technical documentation for contributors and those building the mod.
 ### Key Technologies
 - **Minecraft**: 1.21.1
 - **NeoForge**: 21.1.218
-- **ModDevGradle**: 2.0.140
+- **ModDevGradle**: 2.0.141
 - **Java**: 21
 - **Gradle**: 8.10.2
 

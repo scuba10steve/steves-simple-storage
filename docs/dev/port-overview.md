@@ -33,7 +33,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **New Package Structure** - Migrated to `io.github.scuba10steve.s3`
 - **Multi-Module Architecture** - Clean separation of platform-agnostic and NeoForge-specific code
 - **Bug-Free Core** - All UI sync and interaction issues resolved
-- **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.140, JEI 19.27.0.340
+- **Latest Dependencies** - NeoForge 21.1.226, ModDevGradle 2.0.141, JEI 19.27.0.340
 
 ### Recent Bug Fixes (2026-01-14)
 - ✅ Fixed UI not loading items on first interaction
@@ -48,7 +48,7 @@ All major features from the original 1.12.2 version have been successfully imple
 
 ### Build System Migration
 - **Old**: ForgeGradle with Java 8, single module
-- **New**: ModDevGradle 2.0.140 with Java 21, multi-module Gradle layout
+- **New**: ModDevGradle 2.0.141 with Java 21, multi-module Gradle layout
 - **Gradle**: Updated from 4.x to 8.10.2
 - **Architecture**: Split into `core` (vanilla MC only) and `neoforge` (loader-specific) modules with platform abstraction layer
 

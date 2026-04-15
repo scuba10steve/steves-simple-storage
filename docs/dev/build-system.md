@@ -2,7 +2,7 @@
 
 ## Overview
 
-Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.140**. The project is split into two modules:
+Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.141**. The project is split into two modules:
 
 - **core** - Platform-agnostic code compiled against vanilla Minecraft (via `neoFormVersion`)
 - **neoforge** - NeoForge-specific code (registration, config, packet handlers, JEI integration)
@@ -71,7 +71,7 @@ Uses `neoFormVersion` for vanilla Minecraft classes only (no NeoForge APIs):
 
 ```gradle
 plugins {
-    id 'net.neoforged.moddev' version '2.0.140'
+    id 'net.neoforged.moddev' version '2.0.141'
 }
 
 base { archivesName = 's3-core' }
@@ -94,7 +94,7 @@ Full NeoForge with all run configs, depends on `:core`:
 
 ```gradle
 plugins {
-    id 'net.neoforged.moddev' version '2.0.140'
+    id 'net.neoforged.moddev' version '2.0.141'
 }
 
 base { archivesName = 's3' }

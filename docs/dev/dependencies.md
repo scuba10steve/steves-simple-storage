@@ -2,16 +2,16 @@
 
 ## Current Dependencies
 
-Last checked: 2026-03-05
-Last updated: 2026-03-26
+Last checked: 2026-04-15
+Last updated: 2026-04-15
 
 ### Core Dependencies
 
 | Dependency | Current Version | Status | Notes |
 |------------|----------------|--------|-------|
-| **NeoForge** | 21.1.218 | ✅ Current | |
+| **NeoForge** | 21.1.226 | ✅ Current | Updated from 21.1.218 |
 | **Minecraft** | 1.21.1 | ✅ Current | Target version |
-| **ModDevGradle** | 2.0.140 | ✅ Current | Updated from 2.0.139 |
+| **ModDevGradle** | 2.0.141 | ✅ Current | Updated from 2.0.140 |
 | **Gradle** | 8.10.2 | ✅ Current | Via wrapper |
 | **Java** | 21 | ✅ Current | Required for NeoForge |
 
@@ -89,6 +89,8 @@ Visit [Maven Central](https://mvnrepository.com/artifact/org.junit.jupiter/junit
 
 | Date | Component | From | To | Notes |
 |------|-----------|------|-----|-------|
+| 2026-04-15 | NeoForge | 21.1.218 | 21.1.226 | Bug fixes and stability improvements |
+| 2026-04-15 | ModDevGradle | 2.0.140 | 2.0.141 | Routine update |
 | 2026-03-05 | ModDevGradle | 2.0.139 | 2.0.140 | Routine update |
 | 2026-03-05 | JUnit Jupiter | 5.11.4 | 5.14.3 | OpenRewrite automated update |
 | 2026-01-14 | NeoForge | 21.1.77 | 21.1.218 | Bug fixes and stability improvements |

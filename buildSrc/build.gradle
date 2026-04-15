@@ -11,5 +11,5 @@ repositories {
 }
 
 dependencies {
-    implementation 'net.neoforged:moddev-gradle:2.0.140'
+    implementation 'net.neoforged:moddev-gradle:2.0.141'
 }
