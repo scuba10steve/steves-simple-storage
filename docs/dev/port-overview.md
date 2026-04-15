@@ -33,7 +33,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **New Package Structure** - Migrated to `io.github.scuba10steve.s3`
 - **Multi-Module Architecture** - Clean separation of platform-agnostic and NeoForge-specific code
 - **Bug-Free Core** - All UI sync and interaction issues resolved
-- **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.140, JEI 19.27.0.336
+- **Latest Dependencies** - NeoForge 21.1.218, ModDevGradle 2.0.140, JEI 19.27.0.340
 
 ### Recent Bug Fixes (2026-01-14)
 - ✅ Fixed UI not loading items on first interaction
@@ -112,14 +112,14 @@ The port was completed through systematic implementation of each major system:
 ### Minecraft Versions
 - **Target**: 1.21.1 (primary)
 - **NeoForge**: 21.1.218
-- **JEI**: 19.27.0.336
+- **JEI**: 19.27.0.340
 
 ### Development Environment
 - **Java**: 21 (required)
 - **Gradle**: 8.10.2
 - **IDE**: IntelliJ IDEA or Eclipse recommended
 
-### Post-Port Features (v0.4.0 – v0.12.0)
+### Post-Port Features (v0.4.0 – v1.0.2)
 - **Expandable Storage Grid** - Toggle between normal and extended GUI layouts in crafting screen
 - **Item Count Truncation** - Large counts displayed with K/M/B suffixes
 - **Advancement Tree** - 21 advancements tracking block/item progression

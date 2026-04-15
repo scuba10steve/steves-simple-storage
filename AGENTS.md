@@ -8,19 +8,18 @@ The primary purpose of an AI agent in this repository is to assist human develop
 
 ## Documentation
 
-Before working on any area of the codebase, read the relevant doc in `docs/`:
+Before working on any area of the codebase, read the relevant doc in `docs/dev/`:
 
 | Area | Document |
 |------|----------|
-| Storage system architecture | [docs/storage-system.md](docs/storage-system.md) |
-| GUI system and menus | [docs/gui-system.md](docs/gui-system.md) |
-| Build system and Gradle setup | [docs/build-system.md](docs/build-system.md) |
-| Configuration options | [docs/configuration.md](docs/configuration.md) |
-| Port blocks (Input/Extract/Eject) | [docs/port-overview.md](docs/port-overview.md) |
-| Translation/i18n contributions | [docs/translations.md](docs/translations.md) |
-| Dependency versions | [docs/dependencies.md](docs/dependencies.md) |
-| Troubleshooting common issues | [docs/troubleshooting.md](docs/troubleshooting.md) |
-| 1.0.0 release status | [docs/v1.0.0-release.md](docs/v1.0.0-release.md) |
+| Storage system architecture | [docs/dev/storage-system.md](docs/dev/storage-system.md) |
+| GUI system and menus | [docs/dev/gui-system.md](docs/dev/gui-system.md) |
+| Build system and Gradle setup | [docs/dev/build-system.md](docs/dev/build-system.md) |
+| Configuration options | [docs/dev/configuration.md](docs/dev/configuration.md) |
+| Port blocks (Input/Extract/Eject) | [docs/dev/port-overview.md](docs/dev/port-overview.md) |
+| Translation/i18n contributions | [docs/dev/translations.md](docs/dev/translations.md) |
+| Dependency versions | [docs/dev/dependencies.md](docs/dev/dependencies.md) |
+| Troubleshooting common issues | [docs/dev/troubleshooting.md](docs/dev/troubleshooting.md) |
 
 ## Project Structure
 

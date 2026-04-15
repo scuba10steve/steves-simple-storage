@@ -7,16 +7,33 @@
 
 Steve's Simple Storage introduces a storage system that scales and evolves as players progress. Want to put 100,000 Cobblestone in 1 slot? No problem. Blocks in the mod can add a search bar, a crafting grid, additional storage, external access, security, and more. Also includes JEI integration for 1-click crafting from the system's internal inventory!
 
-## Project Status
+## User Documentation
 
-Version 0.12.0 — approaching **1.0.0 stable release**. All core features complete and stable on **Minecraft 1.21.1** / **NeoForge 21.1.218**. See [docs/port-overview.md](docs/port-overview.md) for details.
+New to the mod? Start here:
 
-## Requirements
+- [Getting Started](docs/usage/getting-started.md) — Build your first storage system from scratch
+- [Block Reference](docs/usage/block-reference.md) — Every block and item explained
+- [Crafting Recipes](docs/usage/recipes.md) — How to craft all blocks
+- [Security](docs/usage/security.md) — Locking and protecting your storage
+- [Automation](docs/usage/automation.md) — Connect hoppers, pipes, and item networks
+- [Search & Sorting](docs/usage/search-sorting.md) — Finding and organizing items
+
+Find all user guides at [docs/usage/](docs/usage/).
+
+## Developer Documentation
+
+Documentation for contributors and those building the mod. Find all dev docs at [docs/dev/](docs/dev/).
+
+### Project Status
+
+Version 1.0.2 — stable release on **Minecraft 1.21.1** / **NeoForge 21.1.218**.
+
+### Requirements
 
 - **Java 21** or higher (required for NeoForge)
 - **Gradle 8.x** (wrapper included)
 
-## Building the Mod
+### Building the Mod
 
 1. **Clone the repository**:
    ```bash
@@ -37,9 +54,7 @@ Version 0.12.0 — approaching **1.0.0 stable release**. All core features compl
 3. **Find the built mod**:
    The compiled mod JAR will be located at `neoforge/build/libs/s3-<version>.jar`
 
-## Development
-
-### Setting up the Development Environment
+### Development
 
 1. **Import the project** into your IDE (IntelliJ IDEA or Eclipse recommended)
 2. **Run the client** for testing:
@@ -59,7 +74,7 @@ Version 0.12.0 — approaching **1.0.0 stable release**. All core features compl
 
 # Run game tests (integration)
 ./gradlew :gametest:s3:runData
-./gradlew :gametest:s3:runGameTestServer
+./gradlew :gametest/s3:runGameTestServer
 
 # View unit test report
 open core/build/reports/tests/test/index.html
@@ -102,11 +117,11 @@ steves-simple-storage/
 - **Storage logic**: `core/.../storage/` (StorageInventory, StoredItemStack)
 - **Mod metadata**: `neoforge/src/main/resources/META-INF/neoforge.mods.toml`
 
-## Configuration
+### Configuration
 
 Steve's Simple Storage uses TOML configuration files located at `config/s3-common.toml`. The configuration is organized into sections:
 
-### Storage Capacities
+#### Storage Capacities
 - `basicCapacity` - Storage Box capacity (default: 10,000)
 - `condensedCapacity` - Condensed Storage Box capacity (default: 40,000)
 - `compressedCapacity` - Compressed Storage Box capacity (default: 80,000)
@@ -115,21 +130,21 @@ Steve's Simple Storage uses TOML configuration files located at `config/s3-commo
 - `hyperCapacity` - Hyper Storage Box capacity (default: 2,560,000)
 - `ultimateCapacity` - Ultimate Storage Box capacity (default: 10,240,000)
 
-### Feature Toggles
+#### Feature Toggles
 - `enableSecurity` - Enable Security Box and Key item (default: true)
 - `enableTerminal` - Enable Access Terminal block (default: true)
 - `enableDolly` - Enable Dolly items for moving blocks (default: true)
 - `enableSearchModes` - Enable advanced search modes (default: true)
 - `enableOpOverride` - Allow operators to override security (default: true)
 
-### Recipe Options
+#### Recipe Options
 - `classicRecipes` - Use classic (easier) recipes (default: false)
 - `toughHyper` - Make Hyper Storage Box recipe more expensive (default: false)
 
-### Mod Integration
+#### Mod Integration
 - `jeiIntegration` - Enable JEI integration features (default: true)
 
-### Automation Settings
+#### Automation Settings
 - `extractPortInterval` - Ticks between Extract Port extraction attempts (default: 8, range: 1-100). Lower values = faster extraction, higher values = less server load.
 - `minSyncInterval` - Minimum ticks between storage inventory sync packets (default: 2, range: 0-20). Helps prevent visual flicker. Set to 0 to disable throttling.
 
@@ -149,4 +164,6 @@ This Open Source project is licensed under the MIT License (see [LICENSE](LICENS
 ## Links
 
 - [GitHub Repository](https://github.com/scuba10steve/steves-simple-storage)
+- [Modrinth](https://modrinth.com/mod/XsvAJLLz)
+- [CurseForge](https://www.curseforge.com/minecraft/mc-mods/steves-simple-storage)
 - [Original Project on CurseForge](https://www.curseforge.com/minecraft/mc-mods/ezstorage-2) (EZStorage 2 - 1.12.2 version)
