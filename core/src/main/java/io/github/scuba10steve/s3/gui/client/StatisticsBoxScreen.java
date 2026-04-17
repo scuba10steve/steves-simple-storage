@@ -22,7 +22,11 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
     private static final ResourceLocation TEXTURE =
         ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/statistics_box.png");
 
+    private static final int TIER_LINE_HEIGHT = 10;
+    private static final int TIER_SECTION_END = 140;
+
     private final List<ComponentIcon> componentIcons = new ArrayList<>();
+    private int tierScrollOffset = 0;
 
     public StatisticsBoxScreen(StatisticsBoxMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
@@ -98,13 +102,41 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         guiGraphics.drawString(this.font, "Total Blocks: " + totalBlocks, 12, y, valueColor, false);
         y += 11;
 
-        // Tier breakdown
+        // Tier breakdown with scrollbar
         Map<String, Integer> tiers = inventory.getTierBreakdown();
+        int visibleTierLines = (TIER_SECTION_END - y) / TIER_LINE_HEIGHT;
+        int maxScroll = Math.max(0, tiers.size() - visibleTierLines);
+        tierScrollOffset = Math.max(0, Math.min(tierScrollOffset, maxScroll));
+
+        int displayY = y;
+        int count = 0;
         for (Map.Entry<String, Integer> entry : tiers.entrySet()) {
+            if (count < tierScrollOffset) {
+                count++;
+                continue;
+            }
+            if (count >= tierScrollOffset + visibleTierLines) {
+                break;
+            }
             String tierName = capitalize(entry.getKey());
-            guiGraphics.drawString(this.font, tierName + ": " + entry.getValue(), 16, y, valueColor, false);
-            y += 10;
+            guiGraphics.drawString(this.font, tierName + ": " + entry.getValue(), 16, displayY, valueColor, false);
+            displayY += TIER_LINE_HEIGHT;
+            count++;
         }
+
+        // Scrollbar
+        if (maxScroll > 0) {
+            int scrollbarX = imageWidth - 10;
+            int scrollbarY = y;
+            int scrollbarHeight = TIER_SECTION_END - y;
+            int thumbHeight = Math.max(8, scrollbarHeight * visibleTierLines / tiers.size());
+            int thumbY = scrollbarY + (tierScrollOffset * (scrollbarHeight - thumbHeight) / maxScroll);
+
+            guiGraphics.fill(scrollbarX, scrollbarY, scrollbarX + 4, scrollbarY + scrollbarHeight, 0xFF888888);
+            guiGraphics.fill(scrollbarX + 1, thumbY, scrollbarX + 3, thumbY + thumbHeight, 0xFF555555);
+        }
+
+        y = TIER_SECTION_END + 8;
 
         // Attached components as block icons
         y += 4;
@@ -159,6 +191,20 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         if (relX >= qX && relX < qX + qWidth && relY >= qY && relY < qY + this.font.lineHeight) {
             guiGraphics.renderTooltip(this.font, Component.literal("Hold Shift for exact counts"), mouseX, mouseY);
         }
+    }
+
+    @Override
+    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
+        int relY = (int) mouseY - topPos;
+        int relX = (int) mouseX - leftPos;
+
+        int tierStartY = 100;
+        if (relX >= 0 && relX < imageWidth && relY >= tierStartY && relY < TIER_SECTION_END) {
+            tierScrollOffset -= (int) verticalAmount;
+            tierScrollOffset = Math.max(0, tierScrollOffset);
+            return true;
+        }
+        return super.mouseScrolled(mouseX, mouseY, horizontalAmount, verticalAmount);
     }
 
     private static String formatValue(long count, boolean exact) {
