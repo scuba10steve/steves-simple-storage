@@ -26,7 +26,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
     private static final int TIER_SECTION_END = 140;
 
     private final List<ComponentIcon> componentIcons = new ArrayList<>();
-    private int tierScrollOffset = 0;
+    private int tierScrollOffset;
 
     public StatisticsBoxScreen(StatisticsBoxMenu menu, Inventory playerInventory, Component title) {
         super(menu, playerInventory, title);
