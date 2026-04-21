@@ -180,7 +180,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
                 serverLevel,
                 worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
     }
@@ -195,7 +195,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
                 serverLevel,
                 worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
     }
@@ -272,10 +272,10 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         if (level instanceof ServerLevel serverLevel) {
             S3Platform.getNetworkHelper().sendToPlayer(
                 (net.minecraft.server.level.ServerPlayer) player,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents)
+                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
-        
+
         // Open crafting GUI if we have a crafting box, otherwise normal storage GUI
         if (hasCraftingBox) {
             LOGGER.debug("Opening crafting GUI for storage core at {}", worldPosition);
