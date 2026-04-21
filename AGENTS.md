@@ -117,7 +117,7 @@ bash scripts/get_logs.sh
 
 ## Version & Release Management
 
-*   **Version Bumps:** Never manually edit `mod_version` in `gradle.properties`. Use the `bump-version` GitHub Actions workflow (`gh workflow run bump-version.yml --ref main -f part=<patch|minor|major>`).
+*   **Version Bumps:** Never manually edit `mod_version` in `gradle.properties`. Use the `bump-version` GitHub Actions workflow (`gh workflow run bump-version.yml --ref main -f part=<patch|minor|major>`). Wait for the workflow to complete, then run `git pull` to sync the remote commit.
 *   **Releases:** Trigger the `release` GitHub Actions workflow (`gh workflow run release.yml --ref main -f release_type=<beta|release>`). This builds, creates a GitHub Release, and publishes to Modrinth and CurseForge. **Always use `release_type=beta`** unless the user explicitly requests a full release.
 *   **Workflow Order (CRITICAL):** Always trigger `bump-version` first, wait for it to complete successfully (check with `gh run view <run-id> --json status,conclusion`), then trigger `release`. Running them in parallel causes the release to use the old version number.
 
