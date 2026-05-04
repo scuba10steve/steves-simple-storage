@@ -35,9 +35,9 @@ processResources {
 }
 
 dependencies {
-    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
     compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
     coreClasses project(path: ':core', configuration: 'coreOutput')
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
 }
 
 tasks.withType(Test).configureEach {

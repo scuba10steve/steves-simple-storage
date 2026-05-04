@@ -23,12 +23,12 @@ neoForge {
 }
 
 dependencies {
+    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.340"
+
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.340"
     implementation project(':core')
 
-    compileOnly "mezz.jei:jei-1.21.1-common-api:19.27.0.340"
-    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.27.0.340"
-
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.3'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.14.4'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
