@@ -42,7 +42,7 @@ dependencies {
     implementation project(':core')
     implementation project(':neoforge:s3')
 
-    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.14.3"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.14.4"
 }
 
 tasks.withType(Test).configureEach {
