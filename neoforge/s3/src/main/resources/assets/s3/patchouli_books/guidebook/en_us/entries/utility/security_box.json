@@ -1,0 +1,17 @@
+{
+  "name": "Security Box",
+  "category": "s3:utility",
+  "icon": "s3:security_box",
+  "sortnum": 3,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:security_box",
+      "text": "Restricts access to the storage system using keys."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Security Box$() and insert a $(item)Key$() to lock the storage system. Only players holding a matching Key can open the $(item)Storage Core$() GUI. Useful for shared servers or keeping your items private."
+    }
+  ]
+}

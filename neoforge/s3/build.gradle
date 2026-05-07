@@ -37,6 +37,8 @@ processResources {
 dependencies {
     runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
     compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
+    compileOnly "vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE:api"
+    runtimeOnly "vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE"
     coreClasses project(path: ':core', configuration: 'coreOutput')
 }
 

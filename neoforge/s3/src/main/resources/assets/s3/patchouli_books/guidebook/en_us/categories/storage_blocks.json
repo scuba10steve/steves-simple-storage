@@ -1,0 +1,6 @@
+{
+  "name": "Storage Blocks",
+  "description": "Storage cores, boxes, and their capacities across all tiers.",
+  "icon": "s3:storage_box",
+  "sortnum": 1
+}

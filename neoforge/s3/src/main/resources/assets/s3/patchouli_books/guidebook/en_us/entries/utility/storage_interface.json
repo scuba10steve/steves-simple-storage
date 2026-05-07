@@ -1,0 +1,17 @@
+{
+  "name": "Storage Interface",
+  "category": "s3:utility",
+  "icon": "s3:storage_interface",
+  "sortnum": 6,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:storage_interface",
+      "text": "Exposes storage as a standard inventory to adjacent machines."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Storage Interface$() to your multiblock. Machines, hoppers, and other blocks adjacent to it will see the storage system as a normal inventory, allowing them to insert and extract items without special integration."
+    }
+  ]
+}

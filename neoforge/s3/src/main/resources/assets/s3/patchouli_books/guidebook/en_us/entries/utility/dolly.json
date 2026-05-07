@@ -1,0 +1,17 @@
+{
+  "name": "Dollies",
+  "category": "s3:utility",
+  "icon": "s3:dolly",
+  "sortnum": 7,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:dolly",
+      "text": "Move storage blocks without losing their contents."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Use a $(item)Dolly$() to pick up and relocate $(item)Storage Boxes$() and other blocks while keeping their contents intact. The $(item)Super Dolly$() can carry heavier or larger blocks. Right-click a block to pick it up, then right-click a surface to place it."
+    }
+  ]
+}

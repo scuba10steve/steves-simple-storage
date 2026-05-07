@@ -1,0 +1,6 @@
+{
+  "name": "Port Blocks",
+  "description": "Automate item flow into and out of your storage system.",
+  "icon": "s3:input_port",
+  "sortnum": 2
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Access Terminal",
+  "category": "s3:utility",
+  "icon": "s3:access_terminal",
+  "sortnum": 5,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:access_terminal",
+      "text": "A remote access point for the storage GUI."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Access Terminal$() must be connected to your multiblock. Once placed, you can open the full $(item)Storage Core$() GUI from the terminal instead of the core itself — useful when the core is buried or hard to reach."
+    }
+  ]
+}

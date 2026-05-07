@@ -1,0 +1,17 @@
+{
+  "name": "Crafting Box",
+  "category": "s3:utility",
+  "icon": "s3:crafting_box",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:crafting_box",
+      "text": "Adds a 3×3 crafting grid to the Storage Core GUI."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Crafting Box$() to your multiblock to embed a full crafting grid directly in the $(item)Storage Core$() GUI. Craft items without opening a separate crafting table — the output goes straight into your inventory. Only one Crafting Box per Core."
+    }
+  ]
+}
