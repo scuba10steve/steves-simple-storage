@@ -33,7 +33,7 @@ public class PatchouliCompat {
         }
 
         player.addItem(PatchouliAPI.get().getBookStack(GUIDEBOOK_ID));
-        player.sendSystemMessage(Component.literal("scuba10steve has left you a gift! You should check your inventory..."));
+        player.sendSystemMessage(Component.literal("Simple Steve has left you a gift! You should check your inventory..."));
         player.getPersistentData().putBoolean(GIFT_RECEIVED_KEY, true);
     }
 }
