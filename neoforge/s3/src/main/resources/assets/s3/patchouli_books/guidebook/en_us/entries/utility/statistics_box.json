@@ -1,0 +1,17 @@
+{
+  "name": "Statistics Box",
+  "category": "s3:utility",
+  "icon": "s3:statistics_box",
+  "sortnum": 4,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:statistics_box",
+      "text": "Displays item counts and capacity usage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Statistics Box$() to your multiblock to add a capacity readout to the $(item)Storage Core$() GUI. See your total item count, unique item types, and how full your storage is at a glance."
+    }
+  ]
+}

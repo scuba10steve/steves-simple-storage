@@ -1,0 +1,26 @@
+{
+  "name": "Building Your First Storage",
+  "category": "s3:getting_started",
+  "icon": "s3:storage_box",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:storage_core",
+      "text": "The $(item)Storage Core$() is the heart of your system. Place it first."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach $(item)Storage Boxes$() to any face of the Core or chain them together in a connected multiblock. All connected boxes share their capacity with the Core.$(br2)Open the Core's GUI to view, search, and manage everything stored inside."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:input_port",
+      "text": "Add an $(item)Input Port$() to automate item insertion."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Place an $(item)Input Port$() on any face of the multiblock to pull items in from adjacent inventories or hoppers. Use an $(item)Extract Port$() or $(item)Eject Port$() to move items out. See $(bold)Port Blocks$() for details."
+    }
+  ]
+}

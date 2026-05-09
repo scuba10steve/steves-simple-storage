@@ -1,0 +1,17 @@
+{
+  "name": "Search Box",
+  "category": "s3:utility",
+  "icon": "s3:search_box",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:search_box",
+      "text": "Adds a search bar to the Storage Core GUI."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Search Box$() to your multiblock to add a text search field to the $(item)Storage Core$() GUI. Type any part of an item name to filter the displayed contents. Only one Search Box can be active per Core."
+    }
+  ]
+}

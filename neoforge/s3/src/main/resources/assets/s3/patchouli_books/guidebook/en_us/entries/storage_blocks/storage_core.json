@@ -1,0 +1,21 @@
+{
+  "name": "Storage Core",
+  "category": "s3:storage_blocks",
+  "icon": "s3:storage_core",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:storage_core",
+      "text": "The controller for your entire storage system."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Storage Core$() manages all items in the connected multiblock. Open it to access your inventory with a 6×9 grid of storage slots.$(br2)The GUI also displays your current item count and total capacity."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach utility blocks such as the $(item)Search Box$(), $(item)Sort Box$(), and $(item)Crafting Box$() to add extra functionality to the GUI. Only one of each utility block can be active per Core."
+    }
+  ]
+}

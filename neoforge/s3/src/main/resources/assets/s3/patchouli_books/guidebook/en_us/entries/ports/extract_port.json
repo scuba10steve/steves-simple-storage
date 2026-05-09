@@ -1,0 +1,17 @@
+{
+  "name": "Extract Port",
+  "category": "s3:ports",
+  "icon": "s3:extract_port",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:extract_port",
+      "text": "Pulls specific items out of storage into an adjacent inventory."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Extract Port$() lets you specify which items to pull from the storage system. Open its GUI to configure a filter. It will only extract items matching the filter and push them into the adjacent inventory."
+    }
+  ]
+}

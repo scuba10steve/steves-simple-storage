@@ -1,0 +1,17 @@
+{
+  "name": "Input Port",
+  "category": "s3:ports",
+  "icon": "s3:input_port",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:input_port",
+      "text": "Pulls items from adjacent inventories into storage."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Place an $(item)Input Port$() on any face of your storage multiblock. It will automatically pull items from any inventory (chest, hopper, machine output) placed against its open face and insert them into the $(item)Storage Core$()."
+    }
+  ]
+}

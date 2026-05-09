@@ -1,0 +1,17 @@
+{
+  "name": "Eject Port",
+  "category": "s3:ports",
+  "icon": "s3:eject_port",
+  "sortnum": 2,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:eject_port",
+      "text": "Pushes items out of storage into an adjacent inventory."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "The $(item)Eject Port$() continuously outputs items from the storage system into an adjacent inventory or hopper. Unlike the $(item)Extract Port$(), it does not use a filter — it ejects items as space is available in the target inventory."
+    }
+  ]
+}

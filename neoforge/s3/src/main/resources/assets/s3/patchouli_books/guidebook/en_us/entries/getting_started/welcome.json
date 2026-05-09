@@ -1,0 +1,16 @@
+{
+  "name": "Introduction",
+  "category": "s3:getting_started",
+  "icon": "s3:storage_core",
+  "sortnum": 0,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Steve's Simple Storage$() is a mass storage mod that lets you centralize your items in a single, easy-to-use system.$(br2)Use the categories in this guide to learn about every block in the mod."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Categories:$()$(br)$(item)Getting Started$() — build your first system$(br)$(item)Storage Blocks$() — cores and boxes$(br)$(item)Port Blocks$() — automate item flow$(br)$(item)Utility Blocks$() — search, sort, craft, and more"
+    }
+  ]
+}

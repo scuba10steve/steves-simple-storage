@@ -1,0 +1,17 @@
+{
+  "name": "Sort Box",
+  "category": "s3:utility",
+  "icon": "s3:sort_box",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:spotlight",
+      "item": "s3:sort_box",
+      "text": "Adds sorting controls to the Storage Core GUI."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "Attach the $(item)Sort Box$() to your multiblock to add sorting buttons to the $(item)Storage Core$() GUI. Choose from 6 sort modes: by name (A–Z / Z–A), by quantity (most/least first), or by mod. Only one Sort Box can be active per Core."
+    }
+  ]
+}

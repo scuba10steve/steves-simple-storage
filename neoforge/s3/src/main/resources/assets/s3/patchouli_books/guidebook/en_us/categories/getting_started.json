@@ -1,0 +1,6 @@
+{
+  "name": "Getting Started",
+  "description": "Learn how to build and configure your first storage system.",
+  "icon": "s3:storage_core",
+  "sortnum": 0
+}

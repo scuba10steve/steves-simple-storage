@@ -1,0 +1,20 @@
+{
+  "name": "Storage Boxes",
+  "category": "s3:storage_blocks",
+  "icon": "s3:storage_box",
+  "sortnum": 1,
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "$(item)Storage Boxes$() expand the capacity of your system. Connect them to the $(item)Storage Core$() or chain them together — all connected boxes contribute their capacity to the shared pool."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "$(bold)Tiers and capacities:$()$(br)$(item)Basic$() — 10,000 items$(br)$(item)Condensed$() — 40,000 items$(br)$(item)Compressed$() — 80,000 items$(br)$(item)Super$() — 160,000 items$(br)$(item)Ultra$() — 640,000 items$(br)$(item)Hyper$() — 2,560,000 items$(br)$(item)Ultimate$() — 10,240,000 items"
+    },
+    {
+      "type": "patchouli:text",
+      "text": "You can mix and match tiers freely. Use the $(item)Dolly$() or $(item)Super Dolly$() to move placed boxes without losing their contents."
+    }
+  ]
+}

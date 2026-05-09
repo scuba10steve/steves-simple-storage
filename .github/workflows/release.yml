@@ -88,6 +88,7 @@ jobs:
           changelog: ${{ steps.changelog.outputs.content }}
           dependencies: |
             jei@19.27.0.336(optional){modrinth:jei}
+            patchouli(optional){modrinth:patchouli}
 
       - name: Publish to CurseForge
         uses: Kir-Antipov/mc-publish@v3.3
@@ -104,6 +105,7 @@ jobs:
           changelog: ${{ steps.changelog.outputs.content }}
           dependencies: |
             jei@19.27.0.336(optional){curseforge:238222}
+            patchouli(optional){curseforge:306770}
 
       # TODO: Enable once Nexus Mods Upload API access is granted
       # - name: Publish to Nexus Mods
