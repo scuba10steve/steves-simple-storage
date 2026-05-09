@@ -1,5 +1,6 @@
 package io.github.scuba10steve.s3;
 
+import io.github.scuba10steve.s3.compat.PatchouliCompat;
 import io.github.scuba10steve.s3.compat.PolymorphCompat;
 import io.github.scuba10steve.s3.config.StorageClientConfig;
 import io.github.scuba10steve.s3.config.StorageConfig;
@@ -65,6 +66,10 @@ public class StevesSimpleStorage {
 
 		if (ModList.get().isLoaded("polymorph")) {
 			PolymorphCompat.register();
+		}
+
+		if (ModList.get().isLoaded("patchouli")) {
+			PatchouliCompat.register();
 		}
 
 		modEventBus.addListener(this::commonSetup);
