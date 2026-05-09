@@ -22,3 +22,10 @@ type="required"
 versionRange="[1.21.1,1.22)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.s3]]
+modId="patchouli"
+type="optional"
+versionRange="*"
+ordering="NONE"
+side="BOTH"
