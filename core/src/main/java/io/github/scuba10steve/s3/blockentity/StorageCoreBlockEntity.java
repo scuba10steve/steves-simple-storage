@@ -208,16 +208,32 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         return hasSearchBox;
     }
 
+    protected void setHasSearchBox(boolean val) {
+        hasSearchBox = val;
+    }
+
     public boolean hasSortBox() {
         return hasSortBox;
+    }
+
+    protected void setHasSortBox(boolean val) {
+        hasSortBox = val;
     }
 
     public boolean hasSecurityBox() {
         return hasSecurityBox;
     }
 
+    protected void setHasSecurityBox(boolean val) {
+        hasSecurityBox = val;
+    }
+
     public boolean hasStatisticsBox() {
         return hasStatisticsBox;
+    }
+
+    protected void setHasStatisticsBox(boolean val) {
+        hasStatisticsBox = val;
     }
 
     public Map<String, Integer> getTierBreakdown() {
