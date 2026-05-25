@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": {"model": "s3:block/access_terminal"}
+    "": {
+      "model": "s3:block/access_terminal"
+    }
   }
 }

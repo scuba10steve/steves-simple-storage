@@ -27,7 +27,7 @@ public class BlockStorageInterface extends StorageMultiblock implements EntityBl
             return null;
         }
         return type == S3Platform.getStorageInterfaceBEType()
-            ? (lvl, pos, st, be) -> ((StorageInterfaceBlockEntity) be).tick()
-            : null;
+                ? (lvl, pos, st, be) -> ((StorageInterfaceBlockEntity) be).tick()
+                : null;
     }
 }

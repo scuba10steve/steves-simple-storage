@@ -4,7 +4,7 @@ import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class StorageConfig {
     private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
-    
+
     // Storage Capacities
     public static final ModConfigSpec.IntValue BASIC_CAPACITY;
     public static final ModConfigSpec.IntValue CONDENSED_CAPACITY;
@@ -13,19 +13,21 @@ public class StorageConfig {
     public static final ModConfigSpec.IntValue ULTRA_CAPACITY;
     public static final ModConfigSpec.IntValue HYPER_CAPACITY;
     public static final ModConfigSpec.IntValue ULTIMATE_CAPACITY;
-    
+
     // Feature Toggles
     public static final ModConfigSpec.BooleanValue ENABLE_SECURITY;
     public static final ModConfigSpec.BooleanValue ENABLE_TERMINAL;
     public static final ModConfigSpec.BooleanValue ENABLE_DOLLY;
     public static final ModConfigSpec.BooleanValue ENABLE_SEARCH_MODES;
     public static final ModConfigSpec.BooleanValue ENABLE_OP_OVERRIDE;
+
     // Recipe Options
     public static final ModConfigSpec.BooleanValue CLASSIC_RECIPES;
     public static final ModConfigSpec.BooleanValue TOUGH_HYPER;
-    
+
     // Integration
     public static final ModConfigSpec.BooleanValue JEI_INTEGRATION;
+    public static final ModConfigSpec.ConfigValue<String> PATCHOULI_GIFT_ADVANCEMENT;
 
     // Crafting
     public static final ModConfigSpec.IntValue CRAFT_SHIFT_CLICK_LIMIT;
@@ -38,102 +40,107 @@ public class StorageConfig {
 
     static {
         BUILDER.comment("Storage Capacities").push("capacities");
-        
+
         BASIC_CAPACITY = BUILDER
-            .comment("Storage capacity for basic Storage Box")
-            .defineInRange("basicCapacity", 10000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for basic Storage Box")
+                .defineInRange("basicCapacity", 10000, 1, Integer.MAX_VALUE);
+
         CONDENSED_CAPACITY = BUILDER
-            .comment("Storage capacity for Condensed Storage Box")
-            .defineInRange("condensedCapacity", 40000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for Condensed Storage Box")
+                .defineInRange("condensedCapacity", 40000, 1, Integer.MAX_VALUE);
+
         COMPRESSED_CAPACITY = BUILDER
-            .comment("Storage capacity for Compressed Storage Box")
-            .defineInRange("compressedCapacity", 80000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for Compressed Storage Box")
+                .defineInRange("compressedCapacity", 80000, 1, Integer.MAX_VALUE);
+
         SUPER_CAPACITY = BUILDER
-            .comment("Storage capacity for Super Storage Box")
-            .defineInRange("superCapacity", 160000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for Super Storage Box")
+                .defineInRange("superCapacity", 160000, 1, Integer.MAX_VALUE);
+
         ULTRA_CAPACITY = BUILDER
-            .comment("Storage capacity for Ultra Storage Box")
-            .defineInRange("ultraCapacity", 640000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for Ultra Storage Box")
+                .defineInRange("ultraCapacity", 640000, 1, Integer.MAX_VALUE);
+
         HYPER_CAPACITY = BUILDER
-            .comment("Storage capacity for Hyper Storage Box")
-            .defineInRange("hyperCapacity", 2560000, 1, Integer.MAX_VALUE);
-        
+                .comment("Storage capacity for Hyper Storage Box")
+                .defineInRange("hyperCapacity", 2560000, 1, Integer.MAX_VALUE);
+
         ULTIMATE_CAPACITY = BUILDER
-            .comment("Storage capacity for Ultimate Storage Box")
-            .defineInRange("ultimateCapacity", 10240000, 1, Integer.MAX_VALUE);
-        
-        BUILDER.pop();
-        
-        BUILDER.comment("Feature Toggles").push("features");
-        
-        ENABLE_SECURITY = BUILDER
-            .comment("Enable Security Box and Key item")
-            .define("enableSecurity", true);
-        
-        ENABLE_TERMINAL = BUILDER
-            .comment("Enable Access Terminal block")
-            .define("enableTerminal", true);
-        
-        ENABLE_DOLLY = BUILDER
-            .comment("Enable Dolly items for moving blocks")
-            .define("enableDolly", true);
-        
-        ENABLE_SEARCH_MODES = BUILDER
-            .comment("Enable advanced search modes ($oredict, @mod, %tab)")
-            .define("enableSearchModes", true);
-        
-        ENABLE_OP_OVERRIDE = BUILDER
-            .comment("Allow operators to override security restrictions")
-            .define("enableOpOverride", true);
+                .comment("Storage capacity for Ultimate Storage Box")
+                .defineInRange("ultimateCapacity", 10240000, 1, Integer.MAX_VALUE);
 
         BUILDER.pop();
-        
-        BUILDER.comment("Recipe Options").push("recipes");
-        
-        CLASSIC_RECIPES = BUILDER
-            .comment("Use classic (easier) recipes instead of modern recipes")
-            .define("classicRecipes", false);
-        
-        TOUGH_HYPER = BUILDER
-            .comment("Make Hyper Storage Box recipe more expensive")
-            .define("toughHyper", false);
-        
+
+        BUILDER.comment("Feature Toggles").push("features");
+
+        ENABLE_SECURITY = BUILDER
+                .comment("Enable Security Box and Key item")
+                .define("enableSecurity", true);
+
+        ENABLE_TERMINAL = BUILDER
+                .comment("Enable Access Terminal block")
+                .define("enableTerminal", true);
+
+        ENABLE_DOLLY = BUILDER
+                .comment("Enable Dolly items for moving blocks")
+                .define("enableDolly", true);
+
+        ENABLE_SEARCH_MODES = BUILDER
+                .comment("Enable advanced search modes ($oredict, @mod, %tab)")
+                .define("enableSearchModes", true);
+
+        ENABLE_OP_OVERRIDE = BUILDER
+                .comment("Allow operators to override security restrictions")
+                .define("enableOpOverride", true);
+
         BUILDER.pop();
-        
+
+        BUILDER.comment("Recipe Options").push("recipes");
+
+        CLASSIC_RECIPES = BUILDER
+                .comment("Use classic (easier) recipes instead of modern recipes")
+                .define("classicRecipes", false);
+
+        TOUGH_HYPER = BUILDER
+                .comment("Make Hyper Storage Box recipe more expensive")
+                .define("toughHyper", false);
+
+        BUILDER.pop();
+
         BUILDER.comment("Mod Integration").push("integration");
 
         JEI_INTEGRATION = BUILDER
-            .comment("Enable JEI integration features")
-            .define("jeiIntegration", true);
+                .comment("Enable JEI integration features")
+                .define("jeiIntegration", true);
+
+        PATCHOULI_GIFT_ADVANCEMENT = BUILDER
+                .comment("Advancement that triggers gifting the S3 Patchouli guidebook (requires Patchouli).",
+                        "Set to an empty string to disable.")
+                .define("patchouliGiftAdvancement", "s3:receive_guidebook");
 
         BUILDER.pop();
 
         BUILDER.comment("Crafting Settings").push("crafting");
 
         CRAFT_SHIFT_CLICK_LIMIT = BUILDER
-            .comment("Maximum number of items crafted per shift-click operation")
-            .defineInRange("craftShiftClickLimit", 64, 1, 1024);
+                .comment("Maximum number of items crafted per shift-click operation")
+                .defineInRange("craftShiftClickLimit", 64, 1, 1024);
 
         CRAFTING_AUTO_REPOPULATE = BUILDER
-            .comment("Automatically repopulate the crafting grid from connected storage after crafting")
-            .define("craftingAutoRepopulate", true);
+                .comment("Automatically repopulate the crafting grid from connected storage after crafting")
+                .define("craftingAutoRepopulate", true);
 
         BUILDER.pop();
 
         BUILDER.comment("Automation Settings").push("automation");
 
         EXTRACT_PORT_INTERVAL = BUILDER
-            .comment("Ticks between Extract Port extraction attempts (lower = faster, higher = less server load)")
-            .defineInRange("extractPortInterval", 8, 1, 100);
+                .comment("Ticks between Extract Port extraction attempts (lower = faster, higher = less server load)")
+                .defineInRange("extractPortInterval", 8, 1, 100);
 
         MIN_SYNC_INTERVAL = BUILDER
-            .comment("Minimum ticks between storage inventory sync packets (helps prevent visual flicker)")
-            .defineInRange("minSyncInterval", 2, 0, 20);
+                .comment("Minimum ticks between storage inventory sync packets (helps prevent visual flicker)")
+                .defineInRange("minSyncInterval", 2, 0, 20);
 
         BUILDER.pop();
 

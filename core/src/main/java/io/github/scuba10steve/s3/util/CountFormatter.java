@@ -2,7 +2,8 @@ package io.github.scuba10steve.s3.util;
 
 public final class CountFormatter {
 
-    private CountFormatter() {}
+    private CountFormatter() {
+    }
 
     public static String formatCount(long count) {
         if (count < 1000) {

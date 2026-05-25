@@ -20,65 +20,66 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
 @Mod(RefStrings.MODID)
 public class StevesSimpleStorage {
-	public static final String MODID = RefStrings.MODID;
+    public static final String MODID = RefStrings.MODID;
 
-	public static StevesSimpleStorage instance;
+    public static StevesSimpleStorage instance;
 
-	@SuppressWarnings("unchecked")
-	public StevesSimpleStorage(IEventBus modEventBus, ModContainer modContainer) {
-		instance = this;
+    @SuppressWarnings("unchecked")
+    public StevesSimpleStorage(IEventBus modEventBus, ModContainer modContainer) {
+        instance = this;
 
-		// Initialize platform abstraction layer
-		S3Platform.setConfig(new NeoForgeConfig());
-		S3Platform.setNetworkHelper(new NeoForgeNetworkHelper());
+        // Initialize platform abstraction layer
+        S3Platform.setConfig(new NeoForgeConfig());
+        S3Platform.setNetworkHelper(new NeoForgeNetworkHelper());
 
-		// Register deferred registers
-		ModBlocks.register(modEventBus);
-		ModItems.register(modEventBus);
-		ModBlockEntities.register(modEventBus);
-		ModMenuTypes.register(modEventBus);
-		ModCreativeTabs.register(modEventBus);
+        // Register deferred registers
+        ModBlocks.register(modEventBus);
+        ModItems.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
+        ModCreativeTabs.register(modEventBus);
+        ModCriteriaTriggers.register(modEventBus);
 
-		// Wire platform holders for block entity types, menu types, and items
-		S3Platform.setBlockEntityTypes(
-			ModBlockEntities.STORAGE_CORE::get,
-			ModBlockEntities.CRAFTING_BOX::get,
-			ModBlockEntities.SEARCH_BOX::get,
-			ModBlockEntities.SORT_BOX::get,
-			ModBlockEntities.INPUT_PORT::get,
-			ModBlockEntities.EXTRACT_PORT::get,
-			ModBlockEntities.EJECT_PORT::get,
-			ModBlockEntities.SECURITY_BOX::get,
-			ModBlockEntities.STORAGE_INTERFACE::get,
-			ModBlockEntities.STATISTICS_BOX::get
-		);
+        // Wire platform holders for block entity types, menu types, and items
+        S3Platform.setBlockEntityTypes(
+                ModBlockEntities.STORAGE_CORE::get,
+                ModBlockEntities.CRAFTING_BOX::get,
+                ModBlockEntities.SEARCH_BOX::get,
+                ModBlockEntities.SORT_BOX::get,
+                ModBlockEntities.INPUT_PORT::get,
+                ModBlockEntities.EXTRACT_PORT::get,
+                ModBlockEntities.EJECT_PORT::get,
+                ModBlockEntities.SECURITY_BOX::get,
+                ModBlockEntities.STORAGE_INTERFACE::get,
+                ModBlockEntities.STATISTICS_BOX::get
+        );
 
-		S3Platform.setMenuTypes(
-			ModMenuTypes.STORAGE_CORE::get,
-			ModMenuTypes.STORAGE_CORE_CRAFTING::get,
-			ModMenuTypes.EXTRACT_PORT::get,
-			ModMenuTypes.SECURITY_BOX::get,
-			ModMenuTypes.STATISTICS_BOX::get
-		);
+        S3Platform.setMenuTypes(
+                ModMenuTypes.STORAGE_CORE::get,
+                ModMenuTypes.STORAGE_CORE_CRAFTING::get,
+                ModMenuTypes.EXTRACT_PORT::get,
+                ModMenuTypes.SECURITY_BOX::get,
+                ModMenuTypes.STATISTICS_BOX::get
+        );
 
-		S3Platform.setKeyItem(ModItems.KEY::get);
-		S3Platform.setMenuOpener((player, provider, pos) -> player.openMenu(provider, pos));
+        S3Platform.setKeyItem(ModItems.KEY::get);
+        S3Platform.setMenuOpener((player, provider, pos) -> player.openMenu(provider, pos));
 
-		if (ModList.get().isLoaded("polymorph")) {
-			PolymorphCompat.register();
-		}
+        if (ModList.get().isLoaded("polymorph")) {
+            PolymorphCompat.register();
+        }
 
-		if (ModList.get().isLoaded("patchouli")) {
-			PatchouliCompat.register();
-		}
+        if (ModList.get().isLoaded("patchouli")) {
+            PatchouliCompat.register();
+        }
 
-		modEventBus.addListener(this::commonSetup);
-		modContainer.registerConfig(ModConfig.Type.COMMON, StorageConfig.SPEC);
-		modContainer.registerConfig(ModConfig.Type.CLIENT, StorageClientConfig.SPEC);
-	}
+        modEventBus.addListener(this::commonSetup);
+        modContainer.registerConfig(ModConfig.Type.COMMON, StorageConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, StorageClientConfig.SPEC);
+    }
 
-	private void commonSetup(final FMLCommonSetupEvent event) {
-		StorageUtils.getModNameFromID(RefStrings.MODID);
-		Log.logger.info("Loading complete.");
-	}
+    private void commonSetup(final FMLCommonSetupEvent event) {
+        StorageUtils.getModNameFromID(RefStrings.MODID);
+        Log.logger.info("Loading complete.");
+    }
 }

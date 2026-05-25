@@ -13,14 +13,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 @GameTestHolder("s3")
 @PrefixGameTestTemplate(false)
 public class MultiplayerStorageGameTests {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MultiplayerStorageGameTests.class);
     private static final BlockPos CORE_POS = new BlockPos(1, 1, 1);
 
     @GameTest(template = "core_with_storage_box", setupTicks = 5)
@@ -52,7 +48,6 @@ public class MultiplayerStorageGameTests {
                 return;
             }
 
-            LOGGER.info("two_players_sequential_insert: PASSED");
             helper.succeed();
         });
     }
@@ -99,24 +94,23 @@ public class MultiplayerStorageGameTests {
             }
 
             long remainingDiamonds = inv.getStoredItems().stream()
-                .filter(s -> s.getItemStack().getItem() == Items.DIAMOND)
-                .mapToLong(StoredItemStack::getCount)
-                .sum();
+                    .filter(s -> s.getItemStack().getItem() == Items.DIAMOND)
+                    .mapToLong(StoredItemStack::getCount)
+                    .sum();
             if (remainingDiamonds != 54) {
                 helper.fail("Expected 54 remaining diamonds, got " + remainingDiamonds);
                 return;
             }
 
             long remainingEmeralds = inv.getStoredItems().stream()
-                .filter(s -> s.getItemStack().getItem() == Items.EMERALD)
-                .mapToLong(StoredItemStack::getCount)
-                .sum();
+                    .filter(s -> s.getItemStack().getItem() == Items.EMERALD)
+                    .mapToLong(StoredItemStack::getCount)
+                    .sum();
             if (remainingEmeralds != 59) {
                 helper.fail("Expected 59 remaining emeralds, got " + remainingEmeralds);
                 return;
             }
 
-            LOGGER.info("two_players_sequential_extract: PASSED");
             helper.succeed();
         });
     }
@@ -160,7 +154,6 @@ public class MultiplayerStorageGameTests {
                 return;
             }
 
-            LOGGER.info("insert_while_full_second_player_rejected: PASSED");
             helper.succeed();
         });
     }
@@ -210,7 +203,6 @@ public class MultiplayerStorageGameTests {
                 return;
             }
 
-            LOGGER.info("crafting_menu_open_while_second_player_inserts: PASSED");
             helper.succeed();
         });
     }

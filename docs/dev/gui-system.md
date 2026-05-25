@@ -2,18 +2,21 @@
 
 ## Overview
 
-The Steve's Simple Storage GUI system provides a modern Minecraft inventory interface for storage management. The system uses the standard Container/Screen architecture with custom slots for storage interaction.
+The Steve's Simple Storage GUI system provides a modern Minecraft inventory interface for storage management. The system
+uses the standard Container/Screen architecture with custom slots for storage interaction.
 
 ## Architecture
 
 ### Container-Screen Pattern
 
 **Server Side**: `StorageCoreMenu` (Container)
+
 - Manages slot layout and item transfer logic
 - Handles shift-click operations
 - Validates player access
 
 **Client Side**: `StorageCoreScreen` (Screen)
+
 - Renders GUI background and elements
 - Handles user input and rendering
 - Displays tooltips and labels
@@ -21,11 +24,13 @@ The Steve's Simple Storage GUI system provides a modern Minecraft inventory inte
 ## Components
 
 ### StorageCoreMenu
+
 **Location**: `core/.../gui/server/StorageCoreMenu`
 
 The server-side container that manages the storage GUI.
 
 **Slot Layout**:
+
 ```java
 // Storage slots: 54 slots (6 rows × 9 columns)
 for (int row = 0; row < 6; row++) {
@@ -51,6 +56,7 @@ for (int i = 0; i < 9; ++i) {
 ```
 
 **Shift-Click Logic**:
+
 ```java
 public ItemStack quickMoveStack(Player player, int index) {
     Slot slot = this.slots.get(index);
@@ -69,11 +75,13 @@ public ItemStack quickMoveStack(Player player, int index) {
 ```
 
 ### StorageCoreScreen
+
 **Location**: `core/.../gui/client/StorageCoreScreen`
 
 The client-side screen that renders the storage GUI.
 
 **Configuration**:
+
 ```java
 public StorageCoreScreen(StorageCoreMenu menu, Inventory playerInventory, Component title) {
     super(menu, playerInventory, title);
@@ -87,6 +95,7 @@ public StorageCoreScreen(StorageCoreMenu menu, Inventory playerInventory, Compon
 ```
 
 **Rendering**:
+
 ```java
 protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, int mouseY) {
     int x = (width - imageWidth) / 2;
@@ -96,17 +105,20 @@ protected void renderBg(GuiGraphics guiGraphics, float partialTick, int mouseX, 
 ```
 
 ### StorageSlot
+
 **Location**: `core/.../gui/slot/StorageSlot`
 
 Custom slot implementation for storage interaction.
 
 **Key Features**:
+
 - **Item Insertion**: Intercepts item placement to store in StorageInventory
 - **Drag & Drop**: Supports standard Minecraft drag operations
 - **Remainder Handling**: Returns items that couldn't be stored
 - **Logging**: Comprehensive operation tracking
 
 **Implementation**:
+
 ```java
 public void set(ItemStack stack) {
     if (!stack.isEmpty() && storageCore != null) {
@@ -157,18 +169,21 @@ Total Width: 176 pixels
 ### Slot Positioning Formula
 
 **Storage Slots**:
+
 ```java
 int x = 8 + column * 18;  // Columns 0-8
 int y = 18 + row * 18;    // Rows 0-5
 ```
 
 **Player Inventory**:
+
 ```java
 int x = 8 + column * 18;  // Columns 0-8
 int y = 140 + row * 18;   // Rows 0-2
 ```
 
 **Player Hotbar**:
+
 ```java
 int x = 8 + column * 18;  // Columns 0-8
 int y = 198;              // Single row
@@ -177,13 +192,17 @@ int y = 198;              // Single row
 ## Texture System
 
 ### GUI Texture
+
 **Location**: `assets/s3/textures/gui/storage_core.png`
+
 - **Size**: 256×256 pixels
 - **Format**: PNG with transparency support
 - **Usage**: Background for storage GUI
 
 ### Texture Coordinates
+
 The GUI texture uses standard Minecraft GUI conventions:
+
 - **Background**: Full texture area
 - **Slot Highlights**: Standard 18×18 pixel slots
 - **Borders**: 1-pixel borders around slot areas
@@ -193,32 +212,33 @@ The GUI texture uses standard Minecraft GUI conventions:
 ### Item Insertion Methods
 
 1. **Drag & Drop**:
-   - Player drags item from inventory to storage slot
-   - `StorageSlot.set()` intercepts and inserts into storage
-   - Remainder appears in slot if storage becomes full
+    - Player drags item from inventory to storage slot
+    - `StorageSlot.set()` intercepts and inserts into storage
+    - Remainder appears in slot if storage becomes full
 
 2. **Shift-Click**:
-   - Player shift-clicks item in player inventory
-   - `quickMoveStack()` automatically finds available storage slot
-   - Items transfer automatically without dragging
+    - Player shift-clicks item in player inventory
+    - `quickMoveStack()` automatically finds available storage slot
+    - Items transfer automatically without dragging
 
 3. **Direct Placement**:
-   - Player clicks item stack on storage slot
-   - Standard Minecraft slot behavior with storage integration
+    - Player clicks item stack on storage slot
+    - Standard Minecraft slot behavior with storage integration
 
 ### Item Retrieval Methods
 
 1. **Click & Drag**:
-   - Currently not implemented (storage slots are insert-only)
-   - Future enhancement: Allow retrieval of stored items
+    - Currently not implemented (storage slots are insert-only)
+    - Future enhancement: Allow retrieval of stored items
 
 2. **Shift-Click**:
-   - Currently not implemented for storage slots
-   - Future enhancement: Transfer stored items to player inventory
+    - Currently not implemented for storage slots
+    - Future enhancement: Transfer stored items to player inventory
 
 ## Menu Registration
 
 ### Menu Type Registration
+
 **Location**: `neoforge/.../init/ModMenuTypes`
 
 ```java
@@ -228,9 +248,11 @@ public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE =
             new StorageCoreMenu(windowId, inv, data.readBlockPos())));
 ```
 
-Menu types are registered in the `neoforge` module and made available to `core` code via `S3Platform` static holders (see [Build System - Platform Abstraction](build-system.md#platform-abstraction)).
+Menu types are registered in the `neoforge` module and made available to `core` code via `S3Platform` static holders (
+see [Build System - Platform Abstraction](build-system.md#platform-abstraction)).
 
 ### Screen Registration
+
 **Location**: `neoforge/.../client/ClientEvents`
 
 ```java
@@ -245,12 +267,14 @@ public static void registerScreens(RegisterMenuScreensEvent event) {
 ### GUI Logging
 
 **Menu Operations**:
+
 ```java
 LOGGER.debug("Creating StorageCoreMenu at {}", pos);
 LOGGER.debug("quickMoveStack: slot {}", index);
 ```
 
 **Slot Operations**:
+
 ```java
 LOGGER.debug("StorageSlot.mayPlace: {} x{}", stack.getItem(), stack.getCount());
 LOGGER.debug("StorageSlot.set: {} x{}", stack.getItem(), stack.getCount());
@@ -259,64 +283,64 @@ LOGGER.debug("StorageSlot.set: {} x{}", stack.getItem(), stack.getCount());
 ### Common Issues
 
 1. **Items Disappearing**:
-   - Check `StorageSlot.set()` implementation
-   - Verify remainder handling
-   - Check storage capacity
+    - Check `StorageSlot.set()` implementation
+    - Verify remainder handling
+    - Check storage capacity
 
 2. **Shift-Click Not Working**:
-   - Verify `quickMoveStack()` slot index ranges
-   - Check `moveItemStackTo()` parameters
-   - Ensure proper slot registration
+    - Verify `quickMoveStack()` slot index ranges
+    - Check `moveItemStackTo()` parameters
+    - Ensure proper slot registration
 
 3. **GUI Layout Issues**:
-   - Verify slot positioning coordinates
-   - Check GUI texture dimensions
-   - Validate label positioning
+    - Verify slot positioning coordinates
+    - Check GUI texture dimensions
+    - Validate label positioning
 
 ## Future Enhancements
 
 ### Implemented Features
 
 1. **Item Retrieval** ✅:
-   - Click storage slots to retrieve items
-   - Shift-click to move to player inventory
-   - Right-click for half stack retrieval
+    - Click storage slots to retrieve items
+    - Shift-click to move to player inventory
+    - Right-click for half stack retrieval
 
 2. **Search System** ✅ (requires Search Box in multiblock):
-   - Search bar for finding specific items
-   - Real-time filter display based on search terms
-   - Multiple search modes: standard, `$` tags, `@` mod, `%` tooltips
+    - Search bar for finding specific items
+    - Real-time filter display based on search terms
+    - Multiple search modes: standard, `$` tags, `@` mod, `%` tooltips
 
 3. **Sorting** ✅ (requires Sort Box in multiblock):
-   - 6 sorting modes (count up/down, name A-Z/Z-A, mod A-Z/Z-A)
-   - Persistent sort mode selection
-   - See [Storage System](storage-system.md#sort-box) for details
+    - 6 sorting modes (count up/down, name A-Z/Z-A, mod A-Z/Z-A)
+    - Persistent sort mode selection
+    - See [Storage System](storage-system.md#sort-box) for details
 
 4. **JEI Integration** ✅:
-   - Recipe transfer to crafting grid
-   - Ingredient lookup (R/U keys)
-   - Storage-aware recipe transfer handler
+    - Recipe transfer to crafting grid
+    - Ingredient lookup (R/U keys)
+    - Storage-aware recipe transfer handler
 
 ### Planned Features
 
 1. **Visual Enhancements**:
-   - Item quantity overlays for large stacks
-   - Progress bars for storage capacity
-   - Visual indicators for full/empty slots
+    - Item quantity overlays for large stacks
+    - Progress bars for storage capacity
+    - Visual indicators for full/empty slots
 
 ### Technical Improvements
 
 1. **Performance**:
-   - Lazy loading of storage slot contents
-   - Efficient rendering for large inventories
-   - Optimized network synchronization
+    - Lazy loading of storage slot contents
+    - Efficient rendering for large inventories
+    - Optimized network synchronization
 
 2. **Accessibility**:
-   - Keyboard navigation support
-   - Screen reader compatibility
-   - Customizable GUI scaling
+    - Keyboard navigation support
+    - Screen reader compatibility
+    - Customizable GUI scaling
 
 3. **Integration**:
-   - JEI recipe viewing from storage slots
-   - Waila/Hwyla tooltip integration
-   - REI compatibility for recipe lookup
+    - JEI recipe viewing from storage slots
+    - Waila/Hwyla tooltip integration
+    - REI compatibility for recipe lookup

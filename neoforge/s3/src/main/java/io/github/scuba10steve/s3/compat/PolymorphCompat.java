@@ -14,7 +14,7 @@ import net.neoforged.api.distmarker.OnlyIn;
  * Optional compatibility with Polymorph, which resolves recipe conflicts when multiple mods
  * register recipes with the same crafting pattern. Without this integration, S3's crafting box
  * would always use whichever recipe the RecipeManager returns first, ignoring the player's choice.
- *
+ * <p>
  * Registered only when Polymorph is loaded (mod id: "polymorph").
  */
 public class PolymorphCompat {

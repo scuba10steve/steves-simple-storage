@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": {"model": "s3:block/security_box"}
+    "": {
+      "model": "s3:block/security_box"
+    }
   }
 }

@@ -22,21 +22,21 @@ public class StorageJEIPlugin implements IModPlugin {
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
         // Register handlers for JEI recipe/usage lookups (R/U keys) on storage items
         registration.addGuiContainerHandler(
-            StorageCoreScreen.class,
-            new StorageGuiContainerHandler<>()
+                StorageCoreScreen.class,
+                new StorageGuiContainerHandler<>()
         );
 
         registration.addGuiContainerHandler(
-            StorageCoreCraftingScreen.class,
-            new StorageGuiContainerHandler<>()
+                StorageCoreCraftingScreen.class,
+                new StorageGuiContainerHandler<>()
         );
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
         registration.addRecipeTransferHandler(
-            new StorageRecipeTransferHandler(registration.getTransferHelper()),
-            RecipeTypes.CRAFTING
+                new StorageRecipeTransferHandler(registration.getTransferHelper()),
+                RecipeTypes.CRAFTING
         );
     }
 

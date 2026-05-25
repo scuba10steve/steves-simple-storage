@@ -16,7 +16,10 @@ public class S3GameTestDataGeneration {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         GameTestStructureProvider provider = new GameTestStructureProvider(
-            event.getGenerator().getPackOutput(), RefStrings.MODID);
+                event.getGenerator().getPackOutput(), RefStrings.MODID);
+
+        // Empty structure for tests that only need a player
+        provider.addEmpty("empty", 3, 3, 3);
 
         // Generate a core + storage block structure for each tier
         addCoreWithBlock(provider, "storage_box");
@@ -49,18 +52,18 @@ public class S3GameTestDataGeneration {
             }
         }
         provider.add("large_ultimate_multiblock", 10, 5, 10, new StructureContent(
-            blocks, List.of(), List.of()
+                blocks, List.of(), List.of()
         ));
     }
 
     private static void addCoreWithBlock(GameTestStructureProvider provider, String blockName) {
         provider.add("core_with_" + blockName, 3, 3, 3, new StructureContent(
-            List.of(
-                new BlockPlacement("s3:storage_core", 1, 0, 1),
-                new BlockPlacement("s3:" + blockName, 2, 0, 1)
-            ),
-            List.of(),
-            List.of()
+                List.of(
+                        new BlockPlacement("s3:storage_core", 1, 0, 1),
+                        new BlockPlacement("s3:" + blockName, 2, 0, 1)
+                ),
+                List.of(),
+                List.of()
         ));
     }
 }

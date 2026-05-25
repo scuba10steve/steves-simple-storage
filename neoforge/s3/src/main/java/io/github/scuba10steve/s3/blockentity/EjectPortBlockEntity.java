@@ -33,49 +33,49 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
         if (level.hasNeighborSignal(worldPosition)) {
             return;
         }
-        
+
         StorageCoreBlockEntity core = getCore();
         if (core == null) {
             return;
         }
-        
+
         // Check for inventory above
         BlockPos targetPos = worldPosition.above();
         BlockEntity targetEntity = level.getBlockEntity(targetPos);
         if (targetEntity == null) {
             return;
         }
-        
+
         // Get the item handler capability
         IItemHandler targetHandler = level.getCapability(
-            net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
-            targetPos,
-            level.getBlockState(targetPos),
-            targetEntity,
-            Direction.DOWN
+                net.neoforged.neoforge.capabilities.Capabilities.ItemHandler.BLOCK,
+                targetPos,
+                level.getBlockState(targetPos),
+                targetEntity,
+                Direction.DOWN
         );
 
         if (targetHandler == null) {
             return;
         }
-        
+
         // Get items from storage
         StorageInventory inventory = core.getInventory();
         List<StoredItemStack> items = inventory.getStoredItems();
         if (items.isEmpty()) {
             return;
         }
-        
+
         // Try to eject the first item
         StoredItemStack stored = items.get(0);
         ItemStack toEject = stored.getItemStack().copy();
         int maxStackSize = toEject.getMaxStackSize();
         int ejectAmount = (int) Math.min(maxStackSize, stored.getCount());
         toEject.setCount(ejectAmount);
-        
+
         // Try to insert into target inventory
         ItemStack remainder = insertItem(targetHandler, toEject);
-        
+
         // Calculate how many items were actually inserted
         int inserted = ejectAmount - remainder.getCount();
         if (inserted > 0) {
@@ -84,18 +84,18 @@ public class EjectPortBlockEntity extends MultiblockBlockEntity {
             core.setChanged();
         }
     }
-    
+
     /**
      * Insert an item into an item handler, trying all slots
      */
     @NotNull
     private ItemStack insertItem(IItemHandler handler, ItemStack stack) {
         ItemStack remaining = stack.copy();
-        
+
         for (int slot = 0; slot < handler.getSlots() && !remaining.isEmpty(); slot++) {
             remaining = handler.insertItem(slot, remaining, false);
         }
-        
+
         return remaining;
     }
 }

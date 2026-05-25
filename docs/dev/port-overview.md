@@ -2,13 +2,16 @@
 
 ## Project Summary
 
-Steve's Simple Storage has been successfully ported from **Minecraft 1.12.2** to **Minecraft 1.21.1** with **NeoForge 21.1.218**. This document provides a high-level overview of the porting process, major changes, and current status.
+Steve's Simple Storage has been successfully ported from **Minecraft 1.12.2** to **Minecraft 1.21.1** with **NeoForge
+21.1.218**. This document provides a high-level overview of the porting process, major changes, and current status.
 
 ## Port Status: ✅ COMPLETE & STABLE
 
-All major features from the original 1.12.2 version have been successfully implemented and all critical bugs have been resolved. The core storage system is fully functional and production-ready.
+All major features from the original 1.12.2 version have been successfully implemented and all critical bugs have been
+resolved. The core storage system is fully functional and production-ready.
 
 ### ✅ Implemented Features
+
 - **Modern Registration System** - DeferredRegister pattern for blocks, items, block entities
 - **Storage System** - Multi-tier storage with massive item capacity (up to 2.5M+ items)
 - **Multiblock Networks** - Automatic detection and capacity scaling with dynamic updates
@@ -25,6 +28,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Access Terminal** - Remote Storage Core GUI access via multiblock network
 
 ### 🎯 Key Achievements
+
 - **100% Feature Parity** with original 1.12.2 core storage functionality
 - **Modern Architecture** using current NeoForge best practices
 - **Proper Testing** with unit tests for core functionality
@@ -36,6 +40,7 @@ All major features from the original 1.12.2 version have been successfully imple
 - **Latest Dependencies** - NeoForge 21.1.226, ModDevGradle 2.0.141, JEI 19.27.0.340
 
 ### Recent Bug Fixes (2026-01-14)
+
 - ✅ Fixed UI not loading items on first interaction
 - ✅ Fixed click operations not updating UI
 - ✅ Fixed right-click extracting then depositing bug
@@ -47,27 +52,33 @@ All major features from the original 1.12.2 version have been successfully imple
 ## Major Changes from 1.12.2
 
 ### Build System Migration
+
 - **Old**: ForgeGradle with Java 8, single module
 - **New**: ModDevGradle 2.0.141 with Java 21, multi-module Gradle layout
 - **Gradle**: Updated from 4.x to 8.10.2
-- **Architecture**: Split into `core` (vanilla MC only) and `neoforge` (loader-specific) modules with platform abstraction layer
+- **Architecture**: Split into `core` (vanilla MC only) and `neoforge` (loader-specific) modules with platform
+  abstraction layer
 
 ### Registration System Overhaul
+
 - **Old**: Registry events and manual registration
 - **New**: DeferredRegister pattern with type safety
 - **Benefits**: Cleaner code, better error handling, modern practices
 
 ### GUI System Modernization
+
 - **Old**: GuiContainer and Container classes
 - **New**: AbstractContainerScreen and AbstractContainerMenu
 - **Changes**: Updated method signatures, modern event handling
 
 ### Networking Updates
+
 - **Old**: SimpleNetworkWrapper with IMessage
 - **New**: CustomPacketPayload with StreamCodec
 - **Benefits**: Type-safe serialization, better performance
 
 ### Asset Structure Changes
+
 - **Texture Paths**: `textures/blocks/` → `textures/block/` (singular)
 - **Language Files**: `.lang` → `.json` format
 - **Models**: Updated texture references for new path structure
@@ -77,7 +88,7 @@ All major features from the original 1.12.2 version have been successfully imple
 The port was completed through systematic implementation of each major system:
 
 1. **Foundation** (Jan 13, 2026) - Build system and basic registration
-2. **Core Systems** (Jan 13, 2026) - Storage, GUI, and block entities  
+2. **Core Systems** (Jan 13, 2026) - Storage, GUI, and block entities
 3. **Networking** (Jan 13, 2026) - Client-server communication
 4. **Integration** (Jan 13, 2026) - JEI and multiblock systems
 5. **Assets** (Jan 13, 2026) - Textures, recipes, and language files
@@ -88,6 +99,7 @@ The port was completed through systematic implementation of each major system:
 ## Technical Highlights
 
 ### Storage Capacity Scaling
+
 - **Basic Storage Box**: 10,000 items
 - **Condensed**: 40,000 items (4x increase)
 - **Compressed**: 80,000 items (2x increase)
@@ -97,11 +109,13 @@ The port was completed through systematic implementation of each major system:
 - **Ultimate**: 10,240,000 items (4x increase)
 
 ### Multiblock Network Detection
+
 - Automatic scanning of connected storage blocks
 - Dynamic capacity calculation based on network size
 - Support for complex multiblock structures
 
 ### Modern GUI Architecture
+
 - 54 storage slots (6 rows × 9 columns)
 - Drag & drop item insertion
 - Shift-click inventory management
@@ -110,16 +124,19 @@ The port was completed through systematic implementation of each major system:
 ## Compatibility
 
 ### Minecraft Versions
+
 - **Target**: 1.21.1 (primary)
 - **NeoForge**: 21.1.218
 - **JEI**: 19.27.0.340
 
 ### Development Environment
+
 - **Java**: 21 (required)
 - **Gradle**: 8.10.2
 - **IDE**: IntelliJ IDEA or Eclipse recommended
 
 ### Post-Port Features (v0.4.0 – v1.0.2)
+
 - **Expandable Storage Grid** - Toggle between normal and extended GUI layouts in crafting screen
 - **Item Count Truncation** - Large counts displayed with K/M/B suffixes
 - **Advancement Tree** - 21 advancements tracking block/item progression
@@ -136,4 +153,6 @@ The port provides a solid foundation for future enhancements:
 
 ## Conclusion
 
-The Steve's Simple Storage port successfully modernizes the beloved storage mod for current Minecraft versions while maintaining all original functionality and adding modern improvements. The codebase is well-structured, thoroughly tested, and ready for production use.
+The Steve's Simple Storage port successfully modernizes the beloved storage mod for current Minecraft versions while
+maintaining all original functionality and adding modern improvements. The codebase is well-structured, thoroughly
+tested, and ready for production use.

@@ -46,7 +46,7 @@ public class SecurityEvents {
         Block block = level.getBlockState(pos).getBlock();
         if (block instanceof StorageMultiblock) {
             SecurityBoxBlockEntity securityBox = StorageUtils.findSecurityBox(
-                new BlockRef(block, pos), level);
+                    new BlockRef(block, pos), level);
             return securityBox != null && !securityBox.isPlayerAllowed(player);
         }
         return false;

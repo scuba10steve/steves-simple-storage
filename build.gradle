@@ -4,11 +4,11 @@ plugins {
 
 rewrite {
     activeRecipe(
-        // Prethink context currently doesn't appear to support libraries
-        // 'org.openrewrite.prethink.UpdatePrethinkContext',
-        // The following recipes can be found in ./rewrite.yml
-        'io.github.scuba10steve.s3.BestPractices',
-        'io.github.scuba10steve.s3.DependencyUpgrade',
+            // Prethink context currently doesn't appear to support libraries
+            // 'org.openrewrite.prethink.UpdatePrethinkContext',
+            // The following recipes can be found in ./rewrite.yml
+            'io.github.scuba10steve.s3.BestPractices',
+            'io.github.scuba10steve.s3.DependencyUpgrade',
     )
     setExportDatatables(true)
 }

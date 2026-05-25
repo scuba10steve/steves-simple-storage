@@ -82,9 +82,9 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
         // Save recipe pattern before vanilla consumes ingredients
         boolean shouldRepopulate = slotId == 0
-            && clickType == ClickType.PICKUP
-            && slots.get(0).hasItem()
-            && S3Platform.getConfig().shouldAutoRepopulateCraftingGrid();
+                && clickType == ClickType.PICKUP
+                && slots.get(0).hasItem()
+                && S3Platform.getConfig().shouldAutoRepopulateCraftingGrid();
 
         ItemStack[] recipePattern = null;
         if (shouldRepopulate) {

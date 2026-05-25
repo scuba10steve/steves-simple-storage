@@ -18,28 +18,28 @@ import java.util.UUID;
 public record SecuritySyncPacket(BlockPos pos, List<SecurePlayer> players) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<SecuritySyncPacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "security_sync"));
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "security_sync"));
 
     public static final StreamCodec<FriendlyByteBuf, SecuritySyncPacket> STREAM_CODEC = StreamCodec.of(
-        (buf, packet) -> {
-            buf.writeBlockPos(packet.pos);
-            buf.writeInt(packet.players.size());
-            for (SecurePlayer sp : packet.players) {
-                buf.writeUUID(sp.id());
-                buf.writeUtf(sp.name());
+            (buf, packet) -> {
+                buf.writeBlockPos(packet.pos);
+                buf.writeInt(packet.players.size());
+                for (SecurePlayer sp : packet.players) {
+                    buf.writeUUID(sp.id());
+                    buf.writeUtf(sp.name());
+                }
+            },
+            buf -> {
+                BlockPos pos = buf.readBlockPos();
+                int count = buf.readInt();
+                List<SecurePlayer> players = new ArrayList<>(count);
+                for (int i = 0; i < count; i++) {
+                    UUID id = buf.readUUID();
+                    String name = buf.readUtf(256);
+                    players.add(new SecurePlayer(id, name));
+                }
+                return new SecuritySyncPacket(pos, players);
             }
-        },
-        buf -> {
-            BlockPos pos = buf.readBlockPos();
-            int count = buf.readInt();
-            List<SecurePlayer> players = new ArrayList<>(count);
-            for (int i = 0; i < count; i++) {
-                UUID id = buf.readUUID();
-                String name = buf.readUtf(256);
-                players.add(new SecurePlayer(id, name));
-            }
-            return new SecuritySyncPacket(pos, players);
-        }
     );
 
     @Override

@@ -13,7 +13,7 @@ import net.minecraft.world.level.block.state.BlockState;
  * The Sort Box block enables sorting functionality in the Storage Core GUI.
  * When placed adjacent to a Storage Core multiblock, it enables the sort button
  * in the Storage Core GUI, allowing players to cycle through different sort modes.
- *
+ * <p>
  * This block does not have its own GUI - it simply acts as a detection flag.
  */
 public class BlockSortBox extends StorageMultiblock implements EntityBlock {

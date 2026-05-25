@@ -85,6 +85,7 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
 
     /**
      * Attempts to push items from the buffer into adjacent inventories.
+     *
      * @return The remaining items that couldn't be inserted
      */
     private ItemStack pushToAdjacentInventories(ItemStack stack) {
@@ -106,9 +107,9 @@ public class ExtractPortBlockEntity extends MultiblockBlockEntity implements Men
 
             // Get the item handler capability from the adjacent block
             IItemHandler handler = level.getCapability(
-                Capabilities.ItemHandler.BLOCK,
-                adjacentPos,
-                direction.getOpposite()
+                    Capabilities.ItemHandler.BLOCK,
+                    adjacentPos,
+                    direction.getOpposite()
             );
 
             if (handler != null) {

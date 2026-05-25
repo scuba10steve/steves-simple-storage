@@ -2,22 +2,26 @@
 
 ## Overview
 
-The Steve's Simple Storage system provides massive item storage capacity through a multiblock network architecture. Items are stored in a centralized inventory system with support for quantities up to `Long.MAX_VALUE`.
+The Steve's Simple Storage system provides massive item storage capacity through a multiblock network architecture.
+Items are stored in a centralized inventory system with support for quantities up to `Long.MAX_VALUE`.
 
 ## Core Components
 
 ### StorageInventory
+
 **Location**: `core/.../storage/StorageInventory`
 
 The central storage inventory that manages all stored items.
 
 **Key Features**:
+
 - Stores items as `StoredItemStack` objects with large quantity support
 - Dynamic capacity based on connected storage blocks
 - Efficient item merging for same item types
 - Insert/extract operations with remainder handling
 
 **Methods**:
+
 ```java
 ItemStack insertItem(ItemStack stack)  // Insert items, returns remainder
 ItemStack extractItem(ItemStack template, int amount)  // Extract items
@@ -27,32 +31,38 @@ void setMaxItems(long maxItems)  // Set storage capacity
 ```
 
 **Logging**:
+
 - Debug level: Detailed operation tracking
 - Info level: Capacity changes
 - Tracks: Item types, counts, available space, merge operations
 
 ### StoredItemStack
+
 **Location**: `core/.../storage/StoredItemStack`
 
 Wrapper class for storing items with large quantities.
 
 **Structure**:
+
 ```java
 private final ItemStack itemStack;  // Template item (count=1)
 private long count;  // Actual quantity stored
 ```
 
 **Benefits**:
+
 - Supports quantities beyond ItemStack's int limit
 - Efficient memory usage (single template per item type)
 - Simple count manipulation without ItemStack overhead
 
 ### StorageCoreBlockEntity
+
 **Location**: `core/.../blockentity/StorageCoreBlockEntity`
 
 The block entity that manages the storage system and multiblock network.
 
 **Responsibilities**:
+
 - Owns the `StorageInventory` instance
 - Scans and validates multiblock structures
 - Handles item insertion/extraction
@@ -60,6 +70,7 @@ The block entity that manages the storage system and multiblock network.
 - Provides GUI access via MenuProvider
 
 **Key Methods**:
+
 ```java
 void scanMultiblock()  // Scan connected blocks and calculate capacity
 ItemStack insertItem(ItemStack stack)  // Insert items into storage
@@ -85,15 +96,15 @@ inventory.setMaxItems(totalCapacity);
 
 ### Storage Tiers
 
-| Tier | Capacity | Material | Multiplier |
-|------|----------|----------|------------|
-| Basic | 10,000 | Wood/Chest | 1x |
-| Condensed | 40,000 | Cobblestone | 4x |
-| Compressed | 80,000 | Copper | 2x |
-| Super | 160,000 | Iron | 2x |
-| Ultra | 640,000 | Gold | 4x |
-| Hyper | 2,560,000 | Diamond | 4x |
-| Ultimate | 10,240,000 | Netherite | 4x |
+| Tier       | Capacity   | Material    | Multiplier |
+|------------|------------|-------------|------------|
+| Basic      | 10,000     | Wood/Chest  | 1x         |
+| Condensed  | 40,000     | Cobblestone | 4x         |
+| Compressed | 80,000     | Copper      | 2x         |
+| Super      | 160,000    | Iron        | 2x         |
+| Ultra      | 640,000    | Gold        | 4x         |
+| Hyper      | 2,560,000  | Diamond     | 4x         |
+| Ultimate   | 10,240,000 | Netherite   | 4x         |
 
 ### Capacity Scaling
 
@@ -139,17 +150,20 @@ items.add(new StoredItemStack(stack.copyWithCount(1), insertAmount));
 ## GUI Integration
 
 ### StorageSlot
+
 **Location**: `core/.../gui/slot/StorageSlot`
 
 Custom slot implementation for storage GUI interaction.
 
 **Features**:
+
 - Intercepts item placement to insert into storage
 - Handles drag & drop operations
 - Integrates with shift-click functionality
 - Returns remainder items to player
 
 **Key Methods**:
+
 ```java
 boolean mayPlace(ItemStack stack)  // Allow all non-empty stacks
 void set(ItemStack stack)  // Insert items into storage
@@ -157,16 +171,19 @@ ItemStack remove(int amount)  // Not supported for storage slots
 ```
 
 ### StorageCoreMenu
+
 **Location**: `core/.../gui/server/StorageCoreMenu`
 
 Container menu that provides 54 storage slots for item management.
 
 **Layout**:
+
 - **Storage Slots**: 54 slots (6 rows × 9 columns) at Y=18-125
 - **Player Inventory**: 27 slots (3 rows × 9 columns) at Y=140-194
 - **Player Hotbar**: 9 slots at Y=198
 
 **Shift-Click Logic**:
+
 ```java
 if (index < 54) {
     // From storage to player
@@ -184,17 +201,20 @@ if (index < 54) {
 Storage data is synchronized using the `StorageSyncPacket`:
 
 **When Synced**:
+
 - After item insertion
 - After item extraction
 - After multiblock scan
 - When player opens GUI
 
 **Packet Contents**:
+
 - Block position of storage core
 - List of all StoredItemStack entries
 - Item types and quantities
 
 **Sync Method**:
+
 ```java
 private void syncToClients() {
     if (level instanceof ServerLevel serverLevel) {
@@ -206,21 +226,25 @@ private void syncToClients() {
 }
 ```
 
-The `S3NetworkHelper` platform abstraction decouples the core module from NeoForge's `PacketDistributor`. The NeoForge implementation (`NeoForgeNetworkHelper`) delegates to the actual `PacketDistributor` API.
+The `S3NetworkHelper` platform abstraction decouples the core module from NeoForge's `PacketDistributor`. The NeoForge
+implementation (`NeoForgeNetworkHelper`) delegates to the actual `PacketDistributor` API.
 
 ## Performance Considerations
 
 ### Memory Efficiency
+
 - Single ItemStack template per item type (not per item)
 - Long-based counting instead of multiple ItemStacks
 - Efficient list operations for item lookup
 
 ### Network Efficiency
+
 - Only sync when storage changes
 - Send to players tracking chunk (not all players)
 - Compact packet format with StreamCodec
 
 ### Scalability
+
 - Supports millions of items per storage type
 - Efficient multiblock scanning with visited set
 - O(n) insertion/extraction where n = unique item types
@@ -230,12 +254,14 @@ The `S3NetworkHelper` platform abstraction decouples the core module from NeoFor
 ### Logging Levels
 
 **DEBUG**:
+
 - Individual item operations
 - Capacity checks
 - Merge attempts
 - Slot interactions
 
 **INFO**:
+
 - Multiblock scans
 - Capacity changes
 - Major operations
@@ -253,12 +279,18 @@ The `S3NetworkHelper` platform abstraction decouples the core module from NeoFor
 ## Implemented Enhancements
 
 ### Search Box
-Quick item lookup with multiple search modes: standard text, `$` tags, `@` mod, `%` tooltips. The search bar appears in the GUI header row when a Search Box is present in the multiblock. Results are filtered in real-time as the player types.
+
+Quick item lookup with multiple search modes: standard text, `$` tags, `@` mod, `%` tooltips. The search bar appears in
+the GUI header row when a Search Box is present in the multiblock. Results are filtered in real-time as the player
+types.
 
 ### Sort Box
-Automatic item sorting with 6 modes, activated when a Sort Box is in the multiblock. The sort button appears in the header row beside the search bar.
+
+Automatic item sorting with 6 modes, activated when a Sort Box is in the multiblock. The sort button appears in the
+header row beside the search bar.
 
 **Sorting Modes:**
+
 1. **Count Down** — descending item counts, then A-Z
 2. **Count Up** — ascending item counts, then Z-A
 3. **Name A-Z** — alphabetical, then by descending count
@@ -266,36 +298,49 @@ Automatic item sorting with 6 modes, activated when a Sort Box is in the multibl
 5. **Mod A-Z** — by mod name A-Z, then by descending count
 6. **Mod Z-A** — by mod name Z-A, then by ascending count
 
-Sort mode persists across GUI open/close. Sorting is applied in `StorageInventory.getSortedItems()` and affects GUI display, JEI queries, and search results. Mode changes sync via `SortModePacket` → server → `StorageSyncPacket` broadcast.
+Sort mode persists across GUI open/close. Sorting is applied in `StorageInventory.getSortedItems()` and affects GUI
+display, JEI queries, and search results. Mode changes sync via `SortModePacket` → server → `StorageSyncPacket`
+broadcast.
 
 ### Crafting Box
-3x3 crafting grid connected to storage with automatic ingredient repopulation from the storage system after each craft. Supports shift-click crafting.
+
+3x3 crafting grid connected to storage with automatic ingredient repopulation from the storage system after each craft.
+Supports shift-click crafting.
 
 ### Security Box
-Player access control with whitelist management. Operator override configurable via `enableOpOverride` config option. Uses `SecurityEvents` in the neoforge module.
+
+Player access control with whitelist management. Operator override configurable via `enableOpOverride` config option.
+Uses `SecurityEvents` in the neoforge module.
 
 ### Input/Extract/Eject Ports
-Automation support for item insertion and extraction. Port blocks and their block entities live in the neoforge module (depend on `IItemHandler`).
+
+Automation support for item insertion and extraction. Port blocks and their block entities live in the neoforge module (
+depend on `IItemHandler`).
 
 ### Storage Interface
+
 Cross-mod integration block that exposes the S3 inventory to external mod systems.
 
 ## Future Enhancements
 
 ### Potential Improvements
+
 - **Item Filtering**: Filter what items can be stored
 - **Void Overflow**: Option to void items when full
 - **Priority System**: Preferred storage locations for specific items
 
 ### Networked Storage (Future Concept)
+
 Connect multiple Storage Core systems together to create a unified storage network.
 
 **Potential Approaches:**
+
 - **Network Bridge Block**: Physical block that links two Storage Cores within range
 - **Redstone Conduit**: Cable-based connections between storage systems
 - **Wireless Transmission**: Ender-themed wireless links for long-distance/cross-dimensional connections
 
 **Considerations:**
+
 - Shared vs. partitioned inventory views
 - Bandwidth/transfer rate limits
 - Security across network nodes

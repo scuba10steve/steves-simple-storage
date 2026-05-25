@@ -11,11 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StorageHelper {
-    
+
     public static List<ItemStack> getAllStoredItems() {
         List<ItemStack> items = new ArrayList<>();
         Level level = Minecraft.getInstance().level;
-        
+
         if (level != null) {
             // Simple approach: find storage cores in render distance
             for (int x = -64; x <= 64; x += 16) {
@@ -39,13 +39,13 @@ public class StorageHelper {
                 }
             }
         }
-        
+
         return items;
     }
-    
+
     public static boolean hasItem(ItemStack itemStack) {
         Level level = Minecraft.getInstance().level;
-        
+
         if (level != null && Minecraft.getInstance().player != null) {
             // Check nearby storage cores
             for (int x = -10; x <= 10; x++) {
@@ -67,7 +67,7 @@ public class StorageHelper {
                 }
             }
         }
-        
+
         return false;
     }
 }

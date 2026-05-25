@@ -2,7 +2,8 @@
 
 ## Overview
 
-Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.141**. The project is split into two modules:
+Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradle 2.0.141**. The project is split into
+two modules:
 
 - **core** - Platform-agnostic code compiled against vanilla Minecraft (via `neoFormVersion`)
 - **neoforge** - NeoForge-specific code (registration, config, packet handlers, JEI integration)
@@ -10,12 +11,14 @@ Steve's Simple Storage uses a **multi-module Gradle project** with **ModDevGradl
 ## Requirements
 
 ### System Requirements
+
 - **Java**: 21 or higher (required for NeoForge 1.21.1)
 - **Gradle**: 8.10.2 (provided by wrapper)
 - **Memory**: 4GB+ RAM recommended for development
 - **Storage**: 2GB+ free space for dependencies and build artifacts
 
 ### Development Environment
+
 - **IDE**: IntelliJ IDEA (recommended) or Eclipse
 - **Git**: For version control
 - **Internet**: For dependency downloads
@@ -142,7 +145,8 @@ dependencies {
 test { useJUnitPlatform() }
 ```
 
-**Key detail**: The `mods` block must include both `sourceSets.main` and `project(':core').sourceSets.main` so NeoForge discovers classes from both modules as part of the `s3` mod.
+**Key detail**: The `mods` block must include both `sourceSets.main` and `project(':core').sourceSets.main` so NeoForge
+discovers classes from both modules as part of the `s3` mod.
 
 ### gradle.properties
 
@@ -239,6 +243,7 @@ All platform holders are initialized in `StevesSimpleStorage` (the NeoForge `@Mo
 ## Module Boundaries
 
 ### What goes in `core`
+
 - Block classes (except port blocks that create NeoForge-specific BEs)
 - Block entities (except port BEs that use `IItemHandler`)
 - Menus and screens (except ExtractPort which is coupled to its neoforge BE)
@@ -247,6 +252,7 @@ All platform holders are initialized in `StevesSimpleStorage` (the NeoForge `@Mo
 - Assets and data resources (textures, models, recipes, advancements, lang)
 
 ### What goes in `neoforge`
+
 - `@Mod` entry point (`StevesSimpleStorage`)
 - `DeferredRegister` registration classes (`ModBlocks`, `ModItems`, etc.)
 - `StorageConfig` (uses `ModConfigSpec`)
@@ -263,10 +269,12 @@ All platform holders are initialized in `StevesSimpleStorage` (the NeoForge `@Mo
 ### Generated Artifacts
 
 **Main Jar** (installable):
+
 - Location: `neoforge/build/libs/s3-<version>.jar`
 - Contains: Compiled mod classes from both modules and resources
 
 **Common Jar** (not installable directly):
+
 - Location: `core/build/libs/s3-core-<version>.jar`
 - Contains: Platform-agnostic classes only
 
@@ -300,18 +308,22 @@ jobs:
 
 ### Common Build Issues
 
-**"Cannot find symbol" in core module**: Ensure you're not importing `net.neoforged` packages. Common module only has vanilla MC classes.
+**"Cannot find symbol" in core module**: Ensure you're not importing `net.neoforged` packages. Common module only has
+vanilla MC classes.
 
 **"project(':core').sourceSets not found"**: Make sure `settings.gradle` includes both `core` and `neoforge`.
 
-**Datagen can't find core resources**: The `--existing` argument in the data run config must point to `rootProject.file('core/src/main/resources/')`.
+**Datagen can't find core resources**: The `--existing` argument in the data run config must point to
+`rootProject.file('core/src/main/resources/')`.
 
 **Dependency Resolution**:
+
 ```bash
 ./gradlew build --refresh-dependencies
 ```
 
 **Clean Build**:
+
 ```bash
 ./gradlew clean build
 ```

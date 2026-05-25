@@ -32,9 +32,9 @@ import java.util.Locale;
 public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends AbstractContainerScreen<T> {
     // Vanilla scrollbar sprites (1.21+ sprite-based rendering)
     protected static final ResourceLocation SCROLLER_SPRITE =
-        ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller");
+            ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller");
     protected static final ResourceLocation SCROLLER_DISABLED_SPRITE =
-        ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller_disabled");
+            ResourceLocation.withDefaultNamespace("container/creative_inventory/scroller_disabled");
 
     protected ResourceLocation texture;
     protected int scrollRow;
@@ -170,11 +170,11 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             SortMode currentMode = inventory.getSortMode();
             int[] sortButtonPos = getSortButtonPosition();
             this.sortButton = Button.builder(
-                    Component.literal(currentMode.getDisplayName()),
-                    this::onSortButtonPressed
-                )
-                .bounds(sortButtonPos[0], sortButtonPos[1], 46, 12)
-                .build();
+                            Component.literal(currentMode.getDisplayName()),
+                            this::onSortButtonPressed
+                    )
+                    .bounds(sortButtonPos[0], sortButtonPos[1], 46, 12)
+                    .build();
             this.addRenderableWidget(this.sortButton);
         }
 
@@ -184,11 +184,11 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             String toggleLabel = extended ? "-" : "+";
             int[] togglePos = getToggleButtonPosition();
             Button toggleButton = Button.builder(
-                    Component.literal(toggleLabel),
-                    this::onToggleButtonPressed
-                )
-                .bounds(togglePos[0], togglePos[1], 12, 12)
-                .build();
+                            Component.literal(toggleLabel),
+                            this::onToggleButtonPressed
+                    )
+                    .bounds(togglePos[0], togglePos[1], 12, 12)
+                    .build();
             this.addRenderableWidget(toggleButton);
         }
 
@@ -254,8 +254,8 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         final boolean finalTabSearch = tabSearch;
 
         filteredItems = allItems.stream()
-            .filter(stored -> matchesSearch(stored, finalSearchText, finalTagSearch, finalModSearch, finalTabSearch))
-            .toList();
+                .filter(stored -> matchesSearch(stored, finalSearchText, finalTagSearch, finalModSearch, finalTabSearch))
+                .toList();
     }
 
     /**
@@ -271,7 +271,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (tagSearch) {
             // Search item tags
             return stack.getTags()
-                .anyMatch(tag -> tag.location().toString().toLowerCase(Locale.ROOT).contains(searchText));
+                    .anyMatch(tag -> tag.location().toString().toLowerCase(Locale.ROOT).contains(searchText));
         } else if (modSearch) {
             // Search mod ID and mod name
             ResourceLocation id = BuiltInRegistries.ITEM.getKey(stack.getItem());
@@ -293,9 +293,9 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             if (minecraft != null && minecraft.player != null && minecraft.level != null) {
                 Item.TooltipContext tooltipContext = Item.TooltipContext.of(minecraft.level);
                 List<Component> tooltip = stack.getTooltipLines(
-                    tooltipContext,
-                    minecraft.player,
-                    minecraft.options.advancedItemTooltips ? TooltipFlag.ADVANCED : TooltipFlag.NORMAL
+                        tooltipContext,
+                        minecraft.player,
+                        minecraft.options.advancedItemTooltips ? TooltipFlag.ADVANCED : TooltipFlag.NORMAL
                 );
                 for (Component line : tooltip) {
                     if (line.getString().toLowerCase(Locale.ROOT).contains(searchText)) {
@@ -320,7 +320,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
         // Draw scrollbar thumb using vanilla scroller sprite
         int scrollbarX = x + 175;
-        int scrollbarY = y + 18 + (int)((storageAreaHeight - 15) * currentScroll);
+        int scrollbarY = y + 18 + (int) ((storageAreaHeight - 15) * currentScroll);
         boolean canScroll = canScrollItems();
         guiGraphics.blitSprite(canScroll ? SCROLLER_SPRITE : SCROLLER_DISABLED_SPRITE, scrollbarX, scrollbarY, 12, 15);
     }
@@ -458,8 +458,8 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                     guiGraphics.pose().translate(0, 0, 200);
                     float scale = (float) S3Platform.getConfig().getCountFontScale();
                     guiGraphics.pose().scale(scale, scale, 1.0F);
-                    int scaledX = (int)((x + 17) / scale) - font.width(countStr);
-                    int scaledY = (int)((y + 9) / scale);
+                    int scaledX = (int) ((x + 17) / scale) - font.width(countStr);
+                    int scaledY = (int) ((y + 9) / scale);
                     guiGraphics.drawString(font, countStr, scaledX, scaledY, 0xFFFFFF, true);
                     guiGraphics.pose().popPose();
                 }
@@ -492,7 +492,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
         if (hasShiftDown() && hoveredStorageCount > 0) {
             tooltip = new ArrayList<>(tooltip);
             tooltip.add(Component.literal("Stored: " + CountFormatter.formatExactCount(hoveredStorageCount))
-                .withStyle(ChatFormatting.GRAY));
+                    .withStyle(ChatFormatting.GRAY));
         }
 
         guiGraphics.renderTooltip(this.font, tooltip,
@@ -515,7 +515,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             }
         }
 
-        Integer slot = getSlotAt((int)mouseX, (int)mouseY);
+        Integer slot = getSlotAt((int) mouseX, (int) mouseY);
         if (slot != null) {
             StorageInventory inventory = menu.getInventory();
             if (inventory != null && minecraft != null && minecraft.player != null) {
@@ -523,7 +523,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
                 ItemStack carried = minecraft.player.containerMenu.getCarried();
                 if (!carried.isEmpty()) {
                     S3Platform.getNetworkHelper().sendToServer(
-                        new StorageClickPacket(menu.getPos(), -1, button, hasShiftDown())
+                            new StorageClickPacket(menu.getPos(), -1, button, hasShiftDown())
                     );
                     return true;
                 }
@@ -546,7 +546,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
 
                         if (realIndex >= 0) {
                             S3Platform.getNetworkHelper().sendToServer(
-                                new StorageClickPacket(menu.getPos(), realIndex, button, hasShiftDown())
+                                    new StorageClickPacket(menu.getPos(), realIndex, button, hasShiftDown())
                             );
                         }
                         return true;
@@ -587,7 +587,7 @@ public abstract class AbstractStorageScreen<T extends StorageCoreMenu> extends A
             scrollRow = Math.min(maxRows, scrollRow + 1);
         }
 
-        currentScroll = maxRows > 0 ? (float)scrollRow / maxRows : 0;
+        currentScroll = maxRows > 0 ? (float) scrollRow / maxRows : 0;
         return true;
     }
 

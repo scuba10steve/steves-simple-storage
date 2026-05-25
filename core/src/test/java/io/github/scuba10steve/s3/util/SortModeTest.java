@@ -14,19 +14,19 @@ class SortModeTest {
         SortMode mode = SortMode.COUNT;
         mode = mode.rotateMode();
         assertEquals(SortMode.INVERSE_COUNT, mode);
-        
+
         mode = mode.rotateMode();
         assertEquals(SortMode.NAME, mode);
-        
+
         mode = mode.rotateMode();
         assertEquals(SortMode.INVERSE_NAME, mode);
-        
+
         mode = mode.rotateMode();
         assertEquals(SortMode.MOD, mode);
-        
+
         mode = mode.rotateMode();
         assertEquals(SortMode.INVERSE_MOD, mode);
-        
+
         // Should wrap around
         mode = mode.rotateMode();
         assertEquals(SortMode.COUNT, mode);
@@ -37,7 +37,7 @@ class SortModeTest {
         assertEquals(SortMode.COUNT, SortMode.fromOrdinal(0));
         assertEquals(SortMode.INVERSE_COUNT, SortMode.fromOrdinal(1));
         assertEquals(SortMode.NAME, SortMode.fromOrdinal(2));
-        
+
         // Test wrap-around
         assertEquals(SortMode.COUNT, SortMode.fromOrdinal(6));
         assertEquals(SortMode.INVERSE_COUNT, SortMode.fromOrdinal(7));

@@ -1,8 +1,14 @@
 {
   "display": {
-    "icon": { "id": "s3:access_terminal" },
-    "title": { "translate": "advancement.s3.access_terminal.title" },
-    "description": { "translate": "advancement.s3.access_terminal.description" },
+    "icon": {
+      "id": "s3:access_terminal"
+    },
+    "title": {
+      "translate": "advancement.s3.access_terminal.title"
+    },
+    "description": {
+      "translate": "advancement.s3.access_terminal.description"
+    },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
@@ -12,7 +18,11 @@
     "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [{ "items": "s3:access_terminal" }]
+        "items": [
+          {
+            "items": "s3:access_terminal"
+          }
+        ]
       }
     }
   }

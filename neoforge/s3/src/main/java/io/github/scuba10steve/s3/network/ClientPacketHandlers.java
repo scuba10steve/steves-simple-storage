@@ -12,7 +12,8 @@ import net.neoforged.neoforge.network.handling.IPayloadContext;
  * these import {@link Minecraft} which is stripped on dedicated servers.
  */
 public final class ClientPacketHandlers {
-    private ClientPacketHandlers() {}
+    private ClientPacketHandlers() {
+    }
 
     public static void handleStorageSync(StorageSyncPacket packet, IPayloadContext context) {
         context.enqueueWork(() -> {
@@ -25,10 +26,10 @@ public final class ClientPacketHandlers {
             BlockEntity blockEntity = level.getBlockEntity(packet.pos());
             if (blockEntity instanceof StorageCoreBlockEntity storageCore) {
                 storageCore.getInventory().syncFromServer(
-                    packet.items(), packet.maxCapacity(),
-                    packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal(),
-                    packet.hasStatisticsBox(), packet.tierBreakdown(), packet.totalBlockCount(),
-                    packet.presentComponents());
+                        packet.items(), packet.maxCapacity(),
+                        packet.hasSearchBox(), packet.hasSortBox(), packet.sortModeOrdinal(),
+                        packet.hasStatisticsBox(), packet.tierBreakdown(), packet.totalBlockCount(),
+                        packet.presentComponents());
             }
         });
     }

@@ -14,11 +14,11 @@ import net.minecraft.resources.ResourceLocation;
 public record ClearCraftingGridPacket(BlockPos pos) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<ClearCraftingGridPacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "clear_crafting_grid"));
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "clear_crafting_grid"));
 
     public static final StreamCodec<FriendlyByteBuf, ClearCraftingGridPacket> STREAM_CODEC = StreamCodec.of(
-        (buf, packet) -> buf.writeBlockPos(packet.pos),
-        buf -> new ClearCraftingGridPacket(buf.readBlockPos())
+            (buf, packet) -> buf.writeBlockPos(packet.pos),
+            buf -> new ClearCraftingGridPacket(buf.readBlockPos())
     );
 
     @Override

@@ -7,8 +7,8 @@ import net.minecraft.world.level.material.MapColor;
 public class BaseBlock extends Block {
     protected BaseBlock() {
         super(BlockBehaviour.Properties.of()
-            .mapColor(MapColor.WOOD)
-            .strength(2.0f)
+                .mapColor(MapColor.WOOD)
+                .strength(2.0f)
         );
     }
 

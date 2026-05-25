@@ -100,7 +100,7 @@ public class StorageRecipeTransferHandler implements IRecipeTransferHandler<Stor
             List<IRecipeSlotView> missingSlotViews = new ArrayList<>();
             for (IRecipeSlotView view : inputSlots) {
                 boolean isMissing = view.getItemStacks().anyMatch(viewStack ->
-                    missingIngredients.stream().anyMatch(ing -> ing.test(viewStack))
+                        missingIngredients.stream().anyMatch(ing -> ing.test(viewStack))
                 );
                 if (isMissing) {
                     missingSlotViews.add(view);
@@ -109,12 +109,12 @@ public class StorageRecipeTransferHandler implements IRecipeTransferHandler<Stor
 
             if (missingSlotViews.isEmpty()) {
                 return helper.createUserErrorWithTooltip(
-                    Component.translatable("jei.tooltip.error.recipe.transfer.missing")
+                        Component.translatable("jei.tooltip.error.recipe.transfer.missing")
                 );
             }
             return helper.createUserErrorForMissingSlots(
-                Component.translatable("jei.tooltip.error.recipe.transfer.missing"),
-                missingSlotViews
+                    Component.translatable("jei.tooltip.error.recipe.transfer.missing"),
+                    missingSlotViews
             );
         }
 

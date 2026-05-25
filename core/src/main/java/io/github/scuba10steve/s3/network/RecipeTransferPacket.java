@@ -13,11 +13,11 @@ import java.util.List;
 public record RecipeTransferPacket(List<ItemStack> items) implements CustomPacketPayload {
 
     public static final Type<RecipeTransferPacket> TYPE =
-        new Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "recipe_transfer"));
+            new Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "recipe_transfer"));
 
     public static final StreamCodec<RegistryFriendlyByteBuf, RecipeTransferPacket> STREAM_CODEC = StreamCodec.of(
-        RecipeTransferPacket::encode,
-        RecipeTransferPacket::decode
+            RecipeTransferPacket::encode,
+            RecipeTransferPacket::decode
     );
 
     private static void encode(RegistryFriendlyByteBuf buf, RecipeTransferPacket packet) {

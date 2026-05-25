@@ -26,7 +26,7 @@ public class StorageInventory {
 
     public ItemStack insertItem(ItemStack stack) {
         LOGGER.debug("StorageInventory.insertItem: {} x{}, current capacity: {}/{}",
-                    stack.getItem(), stack.getCount(), totalCount, maxItems);
+                stack.getItem(), stack.getCount(), totalCount, maxItems);
 
         if (stack.isEmpty()) {
             LOGGER.debug("Stack is empty, returning empty");
@@ -150,9 +150,9 @@ public class StorageInventory {
     }
 
     public void syncFromServer(List<StoredItemStack> serverItems, long maxCapacity,
-        boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
-        boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
-        List<String> presentComponents) {
+                               boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
+                               boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
+                               List<String> presentComponents) {
         items.clear();
         totalCount = 0;
         for (StoredItemStack stored : serverItems) {
@@ -168,7 +168,7 @@ public class StorageInventory {
         this.totalBlockCount = totalBlockCount;
         this.presentComponents = presentComponents;
         LOGGER.debug("Synced from server: {} items, max capacity: {}, has search box: {}, has sort box: {}, sort mode: {}, has statistics box: {}",
-                    serverItems.size(), maxCapacity, hasSearchBox, hasSortBox, sortMode, hasStatisticsBox);
+                serverItems.size(), maxCapacity, hasSearchBox, hasSortBox, sortMode, hasStatisticsBox);
     }
 
     public CompoundTag save(HolderLookup.Provider registries) {

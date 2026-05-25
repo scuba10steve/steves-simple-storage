@@ -56,6 +56,7 @@ steves-storage-system/
 - Core source set in `mods` block
 
 Each subproject's `build.gradle` specifies only:
+
 - `archivesName`
 - Mod-specific dependencies (e.g. advanced depends on `:neoforge:s3`)
 - Unique run configs (e.g. datagen for s3)
@@ -98,6 +99,7 @@ advanced_mod_name=Steve's Advanced Storage
 ## Docker / Local Server
 
 `scripts/server.sh` copies both JARs to `server/mods/`:
+
 - S3 JAR: required
 - Advanced JAR: optional (skipped if not built, no error)
 
@@ -110,12 +112,14 @@ advanced_mod_name=Steve's Advanced Storage
 
 ## Advanced Storage Core Block
 
-The **Advanced Storage Core** is the core block of the companion mod. When placed in an S3 multiblock, it upgrades the system from basic to advanced, unlocking all advanced features.
+The **Advanced Storage Core** is the core block of the companion mod. When placed in an S3 multiblock, it upgrades the
+system from basic to advanced, unlocking all advanced features.
 
 - **Requires power** — the advanced system consumes Forge Energy (FE) to operate
 - **Recipe:** Diamonds + Redstone + Iron + Storage Core
 - **Multiblock role:** Acts as an upgrade component; all advanced features require its presence
-- **Detection:** The Storage Core scans for an Advanced Storage Core during multiblock validation, similar to how it detects Sort Box or Search Box
+- **Detection:** The Storage Core scans for an Advanced Storage Core during multiblock validation, similar to how it
+  detects Sort Box or Search Box
 
 See [planned-features.md](planned-features.md) for the full feature roadmap.
 

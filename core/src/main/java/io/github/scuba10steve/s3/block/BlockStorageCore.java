@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 
 public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
     private static final Logger LOGGER = LoggerFactory.getLogger(BlockStorageCore.class);
-    
+
     public BlockStorageCore() {
         super(Properties.of().strength(2.0f));
     }
@@ -57,9 +57,9 @@ public class BlockStorageCore extends StorageMultiblock implements EntityBlock {
             long itemCount = core.getInventory().getTotalItemCount();
             if (itemCount > 0) {
                 player.displayClientMessage(
-                    Component.translatable("warning.s3.break_storage",
-                        CountFormatter.formatExactCount(itemCount)),
-                    true);
+                        Component.translatable("warning.s3.break_storage",
+                                CountFormatter.formatExactCount(itemCount)),
+                        true);
             }
         }
         super.attack(state, level, pos, player);

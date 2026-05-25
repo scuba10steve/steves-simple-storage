@@ -14,19 +14,19 @@ public class ModBlocks {
 
     // Storage blocks with default capacities and tier keys (config values applied at runtime)
     public static final Supplier<Block> STORAGE_BOX = BLOCKS.register("storage_box",
-        () -> new BlockStorage(10000, "basic"));
+            () -> new BlockStorage(10000, "basic"));
     public static final Supplier<Block> CONDENSED_STORAGE_BOX = BLOCKS.register("condensed_storage_box",
-        () -> new BlockStorage(40000, "condensed"));
+            () -> new BlockStorage(40000, "condensed"));
     public static final Supplier<Block> COMPRESSED_STORAGE_BOX = BLOCKS.register("compressed_storage_box",
-        () -> new BlockStorage(80000, "compressed"));
+            () -> new BlockStorage(80000, "compressed"));
     public static final Supplier<Block> SUPER_STORAGE_BOX = BLOCKS.register("super_storage_box",
-        () -> new BlockStorage(160000, "super"));
+            () -> new BlockStorage(160000, "super"));
     public static final Supplier<Block> ULTRA_STORAGE_BOX = BLOCKS.register("ultra_storage_box",
-        () -> new BlockStorage(640000, "ultra"));
+            () -> new BlockStorage(640000, "ultra"));
     public static final Supplier<Block> HYPER_STORAGE_BOX = BLOCKS.register("hyper_storage_box",
-        () -> new BlockStorage(2560000, "hyper"));
+            () -> new BlockStorage(2560000, "hyper"));
     public static final Supplier<Block> ULTIMATE_STORAGE_BOX = BLOCKS.register("ultimate_storage_box",
-        () -> new BlockStorage(10240000, "ultimate"));
+            () -> new BlockStorage(10240000, "ultimate"));
     public static final Supplier<Block> STORAGE_CORE = BLOCKS.register("storage_core", BlockStorageCore::new);
     public static final Supplier<Block> CRAFTING_BOX = BLOCKS.register("crafting_box", BlockCraftingBox::new);
     public static final Supplier<Block> SEARCH_BOX = BLOCKS.register("search_box", BlockSearchBox::new);

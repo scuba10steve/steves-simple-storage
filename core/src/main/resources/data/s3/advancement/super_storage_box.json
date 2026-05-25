@@ -1,8 +1,14 @@
 {
   "display": {
-    "icon": { "id": "s3:super_storage_box" },
-    "title": { "translate": "advancement.s3.super_storage_box.title" },
-    "description": { "translate": "advancement.s3.super_storage_box.description" },
+    "icon": {
+      "id": "s3:super_storage_box"
+    },
+    "title": {
+      "translate": "advancement.s3.super_storage_box.title"
+    },
+    "description": {
+      "translate": "advancement.s3.super_storage_box.description"
+    },
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true
@@ -12,7 +18,11 @@
     "has_item": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
-        "items": [{ "items": "s3:super_storage_box" }]
+        "items": [
+          {
+            "items": "s3:super_storage_box"
+          }
+        ]
       }
     }
   }

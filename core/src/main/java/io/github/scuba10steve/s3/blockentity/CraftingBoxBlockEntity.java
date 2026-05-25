@@ -18,7 +18,7 @@ import org.slf4j.LoggerFactory;
 
 public class CraftingBoxBlockEntity extends MultiblockBlockEntity implements MenuProvider {
     private static final Logger LOGGER = LoggerFactory.getLogger(CraftingBoxBlockEntity.class);
-    
+
     public CraftingBoxBlockEntity(BlockPos pos, BlockState state) {
         super(S3Platform.getCraftingBoxBEType(), pos, state);
         LOGGER.debug("CraftingBoxBlockEntity created at {}", pos);
@@ -33,19 +33,19 @@ public class CraftingBoxBlockEntity extends MultiblockBlockEntity implements Men
     @Override
     public AbstractContainerMenu createMenu(int containerId, Inventory playerInventory, Player player) {
         LOGGER.debug("createMenu called for player {}", player.getName().getString());
-        
+
         // Sync storage data to the opening player immediately
         if (hasCore() && level instanceof ServerLevel serverLevel) {
             StorageCoreBlockEntity core = getCore();
             LOGGER.debug("Syncing storage data from core at {}", core.getBlockPos());
             S3Platform.getNetworkHelper().sendToPlayer(
-                (net.minecraft.server.level.ServerPlayer) player,
-                new StorageSyncPacket(this.worldPosition, core.getInventory().getStoredItems(), core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(), core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
+                    (net.minecraft.server.level.ServerPlayer) player,
+                    new StorageSyncPacket(this.worldPosition, core.getInventory().getStoredItems(), core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(), core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
             );
         } else {
             LOGGER.warn("No core found or not server level");
         }
-        
+
         return new StorageCoreCraftingMenu(containerId, playerInventory, this.worldPosition);
     }
 

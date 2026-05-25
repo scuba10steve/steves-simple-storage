@@ -18,9 +18,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.neoforged.neoforge.gametest.GameTestHolder;
 import net.neoforged.neoforge.gametest.PrefixGameTestTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +26,6 @@ import java.util.Optional;
 @PrefixGameTestTemplate(false)
 public class StorageGameTests {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StorageGameTests.class);
     private static final BlockPos CORE_POS = new BlockPos(1, 1, 1);
 
     @GameTest(template = "core_with_storage_box", setupTicks = 5)
@@ -96,8 +92,6 @@ public class StorageGameTests {
                 inv.insertItem(new ItemStack(Items.STONE, (int) Math.min(remaining, Integer.MAX_VALUE)));
             }
 
-            LOGGER.info("Performance test: filled inventory with {} distinct item types, total count: {}/{}",
-                distinctTypes, inv.getTotalItemCount(), inv.getMaxItems());
 
             if (lastItem == null) {
                 helper.fail("No items were inserted");
@@ -123,10 +117,6 @@ public class StorageGameTests {
 
             long extractMicros = extractNanos / 1000;
             long insertMicros = insertNanos / 1000;
-
-            LOGGER.info("Performance test results ({} distinct types):", distinctTypes);
-            LOGGER.info("  Extract: {} us", extractMicros);
-            LOGGER.info("  Insert:  {} us", insertMicros);
 
             if (extractNanos >= 1_000_000) {
                 helper.fail("Extract took " + extractMicros + " us, exceeds 1ms threshold");
@@ -173,9 +163,6 @@ public class StorageGameTests {
             bulkInsert(inv, Items.COBBLESTONE, halfRemaining);
             bulkInsert(inv, Items.OAK_LOG, inv.getMaxItems() - inv.getTotalItemCount());
 
-            LOGGER.info("Large perf test: {} distinct types, total count: {}/{}",
-                distinctTypes, inv.getTotalItemCount(), inv.getMaxItems());
-
             if (lastItem == null) {
                 helper.fail("No items were inserted");
                 return;
@@ -201,10 +188,6 @@ public class StorageGameTests {
             long extractMicros = extractNanos / 1000;
             long insertMicros = insertNanos / 1000;
 
-            LOGGER.info("Large perf test results ({} distinct types, {} total items):", distinctTypes, inv.getTotalItemCount());
-            LOGGER.info("  Extract: {} us", extractMicros);
-            LOGGER.info("  Insert:  {} us", insertMicros);
-
             if (extractNanos >= 1_000_000) {
                 helper.fail("Extract took " + extractMicros + " us, exceeds 1ms threshold");
                 return;
@@ -224,11 +207,11 @@ public class StorageGameTests {
             RecipeManager recipeManager = helper.getLevel().getServer().getRecipeManager();
 
             String[] expectedRecipes = {
-                "access_terminal", "blank_box", "compressed_storage_box", "condensed_storage_box",
-                "crafting_box", "dolly", "dolly_super", "eject_port", "extract_port",
-                "hyper_storage_box", "input_port", "key", "search_box", "security_box",
-                "sort_box", "storage_box", "storage_core", "super_storage_box",
-                "ultimate_storage_box", "ultra_storage_box"
+                    "access_terminal", "blank_box", "compressed_storage_box", "condensed_storage_box",
+                    "crafting_box", "dolly", "dolly_super", "eject_port", "extract_port",
+                    "hyper_storage_box", "input_port", "key", "search_box", "security_box",
+                    "sort_box", "storage_box", "storage_core", "super_storage_box",
+                    "ultimate_storage_box", "ultra_storage_box"
             };
 
             List<String> missing = new ArrayList<>();
@@ -245,7 +228,6 @@ public class StorageGameTests {
                 return;
             }
 
-            LOGGER.info("All {} S3 recipes verified in RecipeManager", expectedRecipes.length);
             helper.succeed();
         });
     }
@@ -283,7 +265,6 @@ public class StorageGameTests {
                 return;
             }
 
-            LOGGER.info("insert_when_full_returns_original_stack: PASSED");
             helper.succeed();
         });
     }
@@ -324,7 +305,6 @@ public class StorageGameTests {
                     return;
                 }
 
-                LOGGER.info("core_placement_triggers_multiblock_scan: PASSED");
                 helper.succeed();
             });
         });
@@ -342,7 +322,7 @@ public class StorageGameTests {
             StorageInventory inv = core.getInventory();
 
             // Insert items in a specific order
-            Item[] insertionOrder = { Items.DIAMOND, Items.GOLD_INGOT, Items.IRON_INGOT, Items.EMERALD };
+            Item[] insertionOrder = {Items.DIAMOND, Items.GOLD_INGOT, Items.IRON_INGOT, Items.EMERALD};
             for (Item item : insertionOrder) {
                 inv.insertItem(new ItemStack(item, 1));
             }
@@ -363,7 +343,6 @@ public class StorageGameTests {
                 }
             }
 
-            LOGGER.info("stored_items_preserve_insertion_order: PASSED");
             helper.succeed();
         });
     }
@@ -418,8 +397,6 @@ public class StorageGameTests {
                 return;
             }
 
-            LOGGER.info("extract_changes_total_count_not_item_types: PASSED (types={}, count {} -> {})",
-                typesBefore, countBefore, countAfter);
             helper.succeed();
         });
     }
@@ -476,7 +453,6 @@ public class StorageGameTests {
                 return;
             }
 
-            LOGGER.info("crafting_menu_removed_clears_grid_server_side: PASSED");
             helper.succeed();
         });
     }
