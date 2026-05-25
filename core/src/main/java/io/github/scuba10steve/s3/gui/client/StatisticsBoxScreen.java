@@ -20,7 +20,7 @@ import java.util.Map;
 public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMenu> {
 
     private static final ResourceLocation TEXTURE =
-        ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/statistics_box.png");
+            ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/statistics_box.png");
 
     private static final int TIER_LINE_HEIGHT = 10;
     private static final int TIER_SECTION_END = 140;
@@ -45,7 +45,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         // Title centered
         guiGraphics.drawString(this.font, this.title,
-            this.imageWidth / 2 - this.font.width(this.title) / 2, 6, 0x404040, false);
+                this.imageWidth / 2 - this.font.width(this.title) / 2, 6, 0x404040, false);
 
         StorageInventory inventory = menu.getCore().getInventory();
         long totalItems = inventory.getTotalItemCount();
@@ -82,7 +82,7 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         // Percentage text right-aligned
         String pctText = percentage + "%";
         guiGraphics.drawString(this.font, pctText,
-            barX + barWidth - this.font.width(pctText), y + barHeight + 2, valueColor, false);
+                barX + barWidth - this.font.width(pctText), y + barHeight + 2, valueColor, false);
         y += barHeight + 14;
 
         // Unique types
@@ -230,5 +230,6 @@ public class StatisticsBoxScreen extends AbstractContainerScreen<StatisticsBoxMe
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 
-    private record ComponentIcon(int x, int y, Component name) {}
+    private record ComponentIcon(int x, int y, Component name) {
+    }
 }

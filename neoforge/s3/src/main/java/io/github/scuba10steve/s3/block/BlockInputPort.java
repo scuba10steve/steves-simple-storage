@@ -29,7 +29,7 @@ public class BlockInputPort extends StorageMultiblock implements EntityBlock {
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return type == S3Platform.getInputPortBEType()
-            ? (lvl, pos, st, be) -> ((InputPortBlockEntity) be).tick()
-            : null;
+                ? (lvl, pos, st, be) -> ((InputPortBlockEntity) be).tick()
+                : null;
     }
 }

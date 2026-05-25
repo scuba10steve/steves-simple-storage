@@ -3,6 +3,11 @@ plugins {
     id 's3.conventions'
 }
 
+// This is needed for IDE to load properly, it eagerly fetches the information from providers, which aren't ready at
+// eval time.
+evaluationDependsOn(':core')
+evaluationDependsOn(':neoforge:s3')
+
 version = rootProject.mod_version
 group = 'io.github.scuba10steve.s3.test'
 
@@ -17,12 +22,12 @@ neoForge {
         data {
             data()
             programArguments.addAll(
-                '--mod', 's3',
-                '--all',
-                '--output', file('src/generated/resources/').getAbsolutePath(),
-                '--existing', file('src/main/resources/').getAbsolutePath(),
-                '--existing', rootProject.file('core/src/main/resources/').getAbsolutePath(),
-                '--existing', rootProject.file('neoforge/s3/src/main/resources/').getAbsolutePath()
+                    '--mod', 's3',
+                    '--all',
+                    '--output', file('src/generated/resources/').getAbsolutePath(),
+                    '--existing', file('src/main/resources/').getAbsolutePath(),
+                    '--existing', rootProject.file('core/src/main/resources/').getAbsolutePath(),
+                    '--existing', rootProject.file('neoforge/s3/src/main/resources/').getAbsolutePath()
             )
         }
     }

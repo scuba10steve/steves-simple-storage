@@ -43,15 +43,15 @@ public class StorageCoreMenu extends AbstractContainerMenu {
 
         LOGGER.debug("Creating {} at {}", getClass().getSimpleName(), pos);
     }
-    
+
     public StorageInventory getInventory() {
         return blockEntity != null ? blockEntity.getInventory() : null;
     }
-    
+
     public BlockPos getPos() {
         return pos;
     }
-    
+
     private void addStorageSlots() {
         // Storage items are rendered directly in the GUI, not as actual slots
         // This prevents conflicts with drag-and-drop and click handling
@@ -60,9 +60,10 @@ public class StorageCoreMenu extends AbstractContainerMenu {
 
     /**
      * Adds player inventory slots at the specified Y positions.
+     *
      * @param playerInventory The player's inventory
-     * @param inventoryY Y position for the main inventory (3 rows)
-     * @param hotbarY Y position for the hotbar
+     * @param inventoryY      Y position for the main inventory (3 rows)
+     * @param hotbarY         Y position for the hotbar
      */
     protected void addPlayerInventory(Inventory playerInventory, int inventoryY, int hotbarY) {
         // Player inventory (3 rows)
@@ -106,7 +107,7 @@ public class StorageCoreMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return blockEntity != null && 
-               player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64;
+        return blockEntity != null &&
+                player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64;
     }
 }

@@ -14,9 +14,9 @@ public class NeoForgeNetworkHelper implements S3NetworkHelper {
     @Override
     public void sendToPlayersTrackingChunk(ServerLevel level, BlockPos pos, CustomPacketPayload payload) {
         PacketDistributor.sendToPlayersTrackingChunk(
-            level,
-            level.getChunkAt(pos).getPos(),
-            payload
+                level,
+                level.getChunkAt(pos).getPos(),
+                payload
         );
     }
 

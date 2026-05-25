@@ -21,23 +21,27 @@ public class GameTestStructureProvider implements DataProvider {
     private final String namespace;
     private final List<StructureDefinition> structures = new ArrayList<>();
 
-    public record BlockPlacement(String block, int x, int y, int z) {}
+    public record BlockPlacement(String block, int x, int y, int z) {
+    }
 
-    public record EntityPlacement(String entity, double x, double y, double z) {}
+    public record EntityPlacement(String entity, double x, double y, double z) {
+    }
 
-    public record ItemPlacement(String item, int count, double x, double y, double z) {}
+    public record ItemPlacement(String item, int count, double x, double y, double z) {
+    }
 
     public record StructureContent(
-        List<BlockPlacement> blocks,
-        List<EntityPlacement> entities,
-        List<ItemPlacement> items
+            List<BlockPlacement> blocks,
+            List<EntityPlacement> entities,
+            List<ItemPlacement> items
     ) {
         public static StructureContent empty() {
             return new StructureContent(List.of(), List.of(), List.of());
         }
     }
 
-    private record StructureDefinition(String name, int sizeX, int sizeY, int sizeZ, StructureContent content) {}
+    private record StructureDefinition(String name, int sizeX, int sizeY, int sizeZ, StructureContent content) {
+    }
 
     public GameTestStructureProvider(PackOutput output, String namespace) {
         this.output = output;
@@ -67,7 +71,7 @@ public class GameTestStructureProvider implements DataProvider {
     private CompletableFuture<?> writeStructure(CachedOutput cachedOutput, StructureDefinition def) {
         ResourceLocation id = ResourceLocation.fromNamespaceAndPath(namespace, def.name());
         Path outputPath = output.getOutputFolder()
-            .resolve("data/" + id.getNamespace() + "/structure/" + id.getPath() + ".nbt");
+                .resolve("data/" + id.getNamespace() + "/structure/" + id.getPath() + ".nbt");
 
         CompoundTag tag = new CompoundTag();
         tag.putInt("DataVersion", SharedConstants.getCurrentVersion().getDataVersion().getVersion());
@@ -128,7 +132,7 @@ public class GameTestStructureProvider implements DataProvider {
             return CompletableFuture.completedFuture(null);
         } catch (Exception e) {
             return CompletableFuture.failedFuture(
-                new RuntimeException("Failed to write structure: " + id, e));
+                    new RuntimeException("Failed to write structure: " + id, e));
         }
     }
 

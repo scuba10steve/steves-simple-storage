@@ -22,7 +22,8 @@ import java.util.function.Supplier;
  * Initialized by the loader-specific module (NeoForge) during mod construction.
  */
 public final class S3Platform {
-    private S3Platform() {}
+    private S3Platform() {
+    }
 
     // --- Config ---
     private static S3Config config;
@@ -47,16 +48,45 @@ public final class S3Platform {
     private static Supplier<BlockEntityType<?>> storageInterfaceBEType;
     private static Supplier<BlockEntityType<?>> statisticsBoxBEType;
 
-    public static BlockEntityType<?> getStorageCoreBEType() { return storageCoreBEType.get(); }
-    public static BlockEntityType<?> getCraftingBoxBEType() { return craftingBoxBEType.get(); }
-    public static BlockEntityType<?> getSearchBoxBEType() { return searchBoxBEType.get(); }
-    public static BlockEntityType<?> getSortBoxBEType() { return sortBoxBEType.get(); }
-    public static BlockEntityType<?> getInputPortBEType() { return inputPortBEType.get(); }
-    public static BlockEntityType<?> getExtractPortBEType() { return extractPortBEType.get(); }
-    public static BlockEntityType<?> getEjectPortBEType() { return ejectPortBEType.get(); }
-    public static BlockEntityType<?> getSecurityBoxBEType() { return securityBoxBEType.get(); }
-    public static BlockEntityType<?> getStorageInterfaceBEType() { return storageInterfaceBEType.get(); }
-    public static BlockEntityType<?> getStatisticsBoxBEType() { return statisticsBoxBEType.get(); }
+    public static BlockEntityType<?> getStorageCoreBEType() {
+        return storageCoreBEType.get();
+    }
+
+    public static BlockEntityType<?> getCraftingBoxBEType() {
+        return craftingBoxBEType.get();
+    }
+
+    public static BlockEntityType<?> getSearchBoxBEType() {
+        return searchBoxBEType.get();
+    }
+
+    public static BlockEntityType<?> getSortBoxBEType() {
+        return sortBoxBEType.get();
+    }
+
+    public static BlockEntityType<?> getInputPortBEType() {
+        return inputPortBEType.get();
+    }
+
+    public static BlockEntityType<?> getExtractPortBEType() {
+        return extractPortBEType.get();
+    }
+
+    public static BlockEntityType<?> getEjectPortBEType() {
+        return ejectPortBEType.get();
+    }
+
+    public static BlockEntityType<?> getSecurityBoxBEType() {
+        return securityBoxBEType.get();
+    }
+
+    public static BlockEntityType<?> getStorageInterfaceBEType() {
+        return storageInterfaceBEType.get();
+    }
+
+    public static BlockEntityType<?> getStatisticsBoxBEType() {
+        return statisticsBoxBEType.get();
+    }
 
     public static void setBlockEntityTypes(
             Supplier<BlockEntityType<?>> storageCore,
@@ -88,11 +118,25 @@ public final class S3Platform {
     private static Supplier<MenuType<?>> securityBoxMenuType;
     private static Supplier<MenuType<?>> statisticsBoxMenuType;
 
-    public static MenuType<?> getStorageCoreMenuType() { return storageCoreMenuType.get(); }
-    public static MenuType<?> getStorageCraftingMenuType() { return storageCraftingMenuType.get(); }
-    public static MenuType<?> getExtractPortMenuType() { return extractPortMenuType.get(); }
-    public static MenuType<?> getSecurityBoxMenuType() { return securityBoxMenuType.get(); }
-    public static MenuType<?> getStatisticsBoxMenuType() { return statisticsBoxMenuType.get(); }
+    public static MenuType<?> getStorageCoreMenuType() {
+        return storageCoreMenuType.get();
+    }
+
+    public static MenuType<?> getStorageCraftingMenuType() {
+        return storageCraftingMenuType.get();
+    }
+
+    public static MenuType<?> getExtractPortMenuType() {
+        return extractPortMenuType.get();
+    }
+
+    public static MenuType<?> getSecurityBoxMenuType() {
+        return securityBoxMenuType.get();
+    }
+
+    public static MenuType<?> getStatisticsBoxMenuType() {
+        return statisticsBoxMenuType.get();
+    }
 
     public static void setMenuTypes(
             Supplier<MenuType<?>> storageCore,
@@ -110,7 +154,9 @@ public final class S3Platform {
     // --- Items ---
     private static Supplier<Item> keyItem;
 
-    public static Item getKeyItem() { return keyItem.get(); }
+    public static Item getKeyItem() {
+        return keyItem.get();
+    }
 
     public static void setKeyItem(Supplier<Item> key) {
         keyItem = key;
@@ -119,7 +165,9 @@ public final class S3Platform {
     // --- Network Helper ---
     private static S3NetworkHelper networkHelper;
 
-    public static S3NetworkHelper getNetworkHelper() { return networkHelper; }
+    public static S3NetworkHelper getNetworkHelper() {
+        return networkHelper;
+    }
 
     public static void setNetworkHelper(S3NetworkHelper helper) {
         networkHelper = helper;

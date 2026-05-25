@@ -24,7 +24,8 @@ import java.util.List;
  * loading {@code Minecraft} on dedicated servers.
  */
 public final class PacketHandlers {
-    private PacketHandlers() {}
+    private PacketHandlers() {
+    }
 
     public static void handleStorageClick(StorageClickPacket packet, IPayloadContext context) {
         context.enqueueWork(() -> {
@@ -78,10 +79,10 @@ public final class PacketHandlers {
                     core.setChanged();
                     if (player.level() instanceof ServerLevel serverLevel) {
                         S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                            serverLevel, packet.pos(),
-                            new StorageSyncPacket(packet.pos(), inventory.getStoredItems(),
-                                inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
+                                serverLevel, packet.pos(),
+                                new StorageSyncPacket(packet.pos(), inventory.getStoredItems(),
+                                        inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
+                                        core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
                         );
                     }
                 }
@@ -100,10 +101,10 @@ public final class PacketHandlers {
 
                 if (player.level() instanceof ServerLevel serverLevel) {
                     S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                        serverLevel, packet.pos(),
-                        new StorageSyncPacket(packet.pos(), core.getInventory().getStoredItems(),
-                            core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                            newMode.ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
+                            serverLevel, packet.pos(),
+                            new StorageSyncPacket(packet.pos(), core.getInventory().getStoredItems(),
+                                    core.getInventory().getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
+                                    newMode.ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
                     );
                 }
             }
@@ -155,10 +156,10 @@ public final class PacketHandlers {
                     if (inventory != null) {
                         core.setChanged();
                         S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                            serverLevel, menu.getPos(),
-                            new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
-                                inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
+                                serverLevel, menu.getPos(),
+                                new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
+                                        inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
+                                        core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
                         );
                     }
                 }
@@ -181,10 +182,10 @@ public final class PacketHandlers {
                     if (inventory != null) {
                         core.setChanged();
                         S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                            serverLevel, menu.getPos(),
-                            new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
-                                inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
-                                core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
+                                serverLevel, menu.getPos(),
+                                new StorageSyncPacket(menu.getPos(), inventory.getStoredItems(),
+                                        inventory.getMaxItems(), core.hasSearchBox(), core.hasSortBox(),
+                                        core.getSortMode().ordinal(), core.hasStatisticsBox(), core.getTierBreakdown(), core.getTotalBlockCount(), core.getPresentComponents())
                         );
                     }
                 }

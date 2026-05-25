@@ -185,13 +185,19 @@ public class ExtractPortMenu extends AbstractContainerMenu {
         }
 
         @Override
-        public int getContainerSize() { return 1; }
+        public int getContainerSize() {
+            return 1;
+        }
 
         @Override
-        public boolean isEmpty() { return blockEntity.getFilterList().get(index).isEmpty(); }
+        public boolean isEmpty() {
+            return blockEntity.getFilterList().get(index).isEmpty();
+        }
 
         @Override
-        public ItemStack getItem(int slot) { return blockEntity.getFilterList().get(index); }
+        public ItemStack getItem(int slot) {
+            return blockEntity.getFilterList().get(index);
+        }
 
         @Override
         public ItemStack removeItem(int slot, int amount) {
@@ -211,12 +217,18 @@ public class ExtractPortMenu extends AbstractContainerMenu {
         }
 
         @Override
-        public void setChanged() { blockEntity.setChanged(); }
+        public void setChanged() {
+            blockEntity.setChanged();
+        }
 
         @Override
-        public boolean stillValid(Player player) { return true; }
+        public boolean stillValid(Player player) {
+            return true;
+        }
 
         @Override
-        public void clearContent() { blockEntity.getFilterList().set(index, ItemStack.EMPTY); }
+        public void clearContent() {
+            blockEntity.getFilterList().set(index, ItemStack.EMPTY);
+        }
     }
 }

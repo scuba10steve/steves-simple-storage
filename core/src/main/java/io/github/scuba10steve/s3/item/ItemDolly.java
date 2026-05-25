@@ -38,10 +38,10 @@ public class ItemDolly extends BaseItem {
     public InteractionResult useOn(UseOnContext context) {
         Level level = context.getLevel();
         LOGGER.debug("useOn called - side: {}, hand: {}, pos: {}, player: {}",
-            level.isClientSide ? "CLIENT" : "SERVER",
-            context.getHand(),
-            context.getClickedPos(),
-            context.getPlayer() != null ? context.getPlayer().getName().getString() : "null");
+                level.isClientSide ? "CLIENT" : "SERVER",
+                context.getHand(),
+                context.getClickedPos(),
+                context.getPlayer() != null ? context.getPlayer().getName().getString() : "null");
 
         if (context.getHand() != InteractionHand.MAIN_HAND) {
             LOGGER.debug("Rejected: not main hand");
@@ -86,8 +86,8 @@ public class ItemDolly extends BaseItem {
         BlockState state = null;
         if (isChest) {
             state = block.defaultBlockState().setValue(
-                ChestBlock.FACING,
-                context.getPlayer().getDirection().getOpposite()
+                    ChestBlock.FACING,
+                    context.getPlayer().getDirection().getOpposite()
             );
         } else if (isStorageCore) {
             state = block.defaultBlockState();

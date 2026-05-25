@@ -69,7 +69,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
 
     public void scanMultiblock() {
         LOGGER.debug("Scanning multiblock at {}", worldPosition);
-        
+
         long totalCapacity = 0;
         multiblock.clear();
         hasCraftingBox = false;
@@ -83,7 +83,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         BlockRef coreRef = new BlockRef(getBlockState().getBlock(), worldPosition);
         multiblock.add(coreRef);
         getValidNeighbors(coreRef);
-        
+
         // Calculate total capacity from storage blocks and detect crafting boxes
         for (BlockRef blockRef : multiblock) {
             if (blockRef.block instanceof BlockStorage storage) {
@@ -110,7 +110,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             // Collect component registry names for statistics display (excludes storage blocks and the core itself)
             if (!(blockRef.block instanceof BlockStorage) && !(blockRef.block instanceof BlockStorageCore)) {
                 ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(blockRef.block);
-                if (!blockId.getNamespace().equals("minecraft")) {
+                if (!"minecraft".equals(blockId.getNamespace())) {
                     presentComponents.add(blockId.getPath());
                 }
             }
@@ -119,12 +119,12 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         totalBlockCount = multiblock.size();
 
         LOGGER.debug("Multiblock scan complete. Found {} blocks, total capacity: {}, has crafting box: {}, has search box: {}, has sort box: {}, has security box: {}, has statistics box: {}",
-                   multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox, hasStatisticsBox);
+                multiblock.size(), totalCapacity, hasCraftingBox, hasSearchBox, hasSortBox, hasSecurityBox, hasStatisticsBox);
         inventory.setMaxItems(totalCapacity);
         setChanged();
         syncToClients();
     }
-    
+
     private void getValidNeighbors(BlockRef br) {
         List<BlockRef> neighbors = StorageUtils.getNeighbors(br.pos, level);
         for (BlockRef blockRef : neighbors) {
@@ -135,7 +135,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             }
         }
     }
-    
+
     public boolean isPartOfMultiblock(BlockRef blockRef) {
         return multiblock.contains(blockRef);
     }
@@ -166,7 +166,7 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         forceSyncToClients(); // Always sync inventory changes immediately
         return result;
     }
-    
+
     private void syncToClients() {
         if (level instanceof ServerLevel serverLevel) {
             // Throttle syncs to prevent visual flicker from rapid consecutive updates
@@ -178,9 +178,9 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
             lastSyncTime = currentTime;
 
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                serverLevel,
-                worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
+                    serverLevel,
+                    worldPosition,
+                    new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
     }
@@ -193,13 +193,13 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         if (level instanceof ServerLevel serverLevel) {
             lastSyncTime = level.getGameTime();
             S3Platform.getNetworkHelper().sendToPlayersTrackingChunk(
-                serverLevel,
-                worldPosition,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
+                    serverLevel,
+                    worldPosition,
+                    new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
     }
-    
+
     public StorageInventory getInventory() {
         return inventory;
     }
@@ -287,8 +287,8 @@ public class StorageCoreBlockEntity extends BaseBlockEntity implements MenuProvi
         // Sync storage data to the opening player immediately
         if (level instanceof ServerLevel serverLevel) {
             S3Platform.getNetworkHelper().sendToPlayer(
-                (net.minecraft.server.level.ServerPlayer) player,
-                new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
+                    (net.minecraft.server.level.ServerPlayer) player,
+                    new StorageSyncPacket(worldPosition, inventory.getStoredItems(), inventory.getMaxItems(), hasSearchBox, hasSortBox, sortMode.ordinal(), hasStatisticsBox, getTierBreakdown(), getTotalBlockCount(), presentComponents)
             );
         }
 

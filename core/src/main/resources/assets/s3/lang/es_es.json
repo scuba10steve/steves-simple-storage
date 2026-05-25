@@ -1,6 +1,5 @@
 {
   "itemGroup.s3": "[TRANSLATE] Steve's Simple Storage",
-
   "block.s3.storage_core": "[TRANSLATE] Storage Core",
   "block.s3.storage_box": "[TRANSLATE] Storage Box",
   "block.s3.condensed_storage_box": "[TRANSLATE] Condensed Storage Box",
@@ -19,19 +18,15 @@
   "block.s3.security_box": "[TRANSLATE] Security Box",
   "block.s3.access_terminal": "[TRANSLATE] Access Terminal",
   "block.s3.storage_interface": "[TRANSLATE] Storage Interface",
-
   "container.s3.storage_core": "[TRANSLATE] Storage Core",
   "container.s3.extract_port": "[TRANSLATE] Extract Port",
   "container.s3.security_box": "[TRANSLATE] Security Box",
-
   "item.s3.key": "[TRANSLATE] Storage Key",
   "item.s3.dolly": "[TRANSLATE] Dolly",
   "item.s3.dolly_super": "[TRANSLATE] Super Dolly",
-
   "gui.s3.search": "[TRANSLATE] Search...",
   "gui.s3.clear": "[TRANSLATE] Clear",
   "warning.s3.break_storage": "[TRANSLATE] Warning! %s stored items will be lost! Use a Dolly to preserve items.",
-
   "advancement.s3.root.title": "[TRANSLATE] Storage Core",
   "advancement.s3.root.description": "[TRANSLATE] Craft the heart of your storage system",
   "advancement.s3.storage_box.title": "[TRANSLATE] Storage Box",
@@ -74,7 +69,6 @@
   "advancement.s3.dolly.description": "[TRANSLATE] Move your storage blocks with ease",
   "advancement.s3.super_dolly.title": "[TRANSLATE] Super Dolly",
   "advancement.s3.super_dolly.description": "[TRANSLATE] A more durable way to move blocks",
-
   "block.s3.statistics_box": "[TRANSLATE] Statistics Box",
   "container.s3.statistics_box": "[TRANSLATE] Statistics Box",
   "advancement.s3.statistics_box.title": "[TRANSLATE] Statistics Box",

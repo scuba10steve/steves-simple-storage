@@ -14,17 +14,17 @@ import java.util.List;
 import java.util.Map;
 
 public record StorageSyncPacket(
-    BlockPos pos, List<StoredItemStack> items, long maxCapacity,
-    boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
-    boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
-    List<String> presentComponents
+        BlockPos pos, List<StoredItemStack> items, long maxCapacity,
+        boolean hasSearchBox, boolean hasSortBox, int sortModeOrdinal,
+        boolean hasStatisticsBox, Map<String, Integer> tierBreakdown, int totalBlockCount,
+        List<String> presentComponents
 ) implements CustomPacketPayload {
-    
+
     public static final Type<StorageSyncPacket> TYPE = new Type<>(ResourceLocation.fromNamespaceAndPath("s3", "storage_sync"));
-    
+
     public static final StreamCodec<RegistryFriendlyByteBuf, StorageSyncPacket> STREAM_CODEC = StreamCodec.of(
-        StorageSyncPacket::encode,
-        StorageSyncPacket::decode
+            StorageSyncPacket::encode,
+            StorageSyncPacket::decode
     );
 
     private static void encode(RegistryFriendlyByteBuf buf, StorageSyncPacket packet) {
@@ -67,7 +67,7 @@ public record StorageSyncPacket(
             presentComponents.add(buf.readUtf());
         }
         return new StorageSyncPacket(pos, items, maxCapacity, hasSearchBox, hasSortBox, sortModeOrdinal,
-            hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents);
+                hasStatisticsBox, tierBreakdown, totalBlockCount, presentComponents);
     }
 
     private static void writeItems(RegistryFriendlyByteBuf buf, List<StoredItemStack> items) {

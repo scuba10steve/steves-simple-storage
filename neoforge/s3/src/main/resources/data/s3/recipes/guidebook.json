@@ -1,8 +1,12 @@
 {
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
-    {"item": "minecraft:book"},
-    {"item": "s3:storage_core"}
+    {
+      "item": "minecraft:book"
+    },
+    {
+      "item": "s3:storage_core"
+    }
   ],
   "result": {
     "id": "patchouli:guide_book",

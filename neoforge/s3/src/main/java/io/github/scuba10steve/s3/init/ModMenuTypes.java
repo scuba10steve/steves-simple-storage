@@ -11,30 +11,30 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 public class ModMenuTypes {
-    public static final DeferredRegister<MenuType<?>> MENU_TYPES = 
-        DeferredRegister.create(BuiltInRegistries.MENU, RefStrings.MODID);
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES =
+            DeferredRegister.create(BuiltInRegistries.MENU, RefStrings.MODID);
 
-    public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE = 
-        MENU_TYPES.register("storage_core", () -> 
-            IMenuTypeExtension.create((windowId, inv, data) -> 
-                new StorageCoreMenu(windowId, inv, data.readBlockPos())));
-                
+    public static final Supplier<MenuType<StorageCoreMenu>> STORAGE_CORE =
+            MENU_TYPES.register("storage_core", () ->
+                    IMenuTypeExtension.create((windowId, inv, data) ->
+                            new StorageCoreMenu(windowId, inv, data.readBlockPos())));
+
     public static final Supplier<MenuType<StorageCoreCraftingMenu>> STORAGE_CORE_CRAFTING =
-        MENU_TYPES.register("storage_core_crafting", () ->
-            IMenuTypeExtension.create((windowId, inv, data) ->
-                new StorageCoreCraftingMenu(windowId, inv, data.readBlockPos())));
+            MENU_TYPES.register("storage_core_crafting", () ->
+                    IMenuTypeExtension.create((windowId, inv, data) ->
+                            new StorageCoreCraftingMenu(windowId, inv, data.readBlockPos())));
 
     public static final Supplier<MenuType<ExtractPortMenu>> EXTRACT_PORT =
-        MENU_TYPES.register("extract_port", () ->
-            IMenuTypeExtension.create(ExtractPortMenu::new));
+            MENU_TYPES.register("extract_port", () ->
+                    IMenuTypeExtension.create(ExtractPortMenu::new));
 
     public static final Supplier<MenuType<SecurityBoxMenu>> SECURITY_BOX =
-        MENU_TYPES.register("security_box", () ->
-            IMenuTypeExtension.create(SecurityBoxMenu::new));
+            MENU_TYPES.register("security_box", () ->
+                    IMenuTypeExtension.create(SecurityBoxMenu::new));
 
     public static final Supplier<MenuType<StatisticsBoxMenu>> STATISTICS_BOX =
-        MENU_TYPES.register("statistics_box", () ->
-            IMenuTypeExtension.create(StatisticsBoxMenu::new));
+            MENU_TYPES.register("statistics_box", () ->
+                    IMenuTypeExtension.create(StatisticsBoxMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);

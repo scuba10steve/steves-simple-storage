@@ -33,7 +33,7 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
     private final List<SecurePlayer> allowedPlayers = new ArrayList<>();
 
     // Op override notification queue
-    private ServerPlayer pendingOpNotification = null;
+    private ServerPlayer pendingOpNotification;
 
     public SecurityBoxBlockEntity(BlockPos pos, BlockState state) {
         super(S3Platform.getSecurityBoxBEType(), pos, state);
@@ -141,7 +141,7 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
         String ownerName = allowedPlayers.getFirst().name;
         // Notify the operator
         op.sendSystemMessage(Component.literal(
-            "You have overridden the lockout to the storage system owned by " + ownerName + "."));
+                "You have overridden the lockout to the storage system owned by " + ownerName + "."));
 
         // Notify all online allowed players
         if (level != null && level.getServer() != null) {
@@ -150,13 +150,13 @@ public class SecurityBoxBlockEntity extends MultiblockBlockEntity implements Men
                 ServerPlayer target = level.getServer().getPlayerList().getPlayer(sp.id);
                 if (target != null) {
                     target.sendSystemMessage(Component.literal(
-                        "Operator " + opName + " has overridden your storage system lockout."));
+                            "Operator " + opName + " has overridden your storage system lockout."));
                 }
             }
         }
 
         LOGGER.info("Operator {} has overridden the lockout to the storage system owned by {}",
-            op.getName().getString(), ownerName);
+                op.getName().getString(), ownerName);
     }
 
     // NBT persistence

@@ -1,0 +1,7 @@
+{
+  "criteria": {
+    "receive_guidebook": {
+      "trigger": "s3:receive_guidebook"
+    }
+  }
+}

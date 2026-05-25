@@ -5,7 +5,9 @@
 [![Modrinth](https://img.shields.io/modrinth/dt/XsvAJLLz?logo=modrinth&label=Modrinth)](https://modrinth.com/mod/XsvAJLLz)
 [![CurseForge](https://img.shields.io/curseforge/dt/1469363?logo=curseforge&label=CurseForge)](https://www.curseforge.com/minecraft/mc-mods/steves-simple-storage)
 
-Steve's Simple Storage introduces a storage system that scales and evolves as players progress. Want to put 100,000 Cobblestone in 1 slot? No problem. Blocks in the mod can add a search bar, a crafting grid, additional storage, external access, security, and more. Also includes JEI integration for 1-click crafting from the system's internal inventory!
+Steve's Simple Storage introduces a storage system that scales and evolves as players progress. Want to put 100,000
+Cobblestone in 1 slot? No problem. Blocks in the mod can add a search bar, a crafting grid, additional storage, external
+access, security, and more. Also includes JEI integration for 1-click crafting from the system's internal inventory!
 
 ## User Documentation
 
@@ -119,9 +121,11 @@ steves-simple-storage/
 
 ### Configuration
 
-Steve's Simple Storage uses TOML configuration files located at `config/s3-common.toml`. The configuration is organized into sections:
+Steve's Simple Storage uses TOML configuration files located at `config/s3-common.toml`. The configuration is organized
+into sections:
 
 #### Storage Capacities
+
 - `basicCapacity` - Storage Box capacity (default: 10,000)
 - `condensedCapacity` - Condensed Storage Box capacity (default: 40,000)
 - `compressedCapacity` - Compressed Storage Box capacity (default: 80,000)
@@ -131,6 +135,7 @@ Steve's Simple Storage uses TOML configuration files located at `config/s3-commo
 - `ultimateCapacity` - Ultimate Storage Box capacity (default: 10,240,000)
 
 #### Feature Toggles
+
 - `enableSecurity` - Enable Security Box and Key item (default: true)
 - `enableTerminal` - Enable Access Terminal block (default: true)
 - `enableDolly` - Enable Dolly items for moving blocks (default: true)
@@ -138,15 +143,20 @@ Steve's Simple Storage uses TOML configuration files located at `config/s3-commo
 - `enableOpOverride` - Allow operators to override security (default: true)
 
 #### Recipe Options
+
 - `classicRecipes` - Use classic (easier) recipes (default: false)
 - `toughHyper` - Make Hyper Storage Box recipe more expensive (default: false)
 
 #### Mod Integration
+
 - `jeiIntegration` - Enable JEI integration features (default: true)
 
 #### Automation Settings
-- `extractPortInterval` - Ticks between Extract Port extraction attempts (default: 8, range: 1-100). Lower values = faster extraction, higher values = less server load.
-- `minSyncInterval` - Minimum ticks between storage inventory sync packets (default: 2, range: 0-20). Helps prevent visual flicker. Set to 0 to disable throttling.
+
+- `extractPortInterval` - Ticks between Extract Port extraction attempts (default: 8, range: 1-100). Lower values =
+  faster extraction, higher values = less server load.
+- `minSyncInterval` - Minimum ticks between storage inventory sync packets (default: 2, range: 0-20). Helps prevent
+  visual flicker. Set to 0 to disable throttling.
 
 Configuration changes require a game restart to take effect.
 
@@ -166,4 +176,5 @@ This Open Source project is licensed under the MIT License (see [LICENSE](LICENS
 - [GitHub Repository](https://github.com/scuba10steve/steves-simple-storage)
 - [Modrinth](https://modrinth.com/mod/XsvAJLLz)
 - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/steves-simple-storage)
-- [Original Project on CurseForge](https://www.curseforge.com/minecraft/mc-mods/ezstorage-2) (EZStorage 2 - 1.12.2 version)
+- [Original Project on CurseForge](https://www.curseforge.com/minecraft/mc-mods/ezstorage-2) (EZStorage 2 - 1.12.2
+  version)

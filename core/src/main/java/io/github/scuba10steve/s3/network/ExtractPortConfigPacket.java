@@ -10,22 +10,23 @@ import net.minecraft.resources.ResourceLocation;
 /**
  * Packet sent from client to server to configure the Extract Port.
  */
-public record ExtractPortConfigPacket(BlockPos pos, boolean cycleMode, boolean roundRobin) implements CustomPacketPayload {
+public record ExtractPortConfigPacket(BlockPos pos, boolean cycleMode,
+                                      boolean roundRobin) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<ExtractPortConfigPacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "extract_port_config"));
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "extract_port_config"));
 
     public static final StreamCodec<FriendlyByteBuf, ExtractPortConfigPacket> STREAM_CODEC = StreamCodec.of(
-        (buf, packet) -> {
-            buf.writeBlockPos(packet.pos);
-            buf.writeBoolean(packet.cycleMode);
-            buf.writeBoolean(packet.roundRobin);
-        },
-        buf -> new ExtractPortConfigPacket(
-            buf.readBlockPos(),
-            buf.readBoolean(),
-            buf.readBoolean()
-        )
+            (buf, packet) -> {
+                buf.writeBlockPos(packet.pos);
+                buf.writeBoolean(packet.cycleMode);
+                buf.writeBoolean(packet.roundRobin);
+            },
+            buf -> new ExtractPortConfigPacket(
+                    buf.readBlockPos(),
+                    buf.readBoolean(),
+                    buf.readBoolean()
+            )
     );
 
     @Override

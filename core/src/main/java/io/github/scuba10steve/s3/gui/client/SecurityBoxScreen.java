@@ -24,7 +24,7 @@ import java.util.List;
 public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> {
 
     private static final ResourceLocation TEXTURE =
-        ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/security_box.png");
+            ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/security_box.png");
 
     private static final int NUM_BUTTONS = 7;
     private static final int BUTTON_WIDTH = 80;
@@ -51,11 +51,11 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
         for (int i = 0; i < NUM_BUTTONS; i++) {
             final int index = i;
             addedPlayerButtons[i] = Button.builder(
-                    Component.literal(""),
-                    btn -> onRemovePlayer(index)
-                )
-                .bounds(k + 4, l + 30 + i * 15, BUTTON_WIDTH, BUTTON_HEIGHT)
-                .build();
+                            Component.literal(""),
+                            btn -> onRemovePlayer(index)
+                    )
+                    .bounds(k + 4, l + 30 + i * 15, BUTTON_WIDTH, BUTTON_HEIGHT)
+                    .build();
             addedPlayerButtons[i].visible = false;
             addRenderableWidget(addedPlayerButtons[i]);
         }
@@ -64,11 +64,11 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
         for (int i = 0; i < NUM_BUTTONS; i++) {
             final int index = i;
             availablePlayerButtons[i] = Button.builder(
-                    Component.literal(""),
-                    btn -> onAddPlayer(index)
-                )
-                .bounds(k + this.imageWidth - BUTTON_WIDTH - 4, l + 30 + i * 15, BUTTON_WIDTH, BUTTON_HEIGHT)
-                .build();
+                            Component.literal(""),
+                            btn -> onAddPlayer(index)
+                    )
+                    .bounds(k + this.imageWidth - BUTTON_WIDTH - 4, l + 30 + i * 15, BUTTON_WIDTH, BUTTON_HEIGHT)
+                    .build();
             availablePlayerButtons[i].visible = false;
             addRenderableWidget(availablePlayerButtons[i]);
         }
@@ -80,7 +80,7 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
         if (index < allowed.size()) {
             SecurePlayer player = allowed.get(index);
             S3Platform.getNetworkHelper().sendToServer(
-                new SecurityPlayerPacket(menu.getPos(), player.id(), player.name(), false));
+                    new SecurityPlayerPacket(menu.getPos(), player.id(), player.name(), false));
         }
     }
 
@@ -89,7 +89,7 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
         if (index < nearby.size()) {
             Player player = nearby.get(index);
             S3Platform.getNetworkHelper().sendToServer(
-                new SecurityPlayerPacket(menu.getPos(), player.getUUID(), player.getName().getString(), true));
+                    new SecurityPlayerPacket(menu.getPos(), player.getUUID(), player.getName().getString(), true));
         }
     }
 
@@ -166,16 +166,16 @@ public class SecurityBoxScreen extends AbstractContainerScreen<SecurityBoxMenu> 
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         // Title centered
         guiGraphics.drawString(this.font, this.title,
-            this.imageWidth / 2 - this.font.width(this.title) / 2, 6, 0x404040, false);
+                this.imageWidth / 2 - this.font.width(this.title) / 2, 6, 0x404040, false);
 
         // Column headers
         guiGraphics.drawString(this.font, "Allowed Players", 4, 18, 0x606060, false);
         guiGraphics.drawString(this.font, "Nearby Players",
-            this.imageWidth - BUTTON_WIDTH - 4, 18, 0x606060, false);
+                this.imageWidth - BUTTON_WIDTH - 4, 18, 0x606060, false);
 
         // Player inventory label
         guiGraphics.drawString(this.font, this.playerInventoryTitle,
-            this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
+                this.inventoryLabelX, this.inventoryLabelY, 0x404040, false);
     }
 
     @Override

@@ -37,8 +37,8 @@ public class BlockStatisticsBox extends StorageMultiblock implements EntityBlock
             return null;
         }
         return type == S3Platform.getStatisticsBoxBEType()
-            ? (lvl, pos, st, be) -> ((StatisticsBoxBlockEntity) be).tick()
-            : null;
+                ? (lvl, pos, st, be) -> ((StatisticsBoxBlockEntity) be).tick()
+                : null;
     }
 
     @Override

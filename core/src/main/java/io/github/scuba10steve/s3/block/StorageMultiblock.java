@@ -15,11 +15,11 @@ import java.util.Set;
 
 public abstract class StorageMultiblock extends BaseBlock {
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageMultiblock.class);
-    
+
     protected StorageMultiblock(Properties properties) {
         super(properties);
     }
-    
+
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
         super.onPlace(state, level, pos, oldState, isMoving);
@@ -28,7 +28,7 @@ public abstract class StorageMultiblock extends BaseBlock {
             attemptMultiblock(level, pos);
         }
     }
-    
+
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
         if (!state.is(newState.getBlock()) && !level.isClientSide) {
@@ -36,7 +36,7 @@ public abstract class StorageMultiblock extends BaseBlock {
         }
         super.onRemove(state, level, pos, newState, isMoving);
     }
-    
+
     public StorageCoreBlockEntity attemptMultiblock(Level level, BlockPos pos) {
         if (level.isClientSide) {
             return null;
@@ -59,16 +59,16 @@ public abstract class StorageMultiblock extends BaseBlock {
         }
         return core;
     }
-    
+
     public StorageCoreBlockEntity findCore(BlockRef br, Level level, Set<BlockRef> scanned) {
         if (scanned == null) {
             scanned = new HashSet<>();
         }
-        
+
         LOGGER.debug("Searching for core from position {}", br.pos);
         List<BlockRef> neighbors = StorageUtils.getNeighbors(br.pos, level);
         LOGGER.debug("Found {} neighbors", neighbors.size());
-        
+
         for (BlockRef blockRef : neighbors) {
             LOGGER.debug("Checking neighbor at {} - block: {}", blockRef.pos, blockRef.block.getClass().getSimpleName());
             if (blockRef.block instanceof StorageMultiblock) {

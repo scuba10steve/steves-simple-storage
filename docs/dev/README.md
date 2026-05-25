@@ -22,6 +22,7 @@ Technical documentation for contributors and those building the mod.
 ## Quick Reference
 
 ### Key Technologies
+
 - **Minecraft**: 1.21.1
 - **NeoForge**: 21.1.218
 - **ModDevGradle**: 2.0.141
@@ -29,16 +30,21 @@ Technical documentation for contributors and those building the mod.
 - **Gradle**: 8.10.2
 
 ### Architecture
+
 The project uses a **multi-module Gradle layout**:
+
 - **`core`** - Platform-agnostic code (vanilla MC classes only via `neoFormVersion`)
 - **`neoforge`** - NeoForge-specific code (registration, config, packet handlers, JEI)
 
-A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decouples core code from loader-specific APIs.
+A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decouples core code from loader-specific
+APIs.
 
 ### Project Status
+
 **Version 1.0.2** — stable release
 
 **Implemented Features:**
+
 - Basic storage system with multiblock capacity scaling
 - Storage Core GUI with sidebar item display and scrolling
 - Expandable storage grid in crafting GUI (toggle between normal/extended layouts)
@@ -60,5 +66,6 @@ A platform abstraction layer (`S3Platform`, `S3Config`, `S3NetworkHelper`) decou
 - Advancement tree (21 advancements tracking block/item progression)
 
 ### Getting Started
+
 1. See [Build System](build-system.md) for setup instructions
 2. Check [Troubleshooting](troubleshooting.md) for common issues

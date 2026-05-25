@@ -36,8 +36,8 @@ public class BlockExtractPort extends StorageMultiblock implements EntityBlock {
             return null;
         }
         return type == S3Platform.getExtractPortBEType()
-            ? (lvl, pos, st, be) -> ((ExtractPortBlockEntity) be).tick()
-            : null;
+                ? (lvl, pos, st, be) -> ((ExtractPortBlockEntity) be).tick()
+                : null;
     }
 
     @Override

@@ -8,25 +8,88 @@ import io.github.scuba10steve.s3.config.StorageConfig;
  */
 public class NeoForgeConfig implements S3Config {
 
-    @Override public int getBasicCapacity() { return StorageConfig.BASIC_CAPACITY.get(); }
-    @Override public int getCondensedCapacity() { return StorageConfig.CONDENSED_CAPACITY.get(); }
-    @Override public int getCompressedCapacity() { return StorageConfig.COMPRESSED_CAPACITY.get(); }
-    @Override public int getSuperCapacity() { return StorageConfig.SUPER_CAPACITY.get(); }
-    @Override public int getUltraCapacity() { return StorageConfig.ULTRA_CAPACITY.get(); }
-    @Override public int getHyperCapacity() { return StorageConfig.HYPER_CAPACITY.get(); }
-    @Override public int getUltimateCapacity() { return StorageConfig.ULTIMATE_CAPACITY.get(); }
+    @Override
+    public int getBasicCapacity() {
+        return StorageConfig.BASIC_CAPACITY.get();
+    }
 
-    @Override public boolean isSecurityEnabled() { return StorageConfig.ENABLE_SECURITY.get(); }
-    @Override public boolean isOpOverrideEnabled() { return StorageConfig.ENABLE_OP_OVERRIDE.get(); }
-    @Override public boolean isSearchAutoFocus() { return StorageClientConfig.SEARCH_AUTO_FOCUS.get(); }
+    @Override
+    public int getCondensedCapacity() {
+        return StorageConfig.CONDENSED_CAPACITY.get();
+    }
 
-    @Override public int getCraftShiftClickLimit() { return StorageConfig.CRAFT_SHIFT_CLICK_LIMIT.get(); }
-    @Override public boolean shouldAutoRepopulateCraftingGrid() { return StorageConfig.CRAFTING_AUTO_REPOPULATE.get(); }
-    @Override public int getExtractPortInterval() { return StorageConfig.EXTRACT_PORT_INTERVAL.get(); }
-    @Override public int getMinSyncInterval() { return StorageConfig.MIN_SYNC_INTERVAL.get(); }
+    @Override
+    public int getCompressedCapacity() {
+        return StorageConfig.COMPRESSED_CAPACITY.get();
+    }
 
-    @Override public double getCountFontScale() { return StorageClientConfig.COUNT_FONT_SCALE.get(); }
+    @Override
+    public int getSuperCapacity() {
+        return StorageConfig.SUPER_CAPACITY.get();
+    }
 
-    @Override public boolean isExtendedGui() { return StorageClientConfig.EXTENDED_GUI.get(); }
-    @Override public void setExtendedGui(boolean extended) { StorageClientConfig.EXTENDED_GUI.set(extended); }
+    @Override
+    public int getUltraCapacity() {
+        return StorageConfig.ULTRA_CAPACITY.get();
+    }
+
+    @Override
+    public int getHyperCapacity() {
+        return StorageConfig.HYPER_CAPACITY.get();
+    }
+
+    @Override
+    public int getUltimateCapacity() {
+        return StorageConfig.ULTIMATE_CAPACITY.get();
+    }
+
+    @Override
+    public boolean isSecurityEnabled() {
+        return StorageConfig.ENABLE_SECURITY.get();
+    }
+
+    @Override
+    public boolean isOpOverrideEnabled() {
+        return StorageConfig.ENABLE_OP_OVERRIDE.get();
+    }
+
+    @Override
+    public boolean isSearchAutoFocus() {
+        return StorageClientConfig.SEARCH_AUTO_FOCUS.get();
+    }
+
+    @Override
+    public int getCraftShiftClickLimit() {
+        return StorageConfig.CRAFT_SHIFT_CLICK_LIMIT.get();
+    }
+
+    @Override
+    public boolean shouldAutoRepopulateCraftingGrid() {
+        return StorageConfig.CRAFTING_AUTO_REPOPULATE.get();
+    }
+
+    @Override
+    public int getExtractPortInterval() {
+        return StorageConfig.EXTRACT_PORT_INTERVAL.get();
+    }
+
+    @Override
+    public int getMinSyncInterval() {
+        return StorageConfig.MIN_SYNC_INTERVAL.get();
+    }
+
+    @Override
+    public double getCountFontScale() {
+        return StorageClientConfig.COUNT_FONT_SCALE.get();
+    }
+
+    @Override
+    public boolean isExtendedGui() {
+        return StorageClientConfig.EXTENDED_GUI.get();
+    }
+
+    @Override
+    public void setExtendedGui(boolean extended) {
+        StorageClientConfig.EXTENDED_GUI.set(extended);
+    }
 }

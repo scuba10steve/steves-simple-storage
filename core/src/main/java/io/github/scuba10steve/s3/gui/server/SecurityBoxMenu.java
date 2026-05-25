@@ -49,8 +49,8 @@ public class SecurityBoxMenu extends AbstractContainerMenu {
         // Sync whitelist to the opening player
         if (playerInventory.player instanceof ServerPlayer serverPlayer) {
             S3Platform.getNetworkHelper().sendToPlayer(
-                serverPlayer,
-                new SecuritySyncPacket(pos, blockEntity.getAllowedPlayers())
+                    serverPlayer,
+                    new SecuritySyncPacket(pos, blockEntity.getAllowedPlayers())
             );
         }
     }

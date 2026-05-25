@@ -5,6 +5,7 @@ All crafting recipes for Steve's Simple Storage. Recipes use the standard Minecr
 ## Storage Blocks
 
 ### Storage Core
+
 **Output:** 1× Storage Core
 
 ```
@@ -17,6 +18,7 @@ C = Chest
 ```
 
 ### Storage Box
+
 **Output:** 1× Storage Box
 
 ```
@@ -29,6 +31,7 @@ C = Chest
 ```
 
 ### Condensed Storage Box
+
 **Output:** 1× Condensed Storage Box
 
 ```
@@ -41,6 +44,7 @@ S = Storage Box
 ```
 
 ### Compressed Storage Box
+
 **Output:** 1× Compressed Storage Box
 
 ```
@@ -53,6 +57,7 @@ S = Condensed Storage Box
 ```
 
 ### Super Storage Box
+
 **Output:** 1× Super Storage Box
 
 ```
@@ -65,6 +70,7 @@ S = Compressed Storage Box
 ```
 
 ### Ultra Storage Box
+
 **Output:** 1× Ultra Storage Box
 
 ```
@@ -77,6 +83,7 @@ S = Super Storage Box
 ```
 
 ### Hyper Storage Box
+
 **Output:** 1× Hyper Storage Box
 
 ```
@@ -89,6 +96,7 @@ S = Ultra Storage Box
 ```
 
 ### Ultimate Storage Box
+
 **Output:** 1× Ultimate Storage Box
 
 ```
@@ -104,6 +112,7 @@ S = Hyper Storage Box
 ## Feature Blocks
 
 ### Crafting Box
+
 **Output:** 1× Crafting Box
 
 ```
@@ -118,6 +127,7 @@ B = Storage Box
 ```
 
 ### Search Box
+
 **Output:** 1× Search Box
 
 ```
@@ -132,6 +142,7 @@ B = Storage Box
 ```
 
 ### Sort Box
+
 **Output:** 1× Sort Box
 
 ```
@@ -146,6 +157,7 @@ B = Storage Box
 ```
 
 ### Statistics Box
+
 **Output:** 1× Statistics Box
 
 ```
@@ -160,6 +172,7 @@ B = Blank Box
 ```
 
 ### Security Box
+
 **Output:** 1× Security Box
 
 ```
@@ -173,6 +186,7 @@ B = Storage Box
 ```
 
 ### Access Terminal
+
 **Output:** 1× Access Terminal
 
 ```
@@ -186,6 +200,7 @@ A = Storage Core
 ```
 
 ### Blank Box
+
 **Output:** 4× Blank Box
 
 ```
@@ -199,6 +214,7 @@ P = Any Planks
 ## Automation Blocks
 
 ### Input Port
+
 **Output:** 1× Input Port
 
 ```
@@ -212,6 +228,7 @@ B = Storage Box
 ```
 
 ### Extract Port
+
 **Output:** 1× Extract Port
 
 ```
@@ -225,6 +242,7 @@ B = Storage Box
 ```
 
 ### Eject Port
+
 **Output:** 1× Eject Port
 
 ```
@@ -238,6 +256,7 @@ B = Storage Box
 ```
 
 ### Storage Interface
+
 **Output:** 1× Storage Interface
 
 ```
@@ -253,6 +272,7 @@ P = Input Port
 ## Items
 
 ### Key
+
 **Output:** 1× Key
 
 ```
@@ -265,6 +285,7 @@ G = Gold Ingot
 ```
 
 ### Dolly
+
 **Output:** 1× Dolly
 
 ```
@@ -278,6 +299,7 @@ W = Any Planks
 ```
 
 ### Super Dolly
+
 **Output:** 1× Super Dolly
 
 ```
@@ -293,9 +315,9 @@ G = Dolly
 
 Some recipe variants are planned but not yet implemented:
 
-| Config Option | Default | Description |
-|---------------|---------|-------------|
+| Config Option    | Default | Description         |
+|------------------|---------|---------------------|
 | `classicRecipes` | `false` | Not yet implemented |
-| `toughHyper` | `false` | Not yet implemented |
+| `toughHyper`     | `false` | Not yet implemented |
 
 These options appear in `config/s3-common.toml` but do not currently change the available recipes.

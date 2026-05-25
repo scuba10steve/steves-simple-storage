@@ -8,28 +8,40 @@ public interface S3Config {
 
     // Storage Capacities
     int getBasicCapacity();
+
     int getCondensedCapacity();
+
     int getCompressedCapacity();
+
     int getSuperCapacity();
+
     int getUltraCapacity();
+
     int getHyperCapacity();
+
     int getUltimateCapacity();
 
     // Feature Toggles
     boolean isSecurityEnabled();
+
     boolean isOpOverrideEnabled();
+
     boolean isSearchAutoFocus();
 
     // Crafting
     int getCraftShiftClickLimit();
+
     boolean shouldAutoRepopulateCraftingGrid();
 
     // Automation
     int getExtractPortInterval();
+
     int getMinSyncInterval();
 
     // GUI Settings
     double getCountFontScale();
+
     boolean isExtendedGui();
+
     void setExtendedGui(boolean extended);
 }

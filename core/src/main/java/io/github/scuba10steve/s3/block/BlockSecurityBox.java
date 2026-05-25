@@ -39,8 +39,8 @@ public class BlockSecurityBox extends StorageMultiblock implements EntityBlock {
             return null;
         }
         return type == S3Platform.getSecurityBoxBEType()
-            ? (lvl, pos, st, be) -> ((SecurityBoxBlockEntity) be).tick()
-            : null;
+                ? (lvl, pos, st, be) -> ((SecurityBoxBlockEntity) be).tick()
+                : null;
     }
 
     @Override

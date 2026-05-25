@@ -1,6 +1,6 @@
 name: Dev Enhancement
 description: Propose a build, tooling, or developer workflow improvement
-labels: ["dev"]
+labels: [ "dev" ]
 
 body:
   - type: textarea

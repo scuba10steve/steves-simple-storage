@@ -13,11 +13,11 @@ import net.minecraft.resources.ResourceLocation;
 public record SortModePacket(BlockPos pos) implements CustomPacketPayload {
 
     public static final CustomPacketPayload.Type<SortModePacket> TYPE =
-        new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "sort_mode"));
+            new CustomPacketPayload.Type<>(ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "sort_mode"));
 
     public static final StreamCodec<FriendlyByteBuf, SortModePacket> STREAM_CODEC = StreamCodec.of(
-        (buf, packet) -> buf.writeBlockPos(packet.pos),
-        buf -> new SortModePacket(buf.readBlockPos())
+            (buf, packet) -> buf.writeBlockPos(packet.pos),
+            buf -> new SortModePacket(buf.readBlockPos())
     );
 
     @Override

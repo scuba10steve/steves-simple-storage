@@ -1,6 +1,7 @@
 # Configuration System
 
-Steve's Simple Storage uses NeoForge's ModConfigSpec system to generate TOML configuration files. The configuration is automatically created at `config/s3-common.toml` when the mod first loads.
+Steve's Simple Storage uses NeoForge's ModConfigSpec system to generate TOML configuration files. The configuration is
+automatically created at `config/s3-common.toml` when the mod first loads.
 
 ## Configuration File Structure
 
@@ -22,6 +23,7 @@ Controls the storage capacity for each tier of storage block:
 ```
 
 **Notes:**
+
 - All capacity values must be greater than 1
 - Values are applied at runtime when blocks are scanned
 - Changes require a game restart
@@ -40,6 +42,7 @@ Toggles for optional mod features:
 ```
 
 **Notes:**
+
 - All feature toggles are actively used
 - Security Box, Access Terminal, Dolly, and Search Modes are all implemented
 
@@ -54,6 +57,7 @@ Controls recipe difficulty:
 ```
 
 **Notes:**
+
 - Recipe options control which recipe set is used for crafting
 - Changes require a game restart to take effect
 
@@ -67,6 +71,7 @@ Controls mod integration features:
 ```
 
 **Notes:**
+
 - JEI integration is currently active
 - Future integrations will be added here
 
@@ -91,11 +96,13 @@ int capacity = S3Platform.getConfig().getBasicCapacity();
 boolean enabled = S3Platform.getConfig().isSecurityEnabled();
 ```
 
-The NeoForge module provides the implementation (`NeoForgeConfig`) that delegates to `StorageConfig`'s `ModConfigSpec` values.
+The NeoForge module provides the implementation (`NeoForgeConfig`) that delegates to `StorageConfig`'s `ModConfigSpec`
+values.
 
 ### Runtime Application
 
-Storage capacities are applied dynamically when blocks are scanned. Each `BlockStorage` instance holds a tier key string and looks up its capacity via the platform config:
+Storage capacities are applied dynamically when blocks are scanned. Each `BlockStorage` instance holds a tier key string
+and looks up its capacity via the platform config:
 
 ```java
 public int getCapacity() {
@@ -129,6 +136,7 @@ Future versions may support per-world configuration overrides:
 ### Config File Not Generated
 
 If the config file doesn't appear:
+
 1. Check `logs/latest.log` for errors
 2. Ensure `config/` directory exists
 3. Verify mod loaded successfully
@@ -136,6 +144,7 @@ If the config file doesn't appear:
 ### Config Changes Not Applied
 
 If changes don't take effect:
+
 1. Ensure you saved the TOML file
 2. Restart the game completely
 3. Check for syntax errors in TOML
@@ -144,6 +153,7 @@ If changes don't take effect:
 ### Invalid Config Values
 
 If the config file is corrected on load:
+
 - Check logs for "Configuration file is not correct" message
 - Invalid values are reset to defaults
 - Ensure numeric values are within specified ranges

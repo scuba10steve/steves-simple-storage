@@ -10,7 +10,7 @@
         <Logger name="io.github.scuba10steve.s3" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        
+
         <!-- Root logger at INFO level -->
         <Root level="INFO">
             <AppenderRef ref="Console"/>

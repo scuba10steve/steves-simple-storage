@@ -18,7 +18,7 @@ import net.minecraft.world.entity.player.Inventory;
 public class ExtractPortScreen extends AbstractContainerScreen<ExtractPortMenu> {
 
     private static final ResourceLocation TEXTURE =
-        ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/extract_port.png");
+            ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/extract_port.png");
 
     private Button listModeButton;
     private Checkbox roundRobinCheckbox;
@@ -38,22 +38,22 @@ public class ExtractPortScreen extends AbstractContainerScreen<ExtractPortMenu> 
 
         // List mode button
         listModeButton = Button.builder(
-                Component.literal(be.getListMode().getDisplayName()),
-                this::onListModePressed
-            )
-            .bounds(this.leftPos + 99, this.topPos + 42, 70, 20)
-            .build();
+                        Component.literal(be.getListMode().getDisplayName()),
+                        this::onListModePressed
+                )
+                .bounds(this.leftPos + 99, this.topPos + 42, 70, 20)
+                .build();
         addRenderableWidget(listModeButton);
 
         // Round-robin checkbox
         roundRobinCheckbox = Checkbox.builder(
-                Component.literal("Round Robin"),
-                this.font
-            )
-            .pos(this.leftPos + 8, this.topPos + 42)
-            .selected(be.isRoundRobin())
-            .onValueChange((checkbox, selected) -> onRoundRobinChanged(selected))
-            .build();
+                        Component.literal("Round Robin"),
+                        this.font
+                )
+                .pos(this.leftPos + 8, this.topPos + 42)
+                .selected(be.isRoundRobin())
+                .onValueChange((checkbox, selected) -> onRoundRobinChanged(selected))
+                .build();
         addRenderableWidget(roundRobinCheckbox);
     }
 
@@ -89,8 +89,8 @@ public class ExtractPortScreen extends AbstractContainerScreen<ExtractPortMenu> 
         // Draw tooltip for list mode button
         if (listModeButton.isHovered()) {
             guiGraphics.renderTooltip(this.font,
-                Component.literal(be.getListMode().getDescription()),
-                mouseX - leftPos, mouseY - topPos);
+                    Component.literal(be.getListMode().getDescription()),
+                    mouseX - leftPos, mouseY - topPos);
         }
     }
 

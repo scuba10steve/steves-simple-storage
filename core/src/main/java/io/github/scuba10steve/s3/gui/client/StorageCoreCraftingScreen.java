@@ -18,9 +18,9 @@ public class StorageCoreCraftingScreen extends AbstractStorageScreen<StorageCore
     private static final Logger LOGGER = LoggerFactory.getLogger(StorageCoreCraftingScreen.class);
 
     private static final ResourceLocation NORMAL_TEXTURE =
-        ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/storage_crafting_gui.png");
+            ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/storage_crafting_gui.png");
     private static final ResourceLocation EXTENDED_TEXTURE =
-        ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/storage_crafting_gui_extended.png");
+            ResourceLocation.fromNamespaceAndPath(RefStrings.MODID, "textures/gui/storage_crafting_gui_extended.png");
 
     // Normal-mode positions for crafting slots (used as base for delta calculation)
     private static final int NORMAL_CRAFTING_GRID_Y = 99;
@@ -32,27 +32,27 @@ public class StorageCoreCraftingScreen extends AbstractStorageScreen<StorageCore
         this.extended = S3Platform.getConfig().isExtendedGui();
 
         this.normalLayout = new LayoutProfile(
-            NORMAL_TEXTURE,
-            256,  // imageWidth
-            256,  // imageHeight
-            256,  // textureSheetHeight
-            4,    // storageRows
-            72,   // storageAreaHeight (4 * 18)
-            151,  // inventoryLabelY
-            162,  // playerInvY
-            220   // hotbarY
+                NORMAL_TEXTURE,
+                256,  // imageWidth
+                256,  // imageHeight
+                256,  // textureSheetHeight
+                4,    // storageRows
+                72,   // storageAreaHeight (4 * 18)
+                151,  // inventoryLabelY
+                162,  // playerInvY
+                220   // hotbarY
         );
 
         this.extendedLayout = new LayoutProfile(
-            EXTENDED_TEXTURE,
-            256,  // imageWidth
-            290,  // imageHeight
-            320,  // textureSheetHeight (256x320 PNG)
-            6,    // storageRows
-            108,  // storageAreaHeight (6 * 18)
-            186,  // inventoryLabelY (151 + 35)
-            197,  // playerInvY (162 + 35)
-            255   // hotbarY (220 + 35)
+                EXTENDED_TEXTURE,
+                256,  // imageWidth
+                290,  // imageHeight
+                320,  // textureSheetHeight (256x320 PNG)
+                6,    // storageRows
+                108,  // storageAreaHeight (6 * 18)
+                186,  // inventoryLabelY (151 + 35)
+                197,  // playerInvY (162 + 35)
+                255   // hotbarY (220 + 35)
         );
 
         applyCurrentLayout();
@@ -67,11 +67,11 @@ public class StorageCoreCraftingScreen extends AbstractStorageScreen<StorageCore
         int delta = extended ? (extendedLayout.playerInvY() - normalLayout.playerInvY()) : 0;
 
         Button clearButton = Button.builder(
-                Component.translatable("gui.s3.clear"),
-                btn -> S3Platform.getNetworkHelper().sendToServer(new ClearCraftingGridPacket(menu.getPos()))
-            )
-            .bounds(this.leftPos + 108, this.topPos + 137 + delta, 30, 12)
-            .build();
+                        Component.translatable("gui.s3.clear"),
+                        btn -> S3Platform.getNetworkHelper().sendToServer(new ClearCraftingGridPacket(menu.getPos()))
+                )
+                .bounds(this.leftPos + 108, this.topPos + 137 + delta, 30, 12)
+                .build();
         this.addRenderableWidget(clearButton);
     }
 

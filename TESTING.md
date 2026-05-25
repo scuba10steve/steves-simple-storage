@@ -7,15 +7,15 @@ Unit tests live in the `core` module and test pure Java classes without Minecraf
 ### Test Classes
 
 1. **RefStringsTest** - Tests mod constants
-   - `testModId()` - Validates RefStrings.MODID value
-   - `testModName()` - Validates RefStrings.NAME value
-   - `testModVersion()` - Validates RefStrings.VERSION value
+    - `testModId()` - Validates RefStrings.MODID value
+    - `testModName()` - Validates RefStrings.NAME value
+    - `testModVersion()` - Validates RefStrings.VERSION value
 
 2. **SortModeTest** - Tests sort mode enum behavior
-   - Validates display names, rotation, and comparator logic
+    - Validates display names, rotation, and comparator logic
 
 3. **ExtractListModeTest** - Tests extract list mode enum behavior
-   - Validates display names, descriptions, and rotation
+    - Validates display names, descriptions, and rotation
 
 4. **SecurityBoxTest** - Tests security box data structures
 
