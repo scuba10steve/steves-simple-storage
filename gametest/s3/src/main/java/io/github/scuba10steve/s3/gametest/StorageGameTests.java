@@ -2,6 +2,7 @@ package io.github.scuba10steve.s3.gametest;
 
 import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
+import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.init.ModBlocks;
 import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
@@ -451,6 +452,33 @@ public class StorageGameTests {
             long expectedCount = countBefore + 3; // 3 items placed in grid
             if (countAfter != expectedCount) {
                 helper.fail("Expected " + expectedCount + " items in storage after grid clear, got " + countAfter);
+                return;
+            }
+
+            helper.succeed();
+        });
+    }
+
+    /**
+     * Regression test: the Access Terminal opens the storage menu with the core's BlockPos,
+     * so {@code stillValid} must not close the screen when the player is far from the core.
+     * Previously, the menu's distance check rejected any player more than 8 blocks from the
+     * core, causing the screen to flash open and immediately close — defeating the whole
+     * purpose of the Access Terminal.
+     */
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    public static void storage_menu_stays_valid_when_player_far_from_core(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            BlockPos absPos = helper.absolutePos(CORE_POS);
+            ServerPlayer mockPlayer = helper.makeMockServerPlayerInLevel();
+            StorageCoreMenu menu = new StorageCoreMenu(0, mockPlayer.getInventory(), absPos);
+
+            // Move the player ~50 blocks from the core — well beyond the old 8-block check
+            mockPlayer.teleportTo(absPos.getX() + 50.0, absPos.getY(), absPos.getZ());
+
+            if (!menu.stillValid(mockPlayer)) {
+                helper.fail("stillValid returned false for player 50 blocks from core; "
+                    + "Access Terminal would close immediately");
                 return;
             }
 

@@ -107,7 +107,11 @@ public class StorageCoreMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return blockEntity != null &&
-                player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) <= 64;
+        // No distance check: the menu may be opened from an Access Terminal arbitrarily
+        // far from the Storage Core, so tying validity to the core's position would close
+        // the screen on the first server tick whenever the terminal is more than 8 blocks
+        // from the core. The player must be in reach of either the core or a terminal to
+        // open the menu in the first place.
+        return blockEntity != null;
     }
 }
