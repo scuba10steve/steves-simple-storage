@@ -38,7 +38,7 @@ dependencies {
     compileOnly "maven.modrinth:polymorph:1.1.0+1.21.1"
     compileOnly "vazkii.patchouli:Patchouli:1.21.1-93-NEOFORGE:api"
     coreClasses project(path: ':core', configuration: 'coreOutput')
-    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.340"
+    runtimeOnly "mezz.jei:jei-1.21.1-neoforge:19.27.0.343"
 }
 
 tasks.withType(Test).configureEach {
