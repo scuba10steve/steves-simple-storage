@@ -11,8 +11,8 @@ fi
 
 modsdir="/mnt/c/Users/${username}/AppData/Roaming/gdlauncher_carbon/data/instances/${modpack}/instance/mods"
 
-# Remove old S3 jars to avoid duplicate mod conflicts
-rm -f "$modsdir"/s3-*.jar
+# Remove old S3 jars to avoid duplicate mod conflicts; s3-[0-9]* leaves s3-advanced-*.jar alone
+rm -f "$modsdir"/s3-[0-9]*.jar
 
 echo "Copying $jar"
 cp "$jar" "$modsdir"
