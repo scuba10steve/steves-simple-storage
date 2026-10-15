@@ -147,8 +147,8 @@ bash scripts/get_logs.sh
   complete, then run `git pull` to sync the remote commit.
 * **Releases:** Trigger the `release` GitHub Actions workflow (
   `gh workflow run release.yml --ref main -f release_type=<beta|release>`). This builds, creates a GitHub Release, and
-  publishes to Modrinth and CurseForge. **Always use `release_type=beta`** unless the user explicitly requests a full
-  release.
+  publishes to Modrinth and CurseForge. **Always use `release_type=release`** unless the user explicitly requests a
+  beta release.
 * **Workflow Order (CRITICAL):** Always trigger `bump-version` first, wait for it to complete successfully (check with
   `gh run view <run-id> --json status,conclusion`), then trigger `release`. Running them in parallel causes the release
   to use the old version number.
