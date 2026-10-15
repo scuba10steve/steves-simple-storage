@@ -468,7 +468,6 @@ public class StorageGameTests {
      * recipe only showed up after the player physically changed the grid.
      */
     @GameTest(template = "core_with_storage_box", setupTicks = 5)
-    @SuppressWarnings("unchecked")
     public static void crafting_result_updates_when_slots_changed_with_player_inventory(GameTestHelper helper) {
         helper.runAfterDelay(5, () -> {
             BlockPos absPos = helper.absolutePos(CORE_POS);
@@ -482,6 +481,7 @@ public class StorageGameTests {
             }
 
             RecipeManager recipeManager = helper.getLevel().getServer().getRecipeManager();
+            @SuppressWarnings("unchecked")
             Optional<RecipeHolder<CraftingRecipe>> selected = recipeManager
                 .byKey(ResourceLocation.withDefaultNamespace("oak_button"))
                 .map(holder -> (RecipeHolder<CraftingRecipe>) holder);
