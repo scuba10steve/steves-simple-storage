@@ -4,6 +4,7 @@ import io.github.scuba10steve.s3.blockentity.StorageCoreBlockEntity;
 import io.github.scuba10steve.s3.gui.server.StorageCoreCraftingMenu;
 import io.github.scuba10steve.s3.gui.server.StorageCoreMenu;
 import io.github.scuba10steve.s3.init.ModBlocks;
+import io.github.scuba10steve.s3.platform.S3Platform;
 import io.github.scuba10steve.s3.storage.StorageInventory;
 import io.github.scuba10steve.s3.storage.StoredItemStack;
 import net.minecraft.core.BlockPos;
@@ -15,6 +16,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.CraftingRecipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.neoforged.neoforge.gametest.GameTestHolder;
@@ -455,6 +457,54 @@ public class StorageGameTests {
                 return;
             }
 
+            helper.succeed();
+        });
+    }
+
+    /**
+     * Regression test: Polymorph's recipe-selection packet handler recomputes the result by calling
+     * {@code menu.slotsChanged(player.getInventory())} — the player inventory, not the crafting grid.
+     * The menu previously ignored any container other than its craft matrix, so a newly selected
+     * recipe only showed up after the player physically changed the grid.
+     */
+    @GameTest(template = "core_with_storage_box", setupTicks = 5)
+    @SuppressWarnings("unchecked")
+    public static void crafting_result_updates_when_slots_changed_with_player_inventory(GameTestHelper helper) {
+        helper.runAfterDelay(5, () -> {
+            BlockPos absPos = helper.absolutePos(CORE_POS);
+            ServerPlayer mockPlayer = helper.makeMockServerPlayerInLevel();
+            StorageCoreCraftingMenu menu = new StorageCoreCraftingMenu(0, mockPlayer.getInventory(), absPos);
+
+            menu.getSlot(1).set(new ItemStack(Items.OAK_LOG, 1));
+            if (!menu.getSlot(0).getItem().is(Items.OAK_PLANKS)) {
+                helper.fail("Expected oak planks result before selection, got " + menu.getSlot(0).getItem());
+                return;
+            }
+
+            RecipeManager recipeManager = helper.getLevel().getServer().getRecipeManager();
+            Optional<RecipeHolder<CraftingRecipe>> selected = recipeManager
+                .byKey(ResourceLocation.withDefaultNamespace("oak_button"))
+                .map(holder -> (RecipeHolder<CraftingRecipe>) holder);
+            if (selected.isEmpty()) {
+                helper.fail("minecraft:oak_button recipe not found");
+                return;
+            }
+
+            // Simulate the player picking a different recipe in Polymorph's selection widget
+            S3Platform.CraftingRecipeLookup original = S3Platform.getCraftingRecipeLookup();
+            S3Platform.setCraftingRecipeLookup((m, input, level, player) -> selected);
+            try {
+                menu.slotsChanged(mockPlayer.getInventory());
+            } finally {
+                S3Platform.setCraftingRecipeLookup(original);
+            }
+
+            if (!menu.getSlot(0).getItem().is(Items.OAK_BUTTON)) {
+                helper.fail("Result did not update after slotsChanged(playerInventory); got " + menu.getSlot(0).getItem());
+                return;
+            }
+
+            menu.removed(mockPlayer);
             helper.succeed();
         });
     }

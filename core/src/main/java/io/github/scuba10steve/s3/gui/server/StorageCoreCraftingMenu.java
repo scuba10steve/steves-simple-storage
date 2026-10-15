@@ -45,10 +45,10 @@ public class StorageCoreCraftingMenu extends StorageCoreMenu {
 
     @Override
     public void slotsChanged(Container pContainer) {
-        if (pContainer == craftMatrix && !suppressResultUpdate) {
-            if (!player.level().isClientSide) {
-                updateCraftingResult();
-            }
+        // Like vanilla CraftingMenu, recompute regardless of which container changed: Polymorph
+        // signals a recipe selection via slotsChanged(player.getInventory()), not the craft matrix.
+        if (!suppressResultUpdate && !player.level().isClientSide) {
+            updateCraftingResult();
         }
     }
 
