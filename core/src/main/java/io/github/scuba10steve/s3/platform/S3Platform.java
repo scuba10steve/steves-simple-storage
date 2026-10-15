@@ -192,6 +192,10 @@ public final class S3Platform {
         return craftingRecipeLookup.find(menu, input, level, player);
     }
 
+    public static CraftingRecipeLookup getCraftingRecipeLookup() {
+        return craftingRecipeLookup;
+    }
+
     public static void setCraftingRecipeLookup(CraftingRecipeLookup lookup) {
         craftingRecipeLookup = lookup;
     }
